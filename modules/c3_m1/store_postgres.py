@@ -168,3 +168,4 @@ def lock(company_id: str | None = None):
 
 
 # ------------------------------------------------------------------ company (README 5)
+def get_company(company_id: str | None) -> dict | None:
