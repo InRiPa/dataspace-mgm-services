@@ -218,3 +218,4 @@ def update_company(company_id: str, **fields) -> dict | None:
     if "deactivation_reason" in fields:
         _check_enum(fields["deactivation_reason"], DEACTIVATION_REASONS, "deactivation_reason")
     if "bpn" in fields:
+        fields["bpn"] = (fields["bpn"] or "").strip().upper() or None
