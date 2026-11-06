@@ -642,3 +642,4 @@ def _summary(row: dict) -> dict:
 def list_companies(*, status: list[str] | str | None = None, name: str | None = None,
                    bpn: str | None = None, hasBpn: bool | str | None = None,
                    companyRole: str | None = None, coreDataSource: str | None = None,
+                   page: int | str = 0, size: int | str = 20) -> dict:
