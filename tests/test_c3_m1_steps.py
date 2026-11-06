@@ -58,3 +58,4 @@ ADDRESS = {"streetName": "Musterstraße", "streetNumber": "1", "postalCode": "70
 @pytest.fixture(autouse=True)
 def _state():
     interface.reset()
+    yield
