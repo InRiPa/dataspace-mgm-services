@@ -637,3 +637,4 @@ def _summary(row: dict) -> dict:
             "companyRoles": [role for role, status in store.list_roles(row["id"]).items()
                              if status == "ACTIVE"],
             "createdAt": row["created_at"]}
+
