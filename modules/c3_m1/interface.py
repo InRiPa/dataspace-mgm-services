@@ -142,3 +142,4 @@ def company_view(cid: str | None, *, detail: bool = False) -> dict:
                  "deactivationReason": row["deactivation_reason"],
                  "changedAt": row["changed_at"], "activatedAt": row["activated_at"],
                  "rejectedAt": row["rejected_at"], "deactivatedAt": row["deactivated_at"],
+                 "reactivatedAt": row["reactivated_at"],
