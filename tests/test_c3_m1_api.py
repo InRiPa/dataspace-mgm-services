@@ -68,3 +68,4 @@ def active(client: TestClient) -> dict:
                                        "source": "APPLICANT"}]},
          consents=[{"agreementKey": "terms-active-participant", "version": "1.0",
                     "language": "en", "givenAt": "2026-11-06T08:05:00+00:00"},
+                   {"agreementKey": "security-regulations", "version": "1.0",
