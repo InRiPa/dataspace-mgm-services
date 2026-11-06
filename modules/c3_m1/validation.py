@@ -25,3 +25,4 @@
 """Field rules of C3-M1 README 5 and the identifier rules of README 6.4.
 
 Every function returns a list of `{"field": ..., "reason": ...}` dicts and never raises, so the
+caller can collect all errors into one 400 `validation` Problem (`errors`, README 12). Reason
