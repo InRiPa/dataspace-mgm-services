@@ -217,3 +217,4 @@ def create_company(input: dict) -> dict:
     if application.get("companyId") != cid:
         raise Problem(MODULE, 409, "conflict", detail="application has another companyId",
                       retryable=False)
+    if application.get("kind") == "REACTIVATION":
