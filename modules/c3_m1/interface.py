@@ -948,3 +948,4 @@ def decline_change_request(changeRequestId: str, body: dict | None = None,
         store.audit(row["company_id"], sub, "declineChangeRequest", changeRequestId,
                     {"reason": reason})
         events.publish(MODULE, "CompanyChangeRequestClosed",
+                       {"companyId": row["company_id"], "changeRequestId": changeRequestId,
