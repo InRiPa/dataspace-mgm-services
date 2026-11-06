@@ -523,3 +523,4 @@ def add_document(change_request_id: str, *, file_name: str, media_type: str,
             raise ValueError(f"unknown change request: {change_request_id}")
         return _fetch_one(  # type: ignore[return-value]
             connection,
+            "INSERT INTO change_request_document (id, change_request_id, file_name, media_type,"
