@@ -345,3 +345,4 @@ def activate_company(input: dict) -> dict:
                 active.append(role)
             else:
                 pending.append(role)
+        if not active:
