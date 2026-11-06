@@ -178,3 +178,4 @@ def test_the_roles_are_visible_with_terms(client, active):
     assert "APP_PROVIDER" in states
 
 
+def test_no_token_attestation_document_or_person_name_leaks(active, _keys):
