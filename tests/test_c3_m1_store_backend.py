@@ -26,3 +26,4 @@
 module's own PostgreSQL database (README 4, 5).
 
 The live tests need a server and are skipped without it:
+
