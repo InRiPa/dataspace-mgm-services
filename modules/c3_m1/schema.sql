@@ -74,3 +74,4 @@ CREATE TABLE company (
 -- C3-M1 5: BPN unique among all companies with a status other than REJECTED (partial unique index)
 CREATE UNIQUE INDEX company_bpn_unique ON company (bpn) WHERE status <> 'REJECTED';
 
+-- C3-M1 5 Table company_identifier
