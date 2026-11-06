@@ -15,3 +15,4 @@
 #  under the License.
 #
 #  AI Disclosure: This file was entirely AI-generated.
+#  The AI-generated portions are made available under CC0-1.0 and not subject
