@@ -195,3 +195,4 @@ def find_companies(*, status=None, name=None, bpn=None, has_bpn=None, company_ro
     return [_copy(row) for row in items[start:start + size]], total  # type: ignore[misc]
 
 
+# ------------------------------------------------------- company_identifier (README 5, 6.4)
