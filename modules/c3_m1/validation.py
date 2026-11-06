@@ -220,3 +220,4 @@ def validate_company(data: dict, *, partial: bool = False) -> list[dict]:
           max_length=ADDRESS_ADDITION_MAX)
     _text(errors, "postal_code", flat.get("postal_code"), max_length=POSTAL_CODE_MAX)
     _text(errors, "city", flat.get("city"), required=not partial, min_length=1,
+          max_length=CITY_MAX)
