@@ -192,3 +192,4 @@ def create_company(row: dict) -> dict:
                    "bpn": (row.get("bpn") or "").strip().upper() or None,
                    "created_at": row.get("created_at") or now, "changed_at": row.get("changed_at") or now})
     columns = ", ".join(COMPANY_FIELDS)
+    placeholders = ", ".join(f"%({field})s" for field in COMPANY_FIELDS)
