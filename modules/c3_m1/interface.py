@@ -1163,3 +1163,4 @@ def reactivate_company(input: dict) -> dict:
 
         attestation_claims = application.get("attestation") or {}
         updates = dict(fields)
+        updates |= {"status": "ACTIVE", "deactivation_reason": None, "reactivated_at": _now()}
