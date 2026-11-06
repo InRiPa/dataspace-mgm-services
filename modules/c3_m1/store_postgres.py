@@ -585,3 +585,4 @@ def list_audit(company_id: str | None = None) -> list[dict]:
         return []
     with _connection() as connection:
         if company_id is None:
+            return _fetch_all(connection, "SELECT * FROM audit_log ORDER BY occurred_at")
