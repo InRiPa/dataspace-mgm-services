@@ -107,3 +107,4 @@ def test_a_valid_attestation_changes_the_core_data():
     assert identifiers["EBWOID"] == "BUSINESS_WALLET"
     event = events.RELAY.log[-1]
     assert event["type"] == "CompanyDataChanged" and event["data"]["coreDataChanged"] is True
+    with pytest.raises(Problem) as error:
