@@ -267,3 +267,4 @@ def find_companies(*, status=None, name=None, bpn=None, has_bpn=None, company_ro
     return rows, total
 
 
+# ------------------------------------------------------- company_identifier (README 5, 6.4)
