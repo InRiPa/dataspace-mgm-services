@@ -47,3 +47,4 @@ DEFAULTS = {
     "LANGUAGES": "de,en",
     "QUERY_MAX_COMPANIES": "100",
     "REGISTRATION_URL": "in-process",
+    "COMPANY_ROLES_FILE": "config/company-roles.json",
