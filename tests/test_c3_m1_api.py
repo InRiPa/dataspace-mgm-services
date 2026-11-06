@@ -200,3 +200,4 @@ def test_the_role_catalogue_is_a_query(client, active):
     assert response.status_code == 200 and isinstance(response.json(), list)
     roles = {role["companyRole"]: role for role in response.json()}
     assert roles["ACTIVE_PARTICIPANT"]["assignableBy"] == "COMPANY"
+    assert roles["ACTIVE_PARTICIPANT"]["description"] == "Teilnehmer am Datenaustausch"
