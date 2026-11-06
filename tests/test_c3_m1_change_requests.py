@@ -41,3 +41,4 @@ def submit(company: str = U1, person: str = P1_SUB, **data) -> dict:
     payload = data or {"identifiers": [{"type": "VAT_ID", "value": "DE123456789"},
                                        {"type": "LEI_CODE", "value": "529900T8BM49AURSDO55"}]}
     payload.setdefault("comment", "Bitte ändern")
+    return interface.create_change_request(company, payload, [PDF], person)
