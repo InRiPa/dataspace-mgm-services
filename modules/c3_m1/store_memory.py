@@ -370,3 +370,4 @@ def withdraw_change_request(change_request_id: str, *, closed_at: str | None = N
     row = _change_requests.get(change_request_id)
     if row is None:
         return None
+    if row["status"] != "OPEN":
