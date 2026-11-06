@@ -483,3 +483,4 @@ def decide_change_request(change_request_id: str, status: str, *, decided_by: st
         return None
     with _connection() as connection:
         row = _fetch_one(connection, "SELECT status FROM change_request WHERE id = %s",
+                         (change_request_id,))
