@@ -448,3 +448,4 @@ def update_company(companyId: str, body: dict, sub: str | None = None) -> dict:
                         "coreDataSource": row["core_data_source"]})
     return company_view(companyId)
 
+
