@@ -474,3 +474,4 @@ def correct_company(companyId: str, body: dict, sub: str | None = None) -> dict:
         if identifiers is not None:
             wallet = [{"type": entry["type"], "value": entry["value"], "source": entry["source"]}
                       for entry in store.list_identifiers(companyId)
+                      if entry["source"] == "BUSINESS_WALLET"]
