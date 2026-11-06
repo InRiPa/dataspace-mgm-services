@@ -385,3 +385,4 @@ def add_document(change_request_id: str, *, file_name: str, media_type: str,
     _check_enum(media_type, MEDIA_TYPES, "media_type")
     row = {"id": str(uuid.uuid4()), "change_request_id": change_request_id,
            "file_name": file_name, "media_type": media_type,
+           "size_bytes": len(content) if size_bytes is None else size_bytes,
