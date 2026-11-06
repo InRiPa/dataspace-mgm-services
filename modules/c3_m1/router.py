@@ -38,3 +38,4 @@ from portal_common import standin
 from portal_common.problems import Problem
 
 from . import interface
+from .interface import MODULE, company_view, role_view
