@@ -183,3 +183,4 @@ def test_no_token_attestation_document_or_person_name_leaks(active, _keys):
     from test_c3_m1_attestation import claims as attestation_claims, sign
 
     interface.create_change_request(U1, {"comment": "privat", "identifiers": [
+        {"type": "VAT_ID", "value": "DE555444333"}]},
