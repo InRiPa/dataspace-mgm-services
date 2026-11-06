@@ -181,3 +181,4 @@ CREATE TABLE audit_log (
     occurred_at timestamptz  NOT NULL,
     sub         text         NOT NULL DEFAULT '',
     company_id  uuid,
+    operation   text         NOT NULL,
