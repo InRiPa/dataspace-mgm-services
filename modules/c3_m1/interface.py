@@ -85,3 +85,4 @@ def reset() -> None:
     if not seed or target.get_company(config.osp_company_id()) is not None:
         return
     address = seed.get("address") or {}
+    target.create_company({
