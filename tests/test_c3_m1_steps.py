@@ -276,3 +276,4 @@ def test_the_built_in_stand_in_reads_the_stub_file(tmp_path, monkeypatch):
                                          "source": "ATTESTATION"},
                                         {"type": "VAT_ID", "value": "DE123456789",
                                          "source": "APPLICANT"}]},
+        "companyRoles": ["ACTIVE_PARTICIPANT"], "consents": CONSENTS}]}), encoding="utf-8")
