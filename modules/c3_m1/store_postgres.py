@@ -132,3 +132,4 @@ def _integrity(error: errors.IntegrityError) -> ValueError:
         constraint = getattr(getattr(error, "diag", None), "constraint_name", "") or ""
         if "bpn" in constraint:
             return ValueError("bpn: belongs to another company with a status other than REJECTED")
+        if "open_per_company" in constraint:
