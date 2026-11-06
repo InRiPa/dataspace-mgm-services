@@ -303,3 +303,4 @@ def _terms_of_roles() -> dict[str, set[str]]:
     Without an address for C1-M2 the built-in stand-in answers with the initial values of 14.3.
     """
     if neighbours.is_standin("c1-m2"):
+        agreements = testdata.agreements()
