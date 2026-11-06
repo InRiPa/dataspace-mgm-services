@@ -902,3 +902,4 @@ def approve_change_request(changeRequestId: str, body: dict | None = None,
                            sub: str | None = None) -> dict:
     """7.17"""
     with store.lock((store.get_change_request(changeRequestId) or {}).get("company_id")):
+        row = _reviewed(changeRequestId)
