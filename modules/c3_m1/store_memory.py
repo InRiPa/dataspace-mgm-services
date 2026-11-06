@@ -147,3 +147,4 @@ def create_company(row: dict) -> dict:
 def update_company(company_id: str, **fields) -> dict | None:
     row = companies.get(company_id)
     if row is None:
+        return None
