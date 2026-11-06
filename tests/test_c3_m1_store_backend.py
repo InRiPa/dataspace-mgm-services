@@ -130,3 +130,4 @@ def test_a_missing_driver_answers_not_implemented(monkeypatch, postgres_url):
     assert error.value.status == 501
     assert error.value.body()["type"] == "urn:c3-m1:problem:not-implemented"
 
+
