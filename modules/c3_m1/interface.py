@@ -666,3 +666,4 @@ def _change_request_view(row: dict, *, osp: bool = False, company: dict | None =
     view = {"id": row["id"], "companyId": row["company_id"], "status": row["status"],
             "changes": row["changes"], "comment": row["comment"],
             "documents": [_document_info(document)
+                          for document in store.list_documents(row["id"])],
