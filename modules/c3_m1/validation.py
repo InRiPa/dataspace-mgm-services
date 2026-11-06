@@ -80,3 +80,4 @@ FALLBACK_PATTERNS: dict[str, dict[str, str]] = {
     "EORI": {"Worldwide": r"^[A-Z]{2}[A-Za-z0-9]{1,15}$"},
 }
 
+#: camelCase of the API -> snake_case of README 5 (`address` is nested, see `flat_fields`).
