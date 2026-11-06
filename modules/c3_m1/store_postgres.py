@@ -403,3 +403,4 @@ def set_consent(company_id: str, agreement_key: str, *, version: str | None = No
             " ON CONFLICT (company_id, agreement_key) DO UPDATE SET status = EXCLUDED.status,"
             " source_kind = EXCLUDED.source_kind, source_ref = EXCLUDED.source_ref,"
             " consented_by = EXCLUDED.consented_by, consented_at = EXCLUDED.consented_at,"
+            " agreement_version = COALESCE(%(version)s, consent.agreement_version),"
