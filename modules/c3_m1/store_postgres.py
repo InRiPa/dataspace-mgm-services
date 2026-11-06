@@ -450,3 +450,4 @@ def open_change_request(company_id: str) -> dict | None:
 
 
 def list_change_requests(*, company_id: str | None = None, status=None,
+                         page: int = 0, size: int = 20,
