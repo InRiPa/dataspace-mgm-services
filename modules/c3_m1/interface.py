@@ -90,3 +90,4 @@ def reset() -> None:
         "street": address.get("street"), "house_number": address.get("houseNumber"),
         "postal_code": address.get("postalCode"), "city": address.get("city"),
         "region": address.get("region"), "country_code": address.get("countryCode"),
+        "status": "ACTIVE", "core_data_source": "MANUAL",
