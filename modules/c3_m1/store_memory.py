@@ -381,3 +381,4 @@ def add_document(change_request_id: str, *, file_name: str, media_type: str,
                  content: bytes = b"", size_bytes: int | None = None,
                  sha256: str | None = None) -> dict:
     if change_request_id not in _change_requests:
+        raise ValueError(f"unknown change request: {change_request_id}")
