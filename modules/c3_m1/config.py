@@ -234,3 +234,4 @@ def role_catalogue() -> dict[str, dict]:
     path = company_roles_file()
     if path is None:
         return {role: dict(entry) for role, entry in INITIAL_ROLES.items()}
+    document = json.loads(path.read_text(encoding="utf-8"))
