@@ -150,3 +150,4 @@ def add_company_role(companyId: str, body: dict = Body(...), lang: str | None = 
     return interface.add_company_role(companyId, body, claims.get("sub"), lang)
 
 
+@router.delete("/companies/{companyId}/company-roles/{companyRole}")
