@@ -138,3 +138,4 @@ def company_view(cid: str | None, *, detail: bool = False) -> dict:
             "createdAt": row["created_at"], "dataspaceName": config.dataspace_name()}
     if detail:
         view |= {"applicationId": row["application_id"], "verificationRef": row["verification_ref"],
+                 "bpnAssignedAt": row["bpn_assigned_at"],
