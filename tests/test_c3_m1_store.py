@@ -309,3 +309,4 @@ def test_documents_are_stored_with_checksum(make):
     assert len(document["sha256"]) == 64
     assert store.get_document(document["id"])["file_name"] == "auszug.pdf"
     assert len(store.list_documents(request["id"])) == 1
+    with pytest.raises(ValueError):
