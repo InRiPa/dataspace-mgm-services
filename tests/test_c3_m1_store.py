@@ -218,3 +218,4 @@ def test_roles_report_status_and_none(make):
     store.add_role(company["id"], "APP_PROVIDER", status="REQUESTED", source_kind="APPLICATION",
                    source_ref="a0000001-0000-4000-8000-000000000001")
     assert store.list_roles(company["id"]) == {"ACTIVE_PARTICIPANT": "ACTIVE",
+                                               "APP_PROVIDER": "REQUESTED"}
