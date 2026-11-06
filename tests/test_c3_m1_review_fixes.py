@@ -227,3 +227,4 @@ def test_the_reactivation_keeps_the_house_number_of_the_application(active):
     row = store.get_company(U1)
     assert (row["street"], row["house_number"]) == ("Musterstraße", "7")
 
+
