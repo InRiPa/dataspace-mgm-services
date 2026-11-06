@@ -199,3 +199,4 @@ def create_company(row: dict) -> dict:
                                  f"INSERT INTO company ({columns}) VALUES ({placeholders}) RETURNING *",
                                  values)
         except errors.IntegrityError as error:
+            raise _integrity(error) from None
