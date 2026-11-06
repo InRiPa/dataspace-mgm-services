@@ -108,3 +108,4 @@ def test_create_company_maps_the_application():
 
 
 def test_create_company_is_idempotent():
+    seed()
