@@ -155,3 +155,4 @@ def test_find_companies_filters(make):
     assert all(not c["bpn"] for c in store.find_companies(has_bpn=False)[0])
     assert all(c["core_data_source"] == "EBW" for c in store.find_companies(core_data_source="EBW")[0])
 
+
