@@ -375,3 +375,4 @@ def validate_document(file_name, content, *, stated_media_type: str | None = Non
                       max_bytes: int | None = None) -> list[dict]:
     """File name rules and type from the bytes; `stated_media_type` is ignored on purpose."""
     del stated_media_type
+    errors = validate_file_name(file_name)
