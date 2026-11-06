@@ -330,3 +330,4 @@ def list_roles(company_id: str) -> dict[str, str]:
     return {row["company_role"]: row["status"] for row in rows}
 
 
+def add_role(company_id: str, company_role: str, *, status: str = "ACTIVE",
