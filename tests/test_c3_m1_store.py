@@ -112,3 +112,4 @@ def test_reactivating_a_rejected_company_takes_a_free_bpn(make):
         store.update_company(other["id"], bpn="BPNL00000000AAAA")
 
 
+def test_rejecting_a_company_keeps_its_bpn(make):
