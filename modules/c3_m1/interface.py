@@ -721,3 +721,4 @@ def _identifier_core_changed(row: dict, identifiers: list[dict]) -> bool:
     stored = {entry["type"]: entry["value"] for entry in store.list_identifiers(row["id"])
               if entry["type"] in CORE_IDENTIFIERS and entry["source"] != "BUSINESS_WALLET"}
     now = {entry["type"]: entry["value"] for entry in identifiers
+           if entry.get("type") in CORE_IDENTIFIERS}
