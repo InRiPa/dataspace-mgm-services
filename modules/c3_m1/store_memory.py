@@ -137,3 +137,4 @@ def create_company(row: dict) -> dict:
     created.update({key: value for key, value in row.items() if value is not None})
     created.update({
         "id": row["id"], "status": status, "core_data_source": core_data_source,
+        "bpn": _checked_bpn(row.get("bpn"), company_id=row["id"], status=status),
