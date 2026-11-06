@@ -154,3 +154,4 @@ def test_create_company_writes_an_audit_entry_without_a_sub():
     assert entry["sub"] == "" and entry["operation"] == "stepCreateCompany"
     assert entry["details"]["processId"] == "p-1" and entry["details"]["stepRunId"] == "s-1"
 
+
