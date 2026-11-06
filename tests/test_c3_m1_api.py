@@ -139,3 +139,4 @@ def test_osp_permissions_do_not_overlap(client, active):
 
 def test_the_osp_correction_switches_the_source_to_manual(client, active):
     response = call(client, "PATCH", f"/api/c3-m1/osp/companies/{U1}", S2,
+                    json={"address": {"street": "Neue Straße", "houseNumber": "9"}, "reason": "Hinweis"})
