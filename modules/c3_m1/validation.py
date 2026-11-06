@@ -136,3 +136,4 @@ def _reference_data() -> dict | None:
     if not isinstance(data, dict):
         return None
     _reference_cache = (str(path), stat.st_mtime_ns, data)
+    return data
