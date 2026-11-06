@@ -155,3 +155,4 @@ def remove_company_role(companyId: str, companyRole: str, lang: str | None = Non
                         claims: dict = standin.perm(
                             MODULE, "DELETE",
                             "/companies/{companyId}/company-roles/{companyRole}")):
+    standin.company_scope(MODULE, claims, companyId)
