@@ -79,3 +79,4 @@ def claims(**over) -> dict:
         "representation": {"confirmed": True, "result": "CONFIRMED"},
     }
     base.update(over)
+    return base
