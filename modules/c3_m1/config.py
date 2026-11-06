@@ -170,3 +170,4 @@ def apply_registration_url() -> None:
     neighbour address. An empty `MODULE_URLS_DEFAULT` keeps its meaning: built-in stand-in.
     """
     url = os.environ.get("REGISTRATION_URL")
+    if not url or os.environ.get("C1_M2_URL") or not os.environ.get("MODULE_URLS_DEFAULT", "").strip():
