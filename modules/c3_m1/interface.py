@@ -471,3 +471,4 @@ def correct_company(companyId: str, body: dict, sub: str | None = None) -> dict:
         if locked:
             raise Problem(MODULE, 409, "field-locked", fields=locked)
 
+        if identifiers is not None:
