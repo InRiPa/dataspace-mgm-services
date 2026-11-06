@@ -97,3 +97,4 @@ def find_identifier_matches(body: dict = Body(...),
                                                    "/internal/companies/identifier-matches")):
     return interface.find_identifier_matches(**body)
 
+
