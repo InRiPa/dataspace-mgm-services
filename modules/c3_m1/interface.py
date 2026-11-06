@@ -372,3 +372,4 @@ def activate_company(input: dict) -> dict:
 # ----------------------------------------------------------------------------------- steps (8.4)
 def reject_company(input: dict) -> dict:
     """8.4: `REJECTED`, final; an assigned BPN becomes free."""
+    cid = input.get("companyId")
