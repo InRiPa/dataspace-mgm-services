@@ -68,3 +68,4 @@ def sign(claims: dict, key: dict = PRIVATE, *, typ: str = "ebw-attestation+jwt")
 
 def claims(**over) -> dict:
     base = {
+        "iss": "https://ebw-connector.example.org", "aud": "portal-registration",
