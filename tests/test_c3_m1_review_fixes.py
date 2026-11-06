@@ -146,3 +146,4 @@ def test_the_correction_reports_wallet_conflicts_as_validation(client, active):
                   json={"identifiers": [{"type": "EUID", "value": "X"}], "reason": "r"})
     assert answer.status_code == 400 and answer.json()["type"].endswith("validation")
 
+
