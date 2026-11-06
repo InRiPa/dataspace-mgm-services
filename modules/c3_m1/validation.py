@@ -112,3 +112,4 @@ def same_value(left, right) -> bool:
     """Comparison of 6.3: equal after normalisation, case ignored."""
     return normalise(left).casefold() == normalise(right).casefold()
 
+
