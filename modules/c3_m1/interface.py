@@ -840,3 +840,4 @@ def list_change_requests(*, status: list[str] | str | None = None,
                                            company=store.get_company(item["company_id"]))
                       for item in items],
             "page": int(page or 0), "size": int(size or 20), "total": total}
+
