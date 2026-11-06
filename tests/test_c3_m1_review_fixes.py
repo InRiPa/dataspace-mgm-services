@@ -142,3 +142,4 @@ def test_a_changed_euid_counts_as_core_data():
 
 # ------------------------------------------------------------------- the correction path (7.12)
 def test_the_correction_reports_wallet_conflicts_as_validation(client, active):
+    answer = call(client, "PATCH", f"/api/c3-m1/osp/companies/{U1}", S2,
