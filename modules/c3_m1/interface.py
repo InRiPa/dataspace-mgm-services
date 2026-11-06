@@ -974,3 +974,4 @@ def _attested_values(row: dict, claims: dict) -> tuple[dict, dict[str, dict]]:
         identifiers.append({"type": "EUID", "value": company["euid"], "source": "BUSINESS_WALLET"})
 
     address = company.get("address")
+    if isinstance(address, dict):
