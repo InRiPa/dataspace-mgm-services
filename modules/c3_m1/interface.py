@@ -547,3 +547,4 @@ def _role_state(company: str, lang: str) -> list[dict]:
                            for term in terms if role in (term.get("companyRoles") or [])],
         })
     return states
+
