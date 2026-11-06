@@ -75,3 +75,4 @@ def test_a_request_with_identifiers_is_created(active):
 def test_a_request_needs_a_document_of_a_known_type(active):
     with pytest.raises(Problem) as error:
         interface.create_change_request(U1, {"comment": "ohne", "identifiers": [
+            {"type": "VAT_ID", "value": "DE555444333"}]}, [])
