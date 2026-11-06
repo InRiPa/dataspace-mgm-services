@@ -102,3 +102,4 @@ def reset() -> None:
     _audit.clear()
 
 
+@contextlib.contextmanager
