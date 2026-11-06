@@ -48,3 +48,4 @@ def client() -> TestClient:
     app = FastAPI()
     problems.install(app)
     app.include_router(test_iam.router)
+    app.include_router(c3_router.router)
