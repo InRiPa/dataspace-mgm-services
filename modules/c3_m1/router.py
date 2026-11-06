@@ -22,3 +22,4 @@
 #  SPDX-License-Identifier: Apache-2.0 AND CC0-1.0
 #  Assisted-By: Hermes Agent (deepseek-v4.1-flash)
 #################################################################################
+"""Thin HTTP layer of C3-M1: token, permission, scope, then the interface (AGENTS.md 5).
