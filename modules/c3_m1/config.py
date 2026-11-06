@@ -204,3 +204,4 @@ def company_roles_file() -> Path | None:
     return path if path and path.exists() else None
 
 
+#: Initial values of README 6.5, used while the installation has no `COMPANY_ROLES_FILE`.
