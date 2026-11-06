@@ -59,3 +59,4 @@ def postgres(monkeypatch, postgres_url):
     store.reset()
     yield store
     store.reset()
+
