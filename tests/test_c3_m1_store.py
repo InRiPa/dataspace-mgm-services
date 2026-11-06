@@ -413,3 +413,4 @@ def test_region_rules():
     assert {"field": "region", "reason": "format"} in v.validate_company({"region": "BWX1", **base})
 
 
+def test_country_code_rules():
