@@ -286,3 +286,4 @@ def test_the_snake_case_alias_writes_the_short_name(client, active):
     answer = call(client, "PATCH", f"/api/c3-m1/companies/{U1}", P1, json={"short_name": "Kurz"})
     assert answer.status_code == 200 and answer.json()["shortName"] == "Kurz"
 
+
