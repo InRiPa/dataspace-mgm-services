@@ -67,3 +67,4 @@ def test_the_default_transport_is_in_memory(monkeypatch):
     assert store.backend().__name__ == "modules.c3_m1.store_memory"
 
 
+def test_the_transport_follows_database_url_at_call_time(monkeypatch, postgres_url):
