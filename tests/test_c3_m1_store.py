@@ -431,3 +431,4 @@ def test_company_enums_and_bpn_format():
     assert v.validate_company({"bpn": "BPNL00000000AAAA", **base}) == []
     assert {"field": "bpn", "reason": "format"} in v.validate_company({"bpn": "DE123", **base})
 
+
