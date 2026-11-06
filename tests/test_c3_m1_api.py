@@ -194,3 +194,4 @@ def test_the_identifier_search_over_http(client, active):
     assert response.status_code == 200
     assert [match["companyId"] for match in response.json()["matches"]] == [U1]
 
+
