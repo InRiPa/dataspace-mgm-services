@@ -114,3 +114,4 @@ def attestation_jwks_url() -> str:
     """JWKS of the C5-M1 EBW-Connector of the installation (README 11.2)."""
     return value("ATTESTATION_JWKS_URL") or f"{attestation_issuer()}/jwks"
 
+
