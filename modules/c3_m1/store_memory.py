@@ -308,3 +308,4 @@ def set_consent(company_id: str, agreement_key: str, *, version: str | None = No
 def get_change_request(change_request_id: str | None) -> dict | None:
     return _copy(_change_requests.get(change_request_id)) if change_request_id else None
 
+
