@@ -154,3 +154,4 @@ def verify(attestation: str, *, now: dt.datetime | None = None) -> dict:
 
     audience = claims.get("aud")
     audience = [audience] if isinstance(audience, str) else list(audience or [])
+    if config.attestation_audience() not in audience:
