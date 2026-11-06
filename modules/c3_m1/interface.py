@@ -377,3 +377,4 @@ def reject_company(input: dict) -> dict:
         row = get_company(cid)
         if row["status"] == "REJECTED":
             return standin.step_reply(input, {"companyId": cid, "status": row["status"]})
+        if row["status"] in ("ACTIVE", "INACTIVE"):
