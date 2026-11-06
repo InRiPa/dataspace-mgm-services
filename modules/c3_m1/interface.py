@@ -248,3 +248,4 @@ def create_company(input: dict) -> dict:
 
     attestation = application.get("attestation") or {}
     with store.lock(cid):
+        store.create_company(row | {
