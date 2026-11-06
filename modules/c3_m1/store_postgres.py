@@ -314,3 +314,4 @@ def get_role(company_id: str, company_role: str) -> dict | None:
                                       " AND company_role = %s", (company_id, company_role))
 
 
+def role_status(company_id: str, company_role: str) -> str:
