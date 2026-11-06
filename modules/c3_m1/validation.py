@@ -273,3 +273,4 @@ def validate_identifier(entry: dict, country_code: str | None, field: str) -> li
     if kind in IDENTIFIER_TYPES:
         pattern = pattern_for(kind, country_code)
         if pattern and not _matches(pattern, value):
+            errors.append(_error(f"{field}.value", "format"))
