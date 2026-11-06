@@ -149,3 +149,4 @@ def company_view(cid: str | None, *, detail: bool = False) -> dict:
 
 def company_internal(cid: str | None) -> dict:
     """`CompanyInternal` (9.1): address, identifiers, source and active roles for other modules."""
+    row = get_company(cid)
