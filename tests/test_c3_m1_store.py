@@ -125,3 +125,4 @@ def test_status_enum_is_enforced(make):
         store.update_company(company["id"], status="DELETED")
 
 
+def test_core_data_source_enum_is_enforced(make):
