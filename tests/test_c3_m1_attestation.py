@@ -76,3 +76,4 @@ def claims(**over) -> dict:
                     "ebwoid": "EBWOID-DE-0000000001", "country": "DE",
                     "address": {"street_address": "Industriestraße 10", "postal_code": "70565",
                                 "locality": "Stuttgart"}},
+        "representation": {"confirmed": True, "result": "CONFIRMED"},
