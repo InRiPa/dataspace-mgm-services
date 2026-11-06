@@ -1113,3 +1113,4 @@ def reactivate_company(input: dict) -> dict:
             raise Problem(MODULE, 409, "invalid-state",
                           detail=f"kind {application.get('kind')} does not match the reason",
                           retryable=False)
+        if application.get("status") not in ("APPROVED", "COMPLETED"):
