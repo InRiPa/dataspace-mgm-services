@@ -132,3 +132,4 @@ def attestation_client_ids() -> list[str]:
     """Allowed `client_id` values of a verification attestation; empty means no check."""
     return [x.strip() for x in value("ATTESTATION_CLIENT_IDS").split(",") if x.strip()]
 
+
