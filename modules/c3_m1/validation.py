@@ -384,3 +384,4 @@ def validate_document(file_name, content, *, stated_media_type: str | None = Non
         return errors
     if max_bytes is not None and len(content) > max_bytes:
         errors.append(_error("document", "too-large"))
+    if detect_media_type(content) is None:
