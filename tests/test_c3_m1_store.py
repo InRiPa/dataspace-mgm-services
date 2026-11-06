@@ -71,3 +71,4 @@ def test_create_company_fills_defaults_and_timestamps(make):
     assert company["status"] == "REQUESTED"
     assert company["core_data_source"] == "MANUAL"
     assert company["bpn"] is None
+    assert company["created_at"] and company["changed_at"]
