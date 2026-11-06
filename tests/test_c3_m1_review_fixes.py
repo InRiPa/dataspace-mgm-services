@@ -48,3 +48,4 @@ from test_c3_m1_steps import A1, A2, U3, seed, step
 def client() -> TestClient:
     app = FastAPI()
     problems.install(app)
+    app.include_router(test_iam.router)
