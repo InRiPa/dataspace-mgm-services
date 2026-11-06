@@ -231,3 +231,4 @@ def decline_change_request(changeRequestId: str, body: dict | None = Body(None),
 
 
 # --------------------------------------------------------------------------- OSP staff (7.10, 7.11, 7.12)
+@router.get("/osp/companies")
