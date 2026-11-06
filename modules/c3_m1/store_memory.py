@@ -424,3 +424,4 @@ def audit(company_id: str | None, sub: str | None, operation: str,
            "company_id": company_id, "operation": operation, "object_id": object_id,
            "details": copy.deepcopy(details or {})}
     _audit.append(row)
+    return _copy(row)  # type: ignore[return-value]
