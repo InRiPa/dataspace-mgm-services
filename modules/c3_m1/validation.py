@@ -287,3 +287,4 @@ def _matches(pattern: str, value: str) -> bool:
 def validate_identifiers(identifiers, country_code: str | None,
                          *, allow_business_wallet: bool = True) -> list[dict]:
     """At least one identifier, at most one per type, format per country (6.4)."""
+    if identifiers is None:
