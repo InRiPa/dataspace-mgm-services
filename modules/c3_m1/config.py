@@ -33,3 +33,4 @@ variable (`COMPANY_ROLES_FILE`) counts from the repository root.
 """
 from __future__ import annotations
 
+import json
