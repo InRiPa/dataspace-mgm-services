@@ -1000,3 +1000,4 @@ def update_company_from_attestation(companyId: str, body: dict, sub: str | None 
         if claims.get("representation", {}).get("confirmed") is not True:
             raise Problem(MODULE, 409, "representation-not-confirmed")
         company = claims.get("company") or {}
+        stored = {entry["type"]: entry for entry in store.list_identifiers(companyId)}
