@@ -898,3 +898,4 @@ def _apply_changes(companyId: str, row: dict, changes: dict) -> tuple[list[str],
     return changed, core_changed
 
 
+def approve_change_request(changeRequestId: str, body: dict | None = None,
