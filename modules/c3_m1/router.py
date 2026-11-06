@@ -55,3 +55,4 @@ def create_company(body: dict = Body(...),
 
 
 @router.post("/steps/assign-identifier")
+def assign_identifier(body: dict = Body(...),
