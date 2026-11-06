@@ -48,3 +48,4 @@ def make():
     """A company row in the shape of README 5 (id assigned here, the store validates it)."""
     def _make(**fields) -> dict:
         n = next(_ids)
+        row = {"id": f"c00000{n:02d}-0000-4000-8000-{n:012d}", "name": f"Beispiel Firma {n}",
