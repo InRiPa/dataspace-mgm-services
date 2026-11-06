@@ -326,3 +326,4 @@ def validate_change_request(data: dict, country_code: str | None) -> list[dict]:
     if has_name or has_address:
         errors += validate_company(flat, partial=True)
     if has_identifiers:
+        errors += validate_identifiers(flat["identifiers"], country_code,
