@@ -72,3 +72,4 @@ def _check_enum(value, allowed: tuple[str, ...], field: str) -> None:
 
 def _check_known(company_id: str) -> dict:
     if company_id not in companies:
+        raise ValueError(f"unknown company: {company_id}")
