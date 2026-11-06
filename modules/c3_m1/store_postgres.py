@@ -438,3 +438,4 @@ def create_change_request(row: dict) -> dict:
                  row.get("decided_by"), row.get("decision_reason"),
                  row.get("created_at") or _now(), row.get("closed_at")))
         except errors.IntegrityError as error:
+            raise _integrity(error) from None
