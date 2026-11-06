@@ -148,3 +148,4 @@ CREATE TABLE change_request (
         CHECK (status <> 'DECLINED' OR decision_reason IS NOT NULL)
 );
 
+-- C3-M1 5: at most one change request with status OPEN per company (partial unique index)
