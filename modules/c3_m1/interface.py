@@ -137,3 +137,4 @@ def company_view(cid: str | None, *, detail: bool = False) -> dict:
             "status": row["status"], "companyRoles": _roles(row),
             "createdAt": row["created_at"], "dataspaceName": config.dataspace_name()}
     if detail:
+        view |= {"applicationId": row["application_id"], "verificationRef": row["verification_ref"],
