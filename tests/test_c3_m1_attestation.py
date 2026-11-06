@@ -77,3 +77,4 @@ def claims(**over) -> dict:
                     "address": {"street_address": "Industriestraße 10", "postal_code": "70565",
                                 "locality": "Stuttgart"}},
         "representation": {"confirmed": True, "result": "CONFIRMED"},
+    }
