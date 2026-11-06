@@ -228,3 +228,4 @@ def decline_change_request(changeRequestId: str, body: dict | None = Body(None),
                            claims: dict = standin.perm(
                                MODULE, "POST", "/osp/change-requests/{changeRequestId}/decline")):
     return interface.decline_change_request(changeRequestId, body, claims.get("sub"))
+
