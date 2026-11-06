@@ -216,3 +216,4 @@ def get_change_request_document(changeRequestId: str, documentId: str,
         "Content-Disposition": f'attachment; filename="{answer["file_name"]}"'})
 
 
+@router.post("/osp/change-requests/{changeRequestId}/approve")
