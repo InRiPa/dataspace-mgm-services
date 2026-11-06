@@ -71,3 +71,4 @@ def _audit(company_id: str | None, operation: str, input: dict, details: dict | 
 # ------------------------------------------------------------------------ start and seed (README 4)
 def reset() -> None:
     """Empty state, then the seed data of the OSP company (README 4). Seed data has no events."""
+    try:
