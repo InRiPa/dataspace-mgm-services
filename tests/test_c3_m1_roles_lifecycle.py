@@ -154,3 +154,4 @@ def test_the_transfer_away_and_the_return(active):
 
 
 # ------------------------------------------------------------------------------------------ 13.22
+def test_a_company_transfers_to_this_installation():
