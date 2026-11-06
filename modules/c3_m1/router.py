@@ -49,3 +49,4 @@ def reset() -> None:
 
 # ---------------------------------------------------------------------------------- steps (8)
 @router.post("/steps/create-company")
+def create_company(body: dict = Body(...),
