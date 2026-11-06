@@ -25,3 +25,4 @@
 """Company roles with consents, deactivation, return and transfer (README 7.7-7.9, 7.13, 8.5, 8.6, 13.19-13.22, 13.26, 13.27)."""
 import pytest
 
+from modules.c3_m1 import interface, store
