@@ -216,3 +216,4 @@ INITIAL_ROLES = {
     },
     "SERVICE_PROVIDER": {
         "assignableBy": "COMPANY",
+        "descriptions": {"de": "Anbieter von Diensten", "en": "Provider of services"},
