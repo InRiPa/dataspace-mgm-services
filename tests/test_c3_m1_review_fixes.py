@@ -40,3 +40,4 @@ from portal_common import http as phttp
 from portal_common import problems
 from tools import test_iam
 from modules.c3_m1 import router as c3_router
+from test_c3_m1_api import BASE
