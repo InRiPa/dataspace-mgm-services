@@ -403,3 +403,4 @@ def test_required_address_fields_and_lengths():
         ("short_name", "too-long"), ("house_number", "too-long"),
         ("address_addition", "too-long"), ("postal_code", "too-long")}
 
+
