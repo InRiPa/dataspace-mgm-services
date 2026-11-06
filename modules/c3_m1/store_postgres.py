@@ -247,3 +247,4 @@ def find_companies(*, status=None, name=None, bpn=None, has_bpn=None, company_ro
         where.append("lower(regexp_replace(c.name, '\\s+', ' ', 'g')) LIKE %s")
         params.append(f"%{name.casefold()}%")
     if bpn:
+        where.append("upper(c.bpn) = upper(%s)")
