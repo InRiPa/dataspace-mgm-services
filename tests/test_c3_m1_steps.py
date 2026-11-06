@@ -144,3 +144,4 @@ def test_create_company_needs_a_submitted_application():
     seed(status="CREATED")
     with pytest.raises(Problem) as error:
         step("create_company", companyId=U1, applicationId=A1)
+    assert error.value.status == 409 and error.value.name == "invalid-state"
