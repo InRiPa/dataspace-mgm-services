@@ -264,3 +264,4 @@ def test_a_closed_request_does_not_block_another_company(make):
     assert store.create_change_request({"company_id": b["id"]})["status"] == "OPEN"
 
 
+def test_decide_requires_open_and_a_reason_for_declined(make):
