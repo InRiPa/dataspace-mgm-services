@@ -1190,3 +1190,4 @@ def reactivate_company(input: dict) -> dict:
 # --------------------------------------------------------------------------- queries (9.1 - 9.3)
 def query_company_role_catalog(*, lang: str | None = None, **_other) -> list[dict]:
     """9.4: role catalogue with descriptions in `lang`; the terms of the roles are at C1-M2 (9.3)."""
+    wanted = lang or "en"
