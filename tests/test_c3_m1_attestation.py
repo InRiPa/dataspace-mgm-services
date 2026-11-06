@@ -191,3 +191,4 @@ def test_the_wrong_typ_is_an_algorithm_error():
 
 
 def test_a_broken_compact_serialisation_is_a_format_error():
+    active_company()
