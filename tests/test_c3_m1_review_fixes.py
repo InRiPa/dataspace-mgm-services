@@ -91,3 +91,4 @@ def test_an_approval_keeps_the_wallet_identifiers(active):
         {"type": "VAT_ID", "value": "DE123456789"}, {"type": "LEI_CODE", "value": "529900T8BM49AURSDO55"}]},
         [PDF], P1_SUB)
     interface.approve_change_request(request["id"], {}, S1_SUB)
+    sources = {entry["type"]: entry["source"] for entry in store.list_identifiers(U1)}
