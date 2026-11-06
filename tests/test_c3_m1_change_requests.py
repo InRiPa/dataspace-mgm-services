@@ -108,3 +108,4 @@ def test_review_download_and_approval_of_a_manual_company(active):
     approved = interface.approve_change_request(answer["id"], {}, S1_SUB)
     assert approved["status"] == "APPROVED"
     row = store.get_company(U2)
+    assert row["name"] == "Beispiel Logistik SE" and row["core_data_source"] == "MANUAL"
