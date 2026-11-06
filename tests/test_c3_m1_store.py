@@ -242,3 +242,4 @@ def test_consents_are_keyed_by_company_and_key(make):
     store.set_consent(company["id"], "security-regulations", version="1.0")
     consent = store.get_consent(company["id"], "terms-active-participant")
     assert consent["status"] == "INACTIVE" and consent["agreement_version"] == "1.0"
+    assert len(store.list_consents(company["id"])) == 2
