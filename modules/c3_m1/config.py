@@ -154,3 +154,4 @@ def stub_applications_file() -> Path | None:
 
     A bare name counts from the module folder (README 4 example), an absolute path as given.
     """
+    path = _path(MODULE_DIR, value("STUB_APPLICATIONS_FILE"))
