@@ -33,3 +33,4 @@ Keys come only from the configuration: `ATTESTATION_JWKS_FILE` (tests, no fetch)
 Header parameters such as `jku`, `x5u` or `jwk` are ignored.
 """
 from __future__ import annotations
+
