@@ -567,3 +567,4 @@ def is_used(jti: str) -> bool:
                                   (jti,)).fetchone() is not None
 
 
+# ------------------------------------------------------------------- audit_log (README 5, 4.3)
