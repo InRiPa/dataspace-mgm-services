@@ -906,3 +906,4 @@ def approve_change_request(changeRequestId: str, body: dict | None = None,
         if row["status"] == "APPROVED":
             return _change_request_view(row, osp=True)
         if row["status"] != "OPEN":
+            raise Problem(MODULE, 409, "invalid-state", detail=row["status"])
