@@ -138,3 +138,4 @@ def test_decline_and_withdraw(active):
     with pytest.raises(Problem) as error:
         interface.withdraw_change_request(U1, answer["id"], P1_SUB)
     assert error.value.name == "invalid-state"
+
