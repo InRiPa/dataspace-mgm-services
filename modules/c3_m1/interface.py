@@ -476,3 +476,4 @@ def correct_company(companyId: str, body: dict, sub: str | None = None) -> dict:
                       for entry in store.list_identifiers(companyId)
                       if entry["source"] == "BUSINESS_WALLET"]
             errors += validation.validate_identifiers(list(identifiers) + wallet, row["country_code"])
+            errors += _wallet_identifier_conflict(row, identifiers)
