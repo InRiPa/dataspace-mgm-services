@@ -762,3 +762,4 @@ def create_change_request(companyId: str, data: dict,
         if not _changes_differs(row, changes):
             raise Problem(MODULE, 400, "validation",
                           errors=[{"field": "changes", "reason": "no change"}])
+
