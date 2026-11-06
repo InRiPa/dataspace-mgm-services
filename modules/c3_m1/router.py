@@ -185,3 +185,4 @@ def list_own_change_requests(companyId: str, page: int = 0, size: int = 20,
 
 @router.post("/companies/{companyId}/change-requests/{changeRequestId}/withdraw")
 def withdraw_change_request(companyId: str, changeRequestId: str,
+                            claims: dict = standin.perm(
