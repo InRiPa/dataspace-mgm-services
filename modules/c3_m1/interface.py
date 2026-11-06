@@ -147,3 +147,4 @@ def company_view(cid: str | None, *, detail: bool = False) -> dict:
     return view
 
 
+def company_internal(cid: str | None) -> dict:
