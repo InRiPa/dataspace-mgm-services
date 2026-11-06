@@ -488,3 +488,4 @@ def decide_change_request(change_request_id: str, status: str, *, decided_by: st
             return None
         if row["status"] != "OPEN":
             raise ValueError(f"status: {row['status']} is not OPEN")
+        return _fetch_one(connection,
