@@ -1019,3 +1019,4 @@ def update_company_from_attestation(companyId: str, body: dict, sub: str | None 
         if errors:
             raise Problem(MODULE, 400, "validation", errors=errors)
 
+        changed = _changed_fields(row, fields, list(identifiers.values()))
