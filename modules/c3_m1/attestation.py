@@ -104,3 +104,4 @@ def _key_for(kid: str | None) -> dict:
     if time.monotonic() - _last_reload > 60:
         _last_reload = time.monotonic()
         _cache.update({"keys": [], "fetched_at": 0.0})
+        keys = _load_keys()
