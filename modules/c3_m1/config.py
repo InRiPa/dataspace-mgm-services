@@ -238,3 +238,4 @@ def role_catalogue() -> dict[str, dict]:
     return {entry["companyRole"]: entry for entry in document.get("roles", []) if entry.get("companyRole")}
 
 
+def assignable_by(company_role: str) -> str | None:
