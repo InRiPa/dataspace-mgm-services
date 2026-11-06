@@ -978,3 +978,4 @@ def _attested_values(row: dict, claims: dict) -> tuple[dict, dict[str, dict]]:
         same_street = validation.same_value(
             " ".join(filter(None, (row["street"], row["house_number"]))), address.get("street_address"))
         same_city = (validation.same_value(row["postal_code"], address.get("postal_code"))
+                     and validation.same_value(row["city"], address.get("locality")))
