@@ -46,3 +46,4 @@ MODULE_DIR = Path(__file__).resolve().parents[1] / "modules" / "c3_m1"
 PRIVATE = json.loads((MODULE_DIR / "stub-ebw-key.json").read_text(encoding="utf-8"))["keys"][0]
 JWKS = MODULE_DIR / "stub-ebw-jwks.json"
 
+
