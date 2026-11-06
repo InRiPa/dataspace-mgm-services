@@ -295,3 +295,4 @@ def assign_identifier(input: dict) -> dict:
     return standin.step_reply(input, {"companyId": cid, "status": row["status"], "bpn": bpn})
 
 
+# ----------------------------------------------------------------------------------- steps (8.3)
