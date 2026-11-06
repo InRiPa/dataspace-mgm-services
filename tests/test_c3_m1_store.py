@@ -544,3 +544,4 @@ def test_media_type_comes_from_the_first_bytes():
     assert v.detect_media_type("text") is None
 
 
+def test_a_stated_media_type_is_ignored():
