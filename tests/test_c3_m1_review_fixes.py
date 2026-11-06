@@ -324,3 +324,4 @@ def test_an_outdated_attestation_is_recognised_across_timestamp_formats(active):
     store.update_company(U1, core_data_verified_at=stored.replace("+00:00", "Z"))
     with pytest.raises(Problem) as error:
         interface.update_company_from_attestation(
+            U1, {"attestation": sign(claims(jti="j-old", verified_at=int(
