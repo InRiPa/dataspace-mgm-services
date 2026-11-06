@@ -685,3 +685,4 @@ def _differs_field(row: dict, key: str, value) -> bool:
     return not validation.same_value(row.get(validation.field_name(key)), value)
 
 
+def _differs_identifiers(row: dict, identifiers: list[dict]) -> bool:
