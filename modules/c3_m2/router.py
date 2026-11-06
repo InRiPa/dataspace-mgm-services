@@ -34,6 +34,7 @@ in-process.
 from __future__ import annotations
 
 from typing import Any
+from uuid import UUID
 
 from fastapi import APIRouter, Query
 from pydantic import BaseModel
@@ -78,10 +79,10 @@ def _input(body: BaseModel) -> dict[str, Any]:
 # ---------------------------------------------------------------- OSP staff (README 7.1)
 @router.get("/companies/{companyId}", operation_id="getCspRegistration", summary="Status of a company at the CSP",
             response_model=CspRegistration, response_model_exclude_none=True)
-def get_csp_registration(companyId: str,  # openapi name
+def get_csp_registration(companyId: UUID,  # openapi name (format uuid: a malformed id is 400 validation)
                          _: Claims = standin.perm(MODULE, "GET", "/companies/{companyId}")) -> dict[str, str]:
     """README 7.1, for OSP staff (`view_csp_registration`). 404 without a registration."""
-    return interface.get_csp_registration(companyId=companyId)
+    return interface.get_csp_registration(companyId=str(companyId))
 
 
 # ---------------------------------------------------------------- callback of the CSP (README 7.2)

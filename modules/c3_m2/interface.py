@@ -37,10 +37,13 @@ from __future__ import annotations
 import re
 from typing import Any, Literal, TypedDict
 
+from pydantic import ValidationError
+
 from portal_common import events
 
 from . import csp_client, errors, store
 from .errors import MODULE
+from .schemas import CspCompanyMatch
 from .store import Membership, NotificationType, Registration
 
 __all__ = [
@@ -420,10 +423,20 @@ def find_companies(*, ebwoid: str | None = None, euid: str | None = None, identi
     if not all(isinstance(m, dict) for m in answer):
         raise errors.upstream_error("the CSP answered a match that is not an object")
     own = csp_client.osp_id()
-    return [{"bpn": m.get("bpn"), "legalName": m.get("legalName"), "country": m.get("country"),
-             "matchedBy": m.get("matchedBy"), "homeOspId": m.get("homeOspId"), "homeOspName": m.get("homeOspName"),
-             "homeIsThisOsp": m.get("homeOspId") == own, "memberActive": m.get("memberActive")}
-            for m in answer]
+    matches = [{"bpn": m.get("bpn"), "legalName": m.get("legalName"), "country": m.get("country"),
+                "matchedBy": m.get("matchedBy"), "homeOspId": m.get("homeOspId"), "homeOspName": m.get("homeOspName"),
+                "homeIsThisOsp": m.get("homeOspId") == own, "memberActive": m.get("memberActive")}
+               for m in answer]
+    # Every match must be a CspCompanyMatch of README 9 (the router's response model). Checked here,
+    # so a CSP answer with a missing or wrong field is 502 upstream-error both in-process and over
+    # HTTP, never a 500 from the response check of FastAPI.
+    for match in matches:
+        try:
+            CspCompanyMatch.model_validate(match)
+        except ValidationError as e:
+            fields = ", ".join(sorted({".".join(str(x) for x in err["loc"]) for err in e.errors()}))
+            raise errors.upstream_error(f"the CSP answered a match with a missing or invalid {fields}") from e
+    return matches
 
 
 # ---------------------------------------------------------------- callback of the CSP (README 7.2)

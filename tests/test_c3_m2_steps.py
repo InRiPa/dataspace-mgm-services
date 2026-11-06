@@ -348,3 +348,16 @@ def test_find_companies_rejects_a_malformed_csp_answer(monkeypatch):
     monkeypatch.setattr(csp_client, "call", lambda *a, **k: (200, [CSP_STUB[0], "not a match"]))
     p = problem(interface.find_companies, ebwoid=OTHER_EBWOID)
     assert (p.status, p.name, p.ext["retryable"]) == (502, "upstream-error", True)
+
+
+# ---------------------------------------------------------------- second review (review-module, 2026-11-06)
+@pytest.mark.parametrize("broken", [{"legalName": None}, {"homeOspId": "not-a-uuid"}, {"matchedBy": "PHONE"},
+                                    {"bpn": None}])
+def test_find_companies_rejects_an_incomplete_csp_match(monkeypatch, broken):
+    """README 9: every match is a CspCompanyMatch; anything else from the CSP is 502 upstream-error."""
+    from modules.c3_m2 import csp_client
+    match = CSP_STUB[0] | {"matchedBy": "EBWOID"} | broken
+    monkeypatch.setattr(csp_client, "call", lambda *a, **k: (200, [match]))
+    p = problem(interface.find_companies, ebwoid=OTHER_EBWOID)
+    assert (p.status, p.name, p.ext["retryable"]) == (502, "upstream-error", True)
+    assert next(iter(broken)) in (p.detail or "")

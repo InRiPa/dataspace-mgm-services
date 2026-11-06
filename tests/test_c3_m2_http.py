@@ -257,3 +257,21 @@ def test_running_step_answer_matches_step_result(api, shared_csp):
     r = api.post("/api/c3-m2/steps/register-company", json=maschinenbau(), headers=service("svc-c12-m1"))
     assert r.status_code == 200 and r.json()["state"] == "RUNNING"
     assert set(r.json()) <= {"stepRunId", "state", "result"}
+
+
+# ---------------------------------------------------------------- second review (review-module, 2026-11-06)
+def test_incomplete_csp_match_is_502_not_500_over_http(api, monkeypatch):
+    from modules.c3_m2 import csp_client
+    monkeypatch.setattr(csp_client, "call", lambda *a, **k: (200, [{
+        "bpn": "BPNL00000000002B", "legalName": None, "country": "DE", "matchedBy": "EBWOID", "homeOspId": OSP_B}]))
+    r = api.get("/api/c3-m2/internal/find-companies", params={"ebwoid": "EBWOID-DE-0000000002"},
+                headers=service("svc-c1-m3"))
+    assert r.status_code == 502
+    assert r.json()["type"] == "urn:c3-m2:problem:upstream-error" and r.json()["retryable"] is True
+
+
+def test_malformed_company_id_is_400_validation(api):
+    r = api.get("/api/c3-m2/companies/not-a-uuid", headers=bearer(person_token("otto")))
+    assert r.status_code == 400
+    assert r.json()["type"] == "urn:c3-m2:problem:validation"
+    assert [e["field"] for e in r.json()["errors"]] == ["path.companyId"]
