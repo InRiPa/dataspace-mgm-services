@@ -177,3 +177,4 @@ def apply_registration_url() -> None:
 
 def osp_company_id() -> str:
     return settings.get("ospCompanyId") or ""
+
