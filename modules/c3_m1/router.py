@@ -238,3 +238,4 @@ def list_companies(status: list[str] | None = Query(None), name: str | None = No
                    page: int = 0, size: int = 20,
                    _: dict = standin.perm(MODULE, "GET", "/osp/companies")):
     return interface.list_companies(status=status, name=name, bpn=bpn, hasBpn=hasBpn,
+                                    companyRole=companyRole, coreDataSource=coreDataSource,
