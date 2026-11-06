@@ -946,3 +946,4 @@ def decline_change_request(changeRequestId: str, body: dict | None = None,
         decided = store.decide_change_request(changeRequestId, "DECLINED", decided_by=sub,
                                               decision_reason=reason)
         store.audit(row["company_id"], sub, "declineChangeRequest", changeRequestId,
+                    {"reason": reason})
