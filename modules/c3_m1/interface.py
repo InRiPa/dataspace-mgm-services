@@ -139,3 +139,4 @@ def company_view(cid: str | None, *, detail: bool = False) -> dict:
     if detail:
         view |= {"applicationId": row["application_id"], "verificationRef": row["verification_ref"],
                  "bpnAssignedAt": row["bpn_assigned_at"],
+                 "deactivationReason": row["deactivation_reason"],
