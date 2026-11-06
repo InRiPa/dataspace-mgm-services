@@ -31,3 +31,4 @@ transport in `store_postgres.py` answers the same functions: `lock()` is the pla
 identifier per type, one OPEN change request per company, BPN unique among companies that are not
 `REJECTED`) is enforced here as well.
 
+Reads return copies: a caller changes rows through `update_company` and the other write functions,
