@@ -456,3 +456,4 @@ def list_change_requests(*, company_id: str | None = None, status=None,
     statuses = [status] if isinstance(status, str) else list(status or [])
     for value in statuses:
         _check_enum(value, CHANGE_REQUEST_STATUSES, "status")
+    where, params = ["TRUE"], []
