@@ -143,3 +143,4 @@ def list_company_roles(companyId: str, lang: str | None = None,
 
 
 @router.post("/companies/{companyId}/company-roles")
+def add_company_role(companyId: str, body: dict = Body(...), lang: str | None = None,
