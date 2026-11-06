@@ -51,3 +51,4 @@ JWKS = MODULE_DIR / "stub-ebw-jwks.json"
 def _keys(monkeypatch):
     monkeypatch.setenv("ATTESTATION_ISSUER", "https://ebw-connector.example.org")
     monkeypatch.setenv("ATTESTATION_AUDIENCE", "portal-registration")
+    monkeypatch.setenv("ATTESTATION_CLIENT_IDS", "demo-osp")
