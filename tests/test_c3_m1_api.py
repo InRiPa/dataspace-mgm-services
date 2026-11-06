@@ -51,3 +51,4 @@ def client() -> TestClient:
     app.include_router(c3_router.router)
     app.include_router(standin.fallback_router(c3_router.MODULE, c3_router.router))   # as scaffold/app.py
     phttp.register_local(BASE, app)
+    interface.reset()
