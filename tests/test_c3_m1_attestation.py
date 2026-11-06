@@ -88,3 +88,4 @@ def active_company(application: str = A1, company: str = U1) -> None:
     step("assign_identifier", companyId=company, bpn="BPNLIUK2REMLK3F4")
     step("activate_company", companyId=company, applicationId=application)
 
+
