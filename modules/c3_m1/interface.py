@@ -706,3 +706,4 @@ def _changes_differs(row: dict, changes: dict) -> bool:
 
 
 def _wallet_identifier_conflict(row: dict, identifiers: list[dict]) -> list[dict]:
+    """Identifiers of the list whose stored source is `BUSINESS_WALLET` (400, 7.4 point 4, 7.12 point 3)."""
