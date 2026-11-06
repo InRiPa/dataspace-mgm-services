@@ -75,3 +75,4 @@ def _load_keys() -> list[dict]:
     if file is not None:
         try:
             return json.loads(file.read_text(encoding="utf-8")).get("keys") or []
+        except (OSError, ValueError) as error:
