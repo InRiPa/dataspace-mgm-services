@@ -300,3 +300,4 @@ def validate_identifiers(identifiers, country_code: str | None,
         errors += validate_identifier(entry, country_code, field)
         if isinstance(entry, dict):
             kind = entry.get("type")
+            if kind:
