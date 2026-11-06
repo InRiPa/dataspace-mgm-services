@@ -145,3 +145,4 @@ def company_view(cid: str | None, *, detail: bool = False) -> dict:
                  "reactivatedAt": row["reactivated_at"],
                  "openChangeRequestId": (store.open_change_request(row["id"]) or {}).get("id")}
     return view
+
