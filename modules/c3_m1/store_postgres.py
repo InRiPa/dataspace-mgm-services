@@ -123,3 +123,4 @@ def _uuid_ok(value) -> bool:
 def _check_known(connection, company_id: str) -> None:
     if not _uuid_ok(company_id) or _fetch_one(
             connection, "SELECT id FROM company WHERE id = %s", (company_id,)) is None:
+        raise ValueError(f"unknown company: {company_id}")
