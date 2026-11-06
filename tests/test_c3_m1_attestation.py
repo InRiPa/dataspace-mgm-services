@@ -202,3 +202,4 @@ def test_an_unreadable_jwks_is_an_upstream_error(monkeypatch, tmp_path):
     monkeypatch.setenv("ATTESTATION_JWKS_FILE", str(tmp_path / "missing.json"))
     with pytest.raises(Problem) as error:
         update()
+    assert error.value.status == 502 and error.value.name == "upstream-error"
