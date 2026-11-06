@@ -116,3 +116,4 @@ def test_a_member_may_read_but_not_patch(client, active):
 def test_the_short_name_is_changed_and_locked_fields_refused(client, active):
     assert len(interface.store.list_audit(U1)) > 0
     response = call(client, "PATCH", f"/api/c3-m1/companies/{U1}", P1,
+                    json={"shortName": "BMW"})
