@@ -51,3 +51,4 @@ CREATE TABLE company (
     activated_at           timestamptz,
     rejected_at            timestamptz,
     deactivated_at         timestamptz,
+    reactivated_at         timestamptz,
