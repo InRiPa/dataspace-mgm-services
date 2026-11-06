@@ -103,3 +103,4 @@ def query_company_role_catalog(lang: str | None = None,
                                _: dict = standin.perm(MODULE, "GET", "/internal/company-roles")):
     return interface.query_company_role_catalog(lang=lang)
 
+
