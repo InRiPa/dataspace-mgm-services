@@ -208,3 +208,4 @@ def get_change_request(changeRequestId: str,
 
 @router.get("/osp/change-requests/{changeRequestId}/documents/{documentId}")
 def get_change_request_document(changeRequestId: str, documentId: str,
+                                claims: dict = standin.perm(
