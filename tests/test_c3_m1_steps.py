@@ -71,3 +71,4 @@ def seed(application: str = A1, company: str = U1, **over) -> dict:
                         "identifiers": [{"type": "EBWOID", "value": "EBWOID-DE-0000000001",
                                          "source": "ATTESTATION"},
                                         {"type": "EUID", "value": "DEXX001T.HRB100001",
+                                         "source": "ATTESTATION"},
