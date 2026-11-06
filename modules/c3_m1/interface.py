@@ -518,3 +518,4 @@ def _terms() -> list[dict]:
         agreements = neighbours.query(MODULE, "c1-m2", "list_agreements_internal") or []
     return [agreement for agreement in agreements if agreement.get("scope") == "COMPANY_ROLE"]
 
+
