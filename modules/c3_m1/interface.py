@@ -329,3 +329,4 @@ def activate_company(input: dict) -> dict:
             raise Problem(MODULE, 409, "invalid-state", detail=row["status"], retryable=False)
         if not row["bpn"]:
             raise Problem(MODULE, 409, "identifier-missing", retryable=False)
+        if application_id != row["application_id"]:
