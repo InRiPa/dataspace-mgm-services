@@ -214,3 +214,4 @@ def validate_company(data: dict, *, partial: bool = False) -> list[dict]:
           max_length=NAME_MAX, strip=True)
     _text(errors, "short_name", flat.get("short_name"), max_length=SHORT_NAME_MAX)
     _text(errors, "street", flat.get("street"), required=not partial, min_length=1,
+          max_length=STREET_MAX)
