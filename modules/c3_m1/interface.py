@@ -895,3 +895,4 @@ def _apply_changes(companyId: str, row: dict, changes: dict) -> tuple[list[str],
         store.update_company(companyId, **updates)
     if identifiers is not None:
         store.set_identifiers(companyId, merged_identifiers)
+    return changed, core_changed
