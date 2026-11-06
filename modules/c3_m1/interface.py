@@ -403,3 +403,4 @@ def _changed_fields(row: dict, body: dict, identifiers: list[dict] | None) -> li
                 changed.append(CAMEL.get(field, field))
     if identifiers is not None:
         before = {(entry["type"], entry["value_normalized"]) for entry in store.list_identifiers(row["id"])}
+        after = {(entry["type"], validation.value_normalized(entry["value"])) for entry in identifiers}
