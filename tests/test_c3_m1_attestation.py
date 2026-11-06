@@ -159,3 +159,4 @@ def test_a_too_old_attestation_is_refused():
     assert error.value.ext["reason"] == "too-old"
 
 
+def test_an_older_attestation_does_not_reset_newer_data():
