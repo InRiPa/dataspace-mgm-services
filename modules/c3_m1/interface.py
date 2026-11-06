@@ -921,3 +921,4 @@ def approve_change_request(changeRequestId: str, body: dict | None = None,
         if changed:
             events.publish(MODULE, "CompanyDataChanged",
                            {"companyId": row["company_id"], "changedFields": changed,
+                            "coreDataChanged": core_changed,
