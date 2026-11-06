@@ -29,3 +29,4 @@ the scope `company` additionally check `company_id` against the path (FRAMEWORK 
 company's object stays invisible, 404). No business logic here.
 """
 from __future__ import annotations
+
