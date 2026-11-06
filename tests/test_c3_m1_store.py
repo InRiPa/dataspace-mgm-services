@@ -541,3 +541,4 @@ def test_media_type_comes_from_the_first_bytes():
     assert v.detect_media_type(b"\x89PNG\r\n\x1a\n") == "image/png"
     assert v.detect_media_type(b"\xff\xd8\xff\xe0") == "image/jpeg"
     assert v.detect_media_type(b"PK\x03\x04") is None
+    assert v.detect_media_type("text") is None
