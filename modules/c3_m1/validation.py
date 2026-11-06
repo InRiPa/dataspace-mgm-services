@@ -235,3 +235,4 @@ def validate_company(data: dict, *, partial: bool = False) -> list[dict]:
     if flat.get("deactivation_reason") not in (None, ""):
         if flat["deactivation_reason"] not in DEACTIVATION_REASONS:
             errors.append(_error("deactivation_reason", "unknown"))
+    if flat.get("core_data_source") not in (None, ""):
