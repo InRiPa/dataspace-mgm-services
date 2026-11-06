@@ -571,3 +571,4 @@ def is_used(jti: str) -> bool:
 def audit(company_id: str | None, sub: str | None, operation: str,
           object_id: str | None = None, details: dict | None = None) -> dict:
     """Every changing operation, every step and every read of a document (FRAMEWORK 4.3)."""
+    with _connection() as connection:
