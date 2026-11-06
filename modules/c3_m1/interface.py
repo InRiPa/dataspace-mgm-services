@@ -483,3 +483,4 @@ def correct_company(companyId: str, body: dict, sub: str | None = None) -> dict:
 
         changed = _changed_fields(row, fields, identifiers)
         if not changed:
+            return company_view(companyId, detail=True)
