@@ -326,3 +326,4 @@ def activate_company(input: dict) -> dict:
                                               "companyRoles": _active_roles(cid),
                                               "pendingCompanyRoles": []})
         if row["status"] in ("REJECTED", "INACTIVE"):
+            raise Problem(MODULE, 409, "invalid-state", detail=row["status"], retryable=False)
