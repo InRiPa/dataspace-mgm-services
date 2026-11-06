@@ -364,3 +364,4 @@ def detect_media_type(content) -> str | None:
         return None
     if content.startswith(b"%PDF-"):
         return "application/pdf"
+    if content.startswith(b"\x89PNG"):
