@@ -604,3 +604,4 @@ def remove_company_role(companyId: str, companyRole: str, sub: str | None = None
     with store.lock(companyId):
         row = get_company(companyId)
         if row["status"] != "ACTIVE":
+            raise Problem(MODULE, 409, "invalid-state", detail=row["status"])
