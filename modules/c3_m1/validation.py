@@ -399,3 +399,4 @@ def validate_company_role(company_role, catalogue: dict | None = None) -> list[d
     return []
 
 
+def validate_media_type(media_type) -> list[dict]:
