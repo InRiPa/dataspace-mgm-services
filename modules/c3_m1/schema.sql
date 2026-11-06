@@ -131,3 +131,4 @@ CREATE TABLE consent (
 CREATE TABLE change_request (
     id               uuid         PRIMARY KEY,
     company_id       uuid         NOT NULL REFERENCES company (id),
+    status           text         NOT NULL,
