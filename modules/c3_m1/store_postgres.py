@@ -25,3 +25,4 @@
 """PostgreSQL transport of the C3-M1 repository: the module's own database `c3_m1` (README 4, 5).
 
 Active when `DATABASE_URL` is set; the schema is `schema.sql` next to this file. The functions,
+the field names and the invariants are the ones of `store_memory`, so the caller never learns
