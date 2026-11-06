@@ -474,3 +474,4 @@ def list_change_requests(*, company_id: str | None = None, status=None,
 
 def decide_change_request(change_request_id: str, status: str, *, decided_by: str | None = None,
                           decision_reason: str | None = None,
+                          closed_at: str | None = None) -> dict | None:
