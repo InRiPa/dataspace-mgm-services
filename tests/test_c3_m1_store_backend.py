@@ -46,3 +46,4 @@ COMPANY = {
 @pytest.fixture
 def postgres_url() -> str:
     url = os.environ.get("TEST_DATABASE_URL")
+    if not url:
