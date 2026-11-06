@@ -109,3 +109,4 @@ CREATE TABLE company_role_assignment (
         CHECK (source_ref IS NULL OR char_length(source_ref) <= 100)
 );
 
+-- C3-M1 5 Table consent: one row per company and terms, with the latest state
