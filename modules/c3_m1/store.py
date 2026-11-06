@@ -36,3 +36,4 @@ caller therefore never learns which one runs, except through `backend_name()`. F
 snake_case ones of README 5 — the interface and router map them to camelCase.
 
 Nothing here is FastAPI, HTTP or events, and nothing is cached across a `reset()`.
+"""
