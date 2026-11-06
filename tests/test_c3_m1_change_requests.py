@@ -146,3 +146,4 @@ def test_nobody_approves_their_own_request(active):
     answer = submit(osp_company, S2_SUB, identifiers=[{"type": "VAT_ID", "value": "DE999999999"}])
     with pytest.raises(Problem) as error:
         interface.approve_change_request(answer["id"], {}, S2_SUB)
+    assert error.value.status == 409 and error.value.name == "same-person"
