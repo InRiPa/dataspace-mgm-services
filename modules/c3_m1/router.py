@@ -75,3 +75,4 @@ def deactivate_company(body: dict = Body(...),
 @router.post("/steps/reactivate-company")
 def reactivate_company(body: dict = Body(...),
                        _: dict = standin.perm(MODULE, "POST", "/steps/reactivate-company")):
+    return interface.reactivate_company(body)
