@@ -372,3 +372,4 @@ def test_reset_clears_every_table(make):
 # ------------------------------------------------------------------------------ comparison (6.3)
 def test_normalise_is_nfkc_trimmed_and_collapsed():
     assert v.normalise("  Beispiel \t Maschinenbau  GmbH ") == "Beispiel Maschinenbau GmbH"
+    assert v.normalise("ＡＧ") == "AG"
