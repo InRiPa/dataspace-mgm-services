@@ -79,3 +79,4 @@ def backend() -> ModuleType:
     """The transport module for the current `DATABASE_URL`; imported on first use."""
     global _cache
     name = backend_name()
+    if _cache is not None and _cache[0] == name:
