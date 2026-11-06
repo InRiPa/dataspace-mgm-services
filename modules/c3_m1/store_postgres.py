@@ -280,3 +280,4 @@ def set_identifiers(company_id: str, identifiers: list[dict]) -> list[dict]:
     """Replace the identifiers; at most one per type (primary key `(company_id, type)`)."""
     rows: dict[str, dict] = {}
     for entry in identifiers:
+        kind = entry.get("type")
