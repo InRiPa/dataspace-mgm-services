@@ -285,3 +285,4 @@ def _matches(pattern: str, value: str) -> bool:
 
 
 def validate_identifiers(identifiers, country_code: str | None,
+                         *, allow_business_wallet: bool = True) -> list[dict]:
