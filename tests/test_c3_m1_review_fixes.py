@@ -193,3 +193,4 @@ def test_a_bpn_of_a_rejected_company_is_free_again():
     assert step("assign_identifier", companyId=U4,
                 bpn="BPNLIUK2REMLK3F4")["result"]["bpn"] == "BPNLIUK2REMLK3F4"
 
+
