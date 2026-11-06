@@ -850,3 +850,4 @@ def get_change_request(changeRequestId: str) -> dict:
     view["company"] = {"id": company.get("id"), "name": company.get("name"),
                        "address": _address(company), "identifiers": _identifiers(company),
                        "coreDataSource": company.get("core_data_source"),
+                       "status": company.get("status")}
