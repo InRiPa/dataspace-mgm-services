@@ -134,3 +134,4 @@ def test_a_changed_euid_counts_as_core_data():
     request = interface.create_change_request(U1, {"comment": "x", "identifiers": [
         {"type": "EUID", "value": "DEXX001T.HRB200002"},
         {"type": "VAT_ID", "value": "DE123456789"}]}, [PDF], P1_SUB)
+    events.RELAY.log.clear()
