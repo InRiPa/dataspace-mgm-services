@@ -284,3 +284,4 @@ def _matches(pattern: str, value: str) -> bool:
         return True
 
 
+def validate_identifiers(identifiers, country_code: str | None,
