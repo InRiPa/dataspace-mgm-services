@@ -94,3 +94,4 @@ def reset() -> None:
     """Empty every table (test helper; the PostgreSQL transport drops and recreates the schema)."""
     companies.clear()
     _identifiers.clear()
+    _roles.clear()
