@@ -171,3 +171,4 @@ def test_assign_identifier_and_its_errors():
                       "identifiers": [{"type": "VAT_ID", "value": "DE111111111", "source": "APPLICANT"}]},
          consents=[])
     step("create_company", companyId=U1, applicationId=A1)
+    step("create_company", companyId=U3, applicationId=A3)
