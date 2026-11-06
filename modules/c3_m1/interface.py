@@ -92,3 +92,4 @@ def reset() -> None:
         "region": address.get("region"), "country_code": address.get("countryCode"),
         "status": "ACTIVE", "core_data_source": "MANUAL",
     })
+    target.set_identifiers(seed["companyId"], seed.get("identifiers") or [])
