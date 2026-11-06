@@ -218,3 +218,4 @@ def test_the_approval_event_carries_the_resulting_source(active):
 def test_the_reactivation_keeps_the_house_number_of_the_application(active):
     seed("a0000005-0000-4000-8000-000000000009", U1, kind="REACTIVATION", status="APPROVED",
          companyData={"legalName": "Beispiel Maschinenbau GmbH",
+                      "address": {"streetName": "Musterstraße", "streetNumber": "7",
