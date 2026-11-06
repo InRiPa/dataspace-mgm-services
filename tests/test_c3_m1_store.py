@@ -124,3 +124,4 @@ def test_status_enum_is_enforced(make):
     with pytest.raises(ValueError):
         store.update_company(company["id"], status="DELETED")
 
+
