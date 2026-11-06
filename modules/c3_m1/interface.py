@@ -801,3 +801,4 @@ def _own_change_request(companyId: str, changeRequestId: str) -> dict:
     if row is None or row["company_id"] != companyId:
         raise Problem(MODULE, 404, "not-found")
     return row
+
