@@ -255,3 +255,4 @@ def create_company(input: dict) -> dict:
             "verification_ref": attestation.get("attestationId") if verification == "EBW" else None,
             "application_id": application_id,
         })
+        store.set_identifiers(cid, identifiers)
