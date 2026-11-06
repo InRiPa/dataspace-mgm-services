@@ -942,3 +942,4 @@ def decline_change_request(changeRequestId: str, body: dict | None = None,
             raise Problem(MODULE, 409, "invalid-state", detail=row["status"])
         errors = validation.validate_decision_reason(reason)
         if errors:
+            raise Problem(MODULE, 400, "validation", errors=errors)
