@@ -119,3 +119,4 @@ def test_an_unchanged_address_keeps_its_spelling():
                     **{"company": {
         "legal_name": "Beispiel Maschinenbau AG", "ebwoid": "EBWOID-DE-0000000001",
         "country": "DE", "address": {"street_address": "industriestraße 10",
+                                     "postal_code": "70565", "locality": "STUTTGART"}}})
