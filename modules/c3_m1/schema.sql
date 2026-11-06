@@ -110,3 +110,4 @@ CREATE TABLE company_role_assignment (
 );
 
 -- C3-M1 5 Table consent: one row per company and terms, with the latest state
+CREATE TABLE consent (
