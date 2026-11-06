@@ -38,3 +38,4 @@ CREATE TABLE company (
     city                   text                     NOT NULL,
     region                 text,
     country_code           char(2)                  NOT NULL,
+    status                 text                     NOT NULL,
