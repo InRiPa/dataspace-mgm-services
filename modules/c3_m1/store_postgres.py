@@ -375,3 +375,4 @@ def get_consent(company_id: str, agreement_key: str) -> dict | None:
         return _fetch_one(connection, "SELECT * FROM consent WHERE company_id = %s"
                                       " AND agreement_key = %s", (company_id, agreement_key))
 
+
