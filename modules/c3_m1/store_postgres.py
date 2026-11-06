@@ -535,3 +535,4 @@ def get_document(document_id: str | None) -> dict | None:
     if not document_id or not _uuid_ok(document_id):
         return None
     with _connection() as connection:
+        return _fetch_one(connection, "SELECT * FROM change_request_document WHERE id = %s",
