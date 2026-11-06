@@ -98,3 +98,4 @@ def change_requests_enabled() -> bool:
     return flag("CHANGE_REQUESTS_ENABLED")
 
 
+def change_request_max_documents() -> int:
