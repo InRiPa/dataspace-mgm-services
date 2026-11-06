@@ -251,3 +251,4 @@ def test_the_readme_data_files_resolve_without_configuration(monkeypatch):
     monkeypatch.delenv("ATTESTATION_JWKS_FILE")
     assert config.attestation_jwks_file() is not None
     assert config.attestation_jwks_file().name == "stub-ebw-jwks.json"
+    assert config.attestation_jwks_file().parent == Path(config.__file__).parent
