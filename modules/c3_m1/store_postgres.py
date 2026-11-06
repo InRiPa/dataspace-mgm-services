@@ -556,3 +556,4 @@ def add_if_unused(jti: str, company_id: str) -> bool:
     with _connection() as connection:
         _check_known(connection, company_id)
         row = connection.execute(
+            "INSERT INTO used_attestation (jti, company_id, used_at) VALUES (%s, %s, %s)"
