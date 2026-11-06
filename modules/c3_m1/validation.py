@@ -302,3 +302,4 @@ def validate_identifiers(identifiers, country_code: str | None,
             kind = entry.get("type")
             if kind:
                 if kind in seen:
+                    errors.append(_error(f"{field}.type", "duplicate-type"))
