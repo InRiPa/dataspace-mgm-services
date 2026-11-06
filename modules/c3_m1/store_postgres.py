@@ -285,3 +285,4 @@ def set_identifiers(company_id: str, identifiers: list[dict]) -> list[dict]:
         if not kind:
             raise ValueError("type: required")
         if kind in rows:
+            raise ValueError(f"type: {kind} given twice")
