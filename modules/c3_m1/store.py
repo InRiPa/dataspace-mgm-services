@@ -103,3 +103,4 @@ def _delegate(name: str):
     def call(*args, **kwargs):
         return getattr(backend(), name)(*args, **kwargs)
 
+    call.__name__ = call.__qualname__ = name
