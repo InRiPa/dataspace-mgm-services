@@ -1014,3 +1014,4 @@ def update_company_from_attestation(companyId: str, body: dict, sub: str | None 
             raise Problem(MODULE, 409, "attestation-outdated")
 
         fields, identifiers = _attested_values(row, claims)
+        errors = validation.validate_company(fields, partial=True)
