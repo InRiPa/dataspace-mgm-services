@@ -191,3 +191,4 @@ def create_company(row: dict) -> dict:
                    "core_data_source": row.get("core_data_source") or "MANUAL",
                    "bpn": (row.get("bpn") or "").strip().upper() or None,
                    "created_at": row.get("created_at") or now, "changed_at": row.get("changed_at") or now})
+    columns = ", ".join(COMPANY_FIELDS)
