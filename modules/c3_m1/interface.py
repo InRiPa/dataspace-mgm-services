@@ -825,3 +825,4 @@ def _reviewed(changeRequestId: str) -> dict:
     if row is None:
         raise Problem(MODULE, 404, "not-found")
     return row
+
