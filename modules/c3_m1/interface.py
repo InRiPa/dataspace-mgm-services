@@ -279,3 +279,4 @@ def assign_identifier(input: dict) -> dict:
             raise Problem(MODULE, 400, "validation", errors=errors, retryable=False)
         bpn = raw.strip().upper()
         if row["bpn"]:
+            if row["bpn"] == bpn:
