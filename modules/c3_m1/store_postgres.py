@@ -583,3 +583,4 @@ def audit(company_id: str | None, sub: str | None, operation: str,
 def list_audit(company_id: str | None = None) -> list[dict]:
     if company_id is not None and not _uuid_ok(company_id):
         return []
+    with _connection() as connection:
