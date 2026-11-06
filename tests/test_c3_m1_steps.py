@@ -77,3 +77,4 @@ def seed(application: str = A1, company: str = U1, **over) -> dict:
         "companyRoles": ["ACTIVE_PARTICIPANT"], "consents": CONSENTS,
     }
     entry.update(over)
+    c1_m2.applications[entry["id"]] = entry
