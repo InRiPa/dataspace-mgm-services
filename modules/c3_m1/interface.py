@@ -915,3 +915,4 @@ def approve_change_request(changeRequestId: str, body: dict | None = None,
 
         changed, core_changed = _apply_changes(row["company_id"], company, row["changes"])
         decided = store.decide_change_request(changeRequestId, "APPROVED", decided_by=sub,
+                                              decision_reason=None)
