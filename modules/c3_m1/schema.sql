@@ -91,3 +91,4 @@ CREATE TABLE company_identifier (
 
 -- C3-M1 5: index for the duplicate search on the normalised value (README 6.4, 9.3)
 CREATE INDEX company_identifier_value_normalized ON company_identifier (type, value_normalized);
+
