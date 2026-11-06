@@ -187,3 +187,4 @@ CREATE TABLE audit_log (
 );
 
 CREATE INDEX audit_log_company ON audit_log (company_id, occurred_at);
+
