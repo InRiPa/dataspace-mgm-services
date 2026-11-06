@@ -98,3 +98,4 @@
     {
       "id": "a0000008-0000-4000-8000-000000000008", "companyId": "c0000004-0000-4000-8000-000000000004",
       "kind": "TRANSFER", "existingCompany": false, "status": "SUBMITTED", "verification": "EBW",
+      "attestation": { "attestationId": "3f6c1e2a-7b4d-4e8f-9a51-2c0d6b8e4f55", "verifiedAt": "2026-11-06T08:30:00+00:00" },
