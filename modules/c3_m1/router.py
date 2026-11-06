@@ -196,3 +196,4 @@ def withdraw_change_request(companyId: str, changeRequestId: str,
 @router.get("/osp/change-requests")
 def list_change_requests(status: list[str] | None = Query(None), companyId: str | None = None,
                          page: int = 0, size: int = 20,
+                         _: dict = standin.perm(MODULE, "GET", "/osp/change-requests")):
