@@ -100,3 +100,4 @@ def _key_for(kid: str | None) -> dict:
     if key is not None or config.attestation_jwks_file() is not None:
         if key is None:
             raise _invalid("signature", f"kid {kid!r} is not in the JWKS")
+        return key
