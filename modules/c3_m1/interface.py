@@ -199,3 +199,4 @@ def _application(application_id: str | None) -> dict:
     if not application:
         raise Problem(MODULE, 404, "not-found", detail="application unknown", retryable=False)
     return application
+
