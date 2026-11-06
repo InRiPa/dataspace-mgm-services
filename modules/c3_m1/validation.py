@@ -88,3 +88,4 @@ ALIASES = {
     "bpnAssignedAt": "bpn_assigned_at", "coreDataVerifiedAt": "core_data_verified_at",
     "verificationRef": "verification_ref", "applicationId": "application_id",
     "deactivationReason": "deactivation_reason", "createdAt": "created_at",
+    "changedAt": "changed_at", "activatedAt": "activated_at", "rejectedAt": "rejected_at",
