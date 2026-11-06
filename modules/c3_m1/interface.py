@@ -272,3 +272,4 @@ def create_company(input: dict) -> dict:
 def assign_identifier(input: dict) -> dict:
     """8.2: take over the BPN from `CompanyRegisteredAtCsp`."""
     cid, raw = input.get("companyId"), input.get("bpn") or ""
+    with store.lock(cid):
