@@ -28,3 +28,4 @@ FRAMEWORK 4.8 makes the example column the default, so a module starts without a
 that differ per installation (the seed company, the dataspace, the reference data) come from the
 installation settings through `portal_common.settings`; the module keeps no installation data.
 
+Paths in the settings count from the settings file (FRAMEWORK 4.8); the path of a configuration
