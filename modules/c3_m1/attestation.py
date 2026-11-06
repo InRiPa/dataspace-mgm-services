@@ -76,3 +76,4 @@ def _load_keys() -> list[dict]:
         try:
             return json.loads(file.read_text(encoding="utf-8")).get("keys") or []
         except (OSError, ValueError) as error:
+            raise Problem(MODULE, 502, "upstream-error",
