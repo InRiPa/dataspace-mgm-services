@@ -65,3 +65,4 @@ def test_get_company_returns_a_copy(make):
     assert store.get_company("unknown") is None
 
 
+def test_create_company_fills_defaults_and_timestamps(make):
