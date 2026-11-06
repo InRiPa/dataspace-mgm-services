@@ -147,3 +147,4 @@ def test_create_company_needs_a_submitted_application():
     assert error.value.status == 409 and error.value.name == "invalid-state"
 
 
+def test_create_company_writes_an_audit_entry_without_a_sub():
