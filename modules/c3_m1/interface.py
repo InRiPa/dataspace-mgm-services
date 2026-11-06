@@ -529,3 +529,4 @@ def _role_state(company: str, lang: str) -> list[dict]:
         roles.setdefault(role, set())
     states = []
     for role in sorted(roles):
+        entry = config.role_catalogue().get(role) or {}
