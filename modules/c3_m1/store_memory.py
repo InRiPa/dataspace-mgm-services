@@ -428,3 +428,4 @@ def audit(company_id: str | None, sub: str | None, operation: str,
 
 
 def list_audit(company_id: str | None = None) -> list[dict]:
+    return [_copy(row) for row in _audit if company_id is None or row["company_id"] == company_id]  # type: ignore[misc]
