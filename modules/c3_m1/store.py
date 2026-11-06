@@ -100,3 +100,4 @@ def backend_memory() -> ModuleType:
 
 
 def _delegate(name: str):
+    def call(*args, **kwargs):
