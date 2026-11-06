@@ -135,3 +135,4 @@ CREATE TABLE change_request (
     changes          jsonb        NOT NULL DEFAULT '{}'::jsonb,
     comment          text,
     requested_by     text,
+    decided_by       text,
