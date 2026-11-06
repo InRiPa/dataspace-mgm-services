@@ -82,3 +82,4 @@ def reset() -> None:
         target.reset()
     attestation.reset()
     seed = config.seed_company()
+    if not seed or target.get_company(config.osp_company_id()) is not None:
