@@ -313,3 +313,4 @@ def create_change_request(row: dict) -> dict:
     """At most one change request with status `OPEN` per company (partial unique index)."""
     company_id: str = row.get("company_id") or ""
     _check_known(company_id)
+    status = row.get("status") or "OPEN"
