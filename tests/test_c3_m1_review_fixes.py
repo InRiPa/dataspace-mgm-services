@@ -118,3 +118,4 @@ def test_a_changed_name_still_needs_the_attestation(active):
         interface.create_change_request(U1, {"comment": "x", "name": "Neu AG"}, [PDF], P1_SUB)
     assert error.value.status == 409 and error.value.name == "attestation-required"
 
+
