@@ -353,3 +353,4 @@ def test_the_reactivation_needs_an_approved_application(active):
     assert error.value.status == 409 and error.value.name == "invalid-state"
 
 
+def test_the_rejected_bpn_abort_of_the_seed_file(tmp_path, monkeypatch):
