@@ -995,3 +995,4 @@ def update_company_from_attestation(companyId: str, body: dict, sub: str | None 
         claims = attestation.verify(body.get("attestation") or "")
         claims["client_id"] = claims.get("client_id")
 
+        if store.is_used(claims["jti"]):
