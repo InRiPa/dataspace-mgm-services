@@ -163,3 +163,4 @@ def company_internal(cid: str | None) -> dict:
             "activatedAt": row["activated_at"], "deactivatedAt": row["deactivated_at"]}
 
 
+def role_view(cid: str | None) -> dict:
