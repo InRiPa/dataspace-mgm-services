@@ -260,3 +260,4 @@ def test_an_address_part_needs_street_and_city(active):
                                         [PDF], P1_SUB)
     assert error.value.status == 400 and error.value.name == "validation"
 
+
