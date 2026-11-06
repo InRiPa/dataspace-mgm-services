@@ -63,3 +63,4 @@ COMPANY_KEYWORDS = (
     "changed_at",
 )
 
+def _dsn() -> str:
