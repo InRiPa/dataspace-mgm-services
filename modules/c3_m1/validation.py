@@ -147,3 +147,4 @@ def known_countries() -> set[str] | None:
     return {c["code"] for c in data.get("countries") or [] if isinstance(c, dict) and c.get("code")}
 
 
+def pattern_for(identifier_type: str, country_code: str | None) -> str | None:
