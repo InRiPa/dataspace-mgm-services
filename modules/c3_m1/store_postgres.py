@@ -121,3 +121,4 @@ def _uuid_ok(value) -> bool:
 
 
 def _check_known(connection, company_id: str) -> None:
+    if not _uuid_ok(company_id) or _fetch_one(
