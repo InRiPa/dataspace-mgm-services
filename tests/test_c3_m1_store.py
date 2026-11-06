@@ -118,3 +118,4 @@ def test_rejecting_a_company_keeps_its_bpn(make):
 
 
 def test_status_enum_is_enforced(make):
+    with pytest.raises(ValueError):
