@@ -331,3 +331,4 @@ def list_roles(company_id: str) -> dict[str, str]:
 
 
 def add_role(company_id: str, company_role: str, *, status: str = "ACTIVE",
+             source_kind: str = "COMPANY", source_ref: str | None = None) -> dict:
