@@ -325,3 +325,4 @@ def list_roles(company_id: str) -> dict[str, str]:
     if not _uuid_ok(company_id):
         return {}
     with _connection() as connection:
+        rows = _fetch_all(connection, "SELECT company_role, status FROM company_role_assignment "
