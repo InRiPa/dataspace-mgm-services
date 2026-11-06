@@ -366,3 +366,4 @@ def remove_role(company_id: str, company_role: str) -> dict | None:
                           " deactivated_at = %s WHERE company_id = %s AND company_role = %s"
                           " RETURNING *", (now, now, company_id, company_role))
 
+
