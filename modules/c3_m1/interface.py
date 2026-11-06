@@ -423,3 +423,4 @@ def _identifiers_from(body: dict) -> list[dict] | None:
              "source": entry.get("source") or "DECLARED"} for entry in body.get("identifiers") or []]
 
 
+def update_company(companyId: str, body: dict, sub: str | None = None) -> dict:
