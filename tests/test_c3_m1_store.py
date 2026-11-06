@@ -424,3 +424,4 @@ def test_country_code_rules():
 def test_company_enums_and_bpn_format():
     base = {"name": "A", "street": "Weg 1", "city": "Stadt", "country_code": "DE"}
     assert {"field": "status", "reason": "unknown"} in v.validate_company({"status": "DELETED", **base})
+    assert {"field": "core_data_source", "reason": "unknown"} in v.validate_company(
