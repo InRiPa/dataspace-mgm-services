@@ -278,3 +278,4 @@ def test_decide_requires_open_and_a_reason_for_declined(make):
 
 
 def test_decide_enforces_the_decision_status(make):
+    company = make()
