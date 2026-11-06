@@ -56,3 +56,4 @@ def client() -> TestClient:
 
 
 @pytest.fixture
+def active(client):
