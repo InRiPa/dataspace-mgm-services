@@ -168,3 +168,4 @@ def verify(attestation: str, *, now: dt.datetime | None = None) -> dict:
     if not isinstance(company, dict):
         missing.append("company.*")
     else:
+        missing += [f"company.{name}" for name in ("legal_name", "ebwoid", "country")
