@@ -25,3 +25,4 @@
 """C3-M1 steps and queries against the built-in stand-in of C1-M2 (README 8, 9, 13).
 
 The applications of README 14 (A1, A2, A3, A5) are seeded into the C1-M2 stand-in, which is what
+`create-company` and `activate-company` read over the neighbour call (11.1).
