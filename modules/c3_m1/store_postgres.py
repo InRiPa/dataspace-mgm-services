@@ -274,3 +274,4 @@ def list_identifiers(company_id: str) -> list[dict]:
     with _connection() as connection:
         return _fetch_all(connection, "SELECT * FROM company_identifier WHERE company_id = %s "
                                       "ORDER BY type", (company_id,))
+
