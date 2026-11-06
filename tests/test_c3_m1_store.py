@@ -495,3 +495,4 @@ def test_a_business_wallet_source_can_be_refused():
     assert errors == [{"field": "identifiers[0].source", "reason": "business-wallet-source"}]
 
 
+def test_patterns_fall_back_to_readme_6_4_without_reference_data(tmp_path, monkeypatch):
