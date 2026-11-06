@@ -179,3 +179,4 @@ def create_change_request(companyId: str, data: str = Form(...),
 def list_own_change_requests(companyId: str, page: int = 0, size: int = 20,
                              claims: dict = standin.perm(MODULE, "GET",
                                                          "/companies/{companyId}/change-requests")):
+    standin.company_scope(MODULE, claims, companyId)
