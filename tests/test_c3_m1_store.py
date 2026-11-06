@@ -455,3 +455,4 @@ def test_a_company_needs_at_least_one_identifier():
 def test_identifier_type_enum_and_one_per_type():
     errors = v.validate_identifiers([{"type": "VIES", "value": "DE123456789"},
                                      {"type": "VAT_ID", "value": "DE123456789"},
+                                     {"type": "VAT_ID", "value": "DE987654321"}], "DE")
