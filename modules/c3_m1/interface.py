@@ -1018,3 +1018,4 @@ def update_company_from_attestation(companyId: str, body: dict, sub: str | None 
         errors += validation.validate_identifiers(list(identifiers.values()), row["country_code"])
         if errors:
             raise Problem(MODULE, 400, "validation", errors=errors)
+
