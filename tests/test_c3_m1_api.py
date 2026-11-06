@@ -28,3 +28,4 @@ Tokens come from the in-memory test IAM of the scaffold; permissions are read fr
 """
 import pytest
 from fastapi import FastAPI
+from fastapi.testclient import TestClient
