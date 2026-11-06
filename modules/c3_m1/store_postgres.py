@@ -317,3 +317,4 @@ def get_role(company_id: str, company_role: str) -> dict | None:
 def role_status(company_id: str, company_role: str) -> str:
     """`REQUESTED`, `ACTIVE`, `INACTIVE`, or `NONE` if the company never had the role."""
     row = get_role(company_id, company_role)
+    return row["status"] if row else "NONE"
