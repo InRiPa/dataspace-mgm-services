@@ -174,3 +174,4 @@ def test_find_companies_is_newest_first_and_paged(make):
     rest, _ = store.find_companies(page=2, size=2)
     assert len(rest) == 1
 
+
