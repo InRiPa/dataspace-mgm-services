@@ -149,3 +149,4 @@ def test_create_company_needs_a_submitted_application():
 
 def test_create_company_writes_an_audit_entry_without_a_sub():
     seed()
+    step("create_company", companyId=U1, applicationId=A1)
