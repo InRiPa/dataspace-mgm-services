@@ -405,3 +405,4 @@ def add_if_unused(jti: str, company_id: str) -> bool:
     """`True` if the `jti` was free and is now used, `False` if it was used already."""
     if not jti:
         raise ValueError("jti: required")
+    _check_known(company_id)
