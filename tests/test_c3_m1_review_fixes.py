@@ -293,3 +293,4 @@ def test_the_role_add_answers_in_the_requested_language(client, active):
                         "consents": [{"agreementKey": "terms-app-provider", "version": "1.0"}]})
     assert answer.status_code == 200
     assert [entry["description"] for entry in answer.json()
+            if entry["companyRole"] == "APP_PROVIDER"] == ["Anbieter von Apps"]
