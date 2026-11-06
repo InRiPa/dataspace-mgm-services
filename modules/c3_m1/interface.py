@@ -943,3 +943,4 @@ def decline_change_request(changeRequestId: str, body: dict | None = None,
         errors = validation.validate_decision_reason(reason)
         if errors:
             raise Problem(MODULE, 400, "validation", errors=errors)
+        decided = store.decide_change_request(changeRequestId, "DECLINED", decided_by=sub,
