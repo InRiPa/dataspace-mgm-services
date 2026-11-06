@@ -1102,3 +1102,4 @@ def reactivate_company(input: dict) -> dict:
                                               "bpn": row["bpn"], "companyRoles": _active_roles(cid),
                                               "changedFields": []})
         if row["status"] != "INACTIVE":
+            raise Problem(MODULE, 409, "invalid-state", detail=row["status"], retryable=False)
