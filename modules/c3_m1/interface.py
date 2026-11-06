@@ -1253,3 +1253,4 @@ def find_identifier_matches(*, identifiers: list[dict], name: str | None = None,
         batch, total = store.find_companies(
             status=wanted_statuses or ["REQUESTED", "ACTIVE", "INACTIVE"], page=page, size=100)
         candidates += batch
+        if not batch:
