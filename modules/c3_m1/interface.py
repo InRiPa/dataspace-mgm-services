@@ -107,3 +107,4 @@ def get_company(cid: str | None) -> dict:
 
 
 def _address(row: dict) -> dict:
+    return {key: row.get(field) for key, field in
