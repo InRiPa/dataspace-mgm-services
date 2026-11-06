@@ -121,3 +121,4 @@ def _reference_path() -> Path | None:
         return None
 
 
+def _reference_data() -> dict | None:
