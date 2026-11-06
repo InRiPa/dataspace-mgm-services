@@ -76,3 +76,4 @@ FALLBACK_PATTERNS: dict[str, dict[str, str]] = {
         "DE": r"^(?!.*\s$)([A-Za-zÀ-ÿ])([A-Za-zÀ-ÿ0-9.()](\s|-|_)?){4,50}$",
         "FR": r"^\d{9}$",
     },
+    "LEI_CODE": {"Worldwide": r"^[A-Za-z0-9]{20}$"},
