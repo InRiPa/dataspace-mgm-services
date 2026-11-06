@@ -127,3 +127,4 @@ def update_from_attestation(companyId: str, body: dict = Body(...),
 
 
 @router.patch("/companies/{companyId}")
+def update_own_company(companyId: str, body: dict = Body(...),
