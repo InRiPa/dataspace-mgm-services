@@ -524,3 +524,4 @@ def test_change_request_needs_a_change_a_comment_and_declared_identifiers():
     assert v.validate_change_request({"identifiers": [{"type": "VAT_ID", "value": "DE123456789"}],
                                       "comment": "c"}, "DE") == []
 
+
