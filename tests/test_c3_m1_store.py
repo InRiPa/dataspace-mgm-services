@@ -378,3 +378,4 @@ def test_normalise_is_nfkc_trimmed_and_collapsed():
 
 
 def test_value_normalized_drops_spaces_and_punctuation():
+    assert v.value_normalized("de 123.456/789-0") == "DE1234567890"
