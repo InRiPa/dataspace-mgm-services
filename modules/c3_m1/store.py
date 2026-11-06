@@ -30,3 +30,4 @@
   runs without a database (tests, `demo.py`, the hackathon installation).
 - set: `store_postgres`, the module's own database `c3_m1` (README 4) with the tables of
   `schema.sql`. The database user of the module owns that schema; nothing else reads it.
+
