@@ -52,3 +52,4 @@ CONSENTS = [{"agreementKey": "terms-active-participant", "version": "1.0", "lang
             {"agreementKey": "security-regulations", "version": "1.0", "language": "en",
              "givenAt": "2026-11-06T08:05:00+00:00"}]
 ADDRESS = {"streetName": "Musterstraße", "streetNumber": "1", "postalCode": "70569",
+           "city": "Stuttgart", "region": "BW", "countryCode": "DE"}
