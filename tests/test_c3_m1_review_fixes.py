@@ -162,3 +162,4 @@ def test_the_attestation_update_keeps_old_values_in_the_audit(active):
     assert entry["details"]["old"]["name"] == "Beispiel Maschinenbau GmbH"
 
 
+# --------------------------------------------------------------- schema shapes (second review)
