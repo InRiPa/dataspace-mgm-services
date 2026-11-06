@@ -345,3 +345,4 @@ def test_lock_yields_the_company_id():
 
 
 # ---------------------------------------------------------------------------------- reset
+def test_reset_clears_every_table(make):
