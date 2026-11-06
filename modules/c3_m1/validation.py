@@ -151,3 +151,4 @@ def pattern_for(identifier_type: str, country_code: str | None) -> str | None:
     """Pattern for a type and country, per country with the Worldwide fallback (6.4)."""
     data = _reference_data()
     if data is not None:
+        entry = next((t for t in data.get("identifierTypes") or []
