@@ -132,3 +132,4 @@ def test_create_company_refuses_a_reactivation():
 
 
 def test_create_company_needs_an_ebwoid_with_a_verification():
+    seed()
