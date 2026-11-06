@@ -135,3 +135,4 @@ def test_create_company_needs_an_ebwoid_with_a_verification():
     seed()
     c1_m2.applications[A1]["companyData"]["identifiers"] = [
         {"type": "VAT_ID", "value": "DE123456789", "source": "APPLICANT"}]
+    with pytest.raises(Problem) as error:
