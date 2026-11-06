@@ -74,3 +74,4 @@ def seed(application: str = A1, company: str = U1, **over) -> dict:
                                          "source": "ATTESTATION"},
                                         {"type": "VAT_ID", "value": "DE123456789",
                                          "source": "APPLICANT"}]},
+        "companyRoles": ["ACTIVE_PARTICIPANT"], "consents": CONSENTS,
