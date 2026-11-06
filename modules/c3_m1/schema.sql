@@ -44,3 +44,4 @@ CREATE TABLE company (
     core_data_source       text                     NOT NULL,
     core_data_verified_at  timestamptz,
     verification_ref       text,
+    application_id         uuid,
