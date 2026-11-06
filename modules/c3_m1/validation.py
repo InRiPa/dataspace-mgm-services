@@ -106,3 +106,4 @@ def normalise(value) -> str:
 def value_normalized(value) -> str:
     """Upper case without spaces, `.`, `-` and `/` (5, 6.4) — what the duplicate search compares."""
     return NORMALISE_STRIP.sub("", unicodedata.normalize("NFKC", str(value))).upper()
+
