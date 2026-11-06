@@ -70,3 +70,4 @@ def test_the_consent_checks(active):
             {"agreementKey": "terms-app-provider", "version": "0.9"}]}, P1_SUB)
     assert error.value.name == "consent-missing"
 
+    with pytest.raises(Problem) as error:
