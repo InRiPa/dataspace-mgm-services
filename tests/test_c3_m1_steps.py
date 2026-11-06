@@ -140,3 +140,4 @@ def test_create_company_needs_an_ebwoid_with_a_verification():
     assert error.value.status == 400 and error.value.name == "validation"
 
 
+def test_create_company_needs_a_submitted_application():
