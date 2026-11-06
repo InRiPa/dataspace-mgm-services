@@ -817,3 +817,4 @@ def withdraw_change_request(companyId: str, changeRequestId: str, sub: str | Non
                        {"companyId": companyId, "changeRequestId": changeRequestId,
                         "outcome": "WITHDRAWN"})
     return _change_request_view(closed)
+
