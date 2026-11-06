@@ -344,3 +344,4 @@ def list_change_requests(*, company_id: str | None = None, status=None,
              if (company_id is None or row["company_id"] == company_id)
              and (not statuses or row["status"] in statuses)]
     items.sort(key=lambda row: (row["created_at"] or "", row["id"]), reverse=newest_first)
+    total = len(items)
