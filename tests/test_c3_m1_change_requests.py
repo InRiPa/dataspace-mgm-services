@@ -58,3 +58,4 @@ def test_the_event_fields_are_the_ones_c11_reads(active):
     interface.withdraw_change_request(U1, answer["id"], P1_SUB)
     closed = events.RELAY.log[-1]
     assert closed["type"] == "CompanyChangeRequestClosed"
+    assert set(closed["data"]) == {"companyId", "changeRequestId", "outcome"}
