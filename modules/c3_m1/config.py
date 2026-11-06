@@ -137,3 +137,4 @@ def attestation_audience() -> str:
     return value("ATTESTATION_AUDIENCE")
 
 
+def attestation_max_age_hours() -> int:
