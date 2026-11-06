@@ -95,3 +95,4 @@ def test_review_download_and_approval_of_a_manual_company(active):
     answer = submit(U2, P3, name="Beispiel Logistik SE")
     listed = interface.list_change_requests(status=["OPEN"])
     assert [item["id"] for item in listed["items"]] == [answer["id"]]
+    assert listed["items"][0]["companyName"] == "Beispiel Logistik GmbH"
