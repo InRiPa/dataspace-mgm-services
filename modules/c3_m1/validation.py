@@ -99,3 +99,4 @@ _reference_cache: tuple[str, int, dict | None] | None = None
 
 # ------------------------------------------------------------------------ comparison (5, 6.3)
 def normalise(value) -> str:
+    """NFKC, trimmed, inner whitespace collapsed to one space; case stays (6.3)."""
