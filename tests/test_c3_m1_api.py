@@ -195,3 +195,4 @@ def test_the_identifier_search_over_http(client, active):
     assert [match["companyId"] for match in response.json()["matches"]] == [U1]
 
 
+def test_the_role_catalogue_is_a_query(client, active):
