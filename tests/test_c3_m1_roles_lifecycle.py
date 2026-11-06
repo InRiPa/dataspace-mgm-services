@@ -111,3 +111,4 @@ def test_the_osp_deactivation_and_the_lock_while_inactive(active):
 
 # ------------------------------------------------------------------------------------------ 13.20
 def test_the_reactivation_with_a_new_attestation(active):
+    interface.deactivate_company_by_staff(U1, {"reason": "Pause"}, S2_SUB)
