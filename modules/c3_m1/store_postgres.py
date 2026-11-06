@@ -91,3 +91,4 @@ def _row(row: dict | None) -> dict | None:
             row[key] = row[key].isoformat()
     return row
 
+
