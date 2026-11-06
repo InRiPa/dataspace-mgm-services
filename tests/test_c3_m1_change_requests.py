@@ -31,3 +31,4 @@ from portal_common.problems import Problem
 
 from test_c3_m1_api import P1, P3, S1, S2, U1, U2, active, call, client  # noqa: F401
 
+PDF = ("auszug.pdf", b"%PDF-1.7 Auszug", "application/pdf")
