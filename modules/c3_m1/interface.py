@@ -242,3 +242,4 @@ def create_company(input: dict) -> dict:
     for role in application.get("companyRoles") or []:
         errors += validation.validate_company_role(role, config.role_catalogue())
     if verification == "EBW" and not any(entry["type"] == "EBWOID" for entry in identifiers):
+        errors.append({"field": "identifiers", "reason": "EBWOID required with a verification"})
