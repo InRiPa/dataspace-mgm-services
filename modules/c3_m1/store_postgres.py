@@ -29,3 +29,4 @@ the field names and the invariants are the ones of `store_memory`, so the caller
 which transport runs. Timestamps leave as ISO 8601 strings and bytea as `bytes`, like the memory
 transport returns them.
 
+`psycopg` is imported at module load: `DATABASE_URL` set without the driver is an error naming the
