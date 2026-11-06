@@ -923,3 +923,4 @@ def approve_change_request(changeRequestId: str, body: dict | None = None,
                            {"companyId": row["company_id"], "changedFields": changed,
                             "coreDataChanged": core_changed,
                             "coreDataSource": "MANUAL" if core_changed
+                            else company["core_data_source"]})
