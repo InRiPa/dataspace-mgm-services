@@ -62,3 +62,4 @@ def active(client: TestClient) -> dict:
     seed(A1, U1)
     seed(A2, U2, verification="DOCUMENTS", _attestation=None,
          companyData={"legalName": "Beispiel Logistik GmbH",
+                      "address": {"streetName": "Hafenstraße", "streetNumber": "5",
