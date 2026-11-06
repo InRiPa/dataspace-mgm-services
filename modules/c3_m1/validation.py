@@ -265,3 +265,4 @@ def validate_identifier(entry: dict, country_code: str | None, field: str) -> li
     if "source" in entry and entry["source"] not in IDENTIFIER_SOURCES:
         errors.append(_error(f"{field}.source", "unknown"))
     if value in (None, ""):
+        errors.append(_error(f"{field}.value", "required"))
