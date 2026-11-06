@@ -751,3 +751,4 @@ def create_change_request(companyId: str, data: dict,
                 errors = [error for error in errors
                           if not (error["field"] == "identifiers" and error["reason"] == "missing")]
             errors += _wallet_identifier_conflict(row, identifiers)
+        if errors:
