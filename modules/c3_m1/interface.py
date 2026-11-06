@@ -892,3 +892,4 @@ def _apply_changes(companyId: str, row: dict, changes: dict) -> tuple[list[str],
     if core_changed:
         updates |= {"core_data_source": "MANUAL", "core_data_verified_at": _now()}
     if updates:
+        store.update_company(companyId, **updates)
