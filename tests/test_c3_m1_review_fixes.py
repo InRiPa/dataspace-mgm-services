@@ -327,3 +327,4 @@ def test_an_outdated_attestation_is_recognised_across_timestamp_formats(active):
             U1, {"attestation": sign(claims(jti="j-old", verified_at=int(
                 (dt.datetime.now(dt.UTC) - dt.timedelta(hours=2)).timestamp())))}, P1_SUB)
     assert error.value.status == 409 and error.value.name == "attestation-outdated"
+
