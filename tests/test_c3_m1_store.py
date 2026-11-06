@@ -100,3 +100,4 @@ def test_bpn_is_unique_among_companies_that_are_not_rejected(make):
 
 def test_bpn_of_a_rejected_company_frees_it(make):
     rejected = make(bpn="BPNL00000000AAAA", status="REJECTED")
+    assert make(bpn="BPNL00000000AAAA")["bpn"] == "BPNL00000000AAAA"
