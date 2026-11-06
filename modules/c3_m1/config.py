@@ -163,3 +163,4 @@ def stub_applications_file() -> Path | None:
 
 # ------------------------------------------------------------------ installation settings (4.8)
 def apply_registration_url() -> None:
+    """Bridge README 4's `REGISTRATION_URL` to the neighbour lookup of AGENTS.md 6.
