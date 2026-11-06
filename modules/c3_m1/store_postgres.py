@@ -208,3 +208,4 @@ def update_company(company_id: str, **fields) -> dict | None:
         return get_company(company_id)
     if not _uuid_ok(company_id):
         return None
+    unknown = set(fields) - set(COMPANY_FIELDS) - {"id", "created_at"}
