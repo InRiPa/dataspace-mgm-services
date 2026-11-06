@@ -28,3 +28,4 @@ module's own PostgreSQL database (README 4, 5).
 The live tests need a server and are skipped without it:
 
     docker run --rm -d -p 55432:5432 -e POSTGRES_PASSWORD=pg -e POSTGRES_DB=c3_m1 postgres:16
+    TEST_DATABASE_URL=postgresql://postgres:pg@localhost:55432/c3_m1 uv run pytest -q tests/test_c3_m1_store_backend.py
