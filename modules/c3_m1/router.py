@@ -117,3 +117,4 @@ def read_own_company(companyId: str,
     standin.company_scope(MODULE, claims, companyId)
     return role_view(companyId)
 
+
