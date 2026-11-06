@@ -79,3 +79,4 @@ CREATE TABLE company_identifier (
     company_id        uuid         NOT NULL REFERENCES company (id),
     type              text         NOT NULL,
     value             text         NOT NULL,
+    value_normalized  text         NOT NULL,
