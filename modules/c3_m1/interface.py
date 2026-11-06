@@ -335,3 +335,4 @@ def activate_company(input: dict) -> dict:
 
         application = _application(application_id)
         terms = _terms_of_roles()
+        given = {consent.get("agreementKey"): consent for consent in application.get("consents") or []}
