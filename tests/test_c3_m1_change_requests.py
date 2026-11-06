@@ -51,3 +51,4 @@ def test_a_name_change_of_an_ebw_company_needs_the_attestation(active):
     assert error.value.status == 409 and error.value.name == "attestation-required"
 
 
+def test_the_event_fields_are_the_ones_c11_reads(active):
