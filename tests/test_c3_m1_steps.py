@@ -268,3 +268,4 @@ def test_the_built_in_stand_in_reads_the_stub_file(tmp_path, monkeypatch):
     monkeypatch.setenv("MODULE_URLS_DEFAULT", "")          # no neighbour: built-in stand-in
     stub = tmp_path / "stub-applications.json"
     stub.write_text(json.dumps({"applications": [{
+        "id": A1, "companyId": U1, "kind": "ONBOARDING", "existingCompany": False,
