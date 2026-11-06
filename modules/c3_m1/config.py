@@ -208,3 +208,4 @@ def company_roles_file() -> Path | None:
 INITIAL_ROLES = {
     "ACTIVE_PARTICIPANT": {
         "assignableBy": "COMPANY",
+        "descriptions": {"de": "Teilnehmer am Datenaustausch", "en": "Participant in data exchange"},
