@@ -547,3 +547,4 @@ def list_documents(change_request_id: str) -> list[dict]:
                                       " WHERE change_request_id = %s ORDER BY created_at",
                           (change_request_id,))
 
+
