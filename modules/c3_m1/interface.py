@@ -1225,3 +1225,4 @@ def query_companies(*, id: list[str] | str | None = None, bpn: list[str] | str |
             items.append(company_internal(other["id"]))
             found.add(wanted)
     return {"items": items, "notFound": [value for value in ids + bpns if value not in found]}
+
