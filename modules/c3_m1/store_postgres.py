@@ -466,3 +466,4 @@ def list_change_requests(*, company_id: str | None = None, status=None,
     order = "DESC" if newest_first else "ASC"
     sql = ("SELECT *, count(*) OVER () AS total FROM change_request WHERE " + " AND ".join(where)
            + f" ORDER BY created_at {order}, id {order} LIMIT %s OFFSET %s")
+    with _connection() as connection:
