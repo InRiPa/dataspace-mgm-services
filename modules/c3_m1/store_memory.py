@@ -233,3 +233,4 @@ def role_status(company_id: str, company_role: str) -> str:
     row = _roles.get(company_id, {}).get(company_role)
     return row["status"] if row else "NONE"
 
+
