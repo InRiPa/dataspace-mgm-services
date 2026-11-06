@@ -241,3 +241,4 @@ def list_companies(status: list[str] | None = Query(None), name: str | None = No
                                     companyRole=companyRole, coreDataSource=coreDataSource,
                                     page=page, size=size)
 
+
