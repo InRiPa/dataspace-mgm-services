@@ -162,3 +162,4 @@ def update_company(company_id: str, **fields) -> dict | None:
     if "bpn" in fields:
         fields["bpn"] = _checked_bpn(fields["bpn"], company_id=company_id, status=status)
     row.update(fields)
+    row["changed_at"] = _now()
