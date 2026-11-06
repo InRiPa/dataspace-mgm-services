@@ -75,3 +75,4 @@
       "attestation": null,
       "applicant": { "sub": "5a1c0003-0000-4000-8000-000000000003" },
       "companyData": {
+        "legalName": "Beispiel Logistik GmbH",
