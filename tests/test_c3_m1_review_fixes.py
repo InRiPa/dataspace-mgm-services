@@ -265,3 +265,4 @@ def test_the_activation_calls_neither_the_csp_nor_c3_m2(active, monkeypatch):
     monkeypatch.setenv("C3_M2_URL", "http://127.0.0.1:9")
     monkeypatch.setenv("C3_M1_URL", "http://127.0.0.1:9")
     store.update_company(U1, status="REQUESTED", activated_at=None)
+    store.add_role(U1, "ACTIVE_PARTICIPANT", status="REQUESTED", source_kind="APPLICATION")
