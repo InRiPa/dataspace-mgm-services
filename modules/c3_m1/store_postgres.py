@@ -470,3 +470,4 @@ def list_change_requests(*, company_id: str | None = None, status=None,
         rows = _fetch_all(connection, sql, (*params, size, max(page, 0) * size))
     total = int(rows[0].pop("total")) if rows else 0
     return rows, total
+
