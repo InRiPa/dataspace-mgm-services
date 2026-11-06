@@ -79,3 +79,4 @@ def test_a_request_needs_a_document_of_a_known_type(active):
     assert error.value.status == 400 and error.value.name == "document-invalid"
     with pytest.raises(Problem) as error:
         interface.create_change_request(U1, {"comment": "text", "identifiers": [
+            {"type": "VAT_ID", "value": "DE555444333"}]},
