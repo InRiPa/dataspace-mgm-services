@@ -1255,3 +1255,4 @@ def find_identifier_matches(*, identifiers: list[dict], name: str | None = None,
         candidates += batch
         if not batch:
             break
+        page += 1
