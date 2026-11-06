@@ -1181,3 +1181,4 @@ def reactivate_company(input: dict) -> dict:
                            {"companyId": cid, "changedFields": changed, "coreDataChanged": True,
                             "coreDataSource": updates["core_data_source"]})
         roles = sorted(role for role, status in store.list_roles(cid).items() if status == "ACTIVE")
+        events.publish(MODULE, "CompanyReactivated",
