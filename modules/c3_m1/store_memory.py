@@ -282,3 +282,4 @@ def list_consents(company_id: str) -> list[dict]:
 
 
 def set_consent(company_id: str, agreement_key: str, *, version: str | None = None,
+                status: str = "ACTIVE", source_kind: str = "COMPANY",
