@@ -275,3 +275,4 @@ def test_decide_requires_open_and_a_reason_for_declined(make):
     assert decided["closed_at"]
     with pytest.raises(ValueError):
         store.decide_change_request(request["id"], "APPROVED")
+
