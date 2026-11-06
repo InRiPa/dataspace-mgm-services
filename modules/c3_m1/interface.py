@@ -192,3 +192,4 @@ def _application(application_id: str | None) -> dict:
             raise Problem(MODULE, 404, "not-found", detail="application unknown", retryable=False)
         return application
     try:
+        application = neighbours.query(MODULE, "c1-m2", "get_application_internal",
