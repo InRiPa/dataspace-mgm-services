@@ -33,3 +33,4 @@ from test_c3_m1_api import P1, P3, S1, S2, U1, U2, active, call, client  # noqa:
 
 PDF = ("auszug.pdf", b"%PDF-1.7 Auszug", "application/pdf")
 S2_SUB = "5a1c0012-0000-4000-8000-000000000012"
+S1_SUB = "bbede0f3-fbc4-433b-b7ca-1982e8724912"
