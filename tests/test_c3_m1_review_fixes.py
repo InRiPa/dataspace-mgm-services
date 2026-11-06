@@ -276,3 +276,4 @@ def test_the_document_goes_out_over_http_with_its_content_type(client, active):
     answer = call(client, "GET", f"/api/c3-m1/osp/change-requests/{request['id']}/documents/"
                                 f"{request['documents'][0]['id']}", S1)
     assert answer.status_code == 200
+    assert answer.headers["content-type"] == "application/pdf"
