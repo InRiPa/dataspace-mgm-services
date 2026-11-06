@@ -43,3 +43,4 @@ from modules.c3_m1 import router as c3_router
 from test_c3_m1_api import BASE
 from test_c3_m1_attestation import _keys, claims, sign  # noqa: F401
 from test_c3_m1_steps import A1, A2, U3, seed, step
+
