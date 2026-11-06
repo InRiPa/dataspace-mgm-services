@@ -188,3 +188,4 @@ def test_a_bpn_of_a_rejected_company_is_free_again():
         "legalName": "Andere Beispiel AG",
         "address": {"streetName": "Beispielweg", "streetNumber": "2", "postalCode": "80331",
                     "city": "München", "countryCode": "DE"},
+        "identifiers": [{"type": "EBWOID", "value": "EBWOID-DE-0000000002", "source": "ATTESTATION"}]})
