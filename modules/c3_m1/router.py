@@ -83,3 +83,4 @@ def reject_company(body: dict = Body(...),
                    _: dict = standin.perm(MODULE, "POST", "/steps/reject-company")):
     return interface.reject_company(body)
 
+
