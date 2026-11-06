@@ -310,3 +310,4 @@ def get_role(company_id: str, company_role: str) -> dict | None:
     if not _uuid_ok(company_id):
         return None
     with _connection() as connection:
+        return _fetch_one(connection, "SELECT * FROM company_role_assignment WHERE company_id = %s"
