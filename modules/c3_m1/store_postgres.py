@@ -420,3 +420,4 @@ def get_change_request(change_request_id: str | None) -> dict | None:
                           (change_request_id,))
 
 
+def create_change_request(row: dict) -> dict:
