@@ -1130,3 +1130,4 @@ def reactivate_company(input: dict) -> dict:
             fields["name"] = row["name"]   # 6.3: an equal value keeps its stored spelling
         mismatched = []
         if fields["country_code"] != row["country_code"]:
+            mismatched.append("countryCode")
