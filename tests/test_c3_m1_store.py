@@ -303,3 +303,4 @@ def test_list_change_requests_filters_and_order(make):
 def test_documents_are_stored_with_checksum(make):
     company = make()
     request = store.create_change_request({"company_id": company["id"]})
+    document = store.add_document(request["id"], file_name="auszug.pdf",
