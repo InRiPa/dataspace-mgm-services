@@ -119,3 +119,4 @@ def test_a_missing_driver_answers_not_implemented(monkeypatch, postgres_url):
     monkeypatch.setattr(store, "_cache", None)
     real_import = store.importlib.import_module
 
+    def fake_import(name, package=None):
