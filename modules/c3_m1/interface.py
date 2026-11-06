@@ -967,3 +967,4 @@ def _attested_values(row: dict, claims: dict) -> tuple[dict, dict[str, dict]]:
                 entry["value"] = company.get("ebwoid")
             entry["source"] = "BUSINESS_WALLET"
     if not any(entry["type"] == "EBWOID" for entry in identifiers):
+        identifiers.append({"type": "EBWOID", "value": company.get("ebwoid"),
