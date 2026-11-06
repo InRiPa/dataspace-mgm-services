@@ -168,3 +168,4 @@ CREATE TABLE change_request_document (
 
 CREATE INDEX change_request_document_request ON change_request_document (change_request_id);
 
+-- C3-M1 5 Table used_attestation: one row per used verification attestation (README 6.7, 7.3)
