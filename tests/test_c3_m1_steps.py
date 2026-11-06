@@ -62,3 +62,4 @@ def _state():
 
 
 def seed(application: str = A1, company: str = U1, **over) -> dict:
+    """Seed an application of README 14 into the C1-M2 stand-in."""
