@@ -125,3 +125,4 @@ def create_company(row: dict) -> dict:
         raise ValueError("id: required")
     if row["id"] in companies:
         raise ValueError(f"id: company {row['id']} exists")
+    status = row.get("status") or "REQUESTED"
