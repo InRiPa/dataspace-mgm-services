@@ -261,3 +261,4 @@ def test_identifier_matches_normalise_and_exclude():
         identifiers=[{"type": "VAT_ID", "value": "de 123.456.789"}],
         excludeCompanyId=U1)["matches"] == []
 
+
