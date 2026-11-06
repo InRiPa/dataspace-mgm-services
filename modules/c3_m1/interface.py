@@ -1265,3 +1265,4 @@ def find_identifier_matches(*, identifiers: list[dict], name: str | None = None,
                for entry in store.list_identifiers(row["id"])}
         if row["bpn"]:
             own.add(("BPN", validation.value_normalized(row["bpn"])))
+        matched = sorted({entry["type"] for entry in identifiers
