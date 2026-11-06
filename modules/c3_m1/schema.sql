@@ -114,3 +114,4 @@ CREATE TABLE consent (
     company_id        uuid         NOT NULL REFERENCES company (id),
     agreement_key     text         NOT NULL,
     agreement_version text,
+    status            text         NOT NULL,
