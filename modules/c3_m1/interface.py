@@ -655,3 +655,4 @@ def list_companies(*, status: list[str] | str | None = None, name: str | None = 
             "size": int(size or 20), "total": total}
 
 
+# ------------------------------------------------------------ change requests (7.4 - 7.6, 7.14 - 7.18)
