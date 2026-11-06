@@ -210,3 +210,4 @@ def test_the_approval_event_carries_the_resulting_source(active):
         {"type": "VAT_ID", "value": "DE123456789"}, {"type": "LEI_CODE", "value": "529900T8BM49AURSDO55"}]},
         [PDF], P1_SUB)
     events.RELAY.log.clear()
+    interface.approve_change_request(request["id"], {}, S1_SUB)
