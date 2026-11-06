@@ -338,3 +338,4 @@ def test_audit_entry_is_written_and_readable(make):
     assert store.list_audit("unknown") == []
 
 
+# ----------------------------------------------------------------------------------- lock (6.9)
