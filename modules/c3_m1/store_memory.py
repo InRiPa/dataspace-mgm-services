@@ -415,3 +415,4 @@ def add_if_unused(jti: str, company_id: str) -> bool:
 def is_used(jti: str) -> bool:
     return jti in _used_attestations
 
+
