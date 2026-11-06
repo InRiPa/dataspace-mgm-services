@@ -88,3 +88,4 @@ def _checked_bpn(bpn, *, company_id: str | None, status: str) -> str | None:
             if other_id != company_id and other["status"] != "REJECTED" and other.get("bpn") == bpn:
                 raise ValueError(f"bpn: {bpn} belongs to company {other_id}")
     return bpn
+
