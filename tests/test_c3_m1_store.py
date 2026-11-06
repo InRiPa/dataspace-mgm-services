@@ -452,3 +452,4 @@ def test_a_company_needs_at_least_one_identifier():
     assert v.validate_identifiers(None, "DE") == [{"field": "identifiers", "reason": "missing"}]
 
 
+def test_identifier_type_enum_and_one_per_type():
