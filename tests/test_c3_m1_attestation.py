@@ -105,3 +105,4 @@ def test_a_valid_attestation_changes_the_core_data():
     assert row["core_data_source"] == "EBW" and row["verification_ref"] == "jti-t1"
     identifiers = {entry["type"]: entry["source"] for entry in store.list_identifiers(U1)}
     assert identifiers["EBWOID"] == "BUSINESS_WALLET"
+    event = events.RELAY.log[-1]
