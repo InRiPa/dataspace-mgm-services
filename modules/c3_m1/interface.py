@@ -51,3 +51,4 @@ def _timestamp(value: str | None) -> dt.datetime | None:
     """Parse a stored ISO timestamp (`Z` or offset) to an instant; `None` when unreadable."""
     if not value:
         return None
+    try:
