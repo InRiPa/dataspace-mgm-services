@@ -49,3 +49,4 @@ def test_a_role_is_added_with_its_consents(active):
     roles = interface.add_company_role(U1, {"companyRole": "APP_PROVIDER", "consents": CONSENT_APP},
                                        P1_SUB)
     states = {role["companyRole"]: role for role in roles}
+    assert states["APP_PROVIDER"]["status"] == "ACTIVE"
