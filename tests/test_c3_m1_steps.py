@@ -105,3 +105,4 @@ def test_create_company_maps_the_application():
     assert store.role_status(U1, "ACTIVE_PARTICIPANT") == "REQUESTED"
     assert len(published("CompanyCreated")) == 1
     assert published("CompanyCreated")[0]["data"]["coreDataSource"] == "EBW"
+
