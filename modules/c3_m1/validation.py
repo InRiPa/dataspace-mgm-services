@@ -30,3 +30,4 @@ tokens are short and stable: `required`, `type`, `too-long`, `too-short`, `white
 `unknown`, `unknown-country`, `duplicate-type`, `missing`, `business-wallet-source`, `path-parts`,
 `media-type`, `too-large`.
 
+Patterns come from the shared reference data (`masterDataFile`, settings key of the same name,
