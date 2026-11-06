@@ -30,3 +30,4 @@
 CREATE TABLE company (
     id                     uuid                     PRIMARY KEY,
     name                   text                     NOT NULL,
+    short_name             text,
