@@ -99,3 +99,4 @@ def reset() -> None:
     _change_requests.clear()
     _documents.clear()
     _used_attestations.clear()
+    _audit.clear()
