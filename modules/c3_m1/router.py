@@ -220,3 +220,4 @@ def get_change_request_document(changeRequestId: str, documentId: str,
 def approve_change_request(changeRequestId: str, body: dict | None = Body(None),
                            claims: dict = standin.perm(
                                MODULE, "POST", "/osp/change-requests/{changeRequestId}/approve")):
+    return interface.approve_change_request(changeRequestId, body, claims.get("sub"))
