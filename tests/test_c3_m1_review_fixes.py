@@ -329,3 +329,4 @@ def test_an_outdated_attestation_is_recognised_across_timestamp_formats(active):
     assert error.value.status == 409 and error.value.name == "attestation-outdated"
 
 
+# ------------------------------------------------------------------------ lifecycle answers
