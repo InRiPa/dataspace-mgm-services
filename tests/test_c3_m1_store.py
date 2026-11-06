@@ -233,3 +233,4 @@ def test_add_role_enforces_the_enums(make):
         store.add_role(company["id"], "ACTIVE_PARTICIPANT", source_kind="FLOW")
 
 
+# -------------------------------------------------------------------------------- consents (5)
