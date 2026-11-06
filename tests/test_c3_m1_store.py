@@ -348,3 +348,4 @@ def test_lock_yields_the_company_id():
 def test_reset_clears_every_table(make):
     company = make(bpn="BPNL00000000AAAA")
     store.set_identifiers(company["id"], [{"type": "VAT_ID", "value": "DE123456789"}])
+    store.add_role(company["id"], "ACTIVE_PARTICIPANT")
