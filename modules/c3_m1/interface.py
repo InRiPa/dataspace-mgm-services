@@ -673,3 +673,4 @@ def _change_request_view(row: dict, *, osp: bool = False, company: dict | None =
         view |= {"companyName": (company or {}).get("name"), "decidedBy": row["decided_by"]}
     return view
 
+
