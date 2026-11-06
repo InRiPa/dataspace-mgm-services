@@ -70,3 +70,4 @@ def test_create_company_fills_defaults_and_timestamps(make):
                                     "street": "Weg 1", "city": "Stadt", "country_code": "DE"})
     assert company["status"] == "REQUESTED"
     assert company["core_data_source"] == "MANUAL"
+    assert company["bpn"] is None
