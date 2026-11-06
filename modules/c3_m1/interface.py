@@ -126,3 +126,4 @@ def _roles(row: dict) -> list[dict]:
     return [{"companyRole": role, "status": status}
             for role, status in store.list_roles(row["id"]).items()]
 
+
