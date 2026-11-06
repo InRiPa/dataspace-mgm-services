@@ -83,3 +83,4 @@ CREATE TABLE company_identifier (
     source            text         NOT NULL,
     created_at        timestamptz  NOT NULL,
     changed_at        timestamptz  NOT NULL,
+    PRIMARY KEY (company_id, type),                    -- C3-M1 6.4: at most one per type
