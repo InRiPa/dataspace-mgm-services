@@ -440,3 +440,4 @@ def test_camel_case_and_nested_address_are_understood():
                       {"field": "country_code", "reason": "format"}]
 
 
+def test_partial_validation_checks_only_given_fields():
