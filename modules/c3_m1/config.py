@@ -134,3 +134,4 @@ def attestation_client_ids() -> list[str]:
 
 
 def attestation_audience() -> str:
+    return value("ATTESTATION_AUDIENCE")
