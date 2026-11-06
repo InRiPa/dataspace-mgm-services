@@ -407,3 +407,4 @@ def add_if_unused(jti: str, company_id: str) -> bool:
         raise ValueError("jti: required")
     _check_known(company_id)
     if jti in _used_attestations:
+        return False
