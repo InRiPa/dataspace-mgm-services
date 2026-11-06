@@ -550,3 +550,4 @@ def _role_state(company: str, lang: str) -> list[dict]:
 
 
 def list_company_roles(companyId: str, lang: str | None = None) -> list[dict]:
+    """7.7"""
