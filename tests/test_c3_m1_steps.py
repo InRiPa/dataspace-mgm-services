@@ -241,3 +241,4 @@ def test_bulk_query_keeps_the_order_and_reports_the_missing():
          companyData={"legalName": "Beispiel Logistik GmbH", "address": ADDRESS,
                       "identifiers": [{"type": "VAT_ID", "value": "DE987654321", "source": "APPLICANT"}]},
          consents=[])
+    step("create_company", companyId=U1, applicationId=A1)
