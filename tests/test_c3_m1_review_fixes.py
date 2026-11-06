@@ -359,3 +359,4 @@ def test_the_rejected_bpn_abort_of_the_seed_file(tmp_path, monkeypatch):
     seed_file.write_text(json.dumps({"companyId": "c0000009-0000-4000-8000-000000000009",
                                      "name": "X", "bpn": "BPNL00000000OSPA",
                                      "address": {"street": "s", "city": "c", "countryCode": "DE"},
+                                     "companyRoles": []}), encoding="utf-8")
