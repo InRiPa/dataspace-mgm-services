@@ -566,3 +566,4 @@ def add_company_role(companyId: str, body: dict, sub: str | None = None,
     """7.8"""
     role = body.get("companyRole") or ""
     with store.lock(companyId):
+        row = get_company(companyId)
