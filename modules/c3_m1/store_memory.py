@@ -245,3 +245,4 @@ def add_role(company_id: str, company_role: str, *, status: str = "ACTIVE",
     if not company_role:
         raise ValueError("company_role: required")
     _check_enum(status, ROLE_STATUSES, "status")
+    _check_enum(source_kind, ROLE_SOURCE_KINDS, "source_kind")
