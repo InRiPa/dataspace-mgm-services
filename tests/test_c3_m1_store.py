@@ -478,3 +478,4 @@ def test_euid_and_ebwoid_are_loose():
     assert {"field": "identifiers[0].value", "reason": "format"} in v.validate_identifiers(
         [{"type": "EBWOID", "value": "EBWOID DE 1"}], "DE")
 
+
