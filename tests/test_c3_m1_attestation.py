@@ -177,3 +177,4 @@ def test_an_older_attestation_does_not_reset_newer_data():
     ({"jti": ""}, "claims"),
 ])
 def test_the_reasons_of_a_refused_attestation(over, reason):
+    active_company()
