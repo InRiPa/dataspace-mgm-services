@@ -538,3 +538,4 @@ def _role_state(company: str, lang: str) -> list[dict]:
             "description": config.description(role, lang) or "",
             "agreements": [{"agreementKey": term["agreementKey"], "version": term["version"],
                             "name": (term.get("title") or {}).get(lang) or (term.get("title") or {}).get("en"),
+                            "names": term.get("title") or {},
