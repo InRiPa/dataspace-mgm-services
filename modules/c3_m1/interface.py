@@ -561,3 +561,4 @@ def _terms_of(role: str, terms: list[dict]) -> dict[str, dict]:
             if role in (term.get("companyRoles") or [])}
 
 
+def add_company_role(companyId: str, body: dict, sub: str | None = None,
