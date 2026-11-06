@@ -48,3 +48,4 @@ from .store import (CORE_DATA_SOURCES, CHANGE_REQUEST_STATUSES, COMPANY_FIELDS, 
 from .validation import value_normalized
 
 companies: dict[str, dict] = {}
+_identifiers: dict[str, dict[str, dict]] = {}
