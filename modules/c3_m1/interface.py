@@ -760,3 +760,4 @@ def create_change_request(companyId: str, data: dict,
         if core_changed and row["core_data_source"] == "EBW":
             raise Problem(MODULE, 409, "attestation-required")
         if not _changes_differs(row, changes):
+            raise Problem(MODULE, 400, "validation",
