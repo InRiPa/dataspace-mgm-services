@@ -176,3 +176,4 @@ def test_an_older_attestation_does_not_reset_newer_data():
     ({"iat": dt.datetime.now(dt.UTC) + dt.timedelta(hours=1)}, "not-yet-valid"),
     ({"jti": ""}, "claims"),
 ])
+def test_the_reasons_of_a_refused_attestation(over, reason):
