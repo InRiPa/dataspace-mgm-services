@@ -99,3 +99,4 @@ def change_requests_enabled() -> bool:
 
 
 def change_request_max_documents() -> int:
+    return number("CHANGE_REQUEST_MAX_DOCUMENTS")
