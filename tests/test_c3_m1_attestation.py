@@ -89,3 +89,4 @@ def active_company(application: str = A1, company: str = U1) -> None:
     step("activate_company", companyId=company, applicationId=application)
 
 
+def update(company_id: str = U1, **over) -> dict:
