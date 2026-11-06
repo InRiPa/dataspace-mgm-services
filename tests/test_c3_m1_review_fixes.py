@@ -163,3 +163,4 @@ def test_the_attestation_update_keeps_old_values_in_the_audit(active):
 
 
 # --------------------------------------------------------------- schema shapes (second review)
+def test_a_company_answer_uses_id_and_created_at(client, active):
