@@ -578,3 +578,4 @@ def add_company_role(companyId: str, body: dict, sub: str | None = None,
             return _role_state(companyId, lang or "en")
 
         terms = _terms_of(role, _terms())
+        given = {consent.get("agreementKey"): consent for consent in body.get("consents") or []}
