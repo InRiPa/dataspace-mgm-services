@@ -368,3 +368,4 @@ def activate_company(input: dict) -> dict:
     return standin.step_reply(input, {"companyId": cid, "status": "ACTIVE", "bpn": row["bpn"],
                                       "companyRoles": sorted(active), "pendingCompanyRoles": pending})
 
+
