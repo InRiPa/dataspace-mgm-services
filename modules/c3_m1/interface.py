@@ -602,3 +602,4 @@ def remove_company_role(companyId: str, companyRole: str, sub: str | None = None
                         lang: str | None = None) -> list[dict]:
     """7.9"""
     with store.lock(companyId):
+        row = get_company(companyId)
