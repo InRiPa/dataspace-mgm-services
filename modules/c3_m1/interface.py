@@ -784,3 +784,4 @@ def create_change_request(companyId: str, data: dict,
                     {"changedFields": sorted(changes)})
         events.publish(MODULE, "CompanyChangeRequestSubmitted",
                        {"companyId": companyId, "changeRequestId": created["id"]})
+    return _change_request_view(created)
