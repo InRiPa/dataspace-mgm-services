@@ -1187,3 +1187,4 @@ def reactivate_company(input: dict) -> dict:
                                       "companyRoles": roles, "changedFields": changed})
 
 
+# --------------------------------------------------------------------------- queries (9.1 - 9.3)
