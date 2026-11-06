@@ -464,3 +464,4 @@ def list_change_requests(*, company_id: str | None = None, status=None,
         where.append("status = ANY(%s)")
         params.append(statuses)
     order = "DESC" if newest_first else "ASC"
+    sql = ("SELECT *, count(*) OVER () AS total FROM change_request WHERE " + " AND ".join(where)
