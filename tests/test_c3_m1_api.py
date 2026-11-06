@@ -84,3 +84,4 @@ def active(client: TestClient) -> dict:
     return {"U1": U1, "U2": U2}
 
 
+def call(client: TestClient, method: str, path: str, person: str | None = None, **kwargs):
