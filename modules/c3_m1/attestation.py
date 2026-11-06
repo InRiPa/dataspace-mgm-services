@@ -56,3 +56,4 @@ _last_reload = 0.0
 
 def reset() -> None:
     """Forget the cached keys (test helper; the configuration may have changed)."""
+    global _last_reload
