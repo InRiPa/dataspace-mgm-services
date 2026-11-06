@@ -356,3 +356,4 @@ def test_reset_clears_every_table(make):
     store.add_if_unused("jti", company["id"])
     store.audit(company["id"], "sub", "op")
 
+    store.reset()
