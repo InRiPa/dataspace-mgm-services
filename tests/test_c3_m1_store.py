@@ -64,3 +64,4 @@ def test_get_company_returns_a_copy(make):
     assert store.get_company(company["id"])["name"] == company["name"]
     assert store.get_company("unknown") is None
 
+
