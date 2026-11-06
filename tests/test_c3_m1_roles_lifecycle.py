@@ -29,3 +29,4 @@ from modules.c3_m1 import interface, store
 from portal_common import events
 from portal_common.problems import Problem
 
+from test_c3_m1_api import S2, U1, U2, active, call, client  # noqa: F401
