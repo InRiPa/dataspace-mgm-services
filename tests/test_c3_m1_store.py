@@ -134,3 +134,4 @@ def test_deactivation_reason_enum_and_state_are_enforced(make):
     with pytest.raises(ValueError):
         make(status="INACTIVE", deactivation_reason="NO_PSP")
     with pytest.raises(ValueError):
+        make(status="ACTIVE", deactivation_reason="MANUAL")
