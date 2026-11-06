@@ -1092,3 +1092,4 @@ def deactivate_company_by_staff(companyId: str, body: dict, sub: str | None = No
     return company_view(companyId, detail=True)
 
 
+def reactivate_company(input: dict) -> dict:
