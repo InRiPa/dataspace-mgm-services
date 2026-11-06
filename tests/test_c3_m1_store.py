@@ -29,3 +29,4 @@ import json
 
 import pytest
 
+from modules.c3_m1 import store
