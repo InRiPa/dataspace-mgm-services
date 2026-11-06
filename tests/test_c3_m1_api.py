@@ -25,3 +25,4 @@
 """HTTP layer of C3-M1: permissions, scope `company`, corrections (README 6.8, 7.1, 7.2, 7.10-7.12, 13).
 
 Tokens come from the in-memory test IAM of the scaffold; permissions are read from the spec there.
+"""
