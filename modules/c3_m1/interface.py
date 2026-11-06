@@ -317,3 +317,4 @@ def _terms_of_roles() -> dict[str, set[str]]:
 
 def activate_company(input: dict) -> dict:
     """8.3: activate, taking over the consents of the application."""
+    cid, application_id = input.get("companyId"), input.get("applicationId")
