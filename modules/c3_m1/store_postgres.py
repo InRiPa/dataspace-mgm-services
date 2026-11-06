@@ -204,3 +204,4 @@ def create_company(row: dict) -> dict:
 
 
 def update_company(company_id: str, **fields) -> dict | None:
+    if not fields:
