@@ -188,3 +188,4 @@ def seed_company() -> dict | None:
     """Seed data of the OSP company (`ospCompanyFile`); `None` without the setting (README 4).
 
     The `companyId` in the file must equal `ospCompanyId`, otherwise the start aborts (README 4).
+    """
