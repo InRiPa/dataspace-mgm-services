@@ -182,3 +182,4 @@ def list_own_change_requests(companyId: str, page: int = 0, size: int = 20,
     standin.company_scope(MODULE, claims, companyId)
     return interface.list_own_change_requests(companyId, page, size)
 
+
