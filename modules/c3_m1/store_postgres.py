@@ -46,3 +46,4 @@ from pathlib import Path
 import psycopg
 from psycopg import errors
 from psycopg.rows import dict_row
+
