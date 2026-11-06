@@ -88,3 +88,4 @@ def _row(row: dict | None) -> dict | None:
                 "activated_at", "deactivated_at", "reactivated_at", "rejected_at",
                 "bpn_assigned_at", "core_data_verified_at", "consented_at"):
         if isinstance(row.get(key), dt.datetime):
+            row[key] = row[key].isoformat()
