@@ -354,3 +354,4 @@ def activate_company(input: dict) -> dict:
             store.add_role(cid, role, status="ACTIVE", source_kind="APPLICATION",
                            source_ref=application_id)
             for key in (key for key, roles in terms.items() if role in roles):
+                store.set_consent(cid, key, version=given[key].get("version"), status="ACTIVE",
