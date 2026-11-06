@@ -185,3 +185,4 @@ CREATE TABLE audit_log (
     object_id   text,
     details     jsonb        NOT NULL DEFAULT '{}'::jsonb
 );
+
