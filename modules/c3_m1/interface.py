@@ -548,3 +548,4 @@ def _role_state(company: str, lang: str) -> list[dict]:
         })
     return states
 
+
