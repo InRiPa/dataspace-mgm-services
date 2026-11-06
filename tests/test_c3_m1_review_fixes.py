@@ -223,3 +223,4 @@ def test_the_reactivation_keeps_the_house_number_of_the_application(active):
                       "identifiers": [{"type": "EBWOID", "value": "EBWOID-DE-0000000001",
                                        "source": "ATTESTATION"}]})
     step("deactivate_company", companyId=U1, reason="MANUAL")
+    step("reactivate_company", companyId=U1, applicationId="a0000005-0000-4000-8000-000000000009")
