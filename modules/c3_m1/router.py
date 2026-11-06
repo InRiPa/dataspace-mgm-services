@@ -244,3 +244,4 @@ def list_companies(status: list[str] | None = Query(None), name: str | None = No
 
 @router.get("/osp/companies/{companyId}")
 def read_company(companyId: str,
+                 _: dict = standin.perm(MODULE, "GET", "/osp/companies/{companyId}")):
