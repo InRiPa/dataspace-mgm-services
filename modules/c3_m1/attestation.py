@@ -130,3 +130,4 @@ def verify(attestation: str, *, now: dt.datetime | None = None) -> dict:
     except (ValueError, TypeError) as error:
         raise _invalid("format", "header unreadable") from error
     if not isinstance(header, dict):
+        raise _invalid("format", "header is no object")
