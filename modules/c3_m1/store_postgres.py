@@ -319,3 +319,4 @@ def role_status(company_id: str, company_role: str) -> str:
     row = get_role(company_id, company_role)
     return row["status"] if row else "NONE"
 
+
