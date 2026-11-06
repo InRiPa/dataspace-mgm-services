@@ -131,3 +131,4 @@ def test_a_missing_driver_answers_not_implemented(monkeypatch, postgres_url):
     assert error.value.body()["type"] == "urn:c3-m1:problem:not-implemented"
 
 
+def test_a_path_id_that_is_no_uuid_is_not_found_in_memory(monkeypatch):
