@@ -1031,3 +1031,4 @@ def update_company_from_attestation(companyId: str, body: dict, sub: str | None 
                      "old": {field: row.get(field) for field in
                              ("name", "street", "house_number", "postal_code", "city", "region")},
                      "new": fields})
+        if changed:
