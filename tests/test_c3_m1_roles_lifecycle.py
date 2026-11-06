@@ -65,3 +65,4 @@ def test_the_consent_checks(active):
     assert error.value.status == 400 and error.value.name == "consent-missing"
     assert error.value.ext["missing"] == ["terms-app-provider"]
 
+    with pytest.raises(Problem) as error:
