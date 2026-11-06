@@ -368,3 +368,4 @@ def test_reset_clears_every_table(make):
     assert store.list_audit() == []
     assert store.find_companies()[1] == 0
 
+
