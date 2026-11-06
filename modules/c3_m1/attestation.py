@@ -51,3 +51,4 @@ ALGORITHM = "ES256"
 REQUIRED_CLAIMS = ("jti", "verified_at", "purpose", "company", "representation")
 
 _cache: dict = {"keys": [], "fetched_at": 0.0}
+_last_reload = 0.0
