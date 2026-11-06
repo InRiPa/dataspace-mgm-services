@@ -135,3 +135,4 @@ def test_another_ebwoid_is_a_company_mismatch():
 def test_an_unconfirmed_representation_is_refused():
     active_company()
     with pytest.raises(Problem) as error:
+        update(representation={"confirmed": False, "result": "NOT_CONFIRMED"})
