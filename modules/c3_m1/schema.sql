@@ -102,3 +102,4 @@ CREATE TABLE company_role_assignment (
     activated_at   timestamptz,
     deactivated_at timestamptz,
     changed_at     timestamptz  NOT NULL,
+    PRIMARY KEY (company_id, company_role),
