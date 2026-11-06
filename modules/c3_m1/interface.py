@@ -937,3 +937,4 @@ def decline_change_request(changeRequestId: str, body: dict | None = None,
         row = _reviewed(changeRequestId)
         reason = (body or {}).get("reason")
         if row["status"] == "DECLINED":
+            return _change_request_view(row, osp=True)
