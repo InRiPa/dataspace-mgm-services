@@ -151,3 +151,4 @@ def company_internal(cid: str | None) -> dict:
     """`CompanyInternal` (9.1): address, identifiers, source and active roles for other modules."""
     row = get_company(cid)
     return {"id": row["id"], "name": row["name"], "shortName": row["short_name"],
+            "address": {key: row.get(field) for key, field in
