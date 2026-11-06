@@ -419,3 +419,4 @@ def _validate_merge(row: dict, body: dict) -> dict:
 def _identifiers_from(body: dict) -> list[dict] | None:
     if "identifiers" not in body:
         return None
+    return [{"type": entry.get("type"), "value": entry.get("value"),
