@@ -522,3 +522,4 @@ def test_change_request_needs_a_change_a_comment_and_declared_identifiers():
                                         "comment": "c"}, "DE")
     assert errors == [{"field": "identifiers[0].source", "reason": "business-wallet-source"}]
     assert v.validate_change_request({"identifiers": [{"type": "VAT_ID", "value": "DE123456789"}],
+                                      "comment": "c"}, "DE") == []
