@@ -159,3 +159,4 @@ def test_create_company_writes_an_audit_entry_without_a_sub():
 def test_activate_before_the_bpn():
     seed()
     step("create_company", companyId=U1, applicationId=A1)
+    with pytest.raises(Problem) as error:
