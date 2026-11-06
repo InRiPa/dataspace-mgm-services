@@ -47,3 +47,4 @@ PRIVATE = json.loads((MODULE_DIR / "stub-ebw-key.json").read_text(encoding="utf-
 JWKS = MODULE_DIR / "stub-ebw-jwks.json"
 
 
+@pytest.fixture(autouse=True)
