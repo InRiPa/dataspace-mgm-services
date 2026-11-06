@@ -143,3 +143,4 @@ def test_deactivation_reason_enum_and_state_are_enforced(make):
 
 
 def test_find_companies_filters(make):
+    active = make(bpn="BPNL00000000AAAA", core_data_source="EBW")
