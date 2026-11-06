@@ -189,3 +189,4 @@ def test_a_bpn_of_a_rejected_company_is_free_again():
         "address": {"streetName": "Beispielweg", "streetNumber": "2", "postalCode": "80331",
                     "city": "München", "countryCode": "DE"},
         "identifiers": [{"type": "EBWOID", "value": "EBWOID-DE-0000000002", "source": "ATTESTATION"}]})
+    step("create_company", companyId=U4, applicationId="a0000008-0000-4000-8000-000000000008")
