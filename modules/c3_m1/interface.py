@@ -501,3 +501,4 @@ def correct_company(companyId: str, body: dict, sub: str | None = None) -> dict:
                     {"changedFields": changed, "reason": body.get("reason"),
                      "old": {field: row.get(field) for field in updates},
                      "new": fields})
+        events.publish(MODULE, "CompanyDataChanged",
