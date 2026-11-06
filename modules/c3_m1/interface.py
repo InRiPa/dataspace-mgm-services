@@ -1270,3 +1270,4 @@ def find_identifier_matches(*, identifiers: list[dict], name: str | None = None,
         if wanted_name and validation.normalise(row["name"]) == wanted_name:
             matched.append("NAME")
         if matched:
+            matches.append({"companyId": row["id"], "name": row["name"], "status": row["status"],
