@@ -196,3 +196,4 @@ def seed_company() -> dict | None:
     if seed.get("companyId") != osp_company_id():
         raise ValueError(f"{path}: companyId differs from ospCompanyId {osp_company_id()} (README 4)")
     return seed
+
