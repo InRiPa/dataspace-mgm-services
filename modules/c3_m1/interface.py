@@ -485,3 +485,4 @@ def correct_company(companyId: str, body: dict, sub: str | None = None) -> dict:
         if not changed:
             return company_view(companyId, detail=True)
 
+        core_changed = any(validation.field_name(key) in CORE_TEXT_FIELDS for key in fields)
