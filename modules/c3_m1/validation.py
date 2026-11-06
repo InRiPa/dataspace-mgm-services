@@ -391,3 +391,4 @@ def validate_document(file_name, content, *, stated_media_type: str | None = Non
 
 # --------------------------------------------------------------------------------- misc (6.5)
 def validate_company_role(company_role, catalogue: dict | None = None) -> list[dict]:
+    """Role must be in the catalogue (7.8, 7.9)."""
