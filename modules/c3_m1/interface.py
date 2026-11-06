@@ -962,3 +962,4 @@ def _attested_values(row: dict, claims: dict) -> tuple[dict, dict[str, dict]]:
     identifiers = [{"type": kind, "value": entry["value"], "source": entry["source"]}
                    for kind, entry in stored.items()]
     for entry in identifiers:
+        if entry["type"] == "EBWOID":
