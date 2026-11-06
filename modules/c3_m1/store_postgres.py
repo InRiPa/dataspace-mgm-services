@@ -40,3 +40,4 @@ import hashlib
 import json
 import os
 import zlib
+import uuid
