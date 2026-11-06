@@ -135,3 +135,4 @@ def company_view(cid: str | None, *, detail: bool = False) -> dict:
             "coreDataSource": row["core_data_source"],
             "coreDataVerifiedAt": row["core_data_verified_at"], "bpn": row["bpn"],
             "status": row["status"], "companyRoles": _roles(row),
+            "createdAt": row["created_at"], "dataspaceName": config.dataspace_name()}
