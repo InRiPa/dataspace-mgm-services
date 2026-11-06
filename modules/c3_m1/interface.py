@@ -966,3 +966,4 @@ def _attested_values(row: dict, claims: dict) -> tuple[dict, dict[str, dict]]:
             if not validation.same_value(entry["value"], company.get("ebwoid")):
                 entry["value"] = company.get("ebwoid")
             entry["source"] = "BUSINESS_WALLET"
+    if not any(entry["type"] == "EBWOID" for entry in identifiers):
