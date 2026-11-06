@@ -106,3 +106,4 @@ def change_request_max_document_bytes() -> int:
     return number("CHANGE_REQUEST_MAX_DOCUMENT_BYTES")
 
 
+def attestation_issuer() -> str:
