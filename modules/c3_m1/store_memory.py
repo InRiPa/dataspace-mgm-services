@@ -396,3 +396,4 @@ def get_document(document_id: str | None) -> dict | None:
     return _copy(_documents.get(document_id)) if document_id else None
 
 
+def list_documents(change_request_id: str) -> list[dict]:
