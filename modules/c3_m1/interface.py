@@ -115,3 +115,4 @@ def _address(row: dict) -> dict:
 
 def _identifiers(row: dict) -> list[dict]:
     return [{"type": entry["type"], "value": entry["value"], "source": entry["source"]}
+            for entry in store.list_identifiers(row["id"])]
