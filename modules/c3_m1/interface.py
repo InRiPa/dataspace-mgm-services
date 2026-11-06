@@ -536,3 +536,4 @@ def _role_state(company: str, lang: str) -> list[dict]:
             "companyRole": role, "assignableBy": entry.get("assignableBy"),
             "status": "NONE" if assigned == "NONE" else assigned,
             "description": config.description(role, lang) or "",
+            "agreements": [{"agreementKey": term["agreementKey"], "version": term["version"],
