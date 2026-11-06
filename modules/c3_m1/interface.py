@@ -1207,3 +1207,4 @@ def query_companies(*, id: list[str] | str | None = None, bpn: list[str] | str |
     """9.2: exactly one of `id` and `bpn`, 1 to QUERY_MAX_COMPANIES values."""
     ids = [id] if isinstance(id, str) else list(id or [])
     bpns = [bpn] if isinstance(bpn, str) else list(bpn or [])
+    if bool(ids) == bool(bpns):
