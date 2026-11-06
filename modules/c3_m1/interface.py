@@ -1268,3 +1268,4 @@ def find_identifier_matches(*, identifiers: list[dict], name: str | None = None,
         matched = sorted({entry["type"] for entry in identifiers
                           if (entry["type"], validation.value_normalized(entry["value"])) in own})
         if wanted_name and validation.normalise(row["name"]) == wanted_name:
+            matched.append("NAME")
