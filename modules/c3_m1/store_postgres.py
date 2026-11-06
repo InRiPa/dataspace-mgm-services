@@ -65,3 +65,4 @@ COMPANY_KEYWORDS = (
 
 def _dsn() -> str:
     dsn = os.environ.get("DATABASE_URL")
+    if not dsn:
