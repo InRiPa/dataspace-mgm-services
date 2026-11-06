@@ -1137,3 +1137,4 @@ def reactivate_company(input: dict) -> dict:
                                    if entry.get("type") == "EBWOID"), None)
             if validation.value_normalized(claimed_ebwoid or "") != \
                     (stored.get("EBWOID") or {}).get("value_normalized"):
+                mismatched.append("EBWOID")
