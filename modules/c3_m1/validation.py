@@ -398,3 +398,4 @@ def validate_company_role(company_role, catalogue: dict | None = None) -> list[d
         return [_error("companyRole", "unknown")]
     return []
 
+
