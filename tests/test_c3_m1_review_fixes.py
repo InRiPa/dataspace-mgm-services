@@ -240,3 +240,4 @@ def test_the_start_survives_a_database_without_a_driver(monkeypatch):
 
     monkeypatch.setattr(interface.store.importlib, "import_module", fake_import)
     interface.reset()                                    # must not raise
+    with pytest.raises(Problem) as error:
