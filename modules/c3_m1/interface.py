@@ -842,3 +842,4 @@ def list_change_requests(*, status: list[str] | str | None = None,
             "page": int(page or 0), "size": int(size or 20), "total": total}
 
 
+def get_change_request(changeRequestId: str) -> dict:
