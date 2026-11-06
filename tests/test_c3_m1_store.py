@@ -382,3 +382,4 @@ def test_value_normalized_drops_spaces_and_punctuation():
     assert v.value_normalized(" DEXX001T.HRB100001 ") == "DEXX001THRB100001"
 
 
+# ------------------------------------------------------------------ field rules of section 5
