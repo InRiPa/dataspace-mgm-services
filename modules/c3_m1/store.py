@@ -108,3 +108,4 @@ def _delegate(name: str):
     return call
 
 
+reset = _delegate("reset")
