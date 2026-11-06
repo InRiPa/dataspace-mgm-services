@@ -102,3 +102,4 @@ def test_create_company_maps_the_application():
     assert row["core_data_verified_at"] == ATTESTATION["verifiedAt"]
     identifiers = {entry["type"]: entry["source"] for entry in store.list_identifiers(U1)}
     assert identifiers == {"EBWOID": "BUSINESS_WALLET", "EUID": "BUSINESS_WALLET", "VAT_ID": "DECLARED"}
+    assert store.role_status(U1, "ACTIVE_PARTICIPANT") == "REQUESTED"
