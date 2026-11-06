@@ -173,3 +173,4 @@ def verify(attestation: str, *, now: dt.datetime | None = None) -> dict:
     if claims.get("purpose") != "onboarding":
         missing.append("purpose=onboarding")
     clients = config.attestation_client_ids()
+    if clients and claims.get("client_id") not in clients:
