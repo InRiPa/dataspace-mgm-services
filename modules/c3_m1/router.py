@@ -156,3 +156,4 @@ def remove_company_role(companyId: str, companyRole: str, lang: str | None = Non
                             MODULE, "DELETE",
                             "/companies/{companyId}/company-roles/{companyRole}")):
     standin.company_scope(MODULE, claims, companyId)
+    return interface.remove_company_role(companyId, companyRole, claims.get("sub"), lang)
