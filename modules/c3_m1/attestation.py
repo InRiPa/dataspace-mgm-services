@@ -132,3 +132,4 @@ def verify(attestation: str, *, now: dt.datetime | None = None) -> dict:
     if not isinstance(header, dict):
         raise _invalid("format", "header is no object")
 
+    if header.get("typ") != TYP or header.get("alg") != ALGORITHM:
