@@ -732,3 +732,4 @@ def create_change_request(companyId: str, data: dict,
                           sub: str | None = None) -> dict:
     """7.4: a change request with supporting documents."""
     if not config.change_requests_enabled():
+        raise Problem(MODULE, 409, "change-requests-disabled")
