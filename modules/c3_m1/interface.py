@@ -616,3 +616,4 @@ def remove_company_role(companyId: str, companyRole: str, sub: str | None = None
         if not remaining:
             raise Problem(MODULE, 409, "last-role")
 
+        store.remove_role(companyId, companyRole)
