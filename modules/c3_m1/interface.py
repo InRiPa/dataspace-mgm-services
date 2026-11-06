@@ -519,3 +519,4 @@ def _terms() -> list[dict]:
     return [agreement for agreement in agreements if agreement.get("scope") == "COMPANY_ROLE"]
 
 
+def _role_state(company: str, lang: str) -> list[dict]:
