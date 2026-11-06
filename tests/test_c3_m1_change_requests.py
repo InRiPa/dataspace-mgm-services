@@ -163,3 +163,4 @@ def test_a_foreign_change_request_is_not_visible(client, active):
     answer = submit(U1, P1_SUB)
     assert call(client, "GET", f"/api/c3-m1/companies/{U2}/change-requests", P3).json()["total"] == 0
     assert call(client, "POST", f"/api/c3-m1/companies/{U2}/change-requests/{answer['id']}/withdraw",
+                P3).status_code == 404
