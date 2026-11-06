@@ -325,3 +325,4 @@ def test_an_outdated_attestation_is_recognised_across_timestamp_formats(active):
     with pytest.raises(Problem) as error:
         interface.update_company_from_attestation(
             U1, {"attestation": sign(claims(jti="j-old", verified_at=int(
+                (dt.datetime.now(dt.UTC) - dt.timedelta(hours=2)).timestamp())))}, P1_SUB)
