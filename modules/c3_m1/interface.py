@@ -435,3 +435,4 @@ def update_company(companyId: str, body: dict, sub: str | None = None) -> dict:
         errors = validation.validate_company(body, partial=True)
         if errors:
             raise Problem(MODULE, 400, "validation", errors=errors)
+        changed = _changed_fields(row, body, None)
