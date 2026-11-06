@@ -1025,3 +1025,4 @@ def update_company_from_attestation(companyId: str, body: dict, sub: str | None 
                     "verification_ref": claims["jti"]}
         store.update_company(companyId, **updates)
         store.set_identifiers(companyId, list(identifiers.values()))
+        store.add_if_unused(claims["jti"], companyId)
