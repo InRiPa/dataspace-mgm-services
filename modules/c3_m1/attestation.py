@@ -71,3 +71,4 @@ def _b64(part: str) -> bytes:
 
 def _load_keys() -> list[dict]:
     """Keys from the file, else from the URL with the cache of 6.7 and 11.2."""
+    file = config.attestation_jwks_file()
