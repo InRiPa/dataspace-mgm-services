@@ -209,3 +209,4 @@ def test_the_approval_event_carries_the_resulting_source(active):
     request = interface.create_change_request(U1, {"comment": "x", "identifiers": [
         {"type": "VAT_ID", "value": "DE123456789"}, {"type": "LEI_CODE", "value": "529900T8BM49AURSDO55"}]},
         [PDF], P1_SUB)
+    events.RELAY.log.clear()
