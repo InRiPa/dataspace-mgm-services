@@ -108,3 +108,4 @@ CREATE TABLE company_role_assignment (
     CONSTRAINT company_role_assignment_source_ref_length
         CHECK (source_ref IS NULL OR char_length(source_ref) <= 100)
 );
+
