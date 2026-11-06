@@ -254,3 +254,4 @@ def test_the_readme_data_files_resolve_without_configuration(monkeypatch):
     assert config.attestation_jwks_file().parent == Path(config.__file__).parent
 
 
+def test_an_address_part_needs_street_and_city(active):
