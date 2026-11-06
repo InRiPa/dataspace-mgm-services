@@ -268,3 +268,4 @@ def validate_identifier(entry: dict, country_code: str | None, field: str) -> li
         errors.append(_error(f"{field}.value", "required"))
         return errors
     if not isinstance(value, str):
+        errors.append(_error(f"{field}.value", "type"))
