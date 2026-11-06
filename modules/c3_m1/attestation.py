@@ -54,3 +54,4 @@ _cache: dict = {"keys": [], "fetched_at": 0.0}
 _last_reload = 0.0
 
 
+def reset() -> None:
