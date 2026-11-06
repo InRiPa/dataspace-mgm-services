@@ -187,3 +187,4 @@ def create_company(row: dict) -> dict:
     _check_enum(row.get("deactivation_reason"), DEACTIVATION_REASONS, "deactivation_reason")
     now = _now()
     values = {field: row.get(field) for field in COMPANY_FIELDS}
+    values.update({"id": row["id"], "status": status,
