@@ -178,3 +178,4 @@ def get_company(company_id: str | None) -> dict | None:
 def create_company(row: dict) -> dict:
     unknown = set(row) - set(COMPANY_FIELDS)
     if unknown:
+        raise ValueError(f"unknown company fields: {', '.join(sorted(unknown))}")
