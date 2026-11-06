@@ -128,3 +128,4 @@ def test_another_ebwoid_is_a_company_mismatch():
     active_company()
     with pytest.raises(Problem) as error:
         update(**{"company": {"legal_name": "X", "ebwoid": "EBWOID-DE-0000000009", "country": "DE"}})
+    assert error.value.status == 409 and error.value.name == "company-mismatch"
