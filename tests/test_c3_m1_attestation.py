@@ -108,3 +108,4 @@ def test_a_valid_attestation_changes_the_core_data():
     event = events.RELAY.log[-1]
     assert event["type"] == "CompanyDataChanged" and event["data"]["coreDataChanged"] is True
     with pytest.raises(Problem) as error:
+        update()
