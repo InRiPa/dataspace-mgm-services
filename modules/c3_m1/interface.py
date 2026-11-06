@@ -228,3 +228,4 @@ def create_company(input: dict) -> dict:
     source_address = data.get("address") or {}
     verification = application.get("verification")
     row = {"name": data.get("legalName"), "short_name": data.get("shortName"),
+           "street": source_address.get("streetName"), "house_number": source_address.get("streetNumber"),
