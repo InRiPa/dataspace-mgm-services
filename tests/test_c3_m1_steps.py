@@ -266,3 +266,4 @@ def test_identifier_matches_normalise_and_exclude():
 def test_the_built_in_stand_in_reads_the_stub_file(tmp_path, monkeypatch):
     """28: without an address for C1-M2 the module answers from `STUB_APPLICATIONS_FILE`."""
     monkeypatch.setenv("MODULE_URLS_DEFAULT", "")          # no neighbour: built-in stand-in
+    stub = tmp_path / "stub-applications.json"
