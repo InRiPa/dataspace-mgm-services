@@ -413,3 +413,4 @@ def _validate_merge(row: dict, body: dict) -> dict:
     """The row after the body, flat, so the merged state is validated, not only the patch."""
     merged = {field: row.get(field) for field in row}
     merged.update(validation.flat_fields(body))
+    return merged
