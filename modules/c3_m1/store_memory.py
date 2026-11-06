@@ -236,3 +236,4 @@ def role_status(company_id: str, company_role: str) -> str:
 
 def list_roles(company_id: str) -> dict[str, str]:
     """Role -> status of every role the company has or had."""
+    return {role: row["status"] for role, row in _roles.get(company_id, {}).items()}
