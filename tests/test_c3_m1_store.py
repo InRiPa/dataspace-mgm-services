@@ -181,3 +181,4 @@ def test_set_identifiers_normalises_and_replaces(make):
     rows = store.set_identifiers(company["id"], [
         {"type": "VAT_ID", "value": "de 123.456.789", "source": "DECLARED"},
         {"type": "EUID", "value": "DEXX001T.HRB100001", "source": "BUSINESS_WALLET"},
+    ])
