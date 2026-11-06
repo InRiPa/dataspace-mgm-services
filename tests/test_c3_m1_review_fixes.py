@@ -289,3 +289,4 @@ def test_the_snake_case_alias_writes_the_short_name(client, active):
 
 def test_the_role_add_answers_in_the_requested_language(client, active):
     answer = call(client, "POST", f"/api/c3-m1/companies/{U1}/company-roles?lang=de", P1,
+                  json={"companyRole": "APP_PROVIDER",
