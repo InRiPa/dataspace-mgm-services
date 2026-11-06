@@ -311,3 +311,4 @@ def get_role(company_id: str, company_role: str) -> dict | None:
         return None
     with _connection() as connection:
         return _fetch_one(connection, "SELECT * FROM company_role_assignment WHERE company_id = %s"
+                                      " AND company_role = %s", (company_id, company_role))
