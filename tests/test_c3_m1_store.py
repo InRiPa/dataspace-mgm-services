@@ -220,3 +220,4 @@ def test_roles_report_status_and_none(make):
     assert store.list_roles(company["id"]) == {"ACTIVE_PARTICIPANT": "ACTIVE",
                                                "APP_PROVIDER": "REQUESTED"}
     store.remove_role(company["id"], "APP_PROVIDER")
+    assert store.role_status(company["id"], "APP_PROVIDER") == "INACTIVE"
