@@ -155,3 +155,4 @@ def lock(company_id: str | None = None):
     transport run in their own transactions, so a row lock held here would block on the very
     UPDATE of the same row the block performs. The advisory key is the company, the unlock is
     guaranteed in `finally`.
+    """
