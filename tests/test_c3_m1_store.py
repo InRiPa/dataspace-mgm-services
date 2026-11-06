@@ -164,3 +164,4 @@ def test_find_companies_company_role_matches_active_roles_only(make):
     found, total = store.find_companies(company_role="ACTIVE_PARTICIPANT")
     assert total == 1 and found[0]["id"] == company["id"]
     assert store.find_companies(company_role="APP_PROVIDER")[1] == 0
+
