@@ -133,3 +133,4 @@ def _reference_data() -> dict | None:
         data = json.loads(path.read_text(encoding="utf-8"))
     except (OSError, ValueError):
         return None
+    if not isinstance(data, dict):
