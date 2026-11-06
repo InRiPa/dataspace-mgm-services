@@ -33,3 +33,4 @@ import pytest
 
 from modules.c1_m2 import interface as c1_m2
 from modules.c3_m1 import interface, store
+from portal_common import events
