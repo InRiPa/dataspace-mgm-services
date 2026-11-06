@@ -128,3 +128,4 @@ CREATE TABLE consent (
 );
 
 -- C3-M1 5 Table change_request
+CREATE TABLE change_request (
