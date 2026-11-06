@@ -60,3 +60,4 @@ def active(client):
     """U1 ACTIVE with BPN, erika as Company Admin, otto as OSP Admin."""
     seed(A1, U1)
     step("create_company", companyId=U1, applicationId=A1)
+    step("assign_identifier", companyId=U1, bpn="BPNLIUK2REMLK3F4")
