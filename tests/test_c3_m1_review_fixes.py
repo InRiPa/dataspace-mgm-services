@@ -238,3 +238,4 @@ def test_the_start_survives_a_database_without_a_driver(monkeypatch):
             raise ModuleNotFoundError("No module named 'psycopg'", name="psycopg")
         return real_import(name, package)
 
+    monkeypatch.setattr(interface.store.importlib, "import_module", fake_import)
