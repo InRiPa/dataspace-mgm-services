@@ -47,3 +47,4 @@
       "applicant": { "sub": "5a1c0003-0000-4000-8000-000000000003" },
       "companyData": {
         "legalName": "Ohne Zustimmung GmbH",
+        "address": { "streetName": "Ringstraße", "streetNumber": "3", "postalCode": "76131", "city": "Karlsruhe", "countryCode": "DE" },
