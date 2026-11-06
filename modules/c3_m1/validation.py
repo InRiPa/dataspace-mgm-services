@@ -74,3 +74,4 @@ FALLBACK_PATTERNS: dict[str, dict[str, str]] = {
     "COMMERCIAL_REG_NUMBER": {
         "Worldwide": r"^(?!.*\s$)([A-Za-zÀ-ÿ0-9.()](\.|\s|-|_)?){4,50}$",
         "DE": r"^(?!.*\s$)([A-Za-zÀ-ÿ])([A-Za-zÀ-ÿ0-9.()](\s|-|_)?){4,50}$",
+        "FR": r"^\d{9}$",
