@@ -342,3 +342,4 @@ def list_change_requests(*, company_id: str | None = None, status=None,
         _check_enum(value, CHANGE_REQUEST_STATUSES, "status")
     items = [row for row in _change_requests.values()
              if (company_id is None or row["company_id"] == company_id)
+             and (not statuses or row["status"] in statuses)]
