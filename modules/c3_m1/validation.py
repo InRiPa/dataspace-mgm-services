@@ -120,3 +120,4 @@ def _reference_path() -> Path | None:
     except Exception:      # no settings file, or an unreadable one: fall back to README 6.4
         return None
 
+
