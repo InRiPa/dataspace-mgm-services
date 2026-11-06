@@ -177,3 +177,4 @@ def test_the_roles_are_visible_with_terms(client, active):
         ["terms-active-participant", "security-regulations"]
     assert "APP_PROVIDER" in states
 
+
