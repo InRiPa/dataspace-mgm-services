@@ -200,3 +200,4 @@ def create_company(row: dict) -> dict:
                                  values)
         except errors.IntegrityError as error:
             raise _integrity(error) from None
+    return created  # type: ignore[return-value]
