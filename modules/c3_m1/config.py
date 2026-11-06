@@ -184,3 +184,4 @@ def dataspace_name() -> str | None:
     return (settings.get("dataspace") or {}).get("name")
 
 
+def seed_company() -> dict | None:
