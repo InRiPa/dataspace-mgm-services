@@ -488,3 +488,4 @@ def test_lei_and_eori_formats():
         [{"type": "EORI", "value": "1234567"}], "DE")
 
 
+def test_a_business_wallet_source_can_be_refused():
