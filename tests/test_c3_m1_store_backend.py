@@ -72,3 +72,4 @@ def test_the_transport_follows_database_url_at_call_time(monkeypatch, postgres_u
     monkeypatch.delenv("DATABASE_URL", raising=False)
     assert store.backend_name() == "memory"
     monkeypatch.setenv("DATABASE_URL", postgres_url)
+    assert store.backend_name() == "postgres"
