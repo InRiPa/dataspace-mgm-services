@@ -137,3 +137,4 @@ def test_create_company_needs_an_ebwoid_with_a_verification():
         {"type": "VAT_ID", "value": "DE123456789", "source": "APPLICANT"}]
     with pytest.raises(Problem) as error:
         step("create_company", companyId=U1, applicationId=A1)
+    assert error.value.status == 400 and error.value.name == "validation"
