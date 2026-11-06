@@ -81,3 +81,4 @@ def test_a_request_needs_a_document_of_a_known_type(active):
         interface.create_change_request(U1, {"comment": "text", "identifiers": [
             {"type": "VAT_ID", "value": "DE555444333"}]},
             [("auszug.pdf", b"nur text", "application/pdf")])
+    assert error.value.name == "document-invalid"
