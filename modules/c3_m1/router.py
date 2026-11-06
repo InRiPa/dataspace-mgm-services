@@ -256,3 +256,4 @@ def deactivate_company_by_staff(companyId: str, body: dict = Body(...),
 
 
 @router.patch("/osp/companies/{companyId}")
+def correct_company(companyId: str, body: dict = Body(...),
