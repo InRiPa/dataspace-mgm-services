@@ -254,3 +254,4 @@ def deactivate_company_by_staff(companyId: str, body: dict = Body(...),
                                     MODULE, "POST", "/osp/companies/{companyId}/deactivate")):
     return interface.deactivate_company_by_staff(companyId, body, claims.get("sub"))
 
+
