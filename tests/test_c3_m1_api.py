@@ -161,3 +161,4 @@ def test_a_business_wallet_identifier_needs_the_attestation(client, active):
                           "reason": "Korrektur"})
     assert response.status_code == 400 and response.json()["type"].endswith("validation")
     assert "identifiers.EBWOID" in [error["field"] for error in response.json()["errors"]]
+
