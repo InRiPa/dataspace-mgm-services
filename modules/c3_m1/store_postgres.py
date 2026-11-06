@@ -172,3 +172,4 @@ def get_company(company_id: str | None) -> dict | None:
     if not company_id or not _uuid_ok(company_id):
         return None
     with _connection() as connection:
+        return _fetch_one(connection, "SELECT * FROM company WHERE id = %s", (company_id,))
