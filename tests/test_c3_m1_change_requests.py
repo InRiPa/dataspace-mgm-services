@@ -129,3 +129,4 @@ def test_decline_and_withdraw(active):
 
     second = submit()
     withdrawn = interface.withdraw_change_request(U1, second["id"], P1_SUB)
+    assert withdrawn["status"] == "WITHDRAWN"
