@@ -65,3 +65,4 @@ CREATE TABLE company (
     CONSTRAINT company_bpn_format       CHECK (bpn IS NULL OR bpn ~ '^BPNL[A-Z0-9]{12}$'),
     CONSTRAINT company_core_data_source_enum CHECK (core_data_source IN ('EBW', 'MANUAL')),
     CONSTRAINT company_deactivation_reason_enum
+        CHECK (deactivation_reason IS NULL OR deactivation_reason IN ('MANUAL', 'TRANSFERRED')),
