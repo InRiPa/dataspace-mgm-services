@@ -927,3 +927,4 @@ def approve_change_request(changeRequestId: str, body: dict | None = None,
         events.publish(MODULE, "CompanyChangeRequestClosed",
                        {"companyId": row["company_id"], "changeRequestId": changeRequestId,
                         "outcome": "APPROVED"})
+    return _change_request_view(decided, osp=True)
