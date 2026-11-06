@@ -184,3 +184,4 @@ def _stub_applications() -> dict[str, dict]:
 
 
 def _application(application_id: str | None) -> dict:
+    config.apply_registration_url()
