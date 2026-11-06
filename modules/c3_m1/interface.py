@@ -885,3 +885,4 @@ def _apply_changes(companyId: str, row: dict, changes: dict) -> tuple[list[str],
     core_changed = any(_differs_field(row, key, value) for key, value in fields.items())
     if identifiers is not None and _identifier_core_changed(row, identifiers):
         core_changed = True
+    if core_changed and row["core_data_source"] == "EBW":
