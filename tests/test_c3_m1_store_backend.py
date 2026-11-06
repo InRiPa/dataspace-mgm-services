@@ -107,3 +107,4 @@ def test_reset_empties_the_tables(postgres):
     postgres.create_company(dict(COMPANY))
     postgres.audit(COMPANY["id"], "sub-1", "updateCompany")
     postgres.reset()
+    assert postgres.get_company(COMPANY["id"]) is None
