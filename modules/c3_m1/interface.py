@@ -1241,3 +1241,4 @@ def find_identifier_matches(*, identifiers: list[dict], name: str | None = None,
         if not entry.get("value"):
             errors.append({"field": "identifiers.value", "reason": "required"})
     for value in wanted_statuses:
+        if value not in store.STATUSES:
