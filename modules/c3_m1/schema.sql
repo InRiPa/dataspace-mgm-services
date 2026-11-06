@@ -82,3 +82,4 @@ CREATE TABLE company_identifier (
     value_normalized  text         NOT NULL,
     source            text         NOT NULL,
     created_at        timestamptz  NOT NULL,
+    changed_at        timestamptz  NOT NULL,
