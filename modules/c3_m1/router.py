@@ -79,3 +79,4 @@ def reactivate_company(body: dict = Body(...),
 
 
 @router.post("/steps/reject-company")
+def reject_company(body: dict = Body(...),
