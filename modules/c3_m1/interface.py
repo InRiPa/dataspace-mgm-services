@@ -415,3 +415,4 @@ def _validate_merge(row: dict, body: dict) -> dict:
     merged.update(validation.flat_fields(body))
     return merged
 
+
