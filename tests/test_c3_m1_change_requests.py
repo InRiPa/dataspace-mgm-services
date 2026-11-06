@@ -133,3 +133,4 @@ def test_decline_and_withdraw(active):
     assert events.RELAY.log[-1]["data"]["outcome"] == "WITHDRAWN"
     events.RELAY.log.clear()
     assert interface.withdraw_change_request(U1, second["id"], P1_SUB)["status"] == "WITHDRAWN"
+    assert events.RELAY.log == []
