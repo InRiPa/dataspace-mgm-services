@@ -65,3 +65,4 @@ def _invalid(reason: str, detail: str | None = None) -> Problem:
     return Problem(MODULE, 400, "attestation-invalid", reason=reason, detail=detail)
 
 
+def _b64(part: str) -> bytes:
