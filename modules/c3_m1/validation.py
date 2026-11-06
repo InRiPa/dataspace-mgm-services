@@ -91,3 +91,4 @@ ALIASES = {
     "changedAt": "changed_at", "activatedAt": "activated_at", "rejectedAt": "rejected_at",
     "deactivatedAt": "deactivated_at", "reactivatedAt": "reactivated_at",
 }
+ADDRESS_FIELDS = ("street", "house_number", "address_addition", "postal_code", "city", "region",
