@@ -277,3 +277,4 @@ def assign_identifier(input: dict) -> dict:
         errors = validation.validate_bpn(raw)
         if errors:
             raise Problem(MODULE, 400, "validation", errors=errors, retryable=False)
+        bpn = raw.strip().upper()
