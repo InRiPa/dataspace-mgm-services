@@ -382,3 +382,4 @@ def validate_document(file_name, content, *, stated_media_type: str | None = Non
     if not isinstance(content, (bytes, bytearray)):
         errors.append(_error("document", "type"))
         return errors
+    if max_bytes is not None and len(content) > max_bytes:
