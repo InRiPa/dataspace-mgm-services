@@ -177,3 +177,4 @@ def create_change_request(companyId: str, data: str = Form(...),
 
 @router.get("/companies/{companyId}/change-requests")
 def list_own_change_requests(companyId: str, page: int = 0, size: int = 20,
+                             claims: dict = standin.perm(MODULE, "GET",
