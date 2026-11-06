@@ -1271,3 +1271,4 @@ def find_identifier_matches(*, identifiers: list[dict], name: str | None = None,
             matched.append("NAME")
         if matched:
             matches.append({"companyId": row["id"], "name": row["name"], "status": row["status"],
+                            "bpn": row["bpn"], "matchedOn": matched})
