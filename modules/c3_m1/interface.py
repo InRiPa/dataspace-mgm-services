@@ -713,3 +713,4 @@ def _wallet_identifier_conflict(row: dict, identifiers: list[dict]) -> list[dict
             for entry in identifiers if entry.get("type") in stored]
 
 
+def _identifier_core_changed(row: dict, identifiers: list[dict]) -> bool:
