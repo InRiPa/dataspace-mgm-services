@@ -51,3 +51,4 @@ def client() -> TestClient:
     app.include_router(test_iam.router)
     app.include_router(c3_router.router)
     phttp.register_local(BASE, app)
+    interface.reset()
