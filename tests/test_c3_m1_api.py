@@ -53,3 +53,4 @@ def client() -> TestClient:
     phttp.register_local(BASE, app)
     interface.reset()
     return TestClient(app, base_url=BASE)
+
