@@ -1209,3 +1209,4 @@ def query_companies(*, id: list[str] | str | None = None, bpn: list[str] | str |
     bpns = [bpn] if isinstance(bpn, str) else list(bpn or [])
     if bool(ids) == bool(bpns):
         raise Problem(MODULE, 400, "validation",
+                      errors=[{"field": "id,bpn", "reason": "exactly one of both"}])
