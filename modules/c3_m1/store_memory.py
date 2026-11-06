@@ -210,3 +210,4 @@ def set_identifiers(company_id: str, identifiers: list[dict]) -> list[dict]:
         _check_enum(kind, IDENTIFIER_TYPES, "type")
         if not kind:
             raise ValueError("type: required")
+        if kind in rows:
