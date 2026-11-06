@@ -84,3 +84,4 @@ CREATE TABLE company_identifier (
     created_at        timestamptz  NOT NULL,
     changed_at        timestamptz  NOT NULL,
     PRIMARY KEY (company_id, type),                    -- C3-M1 6.4: at most one per type
+    CONSTRAINT company_identifier_type_enum
