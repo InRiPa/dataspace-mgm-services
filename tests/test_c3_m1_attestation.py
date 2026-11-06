@@ -55,3 +55,4 @@ def _keys(monkeypatch):
     monkeypatch.setenv("ATTESTATION_JWKS_FILE", str(JWKS))
     interface.reset()
     yield
+
