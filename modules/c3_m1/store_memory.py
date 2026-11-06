@@ -154,3 +154,4 @@ def update_company(company_id: str, **fields) -> dict | None:
     status = fields.get("status", row["status"])
     _check_enum(status, STATUSES, "status")
     _check_enum(fields.get("core_data_source", row["core_data_source"]), CORE_DATA_SOURCES,
+                "core_data_source")
