@@ -555,3 +555,4 @@ def list_company_roles(companyId: str, lang: str | None = None) -> list[dict]:
     return _role_state(companyId, lang or "en")
 
 
+def _terms_of(role: str, terms: list[dict]) -> dict[str, dict]:
