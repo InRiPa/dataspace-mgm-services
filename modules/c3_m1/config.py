@@ -203,3 +203,4 @@ def company_roles_file() -> Path | None:
     path = _path(ROOT, value("COMPANY_ROLES_FILE"))
     return path if path and path.exists() else None
 
+
