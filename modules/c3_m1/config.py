@@ -51,3 +51,4 @@ DEFAULTS = {
     "ATTESTATION_ISSUER": "https://ebw.osp-a.example.org",
     "ATTESTATION_AUDIENCE": "portal-registration",
     "ATTESTATION_MAX_AGE_HOURS": "24",
+    "ATTESTATION_CLOCK_SKEW_SECONDS": "60",
