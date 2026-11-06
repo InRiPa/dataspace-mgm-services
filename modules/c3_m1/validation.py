@@ -132,3 +132,4 @@ def _reference_data() -> dict | None:
             return _reference_cache[2]
         data = json.loads(path.read_text(encoding="utf-8"))
     except (OSError, ValueError):
+        return None
