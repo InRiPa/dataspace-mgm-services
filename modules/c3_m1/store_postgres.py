@@ -194,3 +194,4 @@ def create_company(row: dict) -> dict:
     columns = ", ".join(COMPANY_FIELDS)
     placeholders = ", ".join(f"%({field})s" for field in COMPANY_FIELDS)
     with _connection() as connection:
+        try:
