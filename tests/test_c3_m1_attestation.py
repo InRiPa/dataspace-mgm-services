@@ -61,3 +61,4 @@ def now() -> dt.datetime:
     return dt.datetime.now(dt.UTC)
 
 
+def sign(claims: dict, key: dict = PRIVATE, *, typ: str = "ebw-attestation+jwt") -> str:
