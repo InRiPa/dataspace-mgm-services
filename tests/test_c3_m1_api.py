@@ -66,3 +66,4 @@ def active(client: TestClient) -> dict:
                                   "postalCode": "68159", "city": "Mannheim", "countryCode": "DE"},
                       "identifiers": [{"type": "VAT_ID", "value": "DE987654321",
                                        "source": "APPLICANT"}]},
+         consents=[{"agreementKey": "terms-active-participant", "version": "1.0",
