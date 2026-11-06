@@ -112,3 +112,4 @@ def test_create_company_is_idempotent():
     step("create_company", companyId=U1, applicationId=A1)
     reply = step("create_company", companyId=U1, applicationId=A1)
     assert reply["state"] == "DONE"
+    assert len(published("CompanyCreated")) == 1
