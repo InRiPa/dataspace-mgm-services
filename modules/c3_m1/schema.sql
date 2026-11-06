@@ -174,3 +174,4 @@ CREATE TABLE used_attestation (
     company_id uuid         NOT NULL REFERENCES company (id),
     used_at    timestamptz  NOT NULL
 );
+
