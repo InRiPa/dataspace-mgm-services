@@ -179,3 +179,4 @@ CREATE TABLE used_attestation (
 CREATE TABLE audit_log (
     id          uuid         PRIMARY KEY,
     occurred_at timestamptz  NOT NULL,
+    sub         text         NOT NULL DEFAULT '',
