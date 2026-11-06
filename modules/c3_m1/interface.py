@@ -765,3 +765,4 @@ def create_change_request(companyId: str, data: dict,
 
         errors = []
         if not 1 <= len(documents) <= config.change_request_max_documents():
+            errors.append({"field": "documents", "reason": "1 to %d documents"
