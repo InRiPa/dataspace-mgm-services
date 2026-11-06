@@ -1098,3 +1098,4 @@ def reactivate_company(input: dict) -> dict:
     with store.lock(cid):
         row = get_company(cid)
         if row["status"] == "ACTIVE":
+            return standin.step_reply(input, {"companyId": cid, "status": row["status"],
