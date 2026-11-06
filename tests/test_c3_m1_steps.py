@@ -292,3 +292,4 @@ def test_the_seed_company_is_there_after_reset():
     assert row["status"] == "ACTIVE" and row["bpn"] == "BPNL00000000OSPA"
     assert set(store.list_roles(row["id"])) == {"ONBOARDING_SERVICE_PROVIDER", "ACTIVE_PARTICIPANT",
                                                 "APP_PROVIDER", "SERVICE_PROVIDER"}
+    assert events.RELAY.log == []
