@@ -106,3 +106,4 @@ def test_a_valid_attestation_changes_the_core_data():
     identifiers = {entry["type"]: entry["source"] for entry in store.list_identifiers(U1)}
     assert identifiers["EBWOID"] == "BUSINESS_WALLET"
     event = events.RELAY.log[-1]
+    assert event["type"] == "CompanyDataChanged" and event["data"]["coreDataChanged"] is True
