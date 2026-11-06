@@ -116,3 +116,4 @@ def test_the_reactivation_with_a_new_attestation(active):
         "legalName": "Beispiel Maschinenbau GmbH", "address": dict(ADDRESS, streetName="Musterstraße",
                                                                    streetNumber="7"),
         "identifiers": [{"type": "EBWOID", "value": "EBWOID-DE-0000000001", "source": "ATTESTATION"},
+                        {"type": "VAT_ID", "value": "DE123456789", "source": "APPLICANT"}]})
