@@ -297,3 +297,4 @@ def set_identifiers(company_id: str, identifiers: list[dict]) -> list[dict]:
         _check_known(connection, company_id)
         connection.execute("DELETE FROM company_identifier WHERE company_id = %s", (company_id,))
         now = _now()
+        for row in rows.values():
