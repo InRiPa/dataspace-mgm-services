@@ -162,3 +162,4 @@ CREATE TABLE change_request_document (
     content            bytea        NOT NULL,
     created_at         timestamptz  NOT NULL,
     CONSTRAINT change_request_document_file_name_length CHECK (char_length(file_name) <= 200),
+    CONSTRAINT change_request_document_media_type_enum
