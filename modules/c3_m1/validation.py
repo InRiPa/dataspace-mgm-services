@@ -152,3 +152,4 @@ def pattern_for(identifier_type: str, country_code: str | None) -> str | None:
     data = _reference_data()
     if data is not None:
         entry = next((t for t in data.get("identifierTypes") or []
+                      if isinstance(t, dict) and t.get("type") == identifier_type), None)
