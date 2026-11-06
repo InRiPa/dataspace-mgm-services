@@ -890,3 +890,4 @@ def _apply_changes(companyId: str, row: dict, changes: dict) -> tuple[list[str],
     changed = _changed_fields(row, fields, identifiers)
     updates = validation.flat_fields(fields)
     if core_changed:
+        updates |= {"core_data_source": "MANUAL", "core_data_verified_at": _now()}
