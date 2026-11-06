@@ -343,3 +343,4 @@ def validate_reason(reason, *, max_length: int = REASON_MAX) -> list[dict]:
     errors: list[dict] = []
     _text(errors, "reason", reason, required=True, min_length=1, max_length=max_length)
     return errors
+
