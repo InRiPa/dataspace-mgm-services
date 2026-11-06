@@ -1,4 +1,5 @@
 #################################################################################
+#  Copyright (c) 2026 Technovative Solutions
 #  Copyright (c) 2026 Contributors to the Eclipse Foundation
 #
 #  See the NOTICE file(s) distributed with this work for additional
@@ -22,145 +23,397 @@
 #  SPDX-License-Identifier: Apache-2.0 AND CC0-1.0
 #  Assisted-By: Claude Code (claude-opus-5-5)
 #################################################################################
-"""Public interface of the C3-M2 stand-in: the steps of the onboarding and of connectors and the
-query `find-companies`, against the CSP at `CSP_URL` (shared CSP stand-in or a real CSP) or, with
-an empty `CSP_URL`, against the built-in stand-in (11.3)."""
+"""Public interface of C3-M2 CSP Connection (call convention of AGENTS.md).
+
+Steps for Process Orchestration (README 8), the query `find-companies` (README 9), the callback
+of the CSP (README 7.2) and the status of a company at the CSP (README 7.1). No token checks
+here: the router checks token and permission, a caller in the same process has none.
+"""
 from __future__ import annotations
 
-import os
+import re
+from typing import Any
 
-from portal_common import csp, events, neighbours, settings, standin
-from portal_common.problems import Problem
-from tools.csp_standin.core import CoreServices
+from portal_common import events, settings, standin
 
-MODULE = "c3-m2"
-registrations: dict[str, dict] = {}     # companyId -> {bpn, status, operationId}
-seen_notifications: set[str] = set()
-_builtin: CoreServices | None = None
+from . import csp_client, errors, store
+from .errors import MODULE
+
+__all__ = [
+    "MODULE",
+    "deregister_connector",
+    "deregister_membership",
+    "find_companies",
+    "get_csp_registration",
+    "receive_csp_notification",
+    "register_company",
+    "register_connector",
+    "register_did",
+    "register_membership",
+    "registration_view",
+    "reset",
+    "transfer_company",
+    "update_company",
+]
+
+COUNTRY = re.compile(r"^[A-Z]{2}$")
+NOTIFICATION_TYPES = ("OperationCompleted", "CompanyTransferredAway")
+REASON_OTHER_OSP = "REGISTERED_AT_OTHER_OSP"
+REASON_REJECTED = "REJECTED_BY_CSP"
 
 
 def reset() -> None:
-    global _builtin
-    registrations.clear()
-    seen_notifications.clear()
-    _builtin = None
+    """Fresh state: own tables empty, then the seed data of README 4; new built-in CSP stand-in."""
+    csp_client.reset()
+    store.reset()
 
 
-def call_csp(method: str, path: str, body: dict | None = None, params: dict | None = None) -> tuple[int, object]:
-    """One call of the core services API (11.1); built-in stand-in with an empty `CSP_URL`."""
-    global _builtin
-    base = os.environ.get("CSP_URL", "")
-    if not base:
-        if _builtin is None:
-            _builtin = CoreServices({settings.get("ospId"): {"name": settings.get("ospName")}})
-        return _builtin.dispatch(settings.get("ospId"), method, path, body, params)
-    try:
-        return csp.request(base, method, path, body, params)
-    except csp.CspUnavailable as e:
-        raise Problem(MODULE, 502, "upstream-error", detail=str(e), retryable=True) from e
+# ---------------------------------------------------------------- input checks
+def _required(input: dict, field: str) -> str:
+    value = input.get(field)
+    if not isinstance(value, str) or not value.strip():
+        raise errors.validation(f"{field} is required")
+    return value
 
 
-def _bpn_of(company_id: str) -> str:
-    reg = registrations.get(company_id)
-    if reg and reg.get("bpn"):
-        return reg["bpn"]
-    company = neighbours.query(MODULE, "c3-m1", "query_company", companyId=company_id)
-    if not company or not company.get("bpn"):
-        raise Problem(MODULE, 409, "invalid-state", detail="company has no BPN", retryable=False)
-    return company["bpn"]
+def _optional(input: dict, field: str) -> str | None:
+    value = input.get(field)
+    if value is None or value == "":
+        return None
+    if not isinstance(value, str):
+        raise errors.validation(f"{field} must be a string")
+    return value
 
 
-def _check(status: int, body: object, ok=(200, 201, 204)) -> None:
-    if status in ok:
-        return
-    retryable = status >= 500 or status == 401
-    name = "upstream-error" if retryable else "csp-rejected"
-    raise Problem(MODULE, 502 if retryable else 409, name, detail=f"CSP answered {status}",
-                  cspType=(body or {}).get("type") if isinstance(body, dict) else None, retryable=retryable)
+def _identifiers(value: Any) -> list[dict]:
+    """`identifiers` (README 6.5): list of `type` and `value`; `None` counts as empty."""
+    if value is None:
+        return []
+    if not isinstance(value, list):
+        raise errors.validation("identifiers must be a list")
+    out = []
+    for item in value:
+        if not isinstance(item, dict) or not all(isinstance(item.get(k), str) and item[k] for k in ("type", "value")):
+            raise errors.validation("every identifier needs type and value")
+        out.append({"type": item["type"], "value": item["value"]})
+    return out
 
 
-def registered(company_id: str, bpn: str) -> None:
-    registrations[company_id] = {"bpn": bpn, "status": "REGISTERED"}
-    events.publish(MODULE, "CompanyRegisteredAtCsp", {"companyId": company_id, "bpn": bpn})
+def _registered(company_id: str) -> dict:
+    """Precondition of most steps: status `REGISTERED` (otherwise 409 `invalid-state`)."""
+    row = store.registrations.get(company_id)
+    if row is None or row["status"] != "REGISTERED":
+        status = row["status"] if row else "no registration"
+        raise errors.invalid_state(f"company {company_id} is not REGISTERED at the CSP ({status})")
+    return row
 
 
-def register_company(input: dict) -> dict:
-    cid = input.get("companyId")
-    reg = registrations.get(cid)
-    if reg and reg["status"] == "REGISTERED":
-        return standin.step_reply(input, {"bpn": reg["bpn"]})
-    if reg and reg["status"] == "PENDING":
-        return standin.step_reply(input, state="RUNNING")
-    payload = {k: input[k] for k in ("legalName", "country", "ebwoid", "euid", "address") if input.get(k)}
-    payload["identifiers"] = [{"type": i["type"], "value": i["value"]} for i in input.get("identifiers") or []]
-    status, answer = call_csp("POST", "/companies", payload)
+def _reply(input: dict, result: dict | None = None, state: str = "DONE") -> dict:
+    return standin.step_reply(input, result, state)
+
+
+# ---------------------------------------------------------------- status changes (README 6.1)
+def _mark_registered(row: dict, bpn: str) -> None:
+    changed = row["status"] != "REGISTERED" or row["bpn"] != bpn
+    row.update(status="REGISTERED", bpn=bpn, failure_reason=None, pending_operation_id=None)
+    if changed:
+        row["registered_at"] = store.now()
+        store.touch(row)
+        events.publish(MODULE, "CompanyRegisteredAtCsp", {"companyId": row["company_id"], "bpn": bpn})
+
+
+def _mark_failed(row: dict, reason: str) -> None:
+    changed = row["status"] != "FAILED" or row["failure_reason"] != reason
+    row.update(status="FAILED", failure_reason=reason, pending_operation_id=None)
+    if changed:
+        store.touch(row)
+        events.publish(MODULE, "CompanyRegistrationAtCspFailed", {"companyId": row["company_id"], "reason": reason})
+
+
+def _registration_answer(input: dict, company_id: str, status: int, answer: Any) -> dict:
+    """Answer of `POST /companies` or `POST /companies/{bpn}/transfer` (README 8.1, 8.2)."""
+    body = answer if isinstance(answer, dict) else {}
     if status == 201:
-        registered(cid, answer["bpn"])
-        return standin.step_reply(input, {"bpn": answer["bpn"]})
+        bpn = body.get("bpn")
+        if not isinstance(bpn, str) or not bpn:
+            raise errors.upstream_error("the CSP confirmed without a BPN")
+        if (other := store.find_by_bpn(bpn, exclude=company_id, status="REGISTERED")) is not None:
+            raise errors.invalid_state(f"BPN {bpn} is already registered for company {other['company_id']}")
+        _mark_registered(store.registration_row(company_id), bpn)
+        return _reply(input, {"bpn": bpn})
     if status == 202:
-        registrations[cid] = {"status": "PENDING", "operationId": answer["operationId"]}
-        return standin.step_reply(input, state="RUNNING")
+        operation_id = body.get("operationId")
+        if not isinstance(operation_id, str) or not operation_id:
+            raise errors.upstream_error("the CSP accepted without an operationId")
+        row = store.registration_row(company_id)
+        row.update(status="PENDING", pending_operation_id=operation_id, failure_reason=None)
+        store.touch(row)
+        return _reply(input, state="RUNNING")
     if status == 409:
-        registrations[cid] = {"status": "FAILED", "reason": "REGISTERED_AT_OTHER_OSP"}
-        events.publish(MODULE, "CompanyRegistrationAtCspFailed", {"companyId": cid,
-                                                                  "reason": "REGISTERED_AT_OTHER_OSP"})
-        raise Problem(MODULE, 409, "registered-at-other-osp", retryable=False)
-    _check(status, answer)
+        _mark_failed(store.registration_row(company_id), REASON_OTHER_OSP)
+        raise errors.registered_at_other_osp(body.get("homeOspId"))
+    if csp_client.is_business_rejection(status):
+        _mark_failed(store.registration_row(company_id), REASON_REJECTED)
+    csp_client.raise_for(status, answer, ok=())
+    raise AssertionError("unreachable")  # raise_for always raises with ok=()
+
+
+# ---------------------------------------------------------------- steps (README 8)
+def register_company(input: dict) -> dict:
+    """Step register-company (README 8.1)."""
+    company_id = _required(input, "companyId")
+    legal_name = _required(input, "legalName")
+    country = _required(input, "country")
+    if not COUNTRY.match(country):
+        raise errors.validation("country must be two upper-case letters")
+    ebwoid, euid = _optional(input, "ebwoid"), _optional(input, "euid")
+    identifiers = _identifiers(input.get("identifiers"))
+    if not (ebwoid or euid or identifiers):
+        raise errors.validation("at least ebwoid, euid or an entry in identifiers is required (README 6.5)")
+
+    row = store.registrations.get(company_id)
+    if row is not None and row["status"] == "REGISTERED":
+        return _reply(input, {"bpn": row["bpn"]})
+    if row is not None and row["status"] == "PENDING":
+        return _reply(input, state="RUNNING")
+    if row is not None and row["status"] == "TRANSFERRED_AWAY":
+        raise errors.invalid_state("the company moved to another OSP; a return uses transfer-company")
+
+    payload: dict[str, Any] = {"legalName": legal_name, "country": country, "identifiers": identifiers}
+    payload |= {k: v for k, v in (("ebwoid", ebwoid), ("euid", euid)) if v}
+    if isinstance(input.get("address"), dict):
+        payload["address"] = input["address"]
+    status, answer = csp_client.call("register-company", "POST", "/companies", payload, company_id=company_id)
+    return _registration_answer(input, company_id, status, answer)
+
+
+def transfer_company(input: dict) -> dict:
+    """Step transfer-company (README 8.2): the company moves to this OSP."""
+    company_id = _required(input, "companyId")
+    bpn = _required(input, "bpn")
+    ebwoid, euid = _optional(input, "ebwoid"), _optional(input, "euid")
+    identifiers = _identifiers(input.get("identifiers"))
+
+    row = store.registrations.get(company_id)
+    if row is not None and row["status"] == "REGISTERED":
+        if row["bpn"] != bpn:
+            raise errors.invalid_state(f"company {company_id} is registered with another BPN")
+        return _reply(input, {"bpn": bpn})
+    if row is not None and row["status"] == "PENDING":
+        return _reply(input, state="RUNNING")
+
+    payload: dict[str, Any] = {k: v for k, v in (("ebwoid", ebwoid), ("euid", euid)) if v}
+    if identifiers:
+        payload["identifiers"] = identifiers
+    status, answer = csp_client.call("transfer-company", "POST", f"/companies/{bpn}/transfer", payload,
+                                     company_id=company_id, bpn=bpn)
+    return _registration_answer(input, company_id, status, answer)
 
 
 def register_did(input: dict) -> dict:
-    cid, did = input.get("companyId"), input.get("did")
-    if not did:
-        raise Problem(MODULE, 400, "validation", detail="did", retryable=False)
-    bpn = _bpn_of(cid)
-    _check(*call_csp("PUT", f"/companies/{bpn}/did", {"did": did}))
-    events.publish(MODULE, "CompanyDidRegistered", {"companyId": cid, "bpn": bpn, "did": did})
-    return standin.step_reply(input, {"bpn": bpn, "did": did})
+    """Step register-did (README 8.3): DID in the directory BPN -> DID."""
+    company_id = _required(input, "companyId")
+    did = _required(input, "did")
+    row = _registered(company_id)
+    if row["did"] != did:
+        status, answer = csp_client.call("register-did", "PUT", f"/companies/{row['bpn']}/did", {"did": did},
+                                         company_id=company_id, bpn=row["bpn"])
+        csp_client.raise_for(status, answer)
+        row["did"] = did
+        store.touch(row)
+        events.publish(MODULE, "CompanyDidRegistered", {"companyId": company_id, "bpn": row["bpn"], "did": did})
+    return _reply(input, {"bpn": row["bpn"], "did": did})
+
+
+def update_company(input: dict) -> dict:
+    """Step update-company (README 8.4): changed core data to the CSP. The module keeps no core
+    data (README 5), so a repetition is recognised by the `stepRunId` (FRAMEWORK 4.4)."""
+    company_id = _required(input, "companyId")
+    legal_name = _required(input, "legalName")
+    euid = _optional(input, "euid")
+    row = _registered(company_id)
+    step_run = input.get("stepRunId")
+    if step_run and row["last_update_step_run"] == step_run:
+        return _reply(input)
+    payload: dict[str, Any] = {"legalName": legal_name}
+    if euid:
+        payload["euid"] = euid
+    if isinstance(input.get("address"), dict):
+        payload["address"] = input["address"]
+    status, answer = csp_client.call("update-company", "PATCH", f"/companies/{row['bpn']}", payload,
+                                     company_id=company_id, bpn=row["bpn"])
+    csp_client.raise_for(status, answer)
+    row["last_update_step_run"] = step_run
+    store.touch(row)
+    events.publish(MODULE, "CompanyUpdatedAtCsp", {"companyId": company_id, "bpn": row["bpn"]})
+    return _reply(input)
 
 
 def _membership(input: dict, member: bool) -> dict:
-    cid = input.get("companyId")
-    bpn = _bpn_of(cid)
-    _check(*call_csp("PUT", f"/companies/{bpn}/membership", {"member": member}))
-    events.publish(MODULE, "MembershipRegistered" if member else "MembershipDeregistered",
-                   {"companyId": cid, "bpn": bpn})
-    return standin.step_reply(input, {"bpn": bpn})
+    """Steps register-membership and deregister-membership (README 8.5)."""
+    company_id = _required(input, "companyId")
+    row = store.registrations.get(company_id)
+    if not member and row is not None and row["status"] == "TRANSFERRED_AWAY":
+        # the new home OSP owns the membership now (FRAMEWORK 5.6 step 3): no call, no event
+        if row["membership"] != "NONE":
+            row["membership"] = "NONE"
+            store.touch(row)
+        return _reply(input)
+    row = _registered(company_id)
+    target = "REGISTERED" if member else "DEREGISTERED"
+    if row["membership"] != target:
+        operation = "register-membership" if member else "deregister-membership"
+        status, answer = csp_client.call(operation, "PUT", f"/companies/{row['bpn']}/membership", {"member": member},
+                                         company_id=company_id, bpn=row["bpn"])
+        csp_client.raise_for(status, answer)
+        row["membership"] = target
+        store.touch(row)
+        events.publish(MODULE, "MembershipRegistered" if member else "MembershipDeregistered",
+                       {"companyId": company_id, "bpn": row["bpn"]})
+    return _reply(input)
 
 
 def register_membership(input: dict) -> dict:
+    """Step register-membership (README 8.5)."""
     return _membership(input, True)
 
 
 def deregister_membership(input: dict) -> dict:
+    """Step deregister-membership (README 8.5)."""
     return _membership(input, False)
 
 
 def register_connector(input: dict) -> dict:
-    cid, con = input.get("companyId"), input.get("connectorId")
-    bpn = _bpn_of(cid)
-    _check(*call_csp("PUT", f"/companies/{bpn}/connectors/{con}", {"endpointUrl": input.get("endpointUrl")}))
-    events.publish(MODULE, "ConnectorRegisteredAtCsp", {"companyId": cid, "bpn": bpn, "connectorId": con})
-    return standin.step_reply(input, {"bpn": bpn})
+    """Step register-connector (README 8.6): connector into the discovery of the CSP."""
+    company_id = _required(input, "companyId")
+    connector_id = _required(input, "connectorId")
+    endpoint = _required(input, "endpointUrl")
+    if not endpoint.startswith("https://"):
+        raise errors.validation("endpointUrl must be an HTTPS address")
+    row = _registered(company_id)
+    bpn = row["bpn"]
+    con = store.connectors.get(connector_id)
+    unchanged = (con is not None and con["status"] == "REGISTERED" and con["endpoint_url"] == endpoint
+                 and con["company_id"] == company_id and con["bpn"] == bpn)
+    if not unchanged:
+        status, answer = csp_client.call("register-connector", "PUT", f"/companies/{bpn}/connectors/{connector_id}",
+                                         {"endpointUrl": endpoint}, company_id=company_id, bpn=bpn)
+        csp_client.raise_for(status, answer)
+        now = store.now()
+        store.connectors[connector_id] = {
+            "connector_id": connector_id, "company_id": company_id, "bpn": bpn, "endpoint_url": endpoint,
+            "status": "REGISTERED", "registered_at": (con or {}).get("registered_at") or now, "updated_at": now}
+        events.publish(MODULE, "ConnectorRegisteredAtCsp",
+                       {"companyId": company_id, "bpn": bpn, "connectorId": connector_id})
+    return _reply(input, {"bpn": bpn, "connectorId": connector_id})
 
 
 def deregister_connector(input: dict) -> dict:
-    cid, con = input.get("companyId"), input.get("connectorId")
-    bpn = _bpn_of(cid)
-    _check(*call_csp("DELETE", f"/companies/{bpn}/connectors/{con}"))
-    events.publish(MODULE, "ConnectorDeregisteredAtCsp", {"companyId": cid, "bpn": bpn, "connectorId": con})
-    return standin.step_reply(input, {"bpn": bpn})
+    """Step deregister-connector (README 8.6): unknown or already removed -> DONE without a call."""
+    company_id = _required(input, "companyId")
+    connector_id = _required(input, "connectorId")
+    con = store.connectors.get(connector_id)
+    if con is None or con["status"] == "DEREGISTERED":
+        row = store.registrations.get(company_id)
+        bpn = (con or {}).get("bpn") or (row or {}).get("bpn")
+        return _reply(input, {"connectorId": connector_id} | ({"bpn": bpn} if bpn else {}))
+    _registered(company_id)
+    status, answer = csp_client.call("deregister-connector", "DELETE",
+                                     f"/companies/{con['bpn']}/connectors/{connector_id}",
+                                     company_id=company_id, bpn=con["bpn"])
+    csp_client.raise_for(status, answer)
+    con.update(status="DEREGISTERED", updated_at=store.now())
+    events.publish(MODULE, "ConnectorDeregisteredAtCsp",
+                   {"companyId": company_id, "bpn": con["bpn"], "connectorId": connector_id})
+    return _reply(input, {"bpn": con["bpn"], "connectorId": connector_id})
 
 
+# ---------------------------------------------------------------- query (README 9)
 def find_companies(*, ebwoid: str | None = None, euid: str | None = None, identifier: list[str] | str | None = None,
-                   legalName: str | None = None, country: str | None = None):
-    params = {k: v for k, v in {"ebwoid": ebwoid, "euid": euid, "identifier": identifier or None,
-                                "legalName": legalName, "country": country}.items() if v}
-    status, answer = call_csp("GET", "/companies", params=params)
+                   legalName: str | None = None, country: str | None = None) -> list[dict]:  # noqa: N803 - openapi names
+    """Query findCompanies (README 9, 6.2): duplicate check at the CSP."""
+    identifiers = [identifier] if isinstance(identifier, str) else list(identifier or [])
+    for value in identifiers:
+        kind, _, rest = value.partition(":")
+        if not kind or not rest:
+            raise errors.validation("identifier must have the form <type>:<value>")
+    if country and not COUNTRY.match(country):
+        raise errors.validation("country must be two upper-case letters")
+    if not (ebwoid or euid or identifiers or (legalName and country)):
+        raise errors.validation("ebwoid, euid, identifier, or legalName with country is required")
+    params: dict[str, Any] = {k: v for k, v in (("ebwoid", ebwoid), ("euid", euid), ("legalName", legalName),
+                                                ("country", country)) if v}
+    if identifiers:
+        params["identifier"] = identifiers
+    status, answer = csp_client.call("find-companies", "GET", "/companies", params=params)
     if status == 400:
-        raise Problem(MODULE, 400, "validation")
-    _check(status, answer)
-    # CspCompanyMatch (9): the CSP does not know which OSP asks
-    return [r | {"homeIsThisOsp": r.get("homeOspId") == settings.get("ospId")} for r in answer]
+        raise errors.validation("the CSP rejected the search parameters")
+    csp_client.raise_for(status, answer, ok=(200,))
+    if not isinstance(answer, list):
+        raise errors.upstream_error("the CSP answered without a list")
+    own = settings.get("ospId")
+    return [{"bpn": m.get("bpn"), "legalName": m.get("legalName"), "country": m.get("country"),
+             "matchedBy": m.get("matchedBy"), "homeOspId": m.get("homeOspId"), "homeOspName": m.get("homeOspName"),
+             "homeIsThisOsp": m.get("homeOspId") == own, "memberActive": m.get("memberActive")}
+            for m in answer if isinstance(m, dict)]
 
 
-__getattr__ = standin.missing_interface(MODULE)   # steps and queries not implemented yet: stand-in
+# ---------------------------------------------------------------- callback of the CSP (README 7.2)
+def receive_csp_notification(body: dict) -> dict:
+    """Notification from the CSP; a known `notificationId` is acknowledged and not processed again."""
+    if not isinstance(body, dict):
+        raise errors.validation("the notification must be a JSON object")
+    notification_id = _required(body, "notificationId")
+    kind = _required(body, "type")
+    if kind not in NOTIFICATION_TYPES:
+        raise errors.validation(f"type must be one of {', '.join(NOTIFICATION_TYPES)}")
+    if notification_id in store.notifications:
+        return {"notificationId": notification_id, "accepted": True}
+    bpn = _optional(body, "bpn")
+
+    if kind == "OperationCompleted":
+        operation_id = _required(body, "operationId")
+        outcome = _required(body, "outcome")
+        if outcome not in ("SUCCEEDED", "FAILED"):
+            raise errors.validation("outcome must be SUCCEEDED or FAILED")
+        if outcome == "SUCCEEDED" and not bpn:
+            raise errors.validation("bpn is required with outcome SUCCEEDED")
+        row = store.find_by_operation(operation_id) or (store.find_by_bpn(bpn) if bpn else None)
+        if row is None:
+            raise errors.unknown_company(f"no registration for operation {operation_id}")
+        if outcome == "SUCCEEDED":
+            _mark_registered(row, bpn or "")
+        else:
+            _mark_failed(row, _optional(body, "reason") or REASON_REJECTED)
+    else:
+        if not bpn:
+            raise errors.validation("bpn is required with CompanyTransferredAway")
+        row = store.find_by_bpn(bpn, status="REGISTERED") or store.find_by_bpn(bpn)
+        if row is None:
+            raise errors.unknown_company(f"no registration for BPN {bpn}")
+        if row["status"] != "TRANSFERRED_AWAY":
+            row["status"] = "TRANSFERRED_AWAY"
+            store.touch(row)
+            events.publish(MODULE, "CompanyTransferredAway", {"companyId": row["company_id"], "bpn": bpn})
+
+    store.notifications[notification_id] = {"notification_id": notification_id, "type": kind, "bpn": row["bpn"],
+                                            "received_at": store.now()}
+    store.record_audit(f"notification:{kind}", row["company_id"], row["bpn"], 200)
+    return {"notificationId": notification_id, "accepted": True}
+
+
+# ---------------------------------------------------------------- status at the CSP (README 7.1)
+def registration_view(row: dict) -> dict:
+    """Row of `csp_registration` as `CspRegistration`; empty fields are left out."""
+    view = {"companyId": row["company_id"], "bpn": row["bpn"], "status": row["status"],
+            "failureReason": row["failure_reason"], "did": row["did"], "membership": row["membership"],
+            "registeredAt": row["registered_at"], "updatedAt": row["updated_at"]}
+    return {k: v for k, v in view.items() if v is not None}
+
+
+def get_csp_registration(companyId: str) -> dict:  # noqa: N803 - openapi name
+    """Operation getCspRegistration (README 7.1); 404 `not-found` without a registration."""
+    row = store.registrations.get(companyId)
+    if row is None or row["status"] is None:
+        raise errors.not_found()
+    return registration_view(row)
