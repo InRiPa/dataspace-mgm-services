@@ -205,3 +205,4 @@ def test_set_identifiers_enforces_the_enums(make):
                                               "source": "ATTESTATION"}])
 
 
+def test_set_identifiers_needs_a_known_company():
