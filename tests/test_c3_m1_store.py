@@ -514,3 +514,4 @@ def test_patterns_fall_back_to_readme_6_4_without_reference_data(tmp_path, monke
 # -------------------------------------------------------------------- change request (7.4)
 def test_change_request_needs_a_change_a_comment_and_declared_identifiers():
     errors = v.validate_change_request({"comment": "bitte ändern"}, "DE")
+    assert errors == [{"field": "changes", "reason": "missing"}]
