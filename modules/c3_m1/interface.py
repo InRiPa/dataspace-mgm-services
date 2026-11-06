@@ -1142,3 +1142,4 @@ def reactivate_company(input: dict) -> dict:
             raise Problem(MODULE, 409, "company-mismatch", fields=mismatched, retryable=False)
 
         identifiers = list(stored.values())
+        for entry in data.get("identifiers") or []:
