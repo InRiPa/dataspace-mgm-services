@@ -291,3 +291,4 @@ def assign_identifier(input: dict) -> dict:
             raise Problem(MODULE, 409, "bpn-taken", detail=taken["id"], retryable=False)
         store.update_company(cid, bpn=bpn, bpn_assigned_at=_now())
         _audit(cid, "stepAssignIdentifier", input, {"bpn": bpn})
+        events.publish(MODULE, "CompanyIdentifierAssigned", {"companyId": cid, "bpn": bpn})
