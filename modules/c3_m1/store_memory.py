@@ -397,3 +397,4 @@ def get_document(document_id: str | None) -> dict | None:
 
 
 def list_documents(change_request_id: str) -> list[dict]:
+    return [_copy(row) for row in _documents.values() if row["change_request_id"] == change_request_id]  # type: ignore[misc]
