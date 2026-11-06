@@ -768,3 +768,4 @@ def create_change_request(companyId: str, data: dict,
             errors.append({"field": "documents", "reason": "1 to %d documents"
                                                           % config.change_request_max_documents()})
         for file_name, content, stated in documents:
+            errors += validation.validate_document(file_name, content, stated_media_type=stated,
