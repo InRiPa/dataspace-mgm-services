@@ -46,3 +46,4 @@ def submit(company: str = U1, person: str = P1_SUB, **data) -> dict:
 
 # ------------------------------------------------------------------------------------------ 13.13
 def test_a_name_change_of_an_ebw_company_needs_the_attestation(active):
+    with pytest.raises(Problem) as error:
