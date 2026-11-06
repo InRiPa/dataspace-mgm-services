@@ -454,3 +454,4 @@ OSP_LOCKED_FIELDS = {"bpn", "status", "coreDataSource", "applicationId", "verifi
                      "deactivationReason", "createdAt", "changedAt"}
 
 
+def correct_company(companyId: str, body: dict, sub: str | None = None) -> dict:
