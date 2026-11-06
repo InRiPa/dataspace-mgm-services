@@ -146,3 +146,4 @@ CREATE TABLE change_request (
     -- C3-M1 7.18: the justification is required with DECLINED
     CONSTRAINT change_request_declined_needs_reason
         CHECK (status <> 'DECLINED' OR decision_reason IS NOT NULL)
+);
