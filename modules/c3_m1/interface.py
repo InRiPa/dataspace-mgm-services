@@ -251,3 +251,4 @@ def create_company(input: dict) -> dict:
         store.create_company(row | {
             "id": cid, "status": "REQUESTED",
             "core_data_source": "EBW" if verification == "EBW" else "MANUAL",
+            "core_data_verified_at": attestation.get("verifiedAt") if verification == "EBW" else None,
