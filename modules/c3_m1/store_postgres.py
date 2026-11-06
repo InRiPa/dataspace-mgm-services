@@ -541,3 +541,4 @@ def get_document(document_id: str | None) -> dict | None:
 
 def list_documents(change_request_id: str) -> list[dict]:
     if not _uuid_ok(change_request_id):
+        return []
