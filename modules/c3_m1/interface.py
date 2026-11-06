@@ -996,3 +996,4 @@ def update_company_from_attestation(companyId: str, body: dict, sub: str | None 
         claims["client_id"] = claims.get("client_id")
 
         if store.is_used(claims["jti"]):
+            raise Problem(MODULE, 409, "attestation-used")
