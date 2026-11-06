@@ -477,3 +477,4 @@ def test_euid_and_ebwoid_are_loose():
     # EBWOID: 1 to 255 characters without whitespace (6.4); the reference data has `^\S{1,200}$`
     assert {"field": "identifiers[0].value", "reason": "format"} in v.validate_identifiers(
         [{"type": "EBWOID", "value": "EBWOID DE 1"}], "DE")
+
