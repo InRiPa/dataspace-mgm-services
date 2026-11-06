@@ -527,3 +527,4 @@ def test_change_request_needs_a_change_a_comment_and_declared_identifiers():
 
 def test_comment_and_reason_lengths():
     assert v.validate_comment("") == [{"field": "comment", "reason": "required"}]
+    assert v.validate_comment("x" * 1001) == [{"field": "comment", "reason": "too-long"}]
