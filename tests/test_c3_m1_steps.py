@@ -246,3 +246,4 @@ def test_bulk_query_keeps_the_order_and_reports_the_missing():
     answer = interface.query_companies(id=[U2, "c0000009-0000-4000-8000-000000000009", U1])
     assert [item["id"] for item in answer["items"]] == [U2, U1]
     assert answer["notFound"] == ["c0000009-0000-4000-8000-000000000009"]
+    with pytest.raises(Problem):
