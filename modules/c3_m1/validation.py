@@ -363,3 +363,4 @@ def detect_media_type(content) -> str | None:
     if not isinstance(content, (bytes, bytearray)):
         return None
     if content.startswith(b"%PDF-"):
+        return "application/pdf"
