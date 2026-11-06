@@ -1,2 +1,3 @@
 {
   "_comment": "Built-in stand-in for C1-M2 (C3-M1 11.1): applications of README 14 in the ApplicationInternal format. Used when no address for C1-M2 is configured.",
+  "applications": [
