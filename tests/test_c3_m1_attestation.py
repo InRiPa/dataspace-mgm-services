@@ -181,3 +181,4 @@ def test_the_reasons_of_a_refused_attestation(over, reason):
     with pytest.raises(Problem) as error:
         update(**over)
     assert error.value.name == "attestation-invalid" and error.value.ext["reason"] == reason
+
