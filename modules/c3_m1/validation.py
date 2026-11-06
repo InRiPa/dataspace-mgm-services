@@ -353,3 +353,4 @@ def validate_decision_reason(reason) -> list[dict]:
 def validate_file_name(file_name) -> list[dict]:
     errors: list[dict] = []
     _text(errors, "file_name", file_name, required=True, min_length=1, max_length=FILE_NAME_MAX)
+    if isinstance(file_name, str) and ("/" in file_name or "\\" in file_name):
