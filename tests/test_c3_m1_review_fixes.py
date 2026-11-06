@@ -302,3 +302,4 @@ def test_a_malformed_json_part_is_a_validation_error(client, active):
     assert answer.status_code == 400 and answer.json()["type"].endswith("validation")
 
 
+# ------------------------------------------------------------------------- attestation details
