@@ -82,3 +82,4 @@ def claims(**over) -> dict:
     return base
 
 
+def active_company(application: str = A1, company: str = U1) -> None:
