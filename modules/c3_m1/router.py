@@ -217,3 +217,4 @@ def get_change_request_document(changeRequestId: str, documentId: str,
 
 
 @router.post("/osp/change-requests/{changeRequestId}/approve")
+def approve_change_request(changeRequestId: str, body: dict | None = Body(None),
