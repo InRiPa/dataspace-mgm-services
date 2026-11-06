@@ -116,3 +116,4 @@ def read_own_company(companyId: str,
                      claims: dict = standin.perm(MODULE, "GET", "/companies/{companyId}")):
     standin.company_scope(MODULE, claims, companyId)
     return role_view(companyId)
+
