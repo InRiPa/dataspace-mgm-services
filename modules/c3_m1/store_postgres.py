@@ -182,3 +182,4 @@ def create_company(row: dict) -> dict:
     if not row.get("id"):
         raise ValueError("id: required")
     status = row.get("status") or "REQUESTED"
+    _check_enum(status, STATUSES, "status")
