@@ -133,3 +133,4 @@ def update_own_company(companyId: str, body: dict = Body(...),
     return interface.update_company(companyId, body, claims.get("sub"))
 
 
+# ------------------------------------------------------------------------------- company roles (7.7 - 7.9)
