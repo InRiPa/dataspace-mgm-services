@@ -133,3 +133,4 @@ def attestation_client_ids() -> list[str]:
     return [x.strip() for x in value("ATTESTATION_CLIENT_IDS").split(",") if x.strip()]
 
 
+def attestation_audience() -> str:
