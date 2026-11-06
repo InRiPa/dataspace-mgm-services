@@ -166,3 +166,4 @@ def create_change_request(companyId: str, data: str = Form(...),
                           claims: dict = standin.perm(MODULE, "POST",
                                                       "/companies/{companyId}/change-requests")):
     standin.company_scope(MODULE, claims, companyId)
+    try:
