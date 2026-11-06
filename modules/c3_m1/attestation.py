@@ -167,3 +167,4 @@ def verify(attestation: str, *, now: dt.datetime | None = None) -> dict:
     missing = [name for name in REQUIRED_CLAIMS if claims.get(name) in (None, "")]
     if not isinstance(company, dict):
         missing.append("company.*")
+    else:
