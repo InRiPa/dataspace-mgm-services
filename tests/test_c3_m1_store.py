@@ -432,3 +432,4 @@ def test_company_enums_and_bpn_format():
     assert {"field": "bpn", "reason": "format"} in v.validate_company({"bpn": "DE123", **base})
 
 
+def test_camel_case_and_nested_address_are_understood():
