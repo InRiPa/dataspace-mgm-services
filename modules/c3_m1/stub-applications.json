@@ -31,3 +31,4 @@
         "address": { "streetName": "Hafenstraße", "streetNumber": "5", "postalCode": "68159", "city": "Mannheim", "region": "BW", "countryCode": "DE" },
         "identifiers": [
           { "type": "COMMERCIAL_REG_NUMBER", "value": "HRB 200002", "source": "APPLICANT" },
+          { "type": "VAT_ID", "value": "DE987654321", "source": "APPLICANT" }
