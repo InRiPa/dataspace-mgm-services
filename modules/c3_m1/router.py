@@ -60,3 +60,4 @@ def assign_identifier(body: dict = Body(...),
     return interface.assign_identifier(body)
 
 
+@router.post("/steps/activate-company")
