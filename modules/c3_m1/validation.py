@@ -167,3 +167,4 @@ def _error(field: str, reason: str) -> dict:
     return {"field": field, "reason": reason}
 
 
+def _text(errors: list[dict], field: str, value, *, required: bool = False,
