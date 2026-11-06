@@ -49,3 +49,4 @@ def client() -> TestClient:
     problems.install(app)
     app.include_router(test_iam.router)
     app.include_router(c3_router.router)
+    app.include_router(standin.fallback_router(c3_router.MODULE, c3_router.router))   # as scaffold/app.py
