@@ -156,3 +156,4 @@ def lock(company_id: str | None = None):
     UPDATE of the same row the block performs. The advisory key is the company, the unlock is
     guaranteed in `finally`.
     """
+    key = zlib.crc32(company_id.encode()) if company_id else 0
