@@ -796,3 +796,4 @@ def list_own_change_requests(companyId: str, page: int = 0, size: int = 20) -> d
             "total": total}
 
 
+def _own_change_request(companyId: str, changeRequestId: str) -> dict:
