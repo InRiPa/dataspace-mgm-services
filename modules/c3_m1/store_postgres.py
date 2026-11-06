@@ -477,3 +477,4 @@ def decide_change_request(change_request_id: str, status: str, *, decided_by: st
                           closed_at: str | None = None) -> dict | None:
     """Only an `OPEN` request can be decided; `DECLINED` needs the justification (7.18)."""
     _check_enum(status, ("APPROVED", "DECLINED"), "status")
+    if status == "DECLINED" and not decision_reason:
