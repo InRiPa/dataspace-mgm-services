@@ -97,3 +97,4 @@ def update(company_id: str = U1, **over) -> dict:
 def test_a_valid_attestation_changes_the_core_data():
     active_company()
     answer = update()
+    assert set(answer["changedFields"]) == {"name", "street", "houseNumber", "postalCode", "region"}
