@@ -183,3 +183,4 @@ def test_the_bulk_query_takes_repeated_parameters(client, active):
     response = call(client, "GET",
                     f"/api/c3-m1/internal/companies?id={U2}&id={U1}&id=c0000009-0000-4000-8000-000000000009",
                     "svc")
+    assert response.status_code == 200
