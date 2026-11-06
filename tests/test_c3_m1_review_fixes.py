@@ -336,3 +336,4 @@ def test_the_deactivation_DONE_keeps_the_stored_reason(active):
     assert answer["result"]["deactivationReason"] == "TRANSFERRED"
 
 
+def test_the_activation_DONE_lists_active_roles_only(active):
