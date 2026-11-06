@@ -1039,3 +1039,4 @@ def update_company_from_attestation(companyId: str, body: dict, sub: str | None 
 
 
 # ---------------------------------------------------------------- deactivation and return (7.13, 8.5, 8.6)
+def deactivate_company(input: dict) -> dict:
