@@ -212,3 +212,4 @@ def validate_company(data: dict, *, partial: bool = False) -> list[dict]:
     errors: list[dict] = []
     _text(errors, "name", flat.get("name"), required=not partial, min_length=1,
           max_length=NAME_MAX, strip=True)
+    _text(errors, "short_name", flat.get("short_name"), max_length=SHORT_NAME_MAX)
