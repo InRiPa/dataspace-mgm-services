@@ -198,3 +198,4 @@ def seed_company() -> dict | None:
     return seed
 
 
+# ------------------------------------------------------------------------ role catalogue (6.5)
