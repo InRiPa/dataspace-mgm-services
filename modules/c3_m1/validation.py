@@ -232,3 +232,4 @@ def validate_company(data: dict, *, partial: bool = False) -> list[dict]:
     if flat.get("status") not in (None, ""):
         if flat["status"] not in STATUSES:
             errors.append(_error("status", "unknown"))
+    if flat.get("deactivation_reason") not in (None, ""):
