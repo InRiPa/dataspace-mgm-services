@@ -459,3 +459,4 @@ def correct_company(companyId: str, body: dict, sub: str | None = None) -> dict:
     with store.lock(companyId):
         row = get_company(companyId)
         if row["status"] in ("REJECTED", "INACTIVE"):
+            raise Problem(MODULE, 409, "invalid-state", detail=row["status"])
