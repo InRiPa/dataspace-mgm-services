@@ -40,3 +40,4 @@ _ids = itertools.count(1)
 def _empty_store():
     store.reset()
     yield
+    store.reset()
