@@ -180,3 +180,4 @@ def test_the_search_filters_over_http(client, active):
 
 
 def test_the_bulk_query_takes_repeated_parameters(client, active):
+    response = call(client, "GET",
