@@ -70,3 +70,4 @@ COMPANY_FIELDS = (
 _cache: tuple[str, ModuleType] | None = None
 
 
+def backend_name() -> str:
