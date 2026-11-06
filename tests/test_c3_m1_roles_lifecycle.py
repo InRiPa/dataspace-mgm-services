@@ -130,3 +130,4 @@ def test_the_reactivation_with_a_new_attestation(active):
     assert step("reactivate_company", companyId=U1, applicationId=A5)["state"] == "DONE"
     assert events.RELAY.log == []
 
+
