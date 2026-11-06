@@ -179,3 +179,4 @@ def test_the_search_filters_over_http(client, active):
     assert call(client, "GET", "/api/c3-m1/osp/companies?status=nope", S1).status_code == 400
 
 
+def test_the_bulk_query_takes_repeated_parameters(client, active):
