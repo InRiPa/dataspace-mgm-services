@@ -66,3 +66,4 @@ CREATE TABLE company (
     CONSTRAINT company_core_data_source_enum CHECK (core_data_source IN ('EBW', 'MANUAL')),
     CONSTRAINT company_deactivation_reason_enum
         CHECK (deactivation_reason IS NULL OR deactivation_reason IN ('MANUAL', 'TRANSFERRED')),
+    -- C3-M1 5: the reason is filled only with status INACTIVE
