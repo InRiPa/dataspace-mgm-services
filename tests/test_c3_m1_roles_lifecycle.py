@@ -137,3 +137,4 @@ def test_the_reactivation_needs_the_matching_kind(active):
     with pytest.raises(Problem) as error:
         step("reactivate_company", companyId=U1, applicationId=A6)
     assert error.value.status == 409 and error.value.name == "invalid-state"
+
