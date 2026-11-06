@@ -75,3 +75,4 @@ def active(client: TestClient) -> dict:
         step("assign_identifier", companyId=company, bpn=bpn)
         step("activate_company", companyId=company, applicationId=application)
     iam = test_iam.iam()
+    for person, role, company, bpn in ((P1, "Company Admin", U1, "BPNLIUK2REMLK3F4"),
