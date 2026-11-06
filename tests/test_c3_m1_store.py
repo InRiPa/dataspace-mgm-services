@@ -357,3 +357,4 @@ def test_reset_clears_every_table(make):
     store.audit(company["id"], "sub", "op")
 
     store.reset()
+
