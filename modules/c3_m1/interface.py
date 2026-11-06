@@ -67,3 +67,4 @@ def _audit(company_id: str | None, operation: str, input: dict, details: dict | 
                 (details or {}) | {"processId": input.get("processId"),
                                    "stepRunId": input.get("stepRunId")})
 
+
