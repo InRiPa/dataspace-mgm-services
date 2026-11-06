@@ -140,3 +140,4 @@ CREATE TABLE change_request (
     created_at       timestamptz  NOT NULL,
     closed_at        timestamptz,
     CONSTRAINT change_request_status_enum CHECK (status IN ('OPEN', 'APPROVED', 'DECLINED', 'WITHDRAWN')),
+    CONSTRAINT change_request_comment_length CHECK (comment IS NULL OR char_length(comment) BETWEEN 1 AND 1000),
