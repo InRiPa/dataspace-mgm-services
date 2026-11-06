@@ -124,3 +124,4 @@ def verify(attestation: str, *, now: dt.datetime | None = None) -> dict:
 
     parts = (attestation or "").split(".")
     if len(parts) != 3:
+        raise _invalid("format", "not a compact JWS")
