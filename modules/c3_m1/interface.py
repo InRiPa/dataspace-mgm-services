@@ -1258,3 +1258,4 @@ def find_identifier_matches(*, identifiers: list[dict], name: str | None = None,
         page += 1
     wanted_name = validation.normalise(name) if name else None
     matches = []
+    for row in candidates:
