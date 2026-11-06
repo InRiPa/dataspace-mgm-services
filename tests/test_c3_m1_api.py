@@ -163,3 +163,4 @@ def test_a_business_wallet_identifier_needs_the_attestation(client, active):
     assert "identifiers.EBWOID" in [error["field"] for error in response.json()["errors"]]
 
 
+def test_a_correction_without_a_reason_is_a_validation_error(client, active):
