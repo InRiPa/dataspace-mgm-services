@@ -185,3 +185,4 @@ def find_companies(*, status=None, name=None, bpn=None, has_bpn=None, company_ro
         if has_bpn is not None and bool(row["bpn"]) != bool(has_bpn):
             continue
         if core_data_source and row["core_data_source"] != core_data_source:
+            continue
