@@ -111,3 +111,4 @@ def test_a_member_may_read_but_not_patch(client, active):
     assert call(client, "PATCH", f"/api/c3-m1/companies/{U1}", P2,
                 json={"shortName": "x"}).status_code == 403
 
+
