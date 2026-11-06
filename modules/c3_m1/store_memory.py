@@ -363,3 +363,4 @@ def decide_change_request(change_request_id: str, status: str, *, decided_by: st
         raise ValueError("decision_reason: required with DECLINED")
     row.update({"status": status, "decided_by": decided_by, "decision_reason": decision_reason,
                 "closed_at": closed_at or _now()})
+    return _copy(row)
