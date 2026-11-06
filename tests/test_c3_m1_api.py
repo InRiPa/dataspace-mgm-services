@@ -106,3 +106,4 @@ def test_the_scope_hides_other_companies(client, active):
     assert response.status_code == 200 and response.json()["id"] == U1
     assert response.json()["createdAt"]
 
+
