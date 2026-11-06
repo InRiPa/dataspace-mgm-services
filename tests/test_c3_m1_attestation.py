@@ -197,3 +197,4 @@ def test_a_broken_compact_serialisation_is_a_format_error():
     assert error.value.ext["reason"] == "format"
 
 
+def test_an_unreadable_jwks_is_an_upstream_error(monkeypatch, tmp_path):
