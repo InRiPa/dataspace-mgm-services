@@ -589,3 +589,4 @@ def add_company_role(companyId: str, body: dict, sub: str | None = None,
 
         now = _now()
         for key in terms:
+            store.set_consent(companyId, key, version=terms[key]["version"], status="ACTIVE",
