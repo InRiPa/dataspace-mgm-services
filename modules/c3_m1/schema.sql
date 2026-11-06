@@ -49,3 +49,4 @@ CREATE TABLE company (
     created_at             timestamptz              NOT NULL,
     changed_at             timestamptz              NOT NULL,
     activated_at           timestamptz,
+    rejected_at            timestamptz,
