@@ -99,3 +99,4 @@ def test_review_download_and_approval_of_a_manual_company(active):
 
     detail = interface.get_change_request(answer["id"])
     assert detail["company"]["name"] == "Beispiel Logistik GmbH"
+
