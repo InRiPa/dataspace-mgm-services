@@ -102,3 +102,4 @@ def test_review_download_and_approval_of_a_manual_company(active):
 
     document = interface.get_change_request_document(answer["id"], answer["documents"][0]["id"],
                                                      S1_SUB)
+    assert document["media_type"] == "application/pdf" and document["file_name"] == "auszug.pdf"
