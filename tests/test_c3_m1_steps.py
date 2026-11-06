@@ -94,3 +94,4 @@ def published(name: str) -> list[dict]:
 # ------------------------------------------------------------------------------ 13.1, 13.2, 13.28
 def test_create_company_maps_the_application():
     seed()
+    reply = step("create_company", companyId=U1, applicationId=A1)
