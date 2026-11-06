@@ -56,3 +56,4 @@ SCHEMA = Path(__file__).with_name("schema.sql")
 TABLES = ("audit_log", "used_attestation", "change_request_document", "change_request", "consent",
           "company_role_assignment", "company_identifier", "company")
 
+COMPANY_KEYWORDS = (
