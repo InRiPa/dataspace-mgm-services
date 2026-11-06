@@ -410,3 +410,4 @@ def test_region_rules():
     assert v.validate_company({"region": "B1", **base}) == []
     assert v.validate_company(base) == []
     assert {"field": "region", "reason": "format"} in v.validate_company({"region": "bw", **base})
+    assert {"field": "region", "reason": "format"} in v.validate_company({"region": "BWX1", **base})
