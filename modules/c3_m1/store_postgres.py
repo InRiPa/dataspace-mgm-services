@@ -538,3 +538,4 @@ def get_document(document_id: str | None) -> dict | None:
         return _fetch_one(connection, "SELECT * FROM change_request_document WHERE id = %s",
                           (document_id,))
 
+
