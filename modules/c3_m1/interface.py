@@ -22,3 +22,4 @@
 #  SPDX-License-Identifier: Apache-2.0 AND CC0-1.0
 #  Assisted-By: Hermes Agent (deepseek-v4.1-flash)
 #################################################################################
+"""Public interface of C3-M1 Company Profile: the steps of Process Orchestration (README 8), the
