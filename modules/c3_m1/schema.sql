@@ -106,3 +106,4 @@ CREATE TABLE company_role_assignment (
     CONSTRAINT company_role_assignment_status_enum CHECK (status IN ('REQUESTED', 'ACTIVE', 'INACTIVE')),
     CONSTRAINT company_role_assignment_source_enum CHECK (source_kind IN ('APPLICATION', 'COMPANY', 'SEED')),
     CONSTRAINT company_role_assignment_source_ref_length
+        CHECK (source_ref IS NULL OR char_length(source_ref) <= 100)
