@@ -111,3 +111,4 @@ def test_reset_empties_the_tables(postgres):
     assert postgres.list_audit() == []
 
 
+def test_a_missing_driver_answers_not_implemented(monkeypatch, postgres_url):
