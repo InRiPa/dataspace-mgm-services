@@ -385,3 +385,4 @@ def reject_company(input: dict) -> dict:
     return standin.step_reply(input, {"companyId": cid, "status": "REJECTED"})
 
 
+# ------------------------------------------------------------------------ change by people (7.2)
