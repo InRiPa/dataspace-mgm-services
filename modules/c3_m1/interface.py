@@ -949,3 +949,4 @@ def decline_change_request(changeRequestId: str, body: dict | None = None,
                     {"reason": reason})
         events.publish(MODULE, "CompanyChangeRequestClosed",
                        {"companyId": row["company_id"], "changeRequestId": changeRequestId,
+                        "outcome": "DECLINED"})
