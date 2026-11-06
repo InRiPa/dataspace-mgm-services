@@ -118,3 +118,4 @@ def test_the_reactivation_with_a_new_attestation(active):
         "identifiers": [{"type": "EBWOID", "value": "EBWOID-DE-0000000001", "source": "ATTESTATION"},
                         {"type": "VAT_ID", "value": "DE123456789", "source": "APPLICANT"}]})
     events.RELAY.log.clear()
+    answer = step("reactivate_company", companyId=U1, applicationId=A5)
