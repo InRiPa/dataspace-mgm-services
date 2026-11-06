@@ -115,3 +115,4 @@ def same_value(left, right) -> bool:
 
 # ------------------------------------------------------------------------- reference data (6.4)
 def _reference_path() -> Path | None:
+    try:
