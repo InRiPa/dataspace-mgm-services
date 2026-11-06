@@ -126,3 +126,4 @@ def test_an_unchanged_address_keeps_its_spelling():
 # ---------------------------------------------------------------------------------------- 13.12
 def test_another_ebwoid_is_a_company_mismatch():
     active_company()
+    with pytest.raises(Problem) as error:
