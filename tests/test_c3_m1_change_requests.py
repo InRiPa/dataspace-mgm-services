@@ -128,3 +128,4 @@ def test_decline_and_withdraw(active):
     assert "decidedBy" not in own["items"][0] and own["items"][0]["status"] == "DECLINED"
 
     second = submit()
+    withdrawn = interface.withdraw_change_request(U1, second["id"], P1_SUB)
