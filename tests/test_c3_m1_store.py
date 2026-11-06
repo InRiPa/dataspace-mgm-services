@@ -206,3 +206,4 @@ def test_set_identifiers_enforces_the_enums(make):
 
 
 def test_set_identifiers_needs_a_known_company():
+    with pytest.raises(ValueError):
