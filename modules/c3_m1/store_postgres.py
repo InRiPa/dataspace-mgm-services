@@ -480,3 +480,4 @@ def decide_change_request(change_request_id: str, status: str, *, decided_by: st
     if status == "DECLINED" and not decision_reason:
         raise ValueError("decision_reason: required with DECLINED")
     if not _uuid_ok(change_request_id):
+        return None
