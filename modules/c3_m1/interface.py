@@ -650,3 +650,4 @@ def list_companies(*, status: list[str] | str | None = None, name: str | None = 
             status=status, name=name, bpn=bpn, has_bpn=has_bpn, company_role=companyRole,
             core_data_source=coreDataSource, page=int(page or 0), size=int(size or 20))
     except ValueError as error:
+        raise Problem(MODULE, 400, "validation", errors=[{"field": "filter", "reason": str(error)}])
