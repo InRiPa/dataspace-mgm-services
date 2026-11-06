@@ -186,3 +186,4 @@ def dataspace_name() -> str | None:
 
 def seed_company() -> dict | None:
     """Seed data of the OSP company (`ospCompanyFile`); `None` without the setting (README 4).
+
