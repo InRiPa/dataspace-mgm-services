@@ -172,3 +172,4 @@ CREATE INDEX change_request_document_request ON change_request_document (change_
 CREATE TABLE used_attestation (
     jti        text         PRIMARY KEY,
     company_id uuid         NOT NULL REFERENCES company (id),
+    used_at    timestamptz  NOT NULL
