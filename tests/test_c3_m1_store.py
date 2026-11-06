@@ -369,3 +369,4 @@ def test_reset_clears_every_table(make):
     assert store.find_companies()[1] == 0
 
 
+# ------------------------------------------------------------------------------ comparison (6.3)
