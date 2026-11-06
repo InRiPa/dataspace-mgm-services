@@ -43,3 +43,4 @@ from test_c3_m1_api import P3, active, call, client  # noqa: F401  (fixtures for
 from test_c3_m1_steps import A1, U1, P1, U2, A2, seed, step
 
 MODULE_DIR = Path(__file__).resolve().parents[1] / "modules" / "c3_m1"
+PRIVATE = json.loads((MODULE_DIR / "stub-ebw-key.json").read_text(encoding="utf-8"))["keys"][0]
