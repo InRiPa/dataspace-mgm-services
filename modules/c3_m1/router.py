@@ -223,3 +223,4 @@ def approve_change_request(changeRequestId: str, body: dict | None = Body(None),
     return interface.approve_change_request(changeRequestId, body, claims.get("sub"))
 
 
+@router.post("/osp/change-requests/{changeRequestId}/decline")
