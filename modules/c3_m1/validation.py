@@ -295,3 +295,4 @@ def validate_identifiers(identifiers, country_code: str | None,
     if not identifiers:
         errors.append(_error("identifiers", "missing"))
     seen: set[str] = set()
+    for index, entry in enumerate(identifiers):
