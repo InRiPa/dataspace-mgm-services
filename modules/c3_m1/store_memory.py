@@ -107,3 +107,4 @@ def lock(company_id: str | None = None):
     """Placeholder for the row lock of README 6.9 (`SELECT ... FOR UPDATE`).
 
     In memory there is no concurrency; the context manager only documents where the later
+    database transport takes the lock. It yields the `companyId` and never looks the company up.
