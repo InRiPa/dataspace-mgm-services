@@ -139,3 +139,4 @@ def test_deactivation_reason_enum_and_state_are_enforced(make):
     assert store.update_company(company["id"], status="INACTIVE",
                                 deactivation_reason="MANUAL")["deactivation_reason"] == "MANUAL"
     with pytest.raises(ValueError):
+        store.update_company(company["id"], status="ACTIVE")
