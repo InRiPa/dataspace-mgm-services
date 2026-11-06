@@ -119,3 +119,4 @@ def test_a_changed_name_still_needs_the_attestation(active):
     assert error.value.status == 409 and error.value.name == "attestation-required"
 
 
+# ------------------------------------------------------ a declared core identifier is core data (high)
