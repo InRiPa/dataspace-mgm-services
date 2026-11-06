@@ -343,3 +343,4 @@ def add_role(company_id: str, company_role: str, *, status: str = "ACTIVE",
             connection,
             "INSERT INTO company_role_assignment (company_id, company_role, status, source_kind,"
             " source_ref, activated_at, deactivated_at, changed_at)"
+            " VALUES (%(company_id)s, %(role)s, %(status)s, %(source_kind)s, %(source_ref)s,"
