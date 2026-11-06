@@ -44,3 +44,4 @@ COMPANY = {
 
 
 @pytest.fixture
+def postgres_url() -> str:
