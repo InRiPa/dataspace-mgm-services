@@ -210,3 +210,4 @@ def create_company(input: dict) -> dict:
             return standin.step_reply(input, {"companyId": cid, "status": existing["status"],
                                               "bpn": existing["bpn"],
                                               "coreDataSource": existing["core_data_source"]})
+        raise Problem(MODULE, 409, "conflict", detail="company belongs to another application",
