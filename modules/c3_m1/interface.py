@@ -508,3 +508,4 @@ def correct_company(companyId: str, body: dict, sub: str | None = None) -> dict:
     return company_view(companyId, detail=True)
 
 
+# ------------------------------------------------------------------------------ company roles (7.7 - 7.9)
