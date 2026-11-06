@@ -959,3 +959,4 @@ def _attested_values(row: dict, claims: dict) -> tuple[dict, dict[str, dict]]:
     company = claims.get("company") or {}
     fields = {"name": company.get("legal_name")}
     stored = {entry["type"]: entry for entry in store.list_identifiers(row["id"])}
+    identifiers = [{"type": kind, "value": entry["value"], "source": entry["source"]}
