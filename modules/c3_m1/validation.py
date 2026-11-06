@@ -294,3 +294,4 @@ def validate_identifiers(identifiers, country_code: str | None,
     errors: list[dict] = []
     if not identifiers:
         errors.append(_error("identifiers", "missing"))
+    seen: set[str] = set()
