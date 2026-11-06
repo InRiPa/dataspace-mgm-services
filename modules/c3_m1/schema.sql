@@ -32,3 +32,4 @@ CREATE TABLE company (
     name                   text                     NOT NULL,
     short_name             text,
     street                 text                     NOT NULL,
+    house_number           text,
