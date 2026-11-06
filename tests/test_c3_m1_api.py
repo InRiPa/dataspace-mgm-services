@@ -120,3 +120,4 @@ def test_the_short_name_is_changed_and_locked_fields_refused(client, active):
     assert response.status_code == 200 and response.json()["shortName"] == "BMW"
     audit = interface.store.list_audit(U1)[-1]
     assert audit["sub"] == "5a1c0001-0000-4000-8000-000000000001"
+    assert audit["details"]["old"]["short_name"] is None
