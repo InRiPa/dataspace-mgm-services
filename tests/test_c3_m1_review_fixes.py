@@ -332,3 +332,4 @@ def test_an_outdated_attestation_is_recognised_across_timestamp_formats(active):
 # ------------------------------------------------------------------------ lifecycle answers
 def test_the_deactivation_DONE_keeps_the_stored_reason(active):
     step("deactivate_company", companyId=U1, reason="TRANSFERRED")
+    answer = step("deactivate_company", companyId=U1, reason="MANUAL")
