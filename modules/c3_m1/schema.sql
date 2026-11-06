@@ -37,3 +37,4 @@ CREATE TABLE company (
     postal_code            text,
     city                   text                     NOT NULL,
     region                 text,
+    country_code           char(2)                  NOT NULL,
