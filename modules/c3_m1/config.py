@@ -194,3 +194,4 @@ def seed_company() -> dict | None:
         return None
     seed = json.loads(path.read_text(encoding="utf-8"))
     if seed.get("companyId") != osp_company_id():
+        raise ValueError(f"{path}: companyId differs from ospCompanyId {osp_company_id()} (README 4)")
