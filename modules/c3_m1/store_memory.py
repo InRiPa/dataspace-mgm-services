@@ -122,3 +122,4 @@ def create_company(row: dict) -> dict:
     if unknown:
         raise ValueError(f"unknown company fields: {', '.join(sorted(unknown))}")
     if not row.get("id"):
+        raise ValueError("id: required")
