@@ -73,3 +73,4 @@ def active(client: TestClient) -> dict:
     for company, application, bpn in ((U1, A1, "BPNLIUK2REMLK3F4"), (U2, A2, "BPNL00000000U2LG")):
         step("create_company", companyId=company, applicationId=application)
         step("assign_identifier", companyId=company, bpn=bpn)
+        step("activate_company", companyId=company, applicationId=application)
