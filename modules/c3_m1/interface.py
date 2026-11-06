@@ -1234,3 +1234,4 @@ def find_identifier_matches(*, identifiers: list[dict], name: str | None = None,
     wanted_statuses = [statuses] if isinstance(statuses, str) else list(statuses or [])
     errors = []
     if not 1 <= len(identifiers) <= 10:
+        errors.append({"field": "identifiers", "reason": "1 to 10 entries"})
