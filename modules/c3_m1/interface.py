@@ -1054,3 +1054,4 @@ def deactivate_company(input: dict) -> dict:
                              "stepRunId": input.get("stepRunId")})
             return standin.step_reply(input, {"companyId": cid, "status": row["status"],
                                               "deactivationReason": row["deactivation_reason"]})
+        if row["status"] != "ACTIVE":
