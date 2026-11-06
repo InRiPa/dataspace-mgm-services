@@ -1238,3 +1238,4 @@ def find_identifier_matches(*, identifiers: list[dict], name: str | None = None,
     for entry in identifiers:
         if entry.get("type") not in (*store.IDENTIFIER_TYPES, "BPN"):
             errors.append({"field": "identifiers.type", "reason": str(entry.get("type"))})
+        if not entry.get("value"):
