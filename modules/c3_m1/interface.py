@@ -705,3 +705,4 @@ def _changes_differs(row: dict, changes: dict) -> bool:
     return False
 
 
+def _wallet_identifier_conflict(row: dict, identifiers: list[dict]) -> list[dict]:
