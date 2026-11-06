@@ -123,3 +123,4 @@ def test_a_missing_driver_answers_not_implemented(monkeypatch, postgres_url):
         if name == ".store_postgres":
             raise ModuleNotFoundError("No module named 'psycopg'", name="psycopg")
         return real_import(name, package)
+
