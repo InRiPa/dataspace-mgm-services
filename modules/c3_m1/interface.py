@@ -824,3 +824,4 @@ def _reviewed(changeRequestId: str) -> dict:
     row = store.get_change_request(changeRequestId)
     if row is None:
         raise Problem(MODULE, 404, "not-found")
+    return row
