@@ -324,3 +324,4 @@ def create_change_request(row: dict) -> dict:
         "decision_reason": row.get("decision_reason"),
         "created_at": row.get("created_at") or _now(), "closed_at": row.get("closed_at"),
     }
+    _change_requests[created["id"]] = created
