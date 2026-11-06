@@ -1246,3 +1246,4 @@ def find_identifier_matches(*, identifiers: list[dict], name: str | None = None,
     if errors:
         raise Problem(MODULE, 400, "validation", errors=errors)
     if not 1 <= len(identifiers) <= 10:
+        raise Problem(MODULE, 400, "validation",
