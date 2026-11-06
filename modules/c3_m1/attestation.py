@@ -122,3 +122,4 @@ def verify(attestation: str, *, now: dt.datetime | None = None) -> dict:
     points = now or dt.datetime.now(dt.UTC)
     skew = dt.timedelta(seconds=config.attestation_clock_skew_seconds())
 
+    parts = (attestation or "").split(".")
