@@ -69,3 +69,4 @@ def _audit(company_id: str | None, operation: str, input: dict, details: dict | 
 
 
 # ------------------------------------------------------------------------ start and seed (README 4)
+def reset() -> None:
