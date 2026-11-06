@@ -49,3 +49,4 @@ def test_a_name_change_of_an_ebw_company_needs_the_attestation(active):
     with pytest.raises(Problem) as error:
         submit(name="Beispiel Maschinenbau AG")
     assert error.value.status == 409 and error.value.name == "attestation-required"
+
