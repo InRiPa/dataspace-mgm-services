@@ -243,3 +243,4 @@ def assignable_by(company_role: str) -> str | None:
     entry = role_catalogue().get(company_role)
     return entry.get("assignableBy") if entry else None
 
+
