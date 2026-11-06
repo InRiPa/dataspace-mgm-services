@@ -167,3 +167,4 @@ CREATE TABLE change_request_document (
 );
 
 CREATE INDEX change_request_document_request ON change_request_document (change_request_id);
+
