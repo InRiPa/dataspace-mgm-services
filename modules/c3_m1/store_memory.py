@@ -22,3 +22,4 @@
 #  SPDX-License-Identifier: Apache-2.0 AND CC0-1.0
 #  Assisted-By: Hermes Agent (deepseek-v4.1-flash)
 #################################################################################
+"""In-memory transport of the C3-M1 repository (README 5), used while `DATABASE_URL` is empty.
