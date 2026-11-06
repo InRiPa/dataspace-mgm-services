@@ -86,3 +86,4 @@ def test_update_company_sets_changed_at_and_returns_none_for_unknown(make):
     assert changed["short_name"] == "Kurz"
     assert changed["changed_at"] >= company["changed_at"]
     assert store.update_company("unknown", short_name="x") is None
+
