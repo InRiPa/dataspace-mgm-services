@@ -349,3 +349,4 @@ def validate_decision_reason(reason) -> list[dict]:
     return validate_reason(reason, max_length=DECISION_REASON_MAX)
 
 
+# --------------------------------------------------------------------------- documents (5, 7.4)
