@@ -100,3 +100,4 @@ def reset() -> None:
 
 # ---------------------------------------------------------------------------------- mapping (5)
 def get_company(cid: str | None) -> dict:
+    row = store.get_company(cid)
