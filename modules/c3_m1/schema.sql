@@ -175,3 +175,4 @@ CREATE TABLE used_attestation (
     used_at    timestamptz  NOT NULL
 );
 
+-- C3-M1 5 Table audit_log (FRAMEWORK 4.3): no secrets, no names of people
