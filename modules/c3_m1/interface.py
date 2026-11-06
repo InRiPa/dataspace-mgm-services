@@ -811,3 +811,4 @@ def withdraw_change_request(companyId: str, changeRequestId: str, sub: str | Non
             return _change_request_view(row)
         if row["status"] != "OPEN":
             raise Problem(MODULE, 409, "invalid-state", detail=row["status"])
+        closed = store.withdraw_change_request(changeRequestId)
