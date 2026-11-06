@@ -407,3 +407,4 @@ def set_consent(company_id: str, agreement_key: str, *, version: str | None = No
             " changed_at = EXCLUDED.changed_at RETURNING *",
             {"company_id": company_id, "key": agreement_key, "version": version, "status": status,
              "source_kind": source_kind, "source_ref": source_ref, "consented_by": consented_by,
+             "consented_at": consented_at, "now": _now()},
