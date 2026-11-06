@@ -619,3 +619,4 @@ def remove_company_role(companyId: str, companyRole: str, sub: str | None = None
         store.remove_role(companyId, companyRole)
         for term in _terms_of(companyRole, _terms()).values():
             others = [role for role, status in store.list_roles(companyId).items()
+                      if status == "ACTIVE" and companyRole != role
