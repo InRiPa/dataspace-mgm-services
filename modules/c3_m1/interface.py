@@ -1202,3 +1202,4 @@ def query_company(*, companyId: str) -> dict:
     return company_internal(companyId)
 
 
+def query_companies(*, id: list[str] | str | None = None, bpn: list[str] | str | None = None,
