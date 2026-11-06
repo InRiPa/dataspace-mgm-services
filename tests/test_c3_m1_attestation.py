@@ -25,3 +25,4 @@
 """The verification attestation of README 6.7 and its use in 7.3 (acceptance 11, 12).
 
 The key pair lives next to the module: `stub-ebw-jwks.json` holds the public JWK, `stub-ebw-key.json`
+the private one (README 14: "private part only in the test data"). T4 is signed with a second key
