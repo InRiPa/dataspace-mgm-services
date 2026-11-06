@@ -320,3 +320,4 @@ def activate_company(input: dict) -> dict:
     cid, application_id = input.get("companyId"), input.get("applicationId")
     with store.lock(cid):
         row = get_company(cid)
+        if row["status"] == "ACTIVE":
