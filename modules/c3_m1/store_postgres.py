@@ -437,3 +437,4 @@ def create_change_request(row: dict) -> dict:
                  json.dumps(row.get("changes") or {}), row.get("comment"), row.get("requested_by"),
                  row.get("decided_by"), row.get("decision_reason"),
                  row.get("created_at") or _now(), row.get("closed_at")))
+        except errors.IntegrityError as error:
