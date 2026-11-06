@@ -334,3 +334,4 @@ def add_role(company_id: str, company_role: str, *, status: str = "ACTIVE",
              source_kind: str = "COMPANY", source_ref: str | None = None) -> dict:
     if not company_role:
         raise ValueError("company_role: required")
+    _check_enum(status, ROLE_STATUSES, "status")
