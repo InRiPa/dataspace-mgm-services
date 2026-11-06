@@ -109,3 +109,4 @@ def _delegate(name: str):
 
 
 reset = _delegate("reset")
+lock = _delegate("lock")
