@@ -52,3 +52,4 @@ CREATE TABLE company (
     rejected_at            timestamptz,
     deactivated_at         timestamptz,
     reactivated_at         timestamptz,
+    CONSTRAINT company_name_length      CHECK (char_length(name) BETWEEN 1 AND 160 AND name = btrim(name)),
