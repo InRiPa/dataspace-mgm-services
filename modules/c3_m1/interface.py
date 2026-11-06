@@ -1121,3 +1121,4 @@ def reactivate_company(input: dict) -> dict:
         source_address = data.get("address") or {}
         verification = application.get("verification")
         fields = {"name": data.get("legalName"), "short_name": data.get("shortName"),
+                  "street": source_address.get("streetName"),
