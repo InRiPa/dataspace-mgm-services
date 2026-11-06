@@ -1065,3 +1065,4 @@ def deactivate_company(input: dict) -> dict:
         events.publish(MODULE, "CompanyDeactivated", {"companyId": cid, "reason": reason})
     return standin.step_reply(input, {"companyId": cid, "status": "INACTIVE",
                                       "deactivationReason": reason})
+
