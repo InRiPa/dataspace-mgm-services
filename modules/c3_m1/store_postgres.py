@@ -462,3 +462,4 @@ def list_change_requests(*, company_id: str | None = None, status=None,
         params.append(company_id)
     if statuses:
         where.append("status = ANY(%s)")
+        params.append(statuses)
