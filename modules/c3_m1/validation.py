@@ -319,3 +319,4 @@ def validate_change_request(data: dict, country_code: str | None) -> list[dict]:
     if has_address:
         for required in ("street", "city"):
             if flat.get(required) in (None, ""):
+                errors.append(_error(required, "required"))
