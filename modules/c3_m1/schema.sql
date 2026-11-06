@@ -133,3 +133,4 @@ CREATE TABLE change_request (
     company_id       uuid         NOT NULL REFERENCES company (id),
     status           text         NOT NULL,
     changes          jsonb        NOT NULL DEFAULT '{}'::jsonb,
+    comment          text,
