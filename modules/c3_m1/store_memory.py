@@ -374,3 +374,4 @@ def withdraw_change_request(change_request_id: str, *, closed_at: str | None = N
         raise ValueError(f"status: {row['status']} is not OPEN")
     row.update({"status": "WITHDRAWN", "closed_at": closed_at or _now()})
     return _copy(row)
+
