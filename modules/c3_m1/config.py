@@ -102,3 +102,4 @@ def change_request_max_documents() -> int:
     return number("CHANGE_REQUEST_MAX_DOCUMENTS")
 
 
+def change_request_max_document_bytes() -> int:
