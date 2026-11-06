@@ -253,3 +253,4 @@ def add_role(company_id: str, company_role: str, *, status: str = "ACTIVE",
         "deactivated_at": None, "changed_at": now,
     }
     row.update({"status": status, "source_kind": source_kind, "source_ref": source_ref,
+                "changed_at": now})
