@@ -122,3 +122,4 @@ def read_own_company(companyId: str,
 def update_from_attestation(companyId: str, body: dict = Body(...),
                             claims: dict = standin.perm(MODULE, "POST",
                                                         "/companies/{companyId}/attestation-updates")):
+    standin.company_scope(MODULE, claims, companyId)
