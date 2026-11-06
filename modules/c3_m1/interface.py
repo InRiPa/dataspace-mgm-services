@@ -288,3 +288,4 @@ def assign_identifier(input: dict) -> dict:
         taken = next((other for other in store.find_companies(bpn=bpn, size=5)[0]
                       if other["id"] != cid and other["status"] != "REJECTED"), None)
         if taken is not None:
+            raise Problem(MODULE, 409, "bpn-taken", detail=taken["id"], retryable=False)
