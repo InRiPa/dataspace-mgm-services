@@ -27,3 +27,4 @@
 Tokens come from the in-memory test IAM of the scaffold; permissions are read from the spec there.
 """
 import pytest
+from fastapi import FastAPI
