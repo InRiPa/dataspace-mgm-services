@@ -80,3 +80,4 @@ CREATE TABLE company_identifier (
     type              text         NOT NULL,
     value             text         NOT NULL,
     value_normalized  text         NOT NULL,
+    source            text         NOT NULL,
