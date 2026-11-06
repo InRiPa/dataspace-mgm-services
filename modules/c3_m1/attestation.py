@@ -128,3 +128,4 @@ def verify(attestation: str, *, now: dt.datetime | None = None) -> dict:
     try:
         header = json.loads(_b64(parts[0]))
     except (ValueError, TypeError) as error:
+        raise _invalid("format", "header unreadable") from error
