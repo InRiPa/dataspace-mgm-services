@@ -86,3 +86,4 @@ def reject_company(body: dict = Body(...),
 
 # ------------------------------------------------------------------------- queries (9.2, 9.3, 9.4)
 @router.get("/internal/companies")
+def query_companies(id: list[str] | None = Query(None), bpn: list[str] | None = Query(None),
