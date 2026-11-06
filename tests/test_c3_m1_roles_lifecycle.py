@@ -184,3 +184,4 @@ def test_no_token_attestation_document_or_person_name_leaks(active, _keys):
 
     interface.create_change_request(U1, {"comment": "privat", "identifiers": [
         {"type": "VAT_ID", "value": "DE555444333"}]},
+        [("auszug.pdf", b"%PDF-1.7 Vertraulich", "application/pdf")], P1_SUB)
