@@ -378,3 +378,4 @@ def get_consent(company_id: str, agreement_key: str) -> dict | None:
 
 def list_consents(company_id: str) -> list[dict]:
     if not _uuid_ok(company_id):
+        return []
