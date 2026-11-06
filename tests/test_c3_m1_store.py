@@ -406,3 +406,4 @@ def test_required_address_fields_and_lengths():
 
 def test_region_rules():
     base = {"name": "A", "street": "Weg 1", "city": "Stadt", "country_code": "DE"}
+    assert v.validate_company({"region": "BW", **base}) == []
