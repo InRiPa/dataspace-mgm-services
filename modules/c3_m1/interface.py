@@ -528,3 +528,4 @@ def _role_state(company: str, lang: str) -> list[dict]:
     for role in store.list_roles(company):
         roles.setdefault(role, set())
     states = []
+    for role in sorted(roles):
