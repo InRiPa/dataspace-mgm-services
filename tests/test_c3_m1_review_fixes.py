@@ -84,3 +84,4 @@ def test_a_change_request_may_not_carry_a_wallet_identifier(active):
             {"type": "VAT_ID", "value": "DE123456789"}]}, [PDF], P1_SUB)
     assert error.value.status == 400 and error.value.name == "validation"
     assert "identifiers.EBWOID" in [entry["field"] for entry in error.value.ext["errors"]]
+
