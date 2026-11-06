@@ -87,3 +87,4 @@ def test_the_seed_role_is_not_assignable(active):
     assert error.value.status == 409 and error.value.name == "role-not-assignable"
 
 
+def test_the_last_role_cannot_be_removed(active):
