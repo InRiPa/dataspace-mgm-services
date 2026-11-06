@@ -72,3 +72,4 @@
     {
       "id": "a0000006-0000-4000-8000-000000000006", "companyId": "c0000002-0000-4000-8000-000000000002",
       "kind": "REACTIVATION", "existingCompany": true, "status": "APPROVED", "verification": "DOCUMENTS",
+      "attestation": null,
