@@ -26,3 +26,4 @@
 
 Every function returns a list of `{"field": ..., "reason": ...}` dicts and never raises, so the
 caller can collect all errors into one 400 `validation` Problem (`errors`, README 12). Reason
+tokens are short and stable: `required`, `type`, `too-long`, `too-short`, `whitespace`, `format`,
