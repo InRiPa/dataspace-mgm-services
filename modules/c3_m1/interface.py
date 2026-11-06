@@ -1244,3 +1244,4 @@ def find_identifier_matches(*, identifiers: list[dict], name: str | None = None,
         if value not in store.STATUSES:
             errors.append({"field": "statuses", "reason": value})
     if errors:
+        raise Problem(MODULE, 400, "validation", errors=errors)
