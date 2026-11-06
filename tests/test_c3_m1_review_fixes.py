@@ -122,3 +122,4 @@ def test_a_changed_name_still_needs_the_attestation(active):
 # ------------------------------------------------------ a declared core identifier is core data (high)
 def test_a_changed_euid_counts_as_core_data():
     interface.reset()
+    seed(A1, U1, verification="DOCUMENTS", _attestation=None, companyData={
