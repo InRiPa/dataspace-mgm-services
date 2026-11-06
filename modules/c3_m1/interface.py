@@ -1050,3 +1050,4 @@ def deactivate_company(input: dict) -> dict:
                 store.update_company(cid, deactivation_reason="TRANSFERRED")
                 store.audit(cid, None, "stepDeactivateCompany", None,
                             {"deactivationReason": ["MANUAL", "TRANSFERRED"],
+                             "processId": input.get("processId"),
