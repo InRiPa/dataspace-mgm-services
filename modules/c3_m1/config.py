@@ -70,3 +70,4 @@ def value(name: str, default: str | None = None) -> str:
     if name in os.environ:
         return os.environ[name]
     if name in DEFAULTS:
+        return DEFAULTS[name]
