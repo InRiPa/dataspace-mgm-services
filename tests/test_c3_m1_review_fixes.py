@@ -222,3 +222,4 @@ def test_the_reactivation_keeps_the_house_number_of_the_application(active):
                                   "postalCode": "70569", "city": "Stuttgart", "countryCode": "DE"},
                       "identifiers": [{"type": "EBWOID", "value": "EBWOID-DE-0000000001",
                                        "source": "ATTESTATION"}]})
+    step("deactivate_company", companyId=U1, reason="MANUAL")
