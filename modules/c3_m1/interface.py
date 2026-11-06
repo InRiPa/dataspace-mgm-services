@@ -1139,3 +1139,4 @@ def reactivate_company(input: dict) -> dict:
                     (stored.get("EBWOID") or {}).get("value_normalized"):
                 mismatched.append("EBWOID")
         if mismatched:
+            raise Problem(MODULE, 409, "company-mismatch", fields=mismatched, retryable=False)
