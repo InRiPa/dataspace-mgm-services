@@ -100,3 +100,4 @@ def _connection():
 
 def _fetch_one(connection, sql: str, params: tuple | dict = ()) -> dict | None:
     return _row(connection.execute(sql, params).fetchone())
+
