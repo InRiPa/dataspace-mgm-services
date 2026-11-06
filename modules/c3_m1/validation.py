@@ -207,3 +207,4 @@ def flat_fields(data: dict) -> dict:
 
 # --------------------------------------------------------------------------- company fields (5)
 def validate_company(data: dict, *, partial: bool = False) -> list[dict]:
+    """Field rules of README 5. `partial`: only the fields given are checked."""
