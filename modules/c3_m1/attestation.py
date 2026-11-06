@@ -178,3 +178,4 @@ def verify(attestation: str, *, now: dt.datetime | None = None) -> dict:
     if missing:
         raise _invalid("claims", "missing or wrong: " + ", ".join(missing))
 
+    verified_at = _moment(claims.get("verified_at"), "verified_at")
