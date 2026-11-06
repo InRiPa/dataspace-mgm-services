@@ -181,3 +181,4 @@ def test_a_bpn_of_a_rejected_company_is_free_again():
     U4 = "c0000004-0000-4000-8000-000000000004"
     interface.reset()
     seed(A1, U1)
+    step("create_company", companyId=U1, applicationId=A1)
