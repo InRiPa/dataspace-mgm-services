@@ -369,3 +369,4 @@ def activate_company(input: dict) -> dict:
                                       "companyRoles": sorted(active), "pendingCompanyRoles": pending})
 
 
+# ----------------------------------------------------------------------------------- steps (8.4)
