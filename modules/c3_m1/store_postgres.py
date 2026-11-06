@@ -350,3 +350,4 @@ def add_role(company_id: str, company_role: str, *, status: str = "ACTIVE",
             " activated_at = COALESCE(company_role_assignment.activated_at, EXCLUDED.activated_at),"
             " deactivated_at = EXCLUDED.deactivated_at, changed_at = EXCLUDED.changed_at"
             " RETURNING *",
+            {"company_id": company_id, "role": company_role, "status": status,
