@@ -809,3 +809,4 @@ def withdraw_change_request(companyId: str, changeRequestId: str, sub: str | Non
         row = _own_change_request(companyId, changeRequestId)
         if row["status"] == "WITHDRAWN":
             return _change_request_view(row)
+        if row["status"] != "OPEN":
