@@ -38,3 +38,4 @@ _ids = itertools.count(1)
 
 @pytest.fixture(autouse=True)
 def _empty_store():
+    store.reset()
