@@ -25,3 +25,4 @@
 """Thin HTTP layer of C3-M1: token, permission, scope, then the interface (AGENTS.md 5).
 
 Every route takes its permission from `x-permission` of the spec through `standin.perm`. Paths in
+the scope `company` additionally check `company_id` against the path (FRAMEWORK 4.3: another
