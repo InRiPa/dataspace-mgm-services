@@ -230,3 +230,4 @@ def test_reject_company():
     step("assign_identifier", companyId=U1, bpn="BPNLIUK2REMLK3F4")
     step("activate_company", companyId=U1, applicationId=A1)
     with pytest.raises(Problem) as error:
+        step("reject_company", companyId=U1)
