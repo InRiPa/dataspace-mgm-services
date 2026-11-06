@@ -588,3 +588,4 @@ def add_company_role(companyId: str, body: dict, sub: str | None = None,
                           errors=[{"field": "consents", "reason": f"not a term of {role}: {', '.join(foreign)}"}])
 
         now = _now()
+        for key in terms:
