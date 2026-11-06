@@ -99,3 +99,4 @@ def find_identifier_matches(body: dict = Body(...),
 
 
 @router.get("/internal/company-roles")
+def query_company_role_catalog(lang: str | None = None,
