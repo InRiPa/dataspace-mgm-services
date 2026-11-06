@@ -400,3 +400,4 @@ def list_documents(change_request_id: str) -> list[dict]:
     return [_copy(row) for row in _documents.values() if row["change_request_id"] == change_request_id]  # type: ignore[misc]
 
 
+# ------------------------------------------------------------ used_attestation (README 5, 6.7)
