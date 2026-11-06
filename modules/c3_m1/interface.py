@@ -1076,3 +1076,4 @@ def _check_deactivation_reason(reason) -> None:
 
 def deactivate_company_by_staff(companyId: str, body: dict, sub: str | None = None) -> dict:
     """7.13: manual deactivation by OSP staff, always with a justification."""
+    with store.lock(companyId):
