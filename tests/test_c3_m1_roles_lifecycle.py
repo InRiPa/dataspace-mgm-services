@@ -81,3 +81,4 @@ def test_the_consent_checks(active):
 
 
 def test_the_seed_role_is_not_assignable(active):
+    with pytest.raises(Problem) as error:
