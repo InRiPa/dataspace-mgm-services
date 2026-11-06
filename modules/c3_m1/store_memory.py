@@ -35,3 +35,4 @@ Reads return copies: a caller changes rows through `update_company` and the othe
 never by mutating a returned dict. No FastAPI, no HTTP, no events.
 """
 from __future__ import annotations
+
