@@ -1184,3 +1184,4 @@ def reactivate_company(input: dict) -> dict:
         events.publish(MODULE, "CompanyReactivated",
                        {"companyId": cid, "bpn": row["bpn"], "companyRoles": roles})
     return standin.step_reply(input, {"companyId": cid, "status": "ACTIVE", "bpn": row["bpn"],
+                                      "companyRoles": roles, "changedFields": changed})
