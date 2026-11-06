@@ -1168,3 +1168,4 @@ def reactivate_company(input: dict) -> dict:
             updates |= {"core_data_source": "EBW",
                         "core_data_verified_at": attestation_claims.get("verifiedAt"),
                         "verification_ref": attestation_claims.get("attestationId")}
+        else:
