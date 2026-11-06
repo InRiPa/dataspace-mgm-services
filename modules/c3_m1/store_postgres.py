@@ -271,3 +271,4 @@ def find_companies(*, status=None, name=None, bpn=None, has_bpn=None, company_ro
 def list_identifiers(company_id: str) -> list[dict]:
     if not _uuid_ok(company_id):
         return []
+    with _connection() as connection:
