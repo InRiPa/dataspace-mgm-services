@@ -31,3 +31,4 @@ CREATE TABLE company (
     id                     uuid                     PRIMARY KEY,
     name                   text                     NOT NULL,
     short_name             text,
+    street                 text                     NOT NULL,
