@@ -395,3 +395,4 @@ def _changed_fields(row: dict, body: dict, identifiers: list[dict] | None) -> li
     """Names of the fields the body really changes, camelCase, for the event (README 7.2, 7.12)."""
     changed = []
     for key, value in body.items():
+        field = validation.field_name(key)
