@@ -112,3 +112,4 @@ def query_company(companyId: str,
 
 # -------------------------------------------------------------------- own company, people (7.1, 7.2)
 @router.get("/companies/{companyId}")
+def read_own_company(companyId: str,
