@@ -174,3 +174,4 @@ def test_the_roles_are_visible_with_terms(client, active):
     states = {role["companyRole"]: role for role in response.json()}
     assert states["ACTIVE_PARTICIPANT"]["status"] == "ACTIVE"
     assert [term["agreementKey"] for term in states["ACTIVE_PARTICIPANT"]["agreements"]] == \
+        ["terms-active-participant", "security-regulations"]
