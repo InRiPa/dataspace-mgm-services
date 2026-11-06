@@ -1213,3 +1213,4 @@ def query_companies(*, id: list[str] | str | None = None, bpn: list[str] | str |
     if len(ids + bpns) > config.query_max_companies():
         raise Problem(MODULE, 400, "validation",
                       errors=[{"field": "id,bpn", "reason": "too many values"}])
+    items, found = [], set()
