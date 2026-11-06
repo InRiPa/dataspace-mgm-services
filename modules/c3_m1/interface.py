@@ -515,3 +515,4 @@ def _terms() -> list[dict]:
     if neighbours.is_standin("c1-m2"):
         agreements = testdata.agreements()
     else:
+        agreements = neighbours.query(MODULE, "c1-m2", "list_agreements_internal") or []
