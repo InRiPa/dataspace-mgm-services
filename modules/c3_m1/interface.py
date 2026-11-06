@@ -525,3 +525,4 @@ def _role_state(company: str, lang: str) -> list[dict]:
     roles: dict[str, set[str]] = {}
     for role in config.roles_assignable_by_company():
         roles.setdefault(role, set())
+    for role in store.list_roles(company):
