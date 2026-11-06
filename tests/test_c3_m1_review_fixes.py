@@ -261,3 +261,4 @@ def test_an_address_part_needs_street_and_city(active):
     assert error.value.status == 400 and error.value.name == "validation"
 
 
+def test_the_activation_calls_neither_the_csp_nor_c3_m2(active, monkeypatch):
