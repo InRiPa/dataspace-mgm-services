@@ -304,3 +304,4 @@ def set_consent(company_id: str, agreement_key: str, *, version: str | None = No
     return _copy(row)  # type: ignore[return-value]
 
 
+# ------------------------------------------------------------- change_request (README 5, 7.4)
