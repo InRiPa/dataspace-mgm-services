@@ -24,3 +24,4 @@
 #################################################################################
 """Checking a verification attestation of the EBW-Connector (C3-M1 6.7, 11.2).
 
+The order of the checks is the one of 6.7; the first failure decides the `reason` of the
