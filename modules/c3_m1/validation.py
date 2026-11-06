@@ -278,3 +278,4 @@ def validate_identifier(entry: dict, country_code: str | None, field: str) -> li
 
 
 def _matches(pattern: str, value: str) -> bool:
+    try:
