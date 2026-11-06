@@ -10,3 +10,4 @@
         "legalName": "Beispiel Maschinenbau GmbH",
         "address": { "streetName": "Musterstraße", "streetNumber": "1", "postalCode": "70569", "city": "Stuttgart", "region": "BW", "countryCode": "DE" },
         "identifiers": [
+          { "type": "EBWOID", "value": "EBWOID-DE-0000000001", "source": "ATTESTATION" },
