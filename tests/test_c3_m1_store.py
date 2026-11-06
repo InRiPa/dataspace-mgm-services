@@ -549,3 +549,4 @@ def test_a_stated_media_type_is_ignored():
     assert v.validate_document("auszug.pdf", b"nur Text",
                                stated_media_type="application/pdf") == [
         {"field": "document", "reason": "media-type"}]
+    assert v.validate_document("auszug.png", b"\x89PNG\r\n", max_bytes=4) == [
