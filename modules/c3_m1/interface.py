@@ -782,3 +782,4 @@ def create_change_request(companyId: str, data: dict,
                                content=content)
         store.audit(companyId, sub, "createChangeRequest", created["id"],
                     {"changedFields": sorted(changes)})
+        events.publish(MODULE, "CompanyChangeRequestSubmitted",
