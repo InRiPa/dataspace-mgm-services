@@ -220,3 +220,4 @@ def create_company(input: dict) -> dict:
     if application.get("kind") == "REACTIVATION":
         raise Problem(MODULE, 409, "conflict", detail="reactivation uses reactivate-company",
                       retryable=False)
+    if application.get("status") not in ("SUBMITTED", "APPROVED"):
