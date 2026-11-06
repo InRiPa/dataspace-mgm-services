@@ -1183,3 +1183,4 @@ def reactivate_company(input: dict) -> dict:
         roles = sorted(role for role, status in store.list_roles(cid).items() if status == "ACTIVE")
         events.publish(MODULE, "CompanyReactivated",
                        {"companyId": cid, "bpn": row["bpn"], "companyRoles": roles})
+    return standin.step_reply(input, {"companyId": cid, "status": "ACTIVE", "bpn": row["bpn"],
