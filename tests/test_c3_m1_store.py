@@ -198,3 +198,4 @@ def test_set_identifiers_enforces_one_per_type(make):
 
 def test_set_identifiers_enforces_the_enums(make):
     company = make()
+    with pytest.raises(ValueError):
