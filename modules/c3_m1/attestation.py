@@ -69,3 +69,4 @@ def _b64(part: str) -> bytes:
     return base64.urlsafe_b64decode(part + "=" * (-len(part) % 4))
 
 
+def _load_keys() -> list[dict]:
