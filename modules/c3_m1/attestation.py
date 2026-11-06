@@ -29,3 +29,4 @@ The order of the checks is the one of 6.7; the first failure decides the `reason
 writes afterwards.
 
 Keys come only from the configuration: `ATTESTATION_JWKS_FILE` (tests, no fetch) or
+`ATTESTATION_JWKS_URL` with a cache and one reload per minute for an unknown `kid` (6.7 point 4).
