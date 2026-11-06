@@ -1027,3 +1027,4 @@ def update_company_from_attestation(companyId: str, body: dict, sub: str | None 
         store.set_identifiers(companyId, list(identifiers.values()))
         store.add_if_unused(claims["jti"], companyId)
         store.audit(companyId, sub, "updateCompanyFromAttestation", None,
+                    {"changedFields": changed, "verificationRef": claims["jti"],
