@@ -469,3 +469,4 @@ def correct_company(companyId: str, body: dict, sub: str | None = None) -> dict:
         if "country_code" in fields and (row["status"] != "REQUESTED" or row["bpn"]):
             locked.append("countryCode")
         if locked:
+            raise Problem(MODULE, 409, "field-locked", fields=locked)
