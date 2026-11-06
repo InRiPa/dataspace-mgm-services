@@ -109,3 +109,4 @@ def _key_for(kid: str | None) -> dict:
     if key is None:
         raise _invalid("signature", f"kid {kid!r} is not in the JWKS")
     return key
+
