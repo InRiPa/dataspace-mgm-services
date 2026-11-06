@@ -311,3 +311,4 @@ def test_documents_are_stored_with_checksum(make):
     assert len(store.list_documents(request["id"])) == 1
     with pytest.raises(ValueError):
         store.add_document(request["id"], file_name="x.txt", media_type="text/plain",
+                           content=b"x")
