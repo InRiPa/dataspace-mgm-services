@@ -138,3 +138,4 @@ def update_own_company(companyId: str, body: dict = Body(...),
 def list_company_roles(companyId: str, lang: str | None = None,
                        claims: dict = standin.perm(MODULE, "GET",
                                                    "/companies/{companyId}/company-roles")):
+    standin.company_scope(MODULE, claims, companyId)
