@@ -99,3 +99,4 @@ def backend_memory() -> ModuleType:
     return importlib.import_module(".store_memory", __package__)
 
 
+def _delegate(name: str):
