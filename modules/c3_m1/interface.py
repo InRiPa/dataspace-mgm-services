@@ -1067,3 +1067,4 @@ def deactivate_company(input: dict) -> dict:
                                       "deactivationReason": reason})
 
 
+def _check_deactivation_reason(reason) -> None:
