@@ -118,3 +118,4 @@ def test_review_download_and_approval_of_a_manual_company(active):
 # ------------------------------------------------------------------------------------------ 13.15
 def test_decline_and_withdraw(active):
     answer = submit()
+    with pytest.raises(Problem) as error:
