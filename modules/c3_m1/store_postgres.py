@@ -501,3 +501,4 @@ def withdraw_change_request(change_request_id: str, *, closed_at: str | None = N
     with _connection() as connection:
         row = _fetch_one(connection, "SELECT status FROM change_request WHERE id = %s",
                          (change_request_id,))
+        if row is None:
