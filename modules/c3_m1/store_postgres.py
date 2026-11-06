@@ -324,3 +324,4 @@ def list_roles(company_id: str) -> dict[str, str]:
     """Role -> status of every role the company has or had."""
     if not _uuid_ok(company_id):
         return {}
+    with _connection() as connection:
