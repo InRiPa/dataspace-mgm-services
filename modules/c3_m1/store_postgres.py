@@ -453,3 +453,4 @@ def list_change_requests(*, company_id: str | None = None, status=None,
                          page: int = 0, size: int = 20,
                          newest_first: bool = False) -> tuple[list[dict], int]:
     """7.5 (newest first) and 7.14 (oldest first, the default), paged."""
+    statuses = [status] if isinstance(status, str) else list(status or [])
