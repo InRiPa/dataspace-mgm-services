@@ -122,3 +122,4 @@ def test_the_short_name_is_changed_and_locked_fields_refused(client, active):
     assert audit["sub"] == "5a1c0001-0000-4000-8000-000000000001"
     assert audit["details"]["old"]["short_name"] is None
 
+    response = call(client, "PATCH", f"/api/c3-m1/companies/{U1}", P1,
