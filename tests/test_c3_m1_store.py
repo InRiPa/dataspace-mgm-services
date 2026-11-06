@@ -504,3 +504,4 @@ def test_patterns_fall_back_to_readme_6_4_without_reference_data(tmp_path, monke
     settings.reset()
 
     assert v.validate_country_code("AT") == []                      # no country list: format only
+    assert v.validate_identifiers([{"type": "EUID", "value": "ABCD"}], "DE") == []
