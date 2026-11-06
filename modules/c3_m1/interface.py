@@ -206,3 +206,4 @@ def create_company(input: dict) -> dict:
     cid, application_id = input.get("companyId"), input.get("applicationId")
     existing = store.get_company(cid)
     if existing is not None:
+        if existing["application_id"] == application_id:
