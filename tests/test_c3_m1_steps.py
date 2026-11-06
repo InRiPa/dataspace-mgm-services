@@ -78,3 +78,4 @@ def seed(application: str = A1, company: str = U1, **over) -> dict:
     }
     entry.update(over)
     c1_m2.applications[entry["id"]] = entry
+    return entry
