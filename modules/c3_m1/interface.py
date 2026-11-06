@@ -133,3 +133,4 @@ def company_view(cid: str | None, *, detail: bool = False) -> dict:
     view = {"id": row["id"], "name": row["name"], "shortName": row["short_name"],
             "address": _address(row), "identifiers": _identifiers(row),
             "coreDataSource": row["core_data_source"],
+            "coreDataVerifiedAt": row["core_data_verified_at"], "bpn": row["bpn"],
