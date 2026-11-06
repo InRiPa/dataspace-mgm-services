@@ -453,3 +453,4 @@ def update_company(companyId: str, body: dict, sub: str | None = None) -> dict:
 OSP_LOCKED_FIELDS = {"bpn", "status", "coreDataSource", "applicationId", "verificationRef",
                      "deactivationReason", "createdAt", "changedAt"}
 
+
