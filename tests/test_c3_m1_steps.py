@@ -95,3 +95,4 @@ def published(name: str) -> list[dict]:
 def test_create_company_maps_the_application():
     seed()
     reply = step("create_company", companyId=U1, applicationId=A1)
+    assert reply["result"]["status"] == "REQUESTED"
