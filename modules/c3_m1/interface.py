@@ -468,3 +468,4 @@ def correct_company(companyId: str, body: dict, sub: str | None = None) -> dict:
         locked = [key for key in fields if key not in CORE_TEXT_FIELDS + ("short_name",)]
         if "country_code" in fields and (row["status"] != "REQUESTED" or row["bpn"]):
             locked.append("countryCode")
+        if locked:
