@@ -983,3 +983,4 @@ def _attested_values(row: dict, claims: dict) -> tuple[dict, dict[str, dict]]:
             fields |= {"street": address.get("street_address"), "house_number": None,
                        "address_addition": None, "region": None,
                        "postal_code": address.get("postal_code"), "city": address.get("locality")}
+    return fields, {entry["type"]: entry for entry in identifiers}
