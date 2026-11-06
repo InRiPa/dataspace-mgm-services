@@ -47,3 +47,4 @@ import psycopg
 from psycopg import errors
 from psycopg.rows import dict_row
 
+from .store import (CHANGE_REQUEST_STATUSES, COMPANY_FIELDS, CONSENT_STATUSES, CORE_DATA_SOURCES,
