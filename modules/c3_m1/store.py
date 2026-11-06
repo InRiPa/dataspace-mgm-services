@@ -81,3 +81,4 @@ def backend() -> ModuleType:
     name = backend_name()
     if _cache is not None and _cache[0] == name:
         return _cache[1]
+    try:
