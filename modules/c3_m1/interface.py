@@ -683,3 +683,4 @@ def _differs_field(row: dict, key: str, value) -> bool:
         return any(not validation.same_value(row.get(field), entry)
                    for field, entry in validation.flat_fields({"address": value}).items())
     return not validation.same_value(row.get(validation.field_name(key)), value)
+
