@@ -404,3 +404,4 @@ def validate_media_type(media_type) -> list[dict]:
         return [_error("media_type", "unknown")]
     return []
 
+
