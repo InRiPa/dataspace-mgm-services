@@ -342,3 +342,4 @@ def activate_company(input: dict) -> dict:
                 continue
             needed = {key for key, roles in terms.items() if role in roles}
             if needed <= set(given):
+                active.append(role)
