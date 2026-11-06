@@ -59,3 +59,4 @@ CONSENT_STATUSES = ("ACTIVE", "INACTIVE")
 CHANGE_REQUEST_STATUSES = ("OPEN", "APPROVED", "DECLINED", "WITHDRAWN")
 MEDIA_TYPES = ("application/pdf", "image/png", "image/jpeg")
 
+#: All fields of table `company` (README 5), in the order of the table.
