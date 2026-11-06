@@ -141,3 +141,4 @@ def attestation_max_age_hours() -> int:
     return number("ATTESTATION_MAX_AGE_HOURS")
 
 
+def attestation_clock_skew_seconds() -> int:
