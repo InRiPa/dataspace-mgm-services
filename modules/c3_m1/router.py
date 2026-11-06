@@ -153,3 +153,4 @@ def add_company_role(companyId: str, body: dict = Body(...), lang: str | None = 
 @router.delete("/companies/{companyId}/company-roles/{companyRole}")
 def remove_company_role(companyId: str, companyRole: str, lang: str | None = None,
                         claims: dict = standin.perm(
+                            MODULE, "DELETE",
