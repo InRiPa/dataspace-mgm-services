@@ -437,3 +437,4 @@ def update_company(companyId: str, body: dict, sub: str | None = None) -> dict:
             raise Problem(MODULE, 400, "validation", errors=errors)
         changed = _changed_fields(row, body, None)
         if not changed:
+            return company_view(companyId)
