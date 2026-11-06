@@ -315,3 +315,4 @@ def _terms_of_roles() -> dict[str, set[str]]:
     return terms
 
 
+def activate_company(input: dict) -> dict:
