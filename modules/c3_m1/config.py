@@ -122,3 +122,4 @@ def attestation_jwks_file() -> Path | None:
     """Tests only: the JWKS as a file; set means no fetch (README 11.2).
 
     A bare name counts from the module folder (README 4 names `stub-ebw-jwks.json`, and that file
+    lives here), an absolute path as given.
