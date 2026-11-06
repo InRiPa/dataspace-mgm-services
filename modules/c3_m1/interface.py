@@ -177,3 +177,4 @@ def _stub_applications() -> dict[str, dict]:
     """Built-in stand-in for C1-M2 (11.1): `STUB_APPLICATIONS_FILE` in `ApplicationInternal` form."""
     path = config.stub_applications_file()
     if path is None:
+        return {}
