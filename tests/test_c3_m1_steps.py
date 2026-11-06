@@ -162,3 +162,4 @@ def test_activate_before_the_bpn():
     with pytest.raises(Problem) as error:
         step("activate_company", companyId=U1, applicationId=A1)
     assert error.value.status == 409 and error.value.name == "identifier-missing"
+
