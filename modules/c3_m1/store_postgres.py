@@ -82,3 +82,4 @@ def _row(row: dict | None) -> dict | None:
         if isinstance(value, uuid.UUID):
             row[key] = str(value)
     for key in ("content",):
+        if isinstance(row.get(key), memoryview | bytearray):
