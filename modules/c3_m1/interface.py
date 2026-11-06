@@ -218,3 +218,4 @@ def create_company(input: dict) -> dict:
         raise Problem(MODULE, 409, "conflict", detail="application has another companyId",
                       retryable=False)
     if application.get("kind") == "REACTIVATION":
+        raise Problem(MODULE, 409, "conflict", detail="reactivation uses reactivate-company",
