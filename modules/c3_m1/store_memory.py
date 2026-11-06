@@ -345,3 +345,4 @@ def list_change_requests(*, company_id: str | None = None, status=None,
              and (not statuses or row["status"] in statuses)]
     items.sort(key=lambda row: (row["created_at"] or "", row["id"]), reverse=newest_first)
     total = len(items)
+    start = max(page, 0) * size
