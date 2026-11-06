@@ -219,3 +219,4 @@ def test_activate_without_consents_keeps_requested():
 def test_reject_company():
     seed(A3, U3, verification="DOCUMENTS", _attestation=None, consents=[])
     step("create_company", companyId=U3, applicationId=A3)
+    reply = step("reject_company", companyId=U3)
