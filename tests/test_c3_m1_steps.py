@@ -120,3 +120,4 @@ def test_create_company_conflicts():
     seed()
     step("create_company", companyId=U1, applicationId=A1)
     with pytest.raises(Problem) as error:
+        step("create_company", companyId=U1, applicationId=A2)
