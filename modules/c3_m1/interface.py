@@ -787,3 +787,4 @@ def create_change_request(companyId: str, data: dict,
     return _change_request_view(created)
 
 
+def list_own_change_requests(companyId: str, page: int = 0, size: int = 20) -> dict:
