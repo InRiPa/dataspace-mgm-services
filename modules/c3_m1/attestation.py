@@ -120,3 +120,4 @@ def _moment(value, field: str) -> dt.datetime:
 def verify(attestation: str, *, now: dt.datetime | None = None) -> dict:
     """The claims of a valid attestation; raises `attestation-invalid` or `upstream-error` (6.7)."""
     points = now or dt.datetime.now(dt.UTC)
+    skew = dt.timedelta(seconds=config.attestation_clock_skew_seconds())
