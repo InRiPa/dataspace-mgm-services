@@ -164,3 +164,4 @@ def test_activate_before_the_bpn():
     assert error.value.status == 409 and error.value.name == "identifier-missing"
 
 
+def test_assign_identifier_and_its_errors():
