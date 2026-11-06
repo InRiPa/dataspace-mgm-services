@@ -456,3 +456,4 @@ def test_identifier_type_enum_and_one_per_type():
     errors = v.validate_identifiers([{"type": "VIES", "value": "DE123456789"},
                                      {"type": "VAT_ID", "value": "DE123456789"},
                                      {"type": "VAT_ID", "value": "DE987654321"}], "DE")
+    assert {"field": "identifiers[0].type", "reason": "unknown"} in errors
