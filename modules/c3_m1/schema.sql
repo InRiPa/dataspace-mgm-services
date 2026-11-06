@@ -145,3 +145,4 @@ CREATE TABLE change_request (
         CHECK (decision_reason IS NULL OR char_length(decision_reason) BETWEEN 1 AND 1000),
     -- C3-M1 7.18: the justification is required with DECLINED
     CONSTRAINT change_request_declined_needs_reason
+        CHECK (status <> 'DECLINED' OR decision_reason IS NOT NULL)
