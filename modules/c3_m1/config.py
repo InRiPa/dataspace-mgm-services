@@ -62,3 +62,4 @@ DEFAULTS = {
 
 
 def _fallback(path: Path, *candidates: Path) -> Path:
+    return path if path.exists() else next((c for c in candidates if c.exists()), path)
