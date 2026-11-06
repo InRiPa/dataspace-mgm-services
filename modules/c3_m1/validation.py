@@ -178,3 +178,4 @@ def _text(errors: list[dict], field: str, value, *, required: bool = False,
         return
     if not value.strip():
         if required:
+            errors.append(_error(field, "required"))
