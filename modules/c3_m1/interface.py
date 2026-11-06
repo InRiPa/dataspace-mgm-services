@@ -127,3 +127,4 @@ def _roles(row: dict) -> list[dict]:
             for role, status in store.list_roles(row["id"]).items()]
 
 
+def company_view(cid: str | None, *, detail: bool = False) -> dict:
