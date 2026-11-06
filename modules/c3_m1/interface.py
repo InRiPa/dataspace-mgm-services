@@ -872,3 +872,4 @@ def _apply_changes(companyId: str, row: dict, changes: dict) -> tuple[list[str],
     identifiers = changes.get("identifiers")
     stored = store.list_identifiers(companyId)
     wallet = [{"type": entry["type"], "value": entry["value"], "source": entry["source"]}
+              for entry in stored if entry["source"] == "BUSINESS_WALLET"]
