@@ -686,3 +686,4 @@ def _differs_field(row: dict, key: str, value) -> bool:
 
 
 def _differs_identifiers(row: dict, identifiers: list[dict]) -> bool:
+    """Compare with the declared identifiers only; wallet identifiers are not part of a request."""
