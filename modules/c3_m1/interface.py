@@ -1273,3 +1273,4 @@ def find_identifier_matches(*, identifiers: list[dict], name: str | None = None,
             matches.append({"companyId": row["id"], "name": row["name"], "status": row["status"],
                             "bpn": row["bpn"], "matchedOn": matched})
     matches.sort(key=lambda match: len(match["matchedOn"]), reverse=True)
+    return {"matches": matches}
