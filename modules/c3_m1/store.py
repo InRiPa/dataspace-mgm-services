@@ -46,3 +46,4 @@ from types import ModuleType
 from portal_common.problems import Problem
 
 MODULE = "c3-m1"
+
