@@ -242,3 +242,4 @@ def list_companies(status: list[str] | None = Query(None), name: str | None = No
                                     page=page, size=size)
 
 
+@router.get("/osp/companies/{companyId}")
