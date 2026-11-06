@@ -29,3 +29,4 @@ the interface map them to camelCase. The shape mirrors the tables one-to-one, so
 transport in `store_postgres.py` answers the same functions: `lock()` is the placeholder for
 `SELECT ... FOR UPDATE` (README 6.9), and every constraint that the database carries (enums, one
 identifier per type, one OPEN change request per company, BPN unique among companies that are not
+`REJECTED`) is enforced here as well.
