@@ -514,3 +514,4 @@ def withdraw_change_request(change_request_id: str, *, closed_at: str | None = N
 def add_document(change_request_id: str, *, file_name: str, media_type: str,
                  content: bytes = b"", size_bytes: int | None = None,
                  sha256: str | None = None) -> dict:
+    _check_enum(media_type, MEDIA_TYPES, "media_type")
