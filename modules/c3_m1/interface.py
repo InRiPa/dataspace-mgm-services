@@ -689,3 +689,4 @@ def _differs_identifiers(row: dict, identifiers: list[dict]) -> bool:
     """Compare with the declared identifiers only; wallet identifiers are not part of a request."""
     before = {(entry["type"], entry["value_normalized"])
               for entry in store.list_identifiers(row["id"])
+              if entry["source"] != "BUSINESS_WALLET"}
