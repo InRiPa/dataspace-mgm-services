@@ -366,3 +366,4 @@ def decide_change_request(change_request_id: str, status: str, *, decided_by: st
     return _copy(row)
 
 
+def withdraw_change_request(change_request_id: str, *, closed_at: str | None = None) -> dict | None:
