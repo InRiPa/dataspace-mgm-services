@@ -165,3 +165,4 @@ def create_change_request(companyId: str, data: str = Form(...),
                           documents: list[UploadFile] = File(default=[]),
                           claims: dict = standin.perm(MODULE, "POST",
                                                       "/companies/{companyId}/change-requests")):
+    standin.company_scope(MODULE, claims, companyId)
