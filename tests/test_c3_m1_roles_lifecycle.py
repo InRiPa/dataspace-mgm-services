@@ -164,3 +164,4 @@ def test_a_company_transfers_to_this_installation():
     step("assign_identifier", companyId=U4, bpn="BPNL00000000002B")
     answer = step("activate_company", companyId=U4, applicationId=A8)
     assert answer["result"]["status"] == "ACTIVE"
+    assert store.get_company(U4)["bpn"] == "BPNL00000000002B"
