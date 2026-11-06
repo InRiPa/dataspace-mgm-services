@@ -28,3 +28,4 @@ The order of the checks is the one of 6.7; the first failure decides the `reason
 400 `attestation-invalid`. Nothing here changes state — 7.3 maps the claims to the company and
 writes afterwards.
 
+Keys come only from the configuration: `ATTESTATION_JWKS_FILE` (tests, no fetch) or
