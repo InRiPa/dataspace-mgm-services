@@ -345,3 +345,4 @@ def validate_reason(reason, *, max_length: int = REASON_MAX) -> list[dict]:
     return errors
 
 
+def validate_decision_reason(reason) -> list[dict]:
