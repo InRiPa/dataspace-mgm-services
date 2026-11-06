@@ -153,3 +153,4 @@ def test_the_transfer_away_and_the_return(active):
     assert step("reactivate_company", companyId=U2, applicationId=A7)["result"]["status"] == "ACTIVE"
 
 
+# ------------------------------------------------------------------------------------------ 13.22
