@@ -321,3 +321,4 @@ def test_an_attestation_is_used_exactly_once(make):
     company = make()
     assert store.add_if_unused("jti-1", company["id"]) is True
     assert store.add_if_unused("jti-1", company["id"]) is False
+    assert store.is_used("jti-1") and not store.is_used("jti-2")
