@@ -153,3 +153,4 @@ def verify(attestation: str, *, now: dt.datetime | None = None) -> dict:
         raise _invalid("signature", str(error)) from error
 
     audience = claims.get("aud")
+    audience = [audience] if isinstance(audience, str) else list(audience or [])
