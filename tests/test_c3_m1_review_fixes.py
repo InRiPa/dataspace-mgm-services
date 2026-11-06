@@ -64,3 +64,4 @@ def active(client):
     step("activate_company", companyId=U1, applicationId=A1)
     iam = test_iam.iam()
     for person, role in ((P1, "Company Admin"), (S2, "OSP Admin")):
+        uid = iam.find(person) or ""
