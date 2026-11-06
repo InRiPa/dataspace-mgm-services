@@ -158,3 +158,4 @@ def company_internal(cid: str | None) -> dict:
             "identifiers": _identifiers(row), "coreDataSource": row["core_data_source"],
             "status": row["status"], "bpn": row["bpn"],
             "companyRoles": [role for role, status in store.list_roles(row["id"]).items()
+                             if status == "ACTIVE"],
