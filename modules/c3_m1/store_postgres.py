@@ -580,3 +580,4 @@ def audit(company_id: str | None, sub: str | None, operation: str,
              json.dumps(details or {})))
 
 
+def list_audit(company_id: str | None = None) -> list[dict]:
