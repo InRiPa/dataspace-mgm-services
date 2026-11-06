@@ -259,3 +259,4 @@ def validate_identifier(entry: dict, country_code: str | None, field: str) -> li
     errors: list[dict] = []
     kind, value = entry.get("type"), entry.get("value")
     if kind in (None, ""):
+        errors.append(_error(f"{field}.type", "required"))
