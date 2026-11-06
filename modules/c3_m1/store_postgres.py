@@ -492,3 +492,4 @@ def decide_change_request(change_request_id: str, status: str, *, decided_by: st
                           "UPDATE change_request SET status = %s, decided_by = %s,"
                           " decision_reason = %s, closed_at = %s WHERE id = %s RETURNING *",
                           (status, decided_by, decision_reason, closed_at or _now(),
+                           change_request_id))
