@@ -206,3 +206,4 @@ def flat_fields(data: dict) -> dict:
 
 
 # --------------------------------------------------------------------------- company fields (5)
+def validate_company(data: dict, *, partial: bool = False) -> list[dict]:
