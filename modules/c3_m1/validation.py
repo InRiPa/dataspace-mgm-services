@@ -405,3 +405,4 @@ def validate_media_type(media_type) -> list[dict]:
     return []
 
 
+def validate_bpn(bpn) -> list[dict]:
