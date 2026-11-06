@@ -80,3 +80,4 @@ def test_create_company_rejects_unknown_field(make):
         make(payload="x")
 
 
+def test_update_company_sets_changed_at_and_returns_none_for_unknown(make):
