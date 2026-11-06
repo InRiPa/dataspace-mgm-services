@@ -71,6 +71,7 @@ def _audit(company_id: str | None, operation: str, input: dict, details: dict | 
 # ------------------------------------------------------------------------ start and seed (README 4)
 def reset() -> None:
     """Empty state, then the seed data of the OSP company (README 4). Seed data has no events."""
+    config.apply_registration_url()          # C1_M2_URL once, not on every call
     try:
         store.reset()
         target = store
@@ -184,7 +185,6 @@ def _stub_applications() -> dict[str, dict]:
 
 
 def _application(application_id: str | None) -> dict:
-    config.apply_registration_url()
     """The application at C1-M2 (11.1); a failed call is an error, not "not found" (skill 5)."""
     if neighbours.is_standin("c1-m2"):
         application = _stub_applications().get(application_id or "")
@@ -204,7 +204,8 @@ def _application(application_id: str | None) -> dict:
 def create_company(input: dict) -> dict:
     """8.1: create the company `REQUESTED` from a submitted application of kind ONBOARDING/TRANSFER."""
     cid, application_id = input.get("companyId"), input.get("applicationId")
-    existing = store.get_company(cid)
+    with store.lock(cid):
+        existing = store.get_company(cid)
     if existing is not None:
         if existing["application_id"] == application_id:
             return standin.step_reply(input, {"companyId": cid, "status": existing["status"],
@@ -241,13 +242,23 @@ def create_company(input: dict) -> dict:
     errors += validation.validate_identifiers(identifiers, row["country_code"])
     for role in application.get("companyRoles") or []:
         errors += validation.validate_company_role(role, config.role_catalogue())
+        if config.assignable_by(role) != "COMPANY":
+            errors.append({"field": "companyRoles", "message": f"{role} is not assignable by COMPANY"})
     if verification == "EBW" and not any(entry["type"] == "EBWOID" for entry in identifiers):
-        errors.append({"field": "identifiers", "reason": "EBWOID required with a verification"})
+        errors.append({"field": "identifiers", "message": "EBWOID required with a verification"})
     if errors:
         raise Problem(MODULE, 400, "validation", errors=errors, retryable=False)
 
     attestation = application.get("attestation") or {}
     with store.lock(cid):
+        if store.get_company(cid) is not None:          # another thread won the race
+            existing = store.get_company(cid) or {}
+            if existing.get("application_id") == application_id:
+                return standin.step_reply(input, {"companyId": cid, "status": existing["status"],
+                                                  "bpn": existing["bpn"],
+                                                  "coreDataSource": existing["core_data_source"]})
+            raise Problem(MODULE, 409, "conflict", detail="company belongs to another application",
+                          retryable=False)
         store.create_company(row | {
             "id": cid, "status": "REQUESTED",
             "core_data_source": "EBW" if verification == "EBW" else "MANUAL",
@@ -297,7 +308,6 @@ def assign_identifier(input: dict) -> dict:
 
 # ----------------------------------------------------------------------------------- steps (8.3)
 def _terms_of_roles() -> dict[str, set[str]]:
-    config.apply_registration_url()
     """agreementKey -> roles it belongs to, from the terms of C1-M2 (11.1).
 
     Without an address for C1-M2 the built-in stand-in answers with the initial values of 14.3.
@@ -392,7 +402,10 @@ CAMEL = {snake: camel for camel, snake in validation.ALIASES.items()}
 
 
 def _changed_fields(row: dict, body: dict, identifiers: list[dict] | None) -> list[str]:
-    """Names of the fields the body really changes, camelCase, for the event (README 7.2, 7.12)."""
+    """Names of the fields the body really changes, camelCase, for the event (README 7.2, 7.12).
+
+    The address counts as one field `address`, as the openapi example of `changedFields` shows.
+    """
     changed = []
     for key, value in body.items():
         field = validation.field_name(key)
@@ -400,7 +413,9 @@ def _changed_fields(row: dict, body: dict, identifiers: list[dict] | None) -> li
             before, after = row.get(field), value
             if (before or "") != (after or "") and not (
                     before and after and validation.same_value(before, after)):
-                changed.append(CAMEL.get(field, field))
+                name = "address" if field in validation.ADDRESS_FIELDS else CAMEL.get(field, field)
+                if name not in changed:
+                    changed.append(name)
     if identifiers is not None:
         before = {(entry["type"], entry["value_normalized"]) for entry in store.list_identifiers(row["id"])}
         after = {(entry["type"], validation.value_normalized(entry["value"])) for entry in identifiers}
@@ -485,15 +500,15 @@ def correct_company(companyId: str, body: dict, sub: str | None = None) -> dict:
         if not changed:
             return company_view(companyId, detail=True)
 
-        core_changed = any(validation.field_name(key) in CORE_TEXT_FIELDS for key in fields)
-        if identifiers is not None and _identifier_core_changed(row, identifiers):
-            core_changed = True
+        name_or_address = any(validation.field_name(key) in CORE_TEXT_FIELDS for key in fields)
+        core_changed = name_or_address or (identifiers is not None
+                                           and _identifier_core_changed(row, identifiers))
         updates = validation.flat_fields(fields)
         if core_changed:
             updates["core_data_verified_at"] = _now()
-            if row["core_data_source"] == "EBW":
-                updates["core_data_source"] = "MANUAL"
-                updates["verification_ref"] = None
+        if name_or_address and row["core_data_source"] == "EBW":
+            updates["core_data_source"] = "MANUAL"
+            updates["verification_ref"] = None
         store.update_company(companyId, **updates)
         if identifiers is not None:
             store.set_identifiers(companyId, identifiers)
@@ -511,7 +526,6 @@ def correct_company(companyId: str, body: dict, sub: str | None = None) -> dict:
 # ------------------------------------------------------------------------------ company roles (7.7 - 7.9)
 def _terms() -> list[dict]:
     """Active terms of C1-M2 with scope COMPANY_ROLE (11.1); unreachable stays 502."""
-    config.apply_registration_url()
     if neighbours.is_standin("c1-m2"):
         agreements = testdata.agreements()
     else:
@@ -585,7 +599,7 @@ def add_company_role(companyId: str, body: dict, sub: str | None = None,
         foreign = sorted(set(given) - set(terms))
         if foreign:
             raise Problem(MODULE, 400, "validation",
-                          errors=[{"field": "consents", "reason": f"not a term of {role}: {', '.join(foreign)}"}])
+                          errors=[{"field": "consents", "message": f"not a term of {role}: {', '.join(foreign)}"}])
 
         now = _now()
         for key in terms:
@@ -650,7 +664,7 @@ def list_companies(*, status: list[str] | str | None = None, name: str | None = 
             status=status, name=name, bpn=bpn, has_bpn=has_bpn, company_role=companyRole,
             core_data_source=coreDataSource, page=int(page or 0), size=int(size or 20))
     except ValueError as error:
-        raise Problem(MODULE, 400, "validation", errors=[{"field": "filter", "reason": str(error)}])
+        raise Problem(MODULE, 400, "validation", errors=[{"field": "filter", "message": str(error)}])
     return {"items": [_summary(row) for row in items], "page": int(page or 0),
             "size": int(size or 20), "total": total}
 
@@ -709,7 +723,7 @@ def _wallet_identifier_conflict(row: dict, identifiers: list[dict]) -> list[dict
     """Identifiers of the list whose stored source is `BUSINESS_WALLET` (400, 7.4 point 4, 7.12 point 3)."""
     stored = {entry["type"] for entry in store.list_identifiers(row["id"])
               if entry["source"] == "BUSINESS_WALLET"}
-    return [{"field": f"identifiers.{entry.get('type')}", "reason": "source BUSINESS_WALLET"}
+    return [{"field": f"identifiers.{entry.get('type')}", "message": "source BUSINESS_WALLET"}
             for entry in identifiers if entry.get("type") in stored]
 
 
@@ -749,23 +763,23 @@ def create_change_request(companyId: str, data: dict,
             if not identifiers and wallet:
                 # "afterwards at least one identifier" counts the wallet identifiers that stay
                 errors = [error for error in errors
-                          if not (error["field"] == "identifiers" and error["reason"] == "missing")]
+                          if not (error["field"] == "identifiers" and error.get("message") == "missing")]
             errors += _wallet_identifier_conflict(row, identifiers)
         if errors:
             raise Problem(MODULE, 400, "validation", errors=errors)
-        core_changed = any(_differs_field(row, key, value)
-                           for key, value in changes.items() if key != "identifiers")
-        if identifiers is not None and _identifier_core_changed(row, identifiers):
-            core_changed = True
-        if core_changed and row["core_data_source"] == "EBW":
+        name_or_address = any(_differs_field(row, key, value) for key, value in changes.items()
+                              if key != "identifiers")
+        core_changed = name_or_address or (identifiers is not None
+                                           and _identifier_core_changed(row, identifiers))
+        if name_or_address and row["core_data_source"] == "EBW":
             raise Problem(MODULE, 409, "attestation-required")
         if not _changes_differs(row, changes):
             raise Problem(MODULE, 400, "validation",
-                          errors=[{"field": "changes", "reason": "no change"}])
+                          errors=[{"field": "changes", "message": "no change"}])
 
         errors = []
         if not 1 <= len(documents) <= config.change_request_max_documents():
-            errors.append({"field": "documents", "reason": "1 to %d documents"
+            errors.append({"field": "documents", "message": "1 to %d documents"
                                                           % config.change_request_max_documents()})
         for file_name, content, stated in documents:
             errors += validation.validate_document(file_name, content, stated_media_type=stated,
@@ -835,7 +849,7 @@ def list_change_requests(*, status: list[str] | str | None = None,
         items, total = store.list_change_requests(status=status, company_id=companyId,
                                                   page=int(page or 0), size=int(size or 20))
     except ValueError as error:
-        raise Problem(MODULE, 400, "validation", errors=[{"field": "filter", "reason": str(error)}])
+        raise Problem(MODULE, 400, "validation", errors=[{"field": "filter", "message": str(error)}])
     return {"items": [_change_request_view(item, osp=True,
                                            company=store.get_company(item["company_id"]))
                       for item in items],
@@ -882,15 +896,17 @@ def _apply_changes(companyId: str, row: dict, changes: dict) -> tuple[list[str],
     if errors:
         raise Problem(MODULE, 400, "validation", errors=errors)
 
-    core_changed = any(_differs_field(row, key, value) for key, value in fields.items())
-    if identifiers is not None and _identifier_core_changed(row, identifiers):
-        core_changed = True
-    if core_changed and row["core_data_source"] == "EBW":
+    name_or_address = any(_differs_field(row, key, value) for key, value in fields.items())
+    core_changed = name_or_address or (identifiers is not None
+                                       and _identifier_core_changed(row, identifiers))
+    if name_or_address and row["core_data_source"] == "EBW":
         raise Problem(MODULE, 409, "attestation-required")
     changed = _changed_fields(row, fields, identifiers)
     updates = validation.flat_fields(fields)
     if core_changed:
-        updates |= {"core_data_source": "MANUAL", "core_data_verified_at": _now()}
+        updates |= {"core_data_verified_at": _now()}
+    if name_or_address:
+        updates |= {"core_data_source": "MANUAL"}
     if updates:
         store.update_company(companyId, **updates)
     if identifiers is not None:
@@ -922,8 +938,8 @@ def approve_change_request(changeRequestId: str, body: dict | None = None,
             events.publish(MODULE, "CompanyDataChanged",
                            {"companyId": row["company_id"], "changedFields": changed,
                             "coreDataChanged": core_changed,
-                            "coreDataSource": "MANUAL" if core_changed
-                            else company["core_data_source"]})
+                            "coreDataSource": (store.get_company(row["company_id"]) or company)
+                            ["core_data_source"]})
         events.publish(MODULE, "CompanyChangeRequestClosed",
                        {"companyId": row["company_id"], "changeRequestId": changeRequestId,
                         "outcome": "APPROVED"})
@@ -1023,15 +1039,16 @@ def update_company_from_attestation(companyId: str, body: dict, sub: str | None 
         updates = dict(fields)
         updates |= {"core_data_source": "EBW", "core_data_verified_at": verified_at,
                     "verification_ref": claims["jti"]}
+        if not store.add_if_unused(claims["jti"], companyId):   # lost a race, not used above
+            raise Problem(MODULE, 409, "attestation-used")
         store.update_company(companyId, **updates)
         store.set_identifiers(companyId, list(identifiers.values()))
-        store.add_if_unused(claims["jti"], companyId)
         store.audit(companyId, sub, "updateCompanyFromAttestation", None,
                     {"changedFields": changed, "verificationRef": claims["jti"],
                      "old": {field: row.get(field) for field in
                              ("name", "street", "house_number", "postal_code", "city", "region")},
                      "new": fields})
-        if changed:
+        if changed or row["core_data_source"] != "EBW":
             events.publish(MODULE, "CompanyDataChanged",
                            {"companyId": companyId, "changedFields": changed,
                             "coreDataChanged": True, "coreDataSource": "EBW"})
@@ -1048,6 +1065,7 @@ def deactivate_company(input: dict) -> dict:
             _check_deactivation_reason(reason)
             if reason == "TRANSFERRED" and row["deactivation_reason"] == "MANUAL":
                 store.update_company(cid, deactivation_reason="TRANSFERRED")
+                row = store.get_company(cid) or row
                 store.audit(cid, None, "stepDeactivateCompany", None,
                             {"deactivationReason": ["MANUAL", "TRANSFERRED"],
                              "processId": input.get("processId"),
@@ -1070,7 +1088,7 @@ def deactivate_company(input: dict) -> dict:
 def _check_deactivation_reason(reason) -> None:
     if reason not in store.DEACTIVATION_REASONS:
         raise Problem(MODULE, 400, "validation",
-                      errors=[{"field": "reason", "reason": "MANUAL or TRANSFERRED"}],
+                      errors=[{"field": "reason", "message": "MANUAL or TRANSFERRED"}],
                       retryable=False)
 
 
@@ -1113,14 +1131,16 @@ def reactivate_company(input: dict) -> dict:
             raise Problem(MODULE, 409, "invalid-state",
                           detail=f"kind {application.get('kind')} does not match the reason",
                           retryable=False)
-        if application.get("status") not in ("APPROVED", "COMPLETED"):
+        # the approval is the C1-M3 decision; the application itself stays SUBMITTED until
+        # `complete-application` runs after this step (flows.yaml `reactivation`, `return`)
+        if application.get("status") in ("CREATED", "WITHDRAWN", "DECLINED"):
             raise Problem(MODULE, 409, "invalid-state",
                           detail=f"application {application.get('status')}", retryable=False)
 
         data = application.get("companyData") or {}
         source_address = data.get("address") or {}
         verification = application.get("verification")
-        fields = {"name": data.get("legalName"), "short_name": data.get("shortName"),
+        fields = {"name": data.get("legalName"),
                   "street": source_address.get("streetName"),
                   "house_number": source_address.get("streetNumber"),
                   "postal_code": source_address.get("postalCode"), "city": source_address.get("city"),
@@ -1141,16 +1161,19 @@ def reactivate_company(input: dict) -> dict:
         if mismatched:
             raise Problem(MODULE, 409, "company-mismatch", fields=mismatched, retryable=False)
 
-        identifiers = list(stored.values())
+        identifiers = ([entry for entry in stored.values() if entry["source"] == "BUSINESS_WALLET"]
+                       if verification != "EBW" else list(stored.values()))
         for entry in data.get("identifiers") or []:
             if entry.get("type") == "EBWOID":
                 continue
             if verification == "EBW":
                 if entry.get("type") not in CORE_IDENTIFIERS:
                     continue
-                source = "BUSINESS_WALLET" if (stored.get(entry["type"]) or {}).get("source") == "BUSINESS_WALLET" else "DECLARED"
+                source = "BUSINESS_WALLET"
             else:
-                source = "DECLARED" if (stored.get(entry["type"]) or {}).get("source") != "BUSINESS_WALLET" else "BUSINESS_WALLET"
+                if (stored.get(entry["type"]) or {}).get("source") == "BUSINESS_WALLET":
+                    continue          # wallet identifiers stay, the list is declared
+                source = "DECLARED"
             identifiers = [item for item in identifiers if item["type"] != entry["type"]]
             identifiers.append({"type": entry["type"], "value": entry["value"], "source": source})
         identifiers = [{"type": entry["type"], "value": entry["value"], "source": entry["source"]}
@@ -1209,10 +1232,10 @@ def query_companies(*, id: list[str] | str | None = None, bpn: list[str] | str |
     bpns = [bpn] if isinstance(bpn, str) else list(bpn or [])
     if bool(ids) == bool(bpns):
         raise Problem(MODULE, 400, "validation",
-                      errors=[{"field": "id,bpn", "reason": "exactly one of both"}])
+                      errors=[{"field": "id,bpn", "message": "exactly one of both"}])
     if len(ids + bpns) > config.query_max_companies():
         raise Problem(MODULE, 400, "validation",
-                      errors=[{"field": "id,bpn", "reason": "too many values"}])
+                      errors=[{"field": "id,bpn", "message": "too many values"}])
     items, found = [], set()
     for wanted in ids:
         if store.get_company(wanted) is not None:
@@ -1227,27 +1250,30 @@ def query_companies(*, id: list[str] | str | None = None, bpn: list[str] | str |
     return {"items": items, "notFound": [value for value in ids + bpns if value not in found]}
 
 
-def find_identifier_matches(*, identifiers: list[dict], name: str | None = None,
+def find_identifier_matches(*, identifiers: list[dict] | None = None, name: str | None = None,
                             excludeCompanyId: str | None = None,
                             statuses: list[str] | str | None = None, **_other) -> dict:
     """9.3: local duplicate search; the caller decides whether a match is a duplicate."""
     wanted_statuses = [statuses] if isinstance(statuses, str) else list(statuses or [])
     errors = []
+    if not isinstance(identifiers, list):
+        raise Problem(MODULE, 400, "validation",
+                      errors=[{"field": "identifiers", "message": "list required"}])
     if not 1 <= len(identifiers) <= 10:
-        errors.append({"field": "identifiers", "reason": "1 to 10 entries"})
+        errors.append({"field": "identifiers", "message": "1 to 10 entries"})
     for entry in identifiers:
         if entry.get("type") not in (*store.IDENTIFIER_TYPES, "BPN"):
-            errors.append({"field": "identifiers.type", "reason": str(entry.get("type"))})
+            errors.append({"field": "identifiers.type", "message": str(entry.get("type"))})
         if not entry.get("value"):
-            errors.append({"field": "identifiers.value", "reason": "required"})
+            errors.append({"field": "identifiers.value", "message": "required"})
     for value in wanted_statuses:
         if value not in store.STATUSES:
-            errors.append({"field": "statuses", "reason": value})
+            errors.append({"field": "statuses", "message": value})
     if errors:
         raise Problem(MODULE, 400, "validation", errors=errors)
     if not 1 <= len(identifiers) <= 10:
         raise Problem(MODULE, 400, "validation",
-                      errors=[{"field": "identifiers", "reason": "1 to 10 entries"}])
+                      errors=[{"field": "identifiers", "message": "1 to 10 entries"}])
     candidates, page, total = [], 0, None
     while total is None or len(candidates) < total:
         batch, total = store.find_companies(

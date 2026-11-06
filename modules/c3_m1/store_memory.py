@@ -40,6 +40,7 @@ import contextlib
 import copy
 import datetime as dt
 import hashlib
+import threading
 import uuid
 
 from .store import (CORE_DATA_SOURCES, CHANGE_REQUEST_STATUSES, COMPANY_FIELDS, CONSENT_SOURCE_KINDS,
@@ -48,6 +49,8 @@ from .store import (CORE_DATA_SOURCES, CHANGE_REQUEST_STATUSES, COMPANY_FIELDS, 
 from .validation import value_normalized
 
 companies: dict[str, dict] = {}
+_locks: dict[str, threading.RLock] = {}
+_lock_guard = threading.Lock()
 _identifiers: dict[str, dict[str, dict]] = {}
 _roles: dict[str, dict[str, dict]] = {}
 _consents: dict[tuple[str, str], dict] = {}
@@ -100,16 +103,26 @@ def reset() -> None:
     _documents.clear()
     _used_attestations.clear()
     _audit.clear()
+    _locks.clear()
 
 
 @contextlib.contextmanager
 def lock(company_id: str | None = None):
-    """Placeholder for the row lock of README 6.9 (`SELECT ... FOR UPDATE`).
+    """Row lock of README 6.9, one caller per company (a re-entrant lock per id).
 
-    In memory there is no concurrency; the context manager only documents where the later
-    database transport takes the lock. It yields the `companyId` and never looks the company up.
+    The PostgreSQL transport uses an advisory lock for the same effect. An id that is not a
+    company still gets a lock, so unknown ids cannot race each other either.
     """
-    yield company_id
+    if not company_id:
+        yield company_id
+        return
+    with _lock_guard:
+        entry = _locks.setdefault(company_id, threading.RLock())
+    entry.acquire()
+    try:
+        yield company_id
+    finally:
+        entry.release()
 
 
 # ------------------------------------------------------------------ company (README 5)

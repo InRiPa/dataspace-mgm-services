@@ -31,6 +31,7 @@ company's object stays invisible, 404). No business logic here.
 from __future__ import annotations
 
 import json
+from urllib.parse import quote
 
 from fastapi import Body, File, Form, Query, Response, UploadFile
 
@@ -170,7 +171,10 @@ def create_change_request(companyId: str, data: str = Form(...),
         parsed = json.loads(data)
     except ValueError as error:
         raise Problem(MODULE, 400, "validation",
-                      errors=[{"field": "data", "reason": f"not JSON: {error}"}]) from error
+                      errors=[{"field": "data", "message": f"not JSON: {error}"}]) from error
+    if not isinstance(parsed, dict):
+        raise Problem(MODULE, 400, "validation",
+                      errors=[{"field": "data", "message": "a JSON object is required"}])
     files = [(upload.filename or "", upload.file.read(), upload.content_type) for upload in documents]
     return interface.create_change_request(companyId, parsed, files, claims.get("sub"))
 
@@ -212,8 +216,10 @@ def get_change_request_document(changeRequestId: str, documentId: str,
                                     MODULE, "GET",
                                     "/osp/change-requests/{changeRequestId}/documents/{documentId}")):
     answer = interface.get_change_request_document(changeRequestId, documentId, claims.get("sub"))
+    name = answer["file_name"]
     return Response(answer["content"], media_type=answer["media_type"], headers={
-        "Content-Disposition": f'attachment; filename="{answer["file_name"]}"'})
+        "Content-Disposition": f'attachment; filename="{quote(name, safe="")}"; '
+                               f"filename*=UTF-8''{quote(name, safe='')}"})
 
 
 @router.post("/osp/change-requests/{changeRequestId}/approve")

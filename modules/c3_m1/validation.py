@@ -164,7 +164,7 @@ def pattern_for(identifier_type: str, country_code: str | None) -> str | None:
 
 # ---------------------------------------------------------------------------------- helpers
 def _error(field: str, reason: str) -> dict:
-    return {"field": field, "reason": reason}
+    return {"field": field, "message": reason}
 
 
 def _text(errors: list[dict], field: str, value, *, required: bool = False,
