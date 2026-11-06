@@ -23,92 +23,141 @@
 #  SPDX-License-Identifier: Apache-2.0 AND CC0-1.0
 #  Assisted-By: Claude Code (claude-opus-5-5)
 #################################################################################
-"""HTTP layer of C3-M2 CSP Connection under `/api/c3-m2`: token and permission (`x-permission`
-of openapi.yaml, all with scope `osp`, FRAMEWORK 4.3), then the function of `interface.py`."""
+"""HTTP layer of C3-M2 CSP Connection under `/api/c3-m2`.
+
+Each route reads like its entry in openapi.yaml: the request body is the schema of the spec
+(`schemas.py`, validated by FastAPI, 400 `validation` on error), the permission is its
+`x-permission` (all with scope `osp`, FRAMEWORK 4.3), the answer is its response schema. Then the
+route calls the function of `interface.py` with a plain dict, as Process Orchestration does
+in-process.
+"""
 from __future__ import annotations
 
 from typing import Any
 
-from fastapi import Body, Query
+from fastapi import APIRouter, Query
+from pydantic import BaseModel
 
-from portal_common import standin
+from portal_common import problems, spec, standin
 
 from . import interface
-from .interface import MODULE
+from .interface import MODULE, StepReply
+from .schemas import (
+    ConnectorInput,
+    CspCompanyMatch,
+    CspNotification,
+    CspRegistration,
+    RegisterCompanyInput,
+    RegisterConnectorInput,
+    RegisterDidInput,
+    StepInput,
+    StepResult,
+    TransferCompanyInput,
+    UpdateCompanyInput,
+)
 
-router = standin.router(MODULE)
+Claims = dict[str, Any]   # claims of the verified token, from standin.perm
+
+router = APIRouter(prefix=spec.module(MODULE).base_path, route_class=problems.route_class(MODULE),
+                   tags=["c3-m2 CSP Connection"])
 
 
 def reset() -> None:
     interface.reset()
 
 
+def _input(body: BaseModel) -> dict[str, Any]:
+    """The validated body as the plain JSON dict the interface functions take."""
+    return body.model_dump(mode="json", exclude_none=True)
+
+
 # ---------------------------------------------------------------- OSP staff (README 7.1)
-@router.get("/companies/{companyId}")
-def get_csp_registration(companyId: str,  # noqa: N803 - openapi name
-                         _: dict = standin.perm(MODULE, "GET", "/companies/{companyId}")) -> dict:
+@router.get("/companies/{companyId}", operation_id="getCspRegistration", summary="Status of a company at the CSP",
+            response_model=CspRegistration, response_model_exclude_none=True)
+def get_csp_registration(companyId: str,  # openapi name
+                         _: Claims = standin.perm(MODULE, "GET", "/companies/{companyId}")) -> dict[str, str]:
     return interface.get_csp_registration(companyId=companyId)
 
 
 # ---------------------------------------------------------------- callback of the CSP (README 7.2)
-@router.post("/csp-notifications")
-def receive_csp_notification(body: Any = Body(...),
-                             _: dict = standin.perm(MODULE, "POST", "/csp-notifications")) -> dict:
-    return interface.receive_csp_notification(body)
+@router.post("/csp-notifications", operation_id="receiveCspNotification", summary="Notification from the CSP")
+def receive_csp_notification(body: CspNotification,
+                             _: Claims = standin.perm(MODULE, "POST", "/csp-notifications")) -> dict[str, str | bool]:
+    return interface.receive_csp_notification(_input(body))
 
 
 # ---------------------------------------------------------------- query (README 9)
-@router.get("/internal/find-companies")
-def find_companies(_: dict = standin.perm(MODULE, "GET", "/internal/find-companies"),
+@router.get("/internal/find-companies", operation_id="findCompanies", summary="Duplicate check at the CSP",
+            response_model=list[CspCompanyMatch], response_model_exclude_none=True)
+def find_companies(_: Claims = standin.perm(MODULE, "GET", "/internal/find-companies"),
                    ebwoid: str | None = None, euid: str | None = None,
-                   identifier: list[str] = Query(default=[]),
-                   legalName: str | None = None, country: str | None = None) -> list[dict]:  # noqa: N803
+                   identifier: list[str] = Query(default=[], description="<type>:<value>, repeatable"),
+                   legalName: str | None = None,  # openapi name
+                   country: str | None = Query(default=None, pattern=r"^[A-Z]{2}$")) -> list[dict[str, Any]]:
     return interface.find_companies(ebwoid=ebwoid, euid=euid, identifier=identifier, legalName=legalName,
                                     country=country)
 
 
 # ---------------------------------------------------------------- steps (README 8)
-@router.post("/steps/register-company")
-def register_company(body: dict = Body(...),
-                     _: dict = standin.perm(MODULE, "POST", "/steps/register-company")) -> dict:
-    return interface.register_company(body)
+@router.post("/steps/register-company", operation_id="stepRegisterCompany",
+             summary="Register a company with the CSP",
+             response_model=StepResult, response_model_exclude_none=True)
+def register_company(body: RegisterCompanyInput,
+                     _: Claims = standin.perm(MODULE, "POST", "/steps/register-company")) -> StepReply:
+    return interface.register_company(_input(body))
 
 
-@router.post("/steps/transfer-company")
-def transfer_company(body: dict = Body(...),
-                     _: dict = standin.perm(MODULE, "POST", "/steps/transfer-company")) -> dict:
-    return interface.transfer_company(body)
+@router.post("/steps/transfer-company", operation_id="stepTransferCompany",
+             summary="Transfer a company to this OSP",
+             response_model=StepResult, response_model_exclude_none=True)
+def transfer_company(body: TransferCompanyInput,
+                     _: Claims = standin.perm(MODULE, "POST", "/steps/transfer-company")) -> StepReply:
+    return interface.transfer_company(_input(body))
 
 
-@router.post("/steps/register-did")
-def register_did(body: dict = Body(...), _: dict = standin.perm(MODULE, "POST", "/steps/register-did")) -> dict:
-    return interface.register_did(body)
+@router.post("/steps/register-did", operation_id="stepRegisterDid",
+             summary="Enter the DID in the directory BPN → DID",
+             response_model=StepResult, response_model_exclude_none=True)
+def register_did(body: RegisterDidInput,
+                 _: Claims = standin.perm(MODULE, "POST", "/steps/register-did")) -> StepReply:
+    return interface.register_did(_input(body))
 
 
-@router.post("/steps/update-company")
-def update_company(body: dict = Body(...), _: dict = standin.perm(MODULE, "POST", "/steps/update-company")) -> dict:
-    return interface.update_company(body)
+@router.post("/steps/update-company", operation_id="stepUpdateCompany",
+             summary="Pass changed core data to the CSP",
+             response_model=StepResult, response_model_exclude_none=True)
+def update_company(body: UpdateCompanyInput,
+                   _: Claims = standin.perm(MODULE, "POST", "/steps/update-company")) -> StepReply:
+    return interface.update_company(_input(body))
 
 
-@router.post("/steps/register-membership")
-def register_membership(body: dict = Body(...),
-                        _: dict = standin.perm(MODULE, "POST", "/steps/register-membership")) -> dict:
-    return interface.register_membership(body)
+@router.post("/steps/register-membership", operation_id="stepRegisterMembership",
+             summary="Register the membership at the CSP",
+             response_model=StepResult, response_model_exclude_none=True)
+def register_membership(body: StepInput,
+                        _: Claims = standin.perm(MODULE, "POST", "/steps/register-membership")) -> StepReply:
+    return interface.register_membership(_input(body))
 
 
-@router.post("/steps/deregister-membership")
-def deregister_membership(body: dict = Body(...),
-                          _: dict = standin.perm(MODULE, "POST", "/steps/deregister-membership")) -> dict:
-    return interface.deregister_membership(body)
+@router.post("/steps/deregister-membership", operation_id="stepDeregisterMembership",
+             summary="Deregister the membership at the CSP",
+             response_model=StepResult, response_model_exclude_none=True)
+def deregister_membership(body: StepInput,
+                          _: Claims = standin.perm(MODULE, "POST", "/steps/deregister-membership")) -> StepReply:
+    return interface.deregister_membership(_input(body))
 
 
-@router.post("/steps/register-connector")
-def register_connector(body: dict = Body(...),
-                       _: dict = standin.perm(MODULE, "POST", "/steps/register-connector")) -> dict:
-    return interface.register_connector(body)
+@router.post("/steps/register-connector", operation_id="stepRegisterConnector",
+             summary="Enter a connector in the discovery of the CSP",
+             response_model=StepResult, response_model_exclude_none=True)
+def register_connector(body: RegisterConnectorInput,
+                       _: Claims = standin.perm(MODULE, "POST", "/steps/register-connector")) -> StepReply:
+    return interface.register_connector(_input(body))
 
 
-@router.post("/steps/deregister-connector")
-def deregister_connector(body: dict = Body(...),
-                         _: dict = standin.perm(MODULE, "POST", "/steps/deregister-connector")) -> dict:
-    return interface.deregister_connector(body)
+@router.post("/steps/deregister-connector", operation_id="stepDeregisterConnector",
+             summary="Remove a connector from the discovery of the CSP",
+             response_model=StepResult, response_model_exclude_none=True)
+def deregister_connector(body: ConnectorInput,
+                         _: Claims = standin.perm(MODULE, "POST", "/steps/deregister-connector")) -> StepReply:
+    return interface.deregister_connector(_input(body))

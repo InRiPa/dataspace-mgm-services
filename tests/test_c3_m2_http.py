@@ -223,3 +223,36 @@ def test_13_osp_company_connector_at_the_shared_csp(shared_csp):
     osp = next(c for c in discovery if c["bpn"] == OSP_COMPANY_BPN)
     assert osp["connectors"] == {CONNECTOR: ENDPOINT}
 
+
+
+# ---------------------------------------------------------------- API contract (schemas.py = openapi.yaml)
+def test_body_schema_errors_are_400_problems_with_the_field(api):
+    r = api.post("/api/c3-m2/steps/register-company", json=maschinenbau(country="de"), headers=service("svc-c12-m1"))
+    assert r.status_code == 400
+    body = r.json()
+    assert body["type"] == "urn:c3-m2:problem:validation" and body["retryable"] is False
+    assert [e["field"] for e in body["errors"]] == ["body.country"]
+    r = api.post("/api/c3-m2/steps/register-did", json=step(), headers=service("svc-c12-m1"))
+    assert r.status_code == 400 and [e["field"] for e in r.json()["errors"]] == ["body.did"]
+    r = api.post("/api/c3-m2/steps/register-membership", json={"companyId": "not-a-uuid"}, headers=service("svc-c12-m1"))
+    assert r.status_code == 400
+    assert {e["field"] for e in r.json()["errors"]} == {"body.processId", "body.stepRunId", "body.companyId"}
+
+
+def test_openapi_shows_the_contract_of_the_spec(api):
+    doc = api.app.openapi()
+    op = doc["paths"]["/api/c3-m2/steps/register-company"]["post"]
+    assert op["operationId"] == "stepRegisterCompany"
+    ref = op["requestBody"]["content"]["application/json"]["schema"]["$ref"]
+    schema = doc["components"]["schemas"][ref.rsplit("/", 1)[1]]
+    assert {"processId", "stepRunId", "companyId", "legalName", "country"} <= set(schema["required"])
+    assert {"ebwoid", "euid", "identifiers", "address"} <= set(schema["properties"])
+    result = op["responses"]["200"]["content"]["application/json"]["schema"]["$ref"]
+    assert result.endswith("/StepResult")
+
+
+def test_running_step_answer_matches_step_result(api, shared_csp):
+    shared_csp["client"].put("/admin/config", json={"asyncOperations": True})
+    r = api.post("/api/c3-m2/steps/register-company", json=maschinenbau(), headers=service("svc-c12-m1"))
+    assert r.status_code == 200 and r.json()["state"] == "RUNNING"
+    assert set(r.json()) <= {"stepRunId", "state", "result"}
