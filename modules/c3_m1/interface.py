@@ -1178,3 +1178,4 @@ def reactivate_company(input: dict) -> dict:
                      "processId": input.get("processId"), "stepRunId": input.get("stepRunId")})
         if changed:
             events.publish(MODULE, "CompanyDataChanged",
+                           {"companyId": cid, "changedFields": changed, "coreDataChanged": True,
