@@ -246,3 +246,4 @@ def test_consents_are_keyed_by_company_and_key(make):
     assert store.get_consent(company["id"], "unknown") is None
 
 
+# ------------------------------------------------------------------------- change requests (5, 7)
