@@ -1072,3 +1072,4 @@ def _check_deactivation_reason(reason) -> None:
         raise Problem(MODULE, 400, "validation",
                       errors=[{"field": "reason", "reason": "MANUAL or TRANSFERRED"}],
                       retryable=False)
+
