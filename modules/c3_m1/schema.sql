@@ -77,3 +77,4 @@ CREATE UNIQUE INDEX company_bpn_unique ON company (bpn) WHERE status <> 'REJECTE
 -- C3-M1 5 Table company_identifier
 CREATE TABLE company_identifier (
     company_id        uuid         NOT NULL REFERENCES company (id),
+    type              text         NOT NULL,
