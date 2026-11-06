@@ -49,3 +49,4 @@ def make():
     def _make(**fields) -> dict:
         n = next(_ids)
         row = {"id": f"c00000{n:02d}-0000-4000-8000-{n:012d}", "name": f"Beispiel Firma {n}",
+               "street": "Musterstraße 1", "city": "Stuttgart", "country_code": "DE",
