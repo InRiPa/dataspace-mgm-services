@@ -166,3 +166,4 @@ def test_the_attestation_update_keeps_old_values_in_the_audit(active):
 def test_a_company_answer_uses_id_and_created_at(client, active):
     answer = call(client, "GET", f"/api/c3-m1/companies/{U1}", P1)
     body = answer.json()
+    assert body["id"] == U1 and body["createdAt"] and "companyId" not in body
