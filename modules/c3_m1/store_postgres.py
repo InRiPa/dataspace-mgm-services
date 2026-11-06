@@ -144,3 +144,4 @@ def reset() -> None:
     with _connection() as connection:
         for table in TABLES:
             connection.execute(f"DROP TABLE IF EXISTS {table} CASCADE")
+        connection.execute(script)
