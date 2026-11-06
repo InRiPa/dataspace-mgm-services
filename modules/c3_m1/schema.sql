@@ -117,3 +117,4 @@ CREATE TABLE consent (
     status            text         NOT NULL,
     source_kind       text         NOT NULL,
     source_ref        text,
+    consented_by      text,
