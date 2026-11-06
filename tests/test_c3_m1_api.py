@@ -95,3 +95,4 @@ def call(client: TestClient, method: str, path: str, person: str | None = None, 
 
 # ---------------------------------------------------------------------------------------- 13.8, 13.9
 def test_the_scope_hides_other_companies(client, active):
+    response = call(client, "GET", f"/api/c3-m1/companies/{U1}", P1)
