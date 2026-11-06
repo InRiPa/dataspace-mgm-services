@@ -658,3 +658,4 @@ def list_companies(*, status: list[str] | str | None = None, name: str | None = 
 # ------------------------------------------------------------ change requests (7.4 - 7.6, 7.14 - 7.18)
 def _document_info(row: dict) -> dict:
     return {"id": row["id"], "fileName": row["file_name"], "mediaType": row["media_type"],
+            "sizeBytes": row["size_bytes"]}
