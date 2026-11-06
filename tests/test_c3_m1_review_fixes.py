@@ -268,3 +268,4 @@ def test_the_activation_calls_neither_the_csp_nor_c3_m2(active, monkeypatch):
     store.add_role(U1, "ACTIVE_PARTICIPANT", status="REQUESTED", source_kind="APPLICATION")
     answer = step("activate_company", companyId=U1, applicationId=A1)
     assert answer["result"]["status"] == "ACTIVE"
+
