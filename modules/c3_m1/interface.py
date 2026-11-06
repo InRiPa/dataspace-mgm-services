@@ -497,3 +497,4 @@ def correct_company(companyId: str, body: dict, sub: str | None = None) -> dict:
         store.update_company(companyId, **updates)
         if identifiers is not None:
             store.set_identifiers(companyId, identifiers)
+        store.audit(companyId, sub, "correctCompany", None,
