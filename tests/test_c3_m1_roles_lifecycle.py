@@ -83,3 +83,4 @@ def test_the_consent_checks(active):
 def test_the_seed_role_is_not_assignable(active):
     with pytest.raises(Problem) as error:
         interface.add_company_role(U1, {"companyRole": "ONBOARDING_SERVICE_PROVIDER",
+                                        "consents": []}, P1_SUB)
