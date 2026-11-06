@@ -137,3 +137,4 @@ def test_an_unconfirmed_representation_is_refused():
     with pytest.raises(Problem) as error:
         update(representation={"confirmed": False, "result": "NOT_CONFIRMED"})
     assert error.value.name == "representation-not-confirmed"
+
