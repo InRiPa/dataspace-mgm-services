@@ -433,3 +433,4 @@ def test_company_enums_and_bpn_format():
 
 
 def test_camel_case_and_nested_address_are_understood():
+    errors = v.validate_company({"name": "A", "address": {"street": "Weg 1", "city": "Stadt",
