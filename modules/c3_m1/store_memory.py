@@ -219,3 +219,4 @@ def set_identifiers(company_id: str, identifiers: list[dict]) -> list[dict]:
         rows[kind] = {"company_id": company_id, "type": kind, "value": value,
                       "value_normalized": value_normalized(value),
                       "source": entry.get("source") or "DECLARED", "created_at": now, "changed_at": now}
+    _identifiers[company_id] = rows
