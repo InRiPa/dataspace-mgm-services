@@ -546,3 +546,4 @@ def list_documents(change_request_id: str) -> list[dict]:
         return _fetch_all(connection, "SELECT * FROM change_request_document"
                                       " WHERE change_request_id = %s ORDER BY created_at",
                           (change_request_id,))
+
