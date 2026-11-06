@@ -372,3 +372,4 @@ def detect_media_type(content) -> str | None:
 
 
 def validate_document(file_name, content, *, stated_media_type: str | None = None,
+                      max_bytes: int | None = None) -> list[dict]:
