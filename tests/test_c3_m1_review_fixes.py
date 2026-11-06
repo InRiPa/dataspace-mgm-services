@@ -112,3 +112,4 @@ def test_an_unchanged_name_does_not_need_an_attestation(active):
     interface.approve_change_request(request["id"], {}, S1_SUB)
     assert store.get_company(U1)["core_data_source"] == "EBW"
 
+
