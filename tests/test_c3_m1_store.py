@@ -66,3 +66,4 @@ def test_get_company_returns_a_copy(make):
 
 
 def test_create_company_fills_defaults_and_timestamps(make):
+    company = store.create_company({"id": "c0000001-0000-4000-8000-000000000001", "name": "A",
