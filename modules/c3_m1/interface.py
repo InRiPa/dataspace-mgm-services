@@ -953,3 +953,237 @@ def decline_change_request(changeRequestId: str, body: dict | None = None,
     return _change_request_view(decided, osp=True)
 
 
+# ----------------------------------------------------- change with an attestation (7.3, 6.3, 6.7)
+def _attested_values(row: dict, claims: dict) -> tuple[dict, dict[str, dict]]:
+    """Name, address and identifiers from the claims (6.3); returns the fields and the identifiers."""
+    company = claims.get("company") or {}
+    fields = {"name": company.get("legal_name")}
+    stored = {entry["type"]: entry for entry in store.list_identifiers(row["id"])}
+    identifiers = [{"type": kind, "value": entry["value"], "source": entry["source"]}
+                   for kind, entry in stored.items()]
+    for entry in identifiers:
+        if entry["type"] == "EBWOID":
+            if not validation.same_value(entry["value"], company.get("ebwoid")):
+                entry["value"] = company.get("ebwoid")
+            entry["source"] = "BUSINESS_WALLET"
+    if not any(entry["type"] == "EBWOID" for entry in identifiers):
+        identifiers.append({"type": "EBWOID", "value": company.get("ebwoid"),
+                            "source": "BUSINESS_WALLET"})
+    if company.get("euid"):
+        identifiers = [entry for entry in identifiers if entry["type"] != "EUID"]
+        identifiers.append({"type": "EUID", "value": company["euid"], "source": "BUSINESS_WALLET"})
+
+    address = company.get("address")
+    if isinstance(address, dict):
+        same_street = validation.same_value(
+            " ".join(filter(None, (row["street"], row["house_number"]))), address.get("street_address"))
+        same_city = (validation.same_value(row["postal_code"], address.get("postal_code"))
+                     and validation.same_value(row["city"], address.get("locality")))
+        if not (same_street and same_city):
+            fields |= {"street": address.get("street_address"), "house_number": None,
+                       "address_addition": None, "region": None,
+                       "postal_code": address.get("postal_code"), "city": address.get("locality")}
+    return fields, {entry["type"]: entry for entry in identifiers}
+
+
+def update_company_from_attestation(companyId: str, body: dict, sub: str | None = None) -> dict:
+    """7.3: core data from a new verification attestation, immediately and without OSP staff."""
+    with store.lock(companyId):
+        row = get_company(companyId)
+        if row["status"] != "ACTIVE":
+            raise Problem(MODULE, 409, "invalid-state", detail=row["status"])
+        claims = attestation.verify(body.get("attestation") or "")
+        claims["client_id"] = claims.get("client_id")
+
+        if store.is_used(claims["jti"]):
+            raise Problem(MODULE, 409, "attestation-used")
+        if claims.get("representation", {}).get("confirmed") is not True:
+            raise Problem(MODULE, 409, "representation-not-confirmed")
+        company = claims.get("company") or {}
+        stored = {entry["type"]: entry for entry in store.list_identifiers(companyId)}
+        mismatched = []
+        if not validation.same_value((stored.get("EBWOID") or {}).get("value"), company.get("ebwoid")):
+            mismatched.append("EBWOID")
+        if (row["country_code"] or "") != (company.get("country") or ""):
+            mismatched.append("countryCode")
+        if mismatched:
+            raise Problem(MODULE, 409, "company-mismatch", fields=mismatched)
+        verified_at = claims["_verified_at"].isoformat()
+        stored_verified_at = _timestamp(row["core_data_verified_at"])
+        if stored_verified_at is not None and claims["_verified_at"] <= stored_verified_at:
+            raise Problem(MODULE, 409, "attestation-outdated")
+
+        fields, identifiers = _attested_values(row, claims)
+        errors = validation.validate_company(fields, partial=True)
+        errors += validation.validate_identifiers(list(identifiers.values()), row["country_code"])
+        if errors:
+            raise Problem(MODULE, 400, "validation", errors=errors)
+
+        changed = _changed_fields(row, fields, list(identifiers.values()))
+        updates = dict(fields)
+        updates |= {"core_data_source": "EBW", "core_data_verified_at": verified_at,
+                    "verification_ref": claims["jti"]}
+        store.update_company(companyId, **updates)
+        store.set_identifiers(companyId, list(identifiers.values()))
+        store.add_if_unused(claims["jti"], companyId)
+        store.audit(companyId, sub, "updateCompanyFromAttestation", None,
+                    {"changedFields": changed, "verificationRef": claims["jti"],
+                     "old": {field: row.get(field) for field in
+                             ("name", "street", "house_number", "postal_code", "city", "region")},
+                     "new": fields})
+        if changed:
+            events.publish(MODULE, "CompanyDataChanged",
+                           {"companyId": companyId, "changedFields": changed,
+                            "coreDataChanged": True, "coreDataSource": "EBW"})
+    return {"changedFields": changed, "company": company_view(companyId)}
+
+
+# ---------------------------------------------------------------- deactivation and return (7.13, 8.5, 8.6)
+def deactivate_company(input: dict) -> dict:
+    """8.5: deactivation by Process Orchestration with reason `MANUAL` or `TRANSFERRED`."""
+    cid, reason = input.get("companyId"), input.get("reason")
+    with store.lock(cid):
+        row = get_company(cid)
+        if row["status"] == "INACTIVE":
+            _check_deactivation_reason(reason)
+            if reason == "TRANSFERRED" and row["deactivation_reason"] == "MANUAL":
+                store.update_company(cid, deactivation_reason="TRANSFERRED")
+                store.audit(cid, None, "stepDeactivateCompany", None,
+                            {"deactivationReason": ["MANUAL", "TRANSFERRED"],
+                             "processId": input.get("processId"),
+                             "stepRunId": input.get("stepRunId")})
+            return standin.step_reply(input, {"companyId": cid, "status": row["status"],
+                                              "deactivationReason": row["deactivation_reason"]})
+        if row["status"] != "ACTIVE":
+            raise Problem(MODULE, 409, "invalid-state", detail=row["status"], retryable=False)
+        _check_deactivation_reason(reason)
+        store.update_company(cid, status="INACTIVE", deactivation_reason=reason,
+                             deactivated_at=_now())
+        store.audit(cid, None, "stepDeactivateCompany", None,
+                    {"deactivationReason": reason, "processId": input.get("processId"),
+                     "stepRunId": input.get("stepRunId")})
+        events.publish(MODULE, "CompanyDeactivated", {"companyId": cid, "reason": reason})
+    return standin.step_reply(input, {"companyId": cid, "status": "INACTIVE",
+                                      "deactivationReason": reason})
+
+
+def _check_deactivation_reason(reason) -> None:
+    if reason not in store.DEACTIVATION_REASONS:
+        raise Problem(MODULE, 400, "validation",
+                      errors=[{"field": "reason", "reason": "MANUAL or TRANSFERRED"}],
+                      retryable=False)
+
+
+def deactivate_company_by_staff(companyId: str, body: dict, sub: str | None = None) -> dict:
+    """7.13: manual deactivation by OSP staff, always with a justification."""
+    with store.lock(companyId):
+        row = get_company(companyId)
+        if row["status"] == "INACTIVE":
+            return company_view(companyId, detail=True)
+        if row["status"] != "ACTIVE":
+            raise Problem(MODULE, 409, "invalid-state", detail=row["status"])
+        errors = validation.validate_reason(body.get("reason"))
+        if errors:
+            raise Problem(MODULE, 400, "validation", errors=errors)
+        store.update_company(companyId, status="INACTIVE", deactivation_reason="MANUAL",
+                             deactivated_at=_now())
+        store.audit(companyId, sub, "deactivateCompany", None, {"reason": body.get("reason")})
+        events.publish(MODULE, "CompanyDeactivated", {"companyId": companyId, "reason": "MANUAL"})
+    return company_view(companyId, detail=True)
+
+
+def reactivate_company(input: dict) -> dict:
+    """8.6: back to ACTIVE from an approved application of the matching kind."""
+    cid, application_id = input.get("companyId"), input.get("applicationId")
+    with store.lock(cid):
+        row = get_company(cid)
+        if row["status"] == "ACTIVE":
+            return standin.step_reply(input, {"companyId": cid, "status": row["status"],
+                                              "bpn": row["bpn"], "companyRoles": _active_roles(cid),
+                                              "changedFields": []})
+        if row["status"] != "INACTIVE":
+            raise Problem(MODULE, 409, "invalid-state", detail=row["status"], retryable=False)
+
+        application = _application(application_id)
+        if application.get("companyId") != cid:
+            raise Problem(MODULE, 409, "conflict", detail="application has another companyId",
+                          retryable=False)
+        expected = "TRANSFER" if row["deactivation_reason"] == "TRANSFERRED" else "REACTIVATION"
+        if application.get("kind") != expected:
+            raise Problem(MODULE, 409, "invalid-state",
+                          detail=f"kind {application.get('kind')} does not match the reason",
+                          retryable=False)
+        if application.get("status") not in ("APPROVED", "COMPLETED"):
+            raise Problem(MODULE, 409, "invalid-state",
+                          detail=f"application {application.get('status')}", retryable=False)
+
+        data = application.get("companyData") or {}
+        source_address = data.get("address") or {}
+        verification = application.get("verification")
+        fields = {"name": data.get("legalName"), "short_name": data.get("shortName"),
+                  "street": source_address.get("streetName"),
+                  "house_number": source_address.get("streetNumber"),
+                  "postal_code": source_address.get("postalCode"), "city": source_address.get("city"),
+                  "region": source_address.get("region"),
+                  "country_code": source_address.get("countryCode")}
+        if verification == "EBW" and validation.same_value(row["name"], data.get("legalName")):
+            fields["name"] = row["name"]   # 6.3: an equal value keeps its stored spelling
+        mismatched = []
+        if fields["country_code"] != row["country_code"]:
+            mismatched.append("countryCode")
+        stored = {entry["type"]: entry for entry in store.list_identifiers(cid)}
+        if verification == "EBW":
+            claimed_ebwoid = next((entry["value"] for entry in data.get("identifiers") or []
+                                   if entry.get("type") == "EBWOID"), None)
+            if validation.value_normalized(claimed_ebwoid or "") != \
+                    (stored.get("EBWOID") or {}).get("value_normalized"):
+                mismatched.append("EBWOID")
+        if mismatched:
+            raise Problem(MODULE, 409, "company-mismatch", fields=mismatched, retryable=False)
+
+        identifiers = list(stored.values())
+        for entry in data.get("identifiers") or []:
+            if entry.get("type") == "EBWOID":
+                continue
+            if verification == "EBW":
+                if entry.get("type") not in CORE_IDENTIFIERS:
+                    continue
+                source = "BUSINESS_WALLET" if (stored.get(entry["type"]) or {}).get("source") == "BUSINESS_WALLET" else "DECLARED"
+            else:
+                source = "DECLARED" if (stored.get(entry["type"]) or {}).get("source") != "BUSINESS_WALLET" else "BUSINESS_WALLET"
+            identifiers = [item for item in identifiers if item["type"] != entry["type"]]
+            identifiers.append({"type": entry["type"], "value": entry["value"], "source": source})
+        identifiers = [{"type": entry["type"], "value": entry["value"], "source": entry["source"]}
+                       for entry in identifiers]
+
+        errors = validation.validate_company(fields)
+        errors += validation.validate_identifiers(identifiers, fields["country_code"])
+        if errors:
+            raise Problem(MODULE, 400, "validation", errors=errors, retryable=False)
+
+        attestation_claims = application.get("attestation") or {}
+        updates = dict(fields)
+        updates |= {"status": "ACTIVE", "deactivation_reason": None, "reactivated_at": _now()}
+        if verification == "EBW":
+            updates |= {"core_data_source": "EBW",
+                        "core_data_verified_at": attestation_claims.get("verifiedAt"),
+                        "verification_ref": attestation_claims.get("attestationId")}
+        else:
+            updates |= {"core_data_source": "MANUAL", "core_data_verified_at": _now()}
+        changed = _changed_fields(row, fields, identifiers)
+        store.update_company(cid, **updates)
+        store.set_identifiers(cid, identifiers)
+        store.audit(cid, None, "stepReactivateCompany", None,
+                    {"applicationId": application_id, "changedFields": changed,
+                     "processId": input.get("processId"), "stepRunId": input.get("stepRunId")})
+        if changed:
+            events.publish(MODULE, "CompanyDataChanged",
+                           {"companyId": cid, "changedFields": changed, "coreDataChanged": True,
+                            "coreDataSource": updates["core_data_source"]})
+        roles = sorted(role for role, status in store.list_roles(cid).items() if status == "ACTIVE")
+        events.publish(MODULE, "CompanyReactivated",
+                       {"companyId": cid, "bpn": row["bpn"], "companyRoles": roles})
+    return standin.step_reply(input, {"companyId": cid, "status": "ACTIVE", "bpn": row["bpn"],
+                                      "companyRoles": roles, "changedFields": changed})
+
+
