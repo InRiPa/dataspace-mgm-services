@@ -347,3 +347,4 @@ def activate_company(input: dict) -> dict:
                 pending.append(role)
         if not active:
             raise Problem(MODULE, 409, "roles-without-consent", missing=sorted(pending),
+                          retryable=False)
