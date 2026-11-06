@@ -153,3 +153,4 @@ def update_company(company_id: str, **fields) -> dict | None:
         raise ValueError(f"unknown company fields: {', '.join(sorted(unknown))}")
     status = fields.get("status", row["status"])
     _check_enum(status, STATUSES, "status")
+    _check_enum(fields.get("core_data_source", row["core_data_source"]), CORE_DATA_SOURCES,
