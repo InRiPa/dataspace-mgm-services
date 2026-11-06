@@ -175,3 +175,4 @@ def find_companies(*, status=None, name=None, bpn=None, has_bpn=None, company_ro
     _check_enum(core_data_source, CORE_DATA_SOURCES, "core_data_source")
     wanted_name = " ".join(name.split()).casefold() if name else None
     items = []
+    for row in companies.values():
