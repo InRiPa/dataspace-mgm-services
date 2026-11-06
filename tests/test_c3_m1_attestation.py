@@ -207,3 +207,4 @@ def test_an_unreadable_jwks_is_an_upstream_error(monkeypatch, tmp_path):
 
 
 def test_only_active_companies_take_an_attestation():
+    seed(A1, U1)
