@@ -55,3 +55,4 @@ def test_the_event_fields_are_the_ones_c11_reads(active):
     """FRAMEWORK 6 / README 10: `companyId` and `changeRequestId`, closed also `outcome` (C11-M1)."""
     answer = submit()
     assert set(events.RELAY.log[-1]["data"]) == {"companyId", "changeRequestId"}
+    interface.withdraw_change_request(U1, answer["id"], P1_SUB)
