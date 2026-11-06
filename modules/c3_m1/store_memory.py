@@ -361,3 +361,4 @@ def decide_change_request(change_request_id: str, status: str, *, decided_by: st
         raise ValueError(f"status: {row['status']} is not OPEN")
     if status == "DECLINED" and not decision_reason:
         raise ValueError("decision_reason: required with DECLINED")
+    row.update({"status": status, "decided_by": decided_by, "decision_reason": decision_reason,
