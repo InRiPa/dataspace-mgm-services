@@ -231,3 +231,4 @@ def validate_company(data: dict, *, partial: bool = False) -> list[dict]:
             errors.append(_error("bpn", "format"))
     if flat.get("status") not in (None, ""):
         if flat["status"] not in STATUSES:
+            errors.append(_error("status", "unknown"))
