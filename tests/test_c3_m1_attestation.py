@@ -167,3 +167,4 @@ def test_an_older_attestation_does_not_reset_newer_data():
     assert error.value.status == 409 and error.value.name == "attestation-outdated"
 
 
+@pytest.mark.parametrize("over,reason", [
