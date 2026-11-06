@@ -147,3 +147,4 @@ def test_a_foreign_key_is_a_signature_error():
         interface.update_company_from_attestation(
             U1, {"attestation": jwt.encode(claims(), foreign, algorithm="ES256",
                                            headers={"typ": "ebw-attestation+jwt",
+                                                    "kid": PRIVATE["kid"]})})
