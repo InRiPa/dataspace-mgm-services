@@ -646,3 +646,4 @@ def list_companies(*, status: list[str] | str | None = None, name: str | None = 
     """7.10: filters, newest first, paged; `companyRole` matches active roles only."""
     has_bpn = None if hasBpn in (None, "") else str(hasBpn).lower() in ("1", "true", "yes")
     try:
+        items, total = store.find_companies(
