@@ -859,3 +859,4 @@ def get_change_request_document(changeRequestId: str, documentId: str,
     """7.16: content, media type and file name; the read is audited."""
     request = _reviewed(changeRequestId)
     document = store.get_document(documentId)
+    if document is None or document["change_request_id"] != changeRequestId:
