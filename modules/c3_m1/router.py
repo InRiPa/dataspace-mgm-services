@@ -249,3 +249,4 @@ def read_company(companyId: str,
 
 
 @router.post("/osp/companies/{companyId}/deactivate")
+def deactivate_company_by_staff(companyId: str, body: dict = Body(...),
