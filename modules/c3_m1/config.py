@@ -90,3 +90,4 @@ def languages() -> list[str]:
     return [code.strip() for code in value("LANGUAGES").split(",") if code.strip()] or ["en"]
 
 
+def query_max_companies() -> int:
