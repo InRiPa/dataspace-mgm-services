@@ -365,3 +365,4 @@ def test_reset_clears_every_table(make):
     assert store.list_change_requests(company_id=company["id"]) == ([], 0)
     assert store.list_documents(request["id"]) == []
     assert not store.is_used("jti")
+    assert store.list_audit() == []
