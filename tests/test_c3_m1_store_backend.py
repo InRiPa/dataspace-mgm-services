@@ -90,3 +90,4 @@ def test_the_database_is_the_module_own_database(postgres):
 def test_the_database_keeps_the_invariants(postgres):
     postgres.create_company(dict(COMPANY))
     with pytest.raises(ValueError):
+        postgres.create_company(dict(COMPANY, id="c0000002-0000-4000-8000-000000000002",
