@@ -727,3 +727,229 @@ def _identifier_core_changed(row: dict, identifiers: list[dict]) -> bool:
     return any(not validation.same_value(stored[kind], value) for kind, value in now.items())
 
 
+def create_change_request(companyId: str, data: dict,
+                          documents: list[tuple[str, bytes, str | None]],
+                          sub: str | None = None) -> dict:
+    """7.4: a change request with supporting documents."""
+    if not config.change_requests_enabled():
+        raise Problem(MODULE, 409, "change-requests-disabled")
+    with store.lock(companyId):
+        row = get_company(companyId)
+        if row["status"] != "ACTIVE":
+            raise Problem(MODULE, 409, "invalid-state", detail=row["status"])
+        if store.open_change_request(companyId):
+            raise Problem(MODULE, 409, "change-request-open")
+
+        changes = {key: value for key, value in data.items() if key in ("name", "address", "identifiers")}
+        identifiers = changes.get("identifiers")
+        wallet = [{"type": entry["type"], "value": entry["value"], "source": entry["source"]}
+                  for entry in store.list_identifiers(companyId) if entry["source"] == "BUSINESS_WALLET"]
+        errors = validation.validate_change_request(data, row["country_code"])
+        if identifiers is not None:
+            if not identifiers and wallet:
+                # "afterwards at least one identifier" counts the wallet identifiers that stay
+                errors = [error for error in errors
+                          if not (error["field"] == "identifiers" and error["reason"] == "missing")]
+            errors += _wallet_identifier_conflict(row, identifiers)
+        if errors:
+            raise Problem(MODULE, 400, "validation", errors=errors)
+        core_changed = any(_differs_field(row, key, value)
+                           for key, value in changes.items() if key != "identifiers")
+        if identifiers is not None and _identifier_core_changed(row, identifiers):
+            core_changed = True
+        if core_changed and row["core_data_source"] == "EBW":
+            raise Problem(MODULE, 409, "attestation-required")
+        if not _changes_differs(row, changes):
+            raise Problem(MODULE, 400, "validation",
+                          errors=[{"field": "changes", "reason": "no change"}])
+
+        errors = []
+        if not 1 <= len(documents) <= config.change_request_max_documents():
+            errors.append({"field": "documents", "reason": "1 to %d documents"
+                                                          % config.change_request_max_documents()})
+        for file_name, content, stated in documents:
+            errors += validation.validate_document(file_name, content, stated_media_type=stated,
+                                                   max_bytes=config.change_request_max_document_bytes())
+        if errors:
+            raise Problem(MODULE, 400, "document-invalid", errors=errors)
+
+        created = store.create_change_request({
+            "company_id": companyId, "changes": changes, "comment": data.get("comment"),
+            "requested_by": sub, "status": "OPEN"})
+        for file_name, content, stated in documents:
+            store.add_document(created["id"], file_name=file_name,
+                               media_type=validation.detect_media_type(content) or stated or "",
+                               content=content)
+        store.audit(companyId, sub, "createChangeRequest", created["id"],
+                    {"changedFields": sorted(changes)})
+        events.publish(MODULE, "CompanyChangeRequestSubmitted",
+                       {"companyId": companyId, "changeRequestId": created["id"]})
+    return _change_request_view(created)
+
+
+def list_own_change_requests(companyId: str, page: int = 0, size: int = 20) -> dict:
+    """7.5: own change requests, newest first, without `decidedBy`."""
+    get_company(companyId)
+    items, total = store.list_change_requests(company_id=companyId, page=page, size=size,
+                                              newest_first=True)
+    return {"items": [_change_request_view(item) for item in items], "page": page, "size": size,
+            "total": total}
+
+
+def _own_change_request(companyId: str, changeRequestId: str) -> dict:
+    row = store.get_change_request(changeRequestId)
+    if row is None or row["company_id"] != companyId:
+        raise Problem(MODULE, 404, "not-found")
+    return row
+
+
+def withdraw_change_request(companyId: str, changeRequestId: str, sub: str | None = None) -> dict:
+    """7.6"""
+    with store.lock(companyId):
+        row = _own_change_request(companyId, changeRequestId)
+        if row["status"] == "WITHDRAWN":
+            return _change_request_view(row)
+        if row["status"] != "OPEN":
+            raise Problem(MODULE, 409, "invalid-state", detail=row["status"])
+        closed = store.withdraw_change_request(changeRequestId)
+        store.audit(companyId, sub, "withdrawChangeRequest", changeRequestId)
+        events.publish(MODULE, "CompanyChangeRequestClosed",
+                       {"companyId": companyId, "changeRequestId": changeRequestId,
+                        "outcome": "WITHDRAWN"})
+    return _change_request_view(closed)
+
+
+# ----------------------------------------------------------------------- review by OSP staff (7.14 - 7.18)
+def _reviewed(changeRequestId: str) -> dict:
+    row = store.get_change_request(changeRequestId)
+    if row is None:
+        raise Problem(MODULE, 404, "not-found")
+    return row
+
+
+def list_change_requests(*, status: list[str] | str | None = None,
+                         companyId: str | None = None, page: int | str = 0,
+                         size: int | str = 20) -> dict:
+    """7.14: all change requests, oldest first."""
+    try:
+        items, total = store.list_change_requests(status=status, company_id=companyId,
+                                                  page=int(page or 0), size=int(size or 20))
+    except ValueError as error:
+        raise Problem(MODULE, 400, "validation", errors=[{"field": "filter", "reason": str(error)}])
+    return {"items": [_change_request_view(item, osp=True,
+                                           company=store.get_company(item["company_id"]))
+                      for item in items],
+            "page": int(page or 0), "size": int(size or 20), "total": total}
+
+
+def get_change_request(changeRequestId: str) -> dict:
+    """7.15: the request with the current state of the company."""
+    row = _reviewed(changeRequestId)
+    company = store.get_company(row["company_id"]) or {}
+    view = _change_request_view(row, osp=True, company=company)
+    view["company"] = {"id": company.get("id"), "name": company.get("name"),
+                       "address": _address(company), "identifiers": _identifiers(company),
+                       "coreDataSource": company.get("core_data_source"),
+                       "status": company.get("status")}
+    return view
+
+
+def get_change_request_document(changeRequestId: str, documentId: str,
+                                sub: str | None = None) -> dict:
+    """7.16: content, media type and file name; the read is audited."""
+    request = _reviewed(changeRequestId)
+    document = store.get_document(documentId)
+    if document is None or document["change_request_id"] != changeRequestId:
+        raise Problem(MODULE, 404, "not-found")
+    store.audit(request["company_id"], sub, "getChangeRequestDocument", documentId)
+    return {"content": document["content"], "media_type": document["media_type"],
+            "file_name": document["file_name"]}
+
+
+def _apply_changes(companyId: str, row: dict, changes: dict) -> tuple[list[str], bool]:
+    """Apply the request and return the changed field names and whether core data changed (7.17)."""
+    fields = {key: value for key, value in changes.items() if key in ("name", "address")}
+    identifiers = changes.get("identifiers")
+    stored = store.list_identifiers(companyId)
+    wallet = [{"type": entry["type"], "value": entry["value"], "source": entry["source"]}
+              for entry in stored if entry["source"] == "BUSINESS_WALLET"]
+    merged_identifiers = (list(identifiers) + wallet) if identifiers is not None else \
+        [{"type": entry["type"], "value": entry["value"], "source": entry["source"]} for entry in stored]
+    errors = validation.validate_company(_validate_merge(row, fields), partial=False)
+    errors += validation.validate_identifiers(merged_identifiers, row["country_code"])
+    if identifiers is not None:
+        errors += _wallet_identifier_conflict(row, identifiers)
+    if errors:
+        raise Problem(MODULE, 400, "validation", errors=errors)
+
+    core_changed = any(_differs_field(row, key, value) for key, value in fields.items())
+    if identifiers is not None and _identifier_core_changed(row, identifiers):
+        core_changed = True
+    if core_changed and row["core_data_source"] == "EBW":
+        raise Problem(MODULE, 409, "attestation-required")
+    changed = _changed_fields(row, fields, identifiers)
+    updates = validation.flat_fields(fields)
+    if core_changed:
+        updates |= {"core_data_source": "MANUAL", "core_data_verified_at": _now()}
+    if updates:
+        store.update_company(companyId, **updates)
+    if identifiers is not None:
+        store.set_identifiers(companyId, merged_identifiers)
+    return changed, core_changed
+
+
+def approve_change_request(changeRequestId: str, body: dict | None = None,
+                           sub: str | None = None) -> dict:
+    """7.17"""
+    with store.lock((store.get_change_request(changeRequestId) or {}).get("company_id")):
+        row = _reviewed(changeRequestId)
+        if row["status"] == "APPROVED":
+            return _change_request_view(row, osp=True)
+        if row["status"] != "OPEN":
+            raise Problem(MODULE, 409, "invalid-state", detail=row["status"])
+        if row["requested_by"] and row["requested_by"] == sub:
+            raise Problem(MODULE, 409, "same-person")
+        company = get_company(row["company_id"])
+        if company["status"] != "ACTIVE":
+            raise Problem(MODULE, 409, "invalid-state", detail=company["status"])
+
+        changed, core_changed = _apply_changes(row["company_id"], company, row["changes"])
+        decided = store.decide_change_request(changeRequestId, "APPROVED", decided_by=sub,
+                                              decision_reason=None)
+        store.audit(row["company_id"], sub, "approveChangeRequest", changeRequestId,
+                    {"changedFields": changed, "comment": (body or {}).get("comment")})
+        if changed:
+            events.publish(MODULE, "CompanyDataChanged",
+                           {"companyId": row["company_id"], "changedFields": changed,
+                            "coreDataChanged": core_changed,
+                            "coreDataSource": "MANUAL" if core_changed
+                            else company["core_data_source"]})
+        events.publish(MODULE, "CompanyChangeRequestClosed",
+                       {"companyId": row["company_id"], "changeRequestId": changeRequestId,
+                        "outcome": "APPROVED"})
+    return _change_request_view(decided, osp=True)
+
+
+def decline_change_request(changeRequestId: str, body: dict | None = None,
+                           sub: str | None = None) -> dict:
+    """7.18"""
+    with store.lock((store.get_change_request(changeRequestId) or {}).get("company_id")):
+        row = _reviewed(changeRequestId)
+        reason = (body or {}).get("reason")
+        if row["status"] == "DECLINED":
+            return _change_request_view(row, osp=True)
+        if row["status"] != "OPEN":
+            raise Problem(MODULE, 409, "invalid-state", detail=row["status"])
+        errors = validation.validate_decision_reason(reason)
+        if errors:
+            raise Problem(MODULE, 400, "validation", errors=errors)
+        decided = store.decide_change_request(changeRequestId, "DECLINED", decided_by=sub,
+                                              decision_reason=reason)
+        store.audit(row["company_id"], sub, "declineChangeRequest", changeRequestId,
+                    {"reason": reason})
+        events.publish(MODULE, "CompanyChangeRequestClosed",
+                       {"companyId": row["company_id"], "changeRequestId": changeRequestId,
+                        "outcome": "DECLINED"})
+    return _change_request_view(decided, osp=True)
+
+
