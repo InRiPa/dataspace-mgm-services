@@ -138,3 +138,4 @@ def verify(attestation: str, *, now: dt.datetime | None = None) -> dict:
     try:
         claims = jwt.decode(attestation, options={"verify_signature": False, "verify_aud": False,
                                                   "verify_exp": False, "verify_iat": False})
+    except jwt.PyJWTError as error:
