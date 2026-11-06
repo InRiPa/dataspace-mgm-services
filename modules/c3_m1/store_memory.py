@@ -84,3 +84,4 @@ def _checked_bpn(bpn, *, company_id: str | None, status: str) -> str | None:
         raise ValueError("bpn: not a string")
     bpn = bpn.strip().upper()
     if status != "REJECTED":
+        for other_id, other in companies.items():
