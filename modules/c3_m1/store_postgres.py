@@ -532,3 +532,4 @@ def add_document(change_request_id: str, *, file_name: str, media_type: str,
 
 
 def get_document(document_id: str | None) -> dict | None:
+    if not document_id or not _uuid_ok(document_id):
