@@ -1201,3 +1201,4 @@ def query_company(*, companyId: str) -> dict:
     """9.1"""
     return company_internal(companyId)
 
+
