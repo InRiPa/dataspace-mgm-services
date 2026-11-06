@@ -199,3 +199,4 @@ def seed_company() -> dict | None:
 
 
 # ------------------------------------------------------------------------ role catalogue (6.5)
+def company_roles_file() -> Path | None:
