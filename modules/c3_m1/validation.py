@@ -239,3 +239,4 @@ def validate_company(data: dict, *, partial: bool = False) -> list[dict]:
         if flat["core_data_source"] not in CORE_DATA_SOURCES:
             errors.append(_error("core_data_source", "unknown"))
     return errors
+
