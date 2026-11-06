@@ -123,3 +123,4 @@ def update_from_attestation(companyId: str, body: dict = Body(...),
                             claims: dict = standin.perm(MODULE, "POST",
                                                         "/companies/{companyId}/attestation-updates")):
     standin.company_scope(MODULE, claims, companyId)
+    return interface.update_company_from_attestation(companyId, body, claims.get("sub"))
