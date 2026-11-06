@@ -79,3 +79,4 @@ def reset() -> None:
             raise
         # the start survives an unusable database; the seed then lands in memory, calls answer 501
         target = store.backend_memory()
+        target.reset()
