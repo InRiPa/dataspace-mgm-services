@@ -82,3 +82,4 @@ def test_the_database_is_the_module_own_database(postgres):
     """The transport answers the same functions as the memory one, on the own schema."""
     created = postgres.create_company(dict(COMPANY))
     assert created["bpn"] == "BPNLIUK2REMLK3F4"
+    assert postgres.get_company(COMPANY["id"])["name"] == "Beispiel Maschinenbau GmbH"
