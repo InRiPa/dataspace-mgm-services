@@ -306,3 +306,4 @@ def _terms_of_roles() -> dict[str, set[str]]:
         agreements = testdata.agreements()
     else:
         agreements = neighbours.query(MODULE, "c1-m2", "list_agreements_internal") or []
+    terms: dict[str, set[str]] = {}
