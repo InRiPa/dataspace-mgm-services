@@ -61,3 +61,4 @@ REGION_PATTERN = re.compile(r"^[A-Z0-9]{1,3}$")
 COUNTRY_PATTERN = re.compile(r"^[A-Z]{2}$")
 BPN_PATTERN = re.compile(r"^BPNL[A-Z0-9]{12}$")
 COMMENT_MAX = 1000
+REASON_MAX = 500
