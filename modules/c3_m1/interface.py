@@ -29,3 +29,4 @@ Names and signatures follow the call convention of AGENTS.md: a step is
 `def create_company(input: dict) -> dict` returning `{stepRunId, state, result}`, a query takes its
 parameters by their openapi names. No token checks here.
 
+Steps are idempotent (FRAMEWORK 4.4): the business key is looked up first, only what is missing is
