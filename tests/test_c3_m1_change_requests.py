@@ -149,3 +149,4 @@ def test_nobody_approves_their_own_request(active):
     assert error.value.status == 409 and error.value.name == "same-person"
     assert interface.approve_change_request(answer["id"], {}, S1_SUB)["status"] == "APPROVED"
 
+
