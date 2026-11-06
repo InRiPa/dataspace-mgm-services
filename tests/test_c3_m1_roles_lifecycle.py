@@ -122,3 +122,4 @@ def test_the_reactivation_with_a_new_attestation(active):
     assert answer["result"]["status"] == "ACTIVE"
     row = store.get_company(U1)
     assert row["street"] == "Musterstraße" and row["house_number"] == "7"
+    assert row["core_data_source"] == "EBW" and row["deactivation_reason"] is None
