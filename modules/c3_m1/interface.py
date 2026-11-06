@@ -366,3 +366,4 @@ def activate_company(input: dict) -> dict:
         events.publish(MODULE, "CompanyActivated", {"companyId": cid, "bpn": row["bpn"],
                                                     "companyRoles": sorted(active)})
     return standin.step_reply(input, {"companyId": cid, "status": "ACTIVE", "bpn": row["bpn"],
+                                      "companyRoles": sorted(active), "pendingCompanyRoles": pending})
