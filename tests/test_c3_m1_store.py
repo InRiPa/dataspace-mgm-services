@@ -448,3 +448,4 @@ def test_partial_validation_checks_only_given_fields():
 
 # --------------------------------------------------------------------- identifier rules (6.4)
 def test_a_company_needs_at_least_one_identifier():
+    assert v.validate_identifiers([], "DE") == [{"field": "identifiers", "reason": "missing"}]
