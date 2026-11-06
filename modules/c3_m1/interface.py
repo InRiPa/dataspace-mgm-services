@@ -734,3 +734,4 @@ def create_change_request(companyId: str, data: dict,
     if not config.change_requests_enabled():
         raise Problem(MODULE, 409, "change-requests-disabled")
     with store.lock(companyId):
+        row = get_company(companyId)
