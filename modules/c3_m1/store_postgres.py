@@ -361,3 +361,4 @@ def remove_role(company_id: str, company_role: str) -> dict | None:
     """Removal keeps the row: status `INACTIVE` (README 5)."""
     now = _now()
     with _connection() as connection:
+        return _fetch_one(connection,
