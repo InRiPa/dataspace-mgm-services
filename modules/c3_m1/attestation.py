@@ -61,3 +61,4 @@ def reset() -> None:
     _last_reload = 0.0
 
 
+def _invalid(reason: str, detail: str | None = None) -> Problem:
