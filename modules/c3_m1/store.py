@@ -63,3 +63,4 @@ MEDIA_TYPES = ("application/pdf", "image/png", "image/jpeg")
 COMPANY_FIELDS = (
     "id", "name", "short_name", "street", "house_number", "address_addition", "postal_code",
     "city", "region", "country_code", "status", "bpn", "bpn_assigned_at", "core_data_source",
+    "core_data_verified_at", "verification_ref", "application_id", "deactivation_reason",
