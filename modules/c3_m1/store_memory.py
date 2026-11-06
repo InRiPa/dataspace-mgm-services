@@ -239,3 +239,4 @@ def list_roles(company_id: str) -> dict[str, str]:
     return {role: row["status"] for role, row in _roles.get(company_id, {}).items()}
 
 
+def add_role(company_id: str, company_role: str, *, status: str = "ACTIVE",
