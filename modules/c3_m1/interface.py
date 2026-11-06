@@ -562,3 +562,4 @@ def _terms_of(role: str, terms: list[dict]) -> dict[str, dict]:
 
 
 def add_company_role(companyId: str, body: dict, sub: str | None = None,
+                     lang: str | None = None) -> list[dict]:
