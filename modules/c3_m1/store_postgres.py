@@ -518,3 +518,4 @@ def add_document(change_request_id: str, *, file_name: str, media_type: str,
     if not _uuid_ok(change_request_id):
         raise ValueError(f"unknown change request: {change_request_id}")
     with _connection() as connection:
+        if _fetch_one(connection, "SELECT id FROM change_request WHERE id = %s",
