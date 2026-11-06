@@ -258,3 +258,4 @@ def create_company(input: dict) -> dict:
         store.set_identifiers(cid, identifiers)
         for role in roles:
             store.add_role(cid, role, status="REQUESTED", source_kind="APPLICATION",
+                           source_ref=application_id)
