@@ -193,3 +193,4 @@ def withdraw_change_request(companyId: str, changeRequestId: str,
 
 
 # --------------------------------------------------------------------- change requests, review (7.14 - 7.18)
+@router.get("/osp/change-requests")
