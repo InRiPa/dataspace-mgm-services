@@ -234,3 +234,4 @@ def test_add_role_enforces_the_enums(make):
 
 
 # -------------------------------------------------------------------------------- consents (5)
+def test_consents_are_keyed_by_company_and_key(make):
