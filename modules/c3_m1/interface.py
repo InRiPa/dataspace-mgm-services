@@ -457,3 +457,4 @@ OSP_LOCKED_FIELDS = {"bpn", "status", "coreDataSource", "applicationId", "verifi
 def correct_company(companyId: str, body: dict, sub: str | None = None) -> dict:
     """7.12: correction by OSP staff, always with a justification."""
     with store.lock(companyId):
+        row = get_company(companyId)
