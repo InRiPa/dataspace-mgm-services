@@ -240,3 +240,4 @@ def create_company(input: dict) -> dict:
     errors = validation.validate_company(row)
     errors += validation.validate_identifiers(identifiers, row["country_code"])
     for role in application.get("companyRoles") or []:
+        errors += validation.validate_company_role(role, config.role_catalogue())
