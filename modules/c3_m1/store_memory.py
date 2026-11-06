@@ -166,3 +166,4 @@ def update_company(company_id: str, **fields) -> dict | None:
     return _copy(row)
 
 
+def find_companies(*, status=None, name=None, bpn=None, has_bpn=None, company_role=None,
