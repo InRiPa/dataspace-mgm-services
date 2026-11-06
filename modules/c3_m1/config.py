@@ -228,3 +228,4 @@ INITIAL_ROLES = {
 def role_catalogue() -> dict[str, dict]:
     """Role catalogue of the installation: `companyRole` -> `{assignableBy, descriptions}`.
 
+    Without `COMPANY_ROLES_FILE` the initial values of README 6.5 apply, so the module runs
