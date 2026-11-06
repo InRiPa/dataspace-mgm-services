@@ -557,3 +557,4 @@ def list_company_roles(companyId: str, lang: str | None = None) -> list[dict]:
 
 def _terms_of(role: str, terms: list[dict]) -> dict[str, dict]:
     """agreementKey -> active term of the role."""
+    return {term["agreementKey"]: term for term in terms
