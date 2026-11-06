@@ -247,3 +247,4 @@ def add_role(company_id: str, company_role: str, *, status: str = "ACTIVE",
     _check_enum(status, ROLE_STATUSES, "status")
     _check_enum(source_kind, ROLE_SOURCE_KINDS, "source_kind")
     now = _now()
+    row = _roles.setdefault(company_id, {}).get(company_role) or {
