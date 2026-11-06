@@ -227,3 +227,4 @@ def validate_company(data: dict, *, partial: bool = False) -> list[dict]:
     errors += validate_country_code(flat.get("country_code"), required=not partial)
     if flat.get("bpn") not in (None, ""):
         bpn = flat["bpn"]
+        if not isinstance(bpn, str) or not BPN_PATTERN.match(bpn.upper()):
