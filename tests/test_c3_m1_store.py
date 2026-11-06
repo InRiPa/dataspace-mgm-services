@@ -190,3 +190,4 @@ def test_set_identifiers_normalises_and_replaces(make):
 
 
 def test_set_identifiers_enforces_one_per_type(make):
+    company = make()
