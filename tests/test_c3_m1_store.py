@@ -58,3 +58,4 @@ def make():
 
 # ------------------------------------------------------------------------------- company (5)
 def test_get_company_returns_a_copy(make):
+    company = make()
