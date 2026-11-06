@@ -332,3 +332,4 @@ def activate_company(input: dict) -> dict:
         if application_id != row["application_id"]:
             raise Problem(MODULE, 409, "conflict", detail="application does not match",
                           retryable=False)
+
