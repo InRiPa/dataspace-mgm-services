@@ -114,3 +114,4 @@ def test_review_download_and_approval_of_a_manual_company(active):
     assert events.RELAY.log[-1]["data"]["outcome"] == "APPROVED"
     assert interface.approve_change_request(answer["id"], {}, S1_SUB)["status"] == "APPROVED"
 
+
