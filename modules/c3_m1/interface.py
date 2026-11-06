@@ -1173,3 +1173,4 @@ def reactivate_company(input: dict) -> dict:
         changed = _changed_fields(row, fields, identifiers)
         store.update_company(cid, **updates)
         store.set_identifiers(cid, identifiers)
+        store.audit(cid, None, "stepReactivateCompany", None,
