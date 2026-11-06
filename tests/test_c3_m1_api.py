@@ -170,3 +170,4 @@ def test_a_correction_without_a_reason_is_a_validation_error(client, active):
 
 
 # ------------------------------------------------------------------------------- 7.10, 9.2, 9.3, 9.4
+def test_the_search_filters_over_http(client, active):
