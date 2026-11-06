@@ -283,3 +283,4 @@ def assign_identifier(input: dict) -> dict:
                 return standin.step_reply(input, {"companyId": cid, "status": row["status"], "bpn": bpn})
             raise Problem(MODULE, 409, "bpn-mismatch", detail=f"company has {row['bpn']}",
                           retryable=False)
+        if row["status"] != "REQUESTED":
