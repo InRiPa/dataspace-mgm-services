@@ -86,3 +86,4 @@ def backend() -> ModuleType:
     except ModuleNotFoundError as error:
         if name == "postgres" and error.name in ("psycopg", "psycopg.rows"):
             # Not part of the scaffold yet: answer like every other unimplemented operation.
+            raise Problem(MODULE, 501, "not-implemented",
