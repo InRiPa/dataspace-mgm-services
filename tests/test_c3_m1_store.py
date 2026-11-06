@@ -54,3 +54,4 @@ def make():
         row.update(fields)
         return store.create_company(row)
     return _make
+
