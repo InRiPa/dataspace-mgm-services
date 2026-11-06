@@ -245,3 +245,4 @@ def test_the_start_survives_a_database_without_a_driver(monkeypatch):
     assert error.value.status == 501
 
 
+def test_the_readme_data_files_resolve_without_configuration(monkeypatch):
