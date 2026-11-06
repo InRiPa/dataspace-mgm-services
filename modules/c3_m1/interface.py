@@ -301,3 +301,4 @@ def _terms_of_roles() -> dict[str, set[str]]:
     """agreementKey -> roles it belongs to, from the terms of C1-M2 (11.1).
 
     Without an address for C1-M2 the built-in stand-in answers with the initial values of 14.3.
+    """
