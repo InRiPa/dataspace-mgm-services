@@ -323,3 +323,4 @@ def validate_change_request(data: dict, country_code: str | None) -> list[dict]:
     has_identifiers = flat.get("identifiers") is not None
     if not (has_name or has_address or has_identifiers):
         errors.append(_error("changes", "missing"))
+    if has_name or has_address:
