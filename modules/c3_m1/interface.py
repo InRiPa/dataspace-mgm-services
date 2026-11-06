@@ -1215,3 +1215,4 @@ def query_companies(*, id: list[str] | str | None = None, bpn: list[str] | str |
                       errors=[{"field": "id,bpn", "reason": "too many values"}])
     items, found = [], set()
     for wanted in ids:
+        if store.get_company(wanted) is not None:
