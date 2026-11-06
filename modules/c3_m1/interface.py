@@ -205,3 +205,4 @@ def create_company(input: dict) -> dict:
     """8.1: create the company `REQUESTED` from a submitted application of kind ONBOARDING/TRANSFER."""
     cid, application_id = input.get("companyId"), input.get("applicationId")
     existing = store.get_company(cid)
+    if existing is not None:
