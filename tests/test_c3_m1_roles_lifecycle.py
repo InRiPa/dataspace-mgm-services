@@ -160,3 +160,4 @@ def test_a_company_transfers_to_this_installation():
                                                        "postalCode": "80331", "city": "München",
                                                        "region": "BY", "countryCode": "DE"},
         "identifiers": [{"type": "EBWOID", "value": "EBWOID-DE-0000000002", "source": "ATTESTATION"}]})
+    step("create_company", companyId=U4, applicationId=A8)
