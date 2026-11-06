@@ -920,3 +920,4 @@ def approve_change_request(changeRequestId: str, body: dict | None = None,
                     {"changedFields": changed, "comment": (body or {}).get("comment")})
         if changed:
             events.publish(MODULE, "CompanyDataChanged",
+                           {"companyId": row["company_id"], "changedFields": changed,
