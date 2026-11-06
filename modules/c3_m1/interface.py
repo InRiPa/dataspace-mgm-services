@@ -214,3 +214,4 @@ def create_company(input: dict) -> dict:
                       retryable=False)
 
     application = _application(application_id)
+    if application.get("companyId") != cid:
