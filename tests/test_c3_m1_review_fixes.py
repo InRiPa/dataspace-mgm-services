@@ -107,3 +107,4 @@ def test_an_empty_identifier_list_keeps_the_wallet_identifiers(active):
 def test_an_unchanged_name_does_not_need_an_attestation(active):
     request = interface.create_change_request(U1, {
         "comment": "x", "name": "Beispiel Maschinenbau GmbH",
+        "identifiers": [{"type": "VAT_ID", "value": "DE123456789"},
