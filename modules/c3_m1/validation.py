@@ -379,3 +379,4 @@ def validate_document(file_name, content, *, stated_media_type: str | None = Non
     if content in (None, b""):
         errors.append(_error("document", "required"))
         return errors
+    if not isinstance(content, (bytes, bytearray)):
