@@ -177,3 +177,4 @@ CREATE TABLE used_attestation (
 
 -- C3-M1 5 Table audit_log (FRAMEWORK 4.3): no secrets, no names of people
 CREATE TABLE audit_log (
+    id          uuid         PRIMARY KEY,
