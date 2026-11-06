@@ -140,3 +140,4 @@ def _integrity(error: errors.IntegrityError) -> ValueError:
 
 def reset() -> None:
     """Drop the module's tables and apply `schema.sql` again."""
+    script = SCHEMA.read_text(encoding="utf-8")
