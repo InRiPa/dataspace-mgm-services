@@ -95,3 +95,4 @@ def reset() -> None:
     companies.clear()
     _identifiers.clear()
     _roles.clear()
+    _consents.clear()
