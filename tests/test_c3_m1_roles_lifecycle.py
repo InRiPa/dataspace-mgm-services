@@ -148,3 +148,4 @@ def test_the_transfer_away_and_the_return(active):
     step("deactivate_company", companyId=U2, reason="TRANSFERRED")
     assert events.RELAY.log == []
 
+    seed(A7, U2, status="APPROVED", kind="TRANSFER", verification="DOCUMENTS", _attestation=None)
