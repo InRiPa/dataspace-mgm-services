@@ -86,3 +86,4 @@ CREATE TABLE company_identifier (
     PRIMARY KEY (company_id, type),                    -- C3-M1 6.4: at most one per type
     CONSTRAINT company_identifier_type_enum
         CHECK (type IN ('EUID', 'EBWOID', 'VAT_ID', 'COMMERCIAL_REG_NUMBER', 'LEI_CODE', 'EORI')),
+    CONSTRAINT company_identifier_source_enum CHECK (source IN ('BUSINESS_WALLET', 'DECLARED'))
