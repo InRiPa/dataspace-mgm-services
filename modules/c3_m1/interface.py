@@ -648,3 +648,4 @@ def list_companies(*, status: list[str] | str | None = None, name: str | None = 
     try:
         items, total = store.find_companies(
             status=status, name=name, bpn=bpn, has_bpn=has_bpn, company_role=companyRole,
+            core_data_source=coreDataSource, page=int(page or 0), size=int(size or 20))
