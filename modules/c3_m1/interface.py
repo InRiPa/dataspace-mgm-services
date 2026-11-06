@@ -608,3 +608,4 @@ def remove_company_role(companyId: str, companyRole: str, sub: str | None = None
         if companyRole not in config.role_catalogue():
             raise Problem(MODULE, 404, "not-found")
         if config.assignable_by(companyRole) != "COMPANY":
+            raise Problem(MODULE, 409, "role-not-assignable")
