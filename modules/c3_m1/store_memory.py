@@ -112,3 +112,4 @@ def lock(company_id: str | None = None):
     yield company_id
 
 
+# ------------------------------------------------------------------ company (README 5)
