@@ -60,3 +60,4 @@ CREATE TABLE company (
     CONSTRAINT company_postal_code_length CHECK (postal_code IS NULL OR char_length(postal_code) <= 12),
     CONSTRAINT company_city_length      CHECK (char_length(city) BETWEEN 1 AND 255),
     CONSTRAINT company_region_format    CHECK (region IS NULL OR region ~ '^[A-Z0-9]{1,3}$'),
+    CONSTRAINT company_country_format   CHECK (country_code ~ '^[A-Z]{2}$'),
