@@ -67,3 +67,4 @@ def sign(claims: dict, key: dict = PRIVATE, *, typ: str = "ebw-attestation+jwt")
 
 
 def claims(**over) -> dict:
+    base = {
