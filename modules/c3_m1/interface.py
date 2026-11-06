@@ -376,3 +376,4 @@ def reject_company(input: dict) -> dict:
     with store.lock(cid):
         row = get_company(cid)
         if row["status"] == "REJECTED":
+            return standin.step_reply(input, {"companyId": cid, "status": row["status"]})
