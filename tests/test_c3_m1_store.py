@@ -146,3 +146,4 @@ def test_find_companies_filters(make):
     active = make(bpn="BPNL00000000AAAA", core_data_source="EBW")
     make(name="Andere Logistik GmbH", status="REQUESTED")
     make(status="REJECTED")
+    assert [c["id"] for c in store.find_companies(status="REQUESTED")[0]] != []
