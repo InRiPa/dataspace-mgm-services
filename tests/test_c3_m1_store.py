@@ -267,3 +267,4 @@ def test_a_closed_request_does_not_block_another_company(make):
 def test_decide_requires_open_and_a_reason_for_declined(make):
     company = make()
     request = store.create_change_request({"company_id": company["id"], "comment": "c"})
+    with pytest.raises(ValueError):
