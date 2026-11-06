@@ -1038,3 +1038,4 @@ def update_company_from_attestation(companyId: str, body: dict, sub: str | None 
     return {"changedFields": changed, "company": company_view(companyId)}
 
 
+# ---------------------------------------------------------------- deactivation and return (7.13, 8.5, 8.6)
