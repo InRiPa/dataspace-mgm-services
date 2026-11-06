@@ -924,3 +924,4 @@ def approve_change_request(changeRequestId: str, body: dict | None = None,
                             "coreDataChanged": core_changed,
                             "coreDataSource": "MANUAL" if core_changed
                             else company["core_data_source"]})
+        events.publish(MODULE, "CompanyChangeRequestClosed",
