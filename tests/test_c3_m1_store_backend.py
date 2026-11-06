@@ -37,3 +37,4 @@ import pytest
 from modules.c3_m1 import store
 
 COMPANY = {
+    "id": "c0000001-0000-4000-8000-000000000001", "name": "Beispiel Maschinenbau GmbH",
