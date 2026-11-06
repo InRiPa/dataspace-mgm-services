@@ -165,3 +165,4 @@ CREATE TABLE change_request_document (
     CONSTRAINT change_request_document_media_type_enum
         CHECK (media_type IN ('application/pdf', 'image/png', 'image/jpeg'))
 );
+
