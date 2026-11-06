@@ -153,3 +153,4 @@ def test_create_company_writes_an_audit_entry_without_a_sub():
     entry = store.list_audit(U1)[-1]
     assert entry["sub"] == "" and entry["operation"] == "stepCreateCompany"
     assert entry["details"]["processId"] == "p-1" and entry["details"]["stepRunId"] == "s-1"
+
