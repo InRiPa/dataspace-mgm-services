@@ -120,3 +120,4 @@ def read_own_company(companyId: str,
 
 @router.post("/companies/{companyId}/attestation-updates")
 def update_from_attestation(companyId: str, body: dict = Body(...),
+                            claims: dict = standin.perm(MODULE, "POST",
