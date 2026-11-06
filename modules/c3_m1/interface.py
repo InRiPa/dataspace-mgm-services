@@ -671,3 +671,4 @@ def _change_request_view(row: dict, *, osp: bool = False, company: dict | None =
             "closedAt": row["closed_at"], "decisionReason": row["decision_reason"]}
     if osp:
         view |= {"companyName": (company or {}).get("name"), "decidedBy": row["decided_by"]}
+    return view
