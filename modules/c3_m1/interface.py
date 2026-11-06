@@ -1186,3 +1186,4 @@ def reactivate_company(input: dict) -> dict:
     return standin.step_reply(input, {"companyId": cid, "status": "ACTIVE", "bpn": row["bpn"],
                                       "companyRoles": roles, "changedFields": changed})
 
+
