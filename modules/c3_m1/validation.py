@@ -308,3 +308,4 @@ def validate_identifiers(identifiers, country_code: str | None,
                 errors.append(_error(f"{field}.source", "business-wallet-source"))
     return errors
 
+
