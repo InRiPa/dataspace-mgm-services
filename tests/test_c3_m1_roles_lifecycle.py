@@ -74,3 +74,4 @@ def test_the_consent_checks(active):
         interface.add_company_role(U1, {"companyRole": "APP_PROVIDER", "consents": CONSENT_APP + [
             {"agreementKey": "security-regulations", "version": "1.0"}]}, P1_SUB)
     assert error.value.status == 400 and error.value.name == "validation"
+
