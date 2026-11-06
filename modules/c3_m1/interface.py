@@ -625,3 +625,4 @@ def remove_company_role(companyId: str, companyRole: str, sub: str | None = None
                 store.set_consent(companyId, term["agreementKey"], status="INACTIVE",
                                   source_kind="COMPANY", source_ref=sub)
         active = [name for name, status in store.list_roles(companyId).items() if status == "ACTIVE"]
+        store.audit(companyId, sub, "removeCompanyRole", companyRole, {"companyRole": companyRole})
