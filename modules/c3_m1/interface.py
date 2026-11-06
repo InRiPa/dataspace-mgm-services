@@ -212,3 +212,4 @@ def create_company(input: dict) -> dict:
                                               "coreDataSource": existing["core_data_source"]})
         raise Problem(MODULE, 409, "conflict", detail="company belongs to another application",
                       retryable=False)
+
