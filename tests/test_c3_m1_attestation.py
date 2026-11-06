@@ -50,3 +50,4 @@ JWKS = MODULE_DIR / "stub-ebw-jwks.json"
 @pytest.fixture(autouse=True)
 def _keys(monkeypatch):
     monkeypatch.setenv("ATTESTATION_ISSUER", "https://ebw-connector.example.org")
+    monkeypatch.setenv("ATTESTATION_AUDIENCE", "portal-registration")
