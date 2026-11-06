@@ -135,3 +135,4 @@ def _integrity(error: errors.IntegrityError) -> ValueError:
         if "open_per_company" in constraint:
             return ValueError(f"company already has an open change request ({constraint})")
         return ValueError(f"unique violation: {constraint or error.diag.message_detail}")
+    return ValueError(str(error))
