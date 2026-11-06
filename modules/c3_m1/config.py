@@ -84,3 +84,4 @@ def number(name: str) -> int:
 def flag(name: str) -> bool:
     return value(name).strip().lower() in ("1", "true", "yes", "on")
 
+
