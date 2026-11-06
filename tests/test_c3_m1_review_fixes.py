@@ -138,3 +138,4 @@ def test_a_changed_euid_counts_as_core_data():
     interface.approve_change_request(request["id"], {}, S1_SUB)
     changed = [event for event in events.RELAY.log if event["type"] == "CompanyDataChanged"]
     assert changed and changed[0]["data"]["coreDataChanged"] is True
+
