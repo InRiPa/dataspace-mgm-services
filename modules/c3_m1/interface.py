@@ -406,3 +406,4 @@ def _changed_fields(row: dict, body: dict, identifiers: list[dict] | None) -> li
         after = {(entry["type"], validation.value_normalized(entry["value"])) for entry in identifiers}
         if before != after:
             changed.append("identifiers")
+    return changed
