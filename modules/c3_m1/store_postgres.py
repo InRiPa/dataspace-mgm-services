@@ -111,3 +111,4 @@ def _check_enum(value, allowed: tuple[str, ...], field: str) -> None:
         raise ValueError(f"{field}: {value!r} is not one of {', '.join(allowed)}")
 
 
+def _uuid_ok(value) -> bool:
