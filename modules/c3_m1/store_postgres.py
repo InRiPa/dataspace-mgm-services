@@ -435,3 +435,4 @@ def create_change_request(row: dict) -> dict:
                 " VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s) RETURNING *",
                 (row.get("id") or str(uuid.uuid4()), company_id, status,
                  json.dumps(row.get("changes") or {}), row.get("comment"), row.get("requested_by"),
+                 row.get("decided_by"), row.get("decision_reason"),
