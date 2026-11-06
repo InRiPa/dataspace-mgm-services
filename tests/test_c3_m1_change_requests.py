@@ -127,3 +127,4 @@ def test_decline_and_withdraw(active):
     assert own["items"][0]["decisionReason"] == "Unterlagen fehlen"
     assert "decidedBy" not in own["items"][0] and own["items"][0]["status"] == "DECLINED"
 
+    second = submit()
