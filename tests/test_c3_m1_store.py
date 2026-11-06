@@ -503,3 +503,4 @@ def test_patterns_fall_back_to_readme_6_4_without_reference_data(tmp_path, monke
     monkeypatch.setenv("SETTINGS_FILE", str(settings_file))
     settings.reset()
 
+    assert v.validate_country_code("AT") == []                      # no country list: format only
