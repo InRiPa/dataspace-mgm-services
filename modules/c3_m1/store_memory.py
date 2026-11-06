@@ -96,3 +96,4 @@ def reset() -> None:
     _identifiers.clear()
     _roles.clear()
     _consents.clear()
+    _change_requests.clear()
