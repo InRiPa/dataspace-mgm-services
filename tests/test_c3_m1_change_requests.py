@@ -139,3 +139,4 @@ def test_decline_and_withdraw(active):
         interface.withdraw_change_request(U1, answer["id"], P1_SUB)
     assert error.value.name == "invalid-state"
 
+
