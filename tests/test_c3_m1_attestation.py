@@ -64,3 +64,4 @@ def now() -> dt.datetime:
 def sign(claims: dict, key: dict = PRIVATE, *, typ: str = "ebw-attestation+jwt") -> str:
     return jwt.encode(claims, jwt.PyJWK(key).key, algorithm="ES256",
                       headers={"typ": typ, "kid": key["kid"]})
+
