@@ -104,3 +104,4 @@ def _delegate(name: str):
         return getattr(backend(), name)(*args, **kwargs)
 
     call.__name__ = call.__qualname__ = name
+    call.__doc__ = f"Delegates to the transport's `{name}`."
