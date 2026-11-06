@@ -397,3 +397,4 @@ def test_required_address_fields_and_lengths():
     assert {(e["field"], e["reason"]) for e in errors} >= {("street", "required"),
                                                            ("city", "required"),
                                                            ("country_code", "required")}
+    errors = v.validate_company({"short_name": "x" * 101, "house_number": "x" * 51,
