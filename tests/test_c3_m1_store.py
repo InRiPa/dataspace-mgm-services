@@ -204,3 +204,4 @@ def test_set_identifiers_enforces_the_enums(make):
         store.set_identifiers(company["id"], [{"type": "VAT_ID", "value": "DE123456789",
                                               "source": "ATTESTATION"}])
 
+
