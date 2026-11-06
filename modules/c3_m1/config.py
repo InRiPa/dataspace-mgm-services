@@ -110,3 +110,4 @@ def attestation_issuer() -> str:
     return value("ATTESTATION_ISSUER").rstrip("/")
 
 
+def attestation_jwks_url() -> str:
