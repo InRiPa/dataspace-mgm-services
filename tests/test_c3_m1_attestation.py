@@ -112,3 +112,4 @@ def test_a_valid_attestation_changes_the_core_data():
     assert error.value.status == 409 and error.value.name == "attestation-used"
 
 
+def test_an_unchanged_address_keeps_its_spelling():
