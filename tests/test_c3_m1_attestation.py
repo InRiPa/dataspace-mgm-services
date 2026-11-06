@@ -35,3 +35,4 @@ from pathlib import Path
 import jwt
 import pytest
 
+from modules.c3_m1 import interface, store
