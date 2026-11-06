@@ -426,3 +426,4 @@ def _identifiers_from(body: dict) -> list[dict] | None:
 def update_company(companyId: str, body: dict, sub: str | None = None) -> dict:
     """7.2: the Company Admin changes the short name."""
     with store.lock(companyId):
+        row = get_company(companyId)
