@@ -161,3 +161,4 @@ CREATE TABLE change_request_document (
     sha256             text         NOT NULL,
     content            bytea        NOT NULL,
     created_at         timestamptz  NOT NULL,
+    CONSTRAINT change_request_document_file_name_length CHECK (char_length(file_name) <= 200),
