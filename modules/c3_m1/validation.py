@@ -72,3 +72,4 @@ FALLBACK_PATTERNS: dict[str, dict[str, str]] = {
     "EBWOID": {"Worldwide": r"^\S{1,255}$"},
     "VAT_ID": {"Worldwide": r"^(?!.*\s$)([A-Za-z0-9](\.|\s|-|\/)?){5,18}$", "DE": r"^DE\d{9}$"},
     "COMMERCIAL_REG_NUMBER": {
+        "Worldwide": r"^(?!.*\s$)([A-Za-zÀ-ÿ0-9.()](\.|\s|-|_)?){4,50}$",
