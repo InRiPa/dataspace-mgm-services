@@ -37,3 +37,4 @@ import json
 import os
 from pathlib import Path
 
+from portal_common import settings
