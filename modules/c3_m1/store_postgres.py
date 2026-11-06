@@ -164,3 +164,4 @@ def lock(company_id: str | None = None):
             yield company_id
         finally:
             if company_id:
+                connection.execute("SELECT pg_advisory_unlock(%s)", (key,))
