@@ -371,3 +371,4 @@ def remove_role(company_id: str, company_role: str) -> dict | None:
 def get_consent(company_id: str, agreement_key: str) -> dict | None:
     if not _uuid_ok(company_id):
         return None
+    with _connection() as connection:
