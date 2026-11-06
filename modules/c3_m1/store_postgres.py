@@ -231,3 +231,4 @@ def update_company(company_id: str, **fields) -> dict | None:
         except errors.IntegrityError as error:
             raise _integrity(error) from None
 
+
