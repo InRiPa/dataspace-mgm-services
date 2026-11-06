@@ -166,3 +166,4 @@ CREATE TABLE change_request_document (
         CHECK (media_type IN ('application/pdf', 'image/png', 'image/jpeg'))
 );
 
+CREATE INDEX change_request_document_request ON change_request_document (change_request_id);
