@@ -359,3 +359,4 @@ def test_reset_clears_every_table(make):
     store.reset()
 
     assert store.get_company(company["id"]) is None
+    assert store.list_identifiers(company["id"]) == []
