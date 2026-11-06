@@ -163,3 +163,4 @@ def lock(company_id: str | None = None):
         try:
             yield company_id
         finally:
+            if company_id:
