@@ -291,3 +291,4 @@ def test_list_change_requests_filters_and_order(make):
     store.withdraw_change_request(first["id"])
     second = store.create_change_request({"company_id": company["id"], "comment": "2",
                                          "changes": {"name": "Neu"}})
+    items, total = store.list_change_requests(company_id=company["id"])
