@@ -200,3 +200,4 @@ def list_identifiers(company_id: str) -> list[dict]:
     return [_copy(row) for row in _identifiers.get(company_id, {}).values()]  # type: ignore[misc]
 
 
+def set_identifiers(company_id: str, identifiers: list[dict]) -> list[dict]:
