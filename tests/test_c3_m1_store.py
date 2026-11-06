@@ -324,3 +324,4 @@ def test_an_attestation_is_used_exactly_once(make):
     assert store.is_used("jti-1") and not store.is_used("jti-2")
 
 
+# ---------------------------------------------------------------------------------- audit (5)
