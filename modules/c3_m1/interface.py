@@ -181,3 +181,4 @@ def _stub_applications() -> dict[str, dict]:
     document = json.loads(path.read_text(encoding="utf-8"))
     entries = document.get("applications") if isinstance(document, dict) else document
     return {entry["id"]: entry for entry in entries or []}
+
