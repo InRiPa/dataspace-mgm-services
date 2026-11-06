@@ -58,3 +58,4 @@ DEFAULTS = {
     "CHANGE_REQUEST_MAX_DOCUMENT_BYTES": "10485760",
     "STUB_APPLICATIONS_FILE": "stub-applications.json",
     "ATTESTATION_JWKS_FILE": "stub-ebw-jwks.json",
+}
