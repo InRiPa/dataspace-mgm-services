@@ -33,3 +33,4 @@ from test_c3_m1_api import S2, U1, U2, active, call, client  # noqa: F401
 from test_c3_m1_attestation import _keys  # noqa: F401  (fixture: attestation environment)
 from test_c3_m1_steps import A1, A3, ADDRESS, CONSENTS, P1, U3, seed, step
 
+A5 = "a0000005-0000-4000-8000-000000000005"
