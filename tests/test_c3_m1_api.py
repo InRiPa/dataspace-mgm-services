@@ -124,3 +124,4 @@ def test_the_short_name_is_changed_and_locked_fields_refused(client, active):
 
     response = call(client, "PATCH", f"/api/c3-m1/companies/{U1}", P1,
                     json={"shortName": "BMW"})
+    assert response.status_code == 200
