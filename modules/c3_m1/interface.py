@@ -449,3 +449,4 @@ def update_company(companyId: str, body: dict, sub: str | None = None) -> dict:
     return company_view(companyId)
 
 
+# ----------------------------------------------------------------- correction by OSP staff (7.12)
