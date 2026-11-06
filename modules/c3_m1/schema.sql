@@ -68,3 +68,4 @@ CREATE TABLE company (
         CHECK (deactivation_reason IS NULL OR deactivation_reason IN ('MANUAL', 'TRANSFERRED')),
     -- C3-M1 5: the reason is filled only with status INACTIVE
     CONSTRAINT company_deactivation_reason_state
+        CHECK (deactivation_reason IS NULL OR status = 'INACTIVE')
