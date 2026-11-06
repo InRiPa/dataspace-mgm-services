@@ -76,3 +76,4 @@ P1_SUB = "5a1c0001-0000-4000-8000-000000000001"
 PDF = ("auszug.pdf", b"%PDF-1.7 Auszug", "application/pdf")
 
 
+# ------------------------------------------------------- the wallet identifiers are protected (blocker)
