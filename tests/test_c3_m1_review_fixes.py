@@ -113,3 +113,4 @@ def test_an_unchanged_name_does_not_need_an_attestation(active):
     assert store.get_company(U1)["core_data_source"] == "EBW"
 
 
+def test_a_changed_name_still_needs_the_attestation(active):
