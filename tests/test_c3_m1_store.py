@@ -468,3 +468,4 @@ def test_de_vat_id_accepts_and_rejects():
     assert errors == [{"field": "identifiers[0].value", "reason": "format"}]
 
 
+def test_euid_and_ebwoid_are_loose():
