@@ -178,3 +178,4 @@ def test_assign_identifier_and_its_errors():
     assert len(published("CompanyIdentifierAssigned")) == 1
     assert step("assign_identifier", companyId=U1, bpn="BPNLIUK2REMLK3F4")["state"] == "DONE"
     assert len(published("CompanyIdentifierAssigned")) == 1
+
