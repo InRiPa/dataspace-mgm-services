@@ -179,3 +179,4 @@ def find_companies(*, status=None, name=None, bpn=None, has_bpn=None, company_ro
         if statuses and row["status"] not in statuses:
             continue
         if wanted_name and wanted_name not in " ".join((row["name"] or "").split()).casefold():
+            continue
