@@ -83,3 +83,4 @@ def backend() -> ModuleType:
         return _cache[1]
     try:
         module = importlib.import_module(f".store_{name}", __package__)
+    except ModuleNotFoundError as error:
