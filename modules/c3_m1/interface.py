@@ -1254,3 +1254,4 @@ def find_identifier_matches(*, identifiers: list[dict], name: str | None = None,
             status=wanted_statuses or ["REQUESTED", "ACTIVE", "INACTIVE"], page=page, size=100)
         candidates += batch
         if not batch:
+            break
