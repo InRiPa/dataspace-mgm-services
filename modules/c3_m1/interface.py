@@ -96,3 +96,4 @@ def reset() -> None:
     for role in seed.get("companyRoles") or []:
         target.add_role(seed["companyId"], role, status="ACTIVE", source_kind="SEED",
                         source_ref="ospCompanyFile")
+
