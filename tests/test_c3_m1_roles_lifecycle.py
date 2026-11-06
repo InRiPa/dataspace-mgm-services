@@ -145,3 +145,4 @@ def test_the_transfer_away_and_the_return(active):
     assert answer["result"]["deactivationReason"] == "TRANSFERRED"
     assert events.RELAY.log[-1]["data"]["reason"] == "TRANSFERRED"
     events.RELAY.log.clear()
+    step("deactivate_company", companyId=U2, reason="TRANSFERRED")
