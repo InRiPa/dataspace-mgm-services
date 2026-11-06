@@ -157,3 +157,4 @@ def stub_applications_file() -> Path | None:
     path = _path(MODULE_DIR, value("STUB_APPLICATIONS_FILE"))
     if path is None:
         return None
+    path = _fallback(path, ROOT / path.name)
