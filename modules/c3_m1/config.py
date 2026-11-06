@@ -190,3 +190,4 @@ def seed_company() -> dict | None:
     The `companyId` in the file must equal `ospCompanyId`, otherwise the start aborts (README 4).
     """
     path = settings.resolve_path(settings.get("ospCompanyFile"))
+    if path is None or not path.exists():
