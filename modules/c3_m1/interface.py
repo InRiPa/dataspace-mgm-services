@@ -612,3 +612,4 @@ def remove_company_role(companyId: str, companyRole: str, sub: str | None = None
         if store.role_status(companyId, companyRole) != "ACTIVE":
             return _role_state(companyId, lang or "en")
         remaining = [role for role, status in store.list_roles(companyId).items()
+                     if status == "ACTIVE" and role != companyRole and config.assignable_by(role) == "COMPANY"]
