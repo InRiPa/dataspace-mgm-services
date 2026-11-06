@@ -778,3 +778,4 @@ def create_change_request(companyId: str, data: dict,
             "requested_by": sub, "status": "OPEN"})
         for file_name, content, stated in documents:
             store.add_document(created["id"], file_name=file_name,
+                               media_type=validation.detect_media_type(content) or stated or "",
