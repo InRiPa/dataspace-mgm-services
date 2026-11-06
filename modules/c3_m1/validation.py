@@ -240,3 +240,4 @@ def validate_company(data: dict, *, partial: bool = False) -> list[dict]:
             errors.append(_error("core_data_source", "unknown"))
     return errors
 
+
