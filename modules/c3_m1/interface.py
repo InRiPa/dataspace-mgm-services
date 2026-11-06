@@ -1219,3 +1219,4 @@ def query_companies(*, id: list[str] | str | None = None, bpn: list[str] | str |
             items.append(company_internal(wanted))
             found.add(wanted)
     for wanted in bpns:
+        rows = store.find_companies(bpn=wanted, size=config.query_max_companies())[0]
