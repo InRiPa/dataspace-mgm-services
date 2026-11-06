@@ -152,3 +152,4 @@ def test_the_correction_keeps_old_values_in_the_audit(client, active):
          json={"address": {"street": "Neue Straße"}, "reason": "Hinweis"})
     entry = [row for row in store.list_audit(U1) if row["operation"] == "correctCompany"][-1]
     assert entry["details"]["old"]["street"] == "Musterstraße"
+    assert entry["details"]["new"]["street"] == "Neue Straße"
