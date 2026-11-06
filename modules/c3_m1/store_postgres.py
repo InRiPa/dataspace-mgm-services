@@ -127,3 +127,4 @@ def _check_known(connection, company_id: str) -> None:
 
 
 def _integrity(error: errors.IntegrityError) -> ValueError:
+    """Database constraint -> ValueError, like the memory transport raises it."""
