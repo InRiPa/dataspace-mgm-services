@@ -1108,3 +1108,4 @@ def reactivate_company(input: dict) -> dict:
         if application.get("companyId") != cid:
             raise Problem(MODULE, 409, "conflict", detail="application has another companyId",
                           retryable=False)
+        expected = "TRANSFER" if row["deactivation_reason"] == "TRANSFERRED" else "REACTIVATION"
