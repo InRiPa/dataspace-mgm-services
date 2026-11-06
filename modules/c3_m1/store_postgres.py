@@ -185,3 +185,4 @@ def create_company(row: dict) -> dict:
     _check_enum(status, STATUSES, "status")
     _check_enum(row.get("core_data_source") or "MANUAL", CORE_DATA_SOURCES, "core_data_source")
     _check_enum(row.get("deactivation_reason"), DEACTIVATION_REASONS, "deactivation_reason")
+    now = _now()
