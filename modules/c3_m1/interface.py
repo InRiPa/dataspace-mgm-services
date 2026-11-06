@@ -463,3 +463,4 @@ def correct_company(companyId: str, body: dict, sub: str | None = None) -> dict:
         errors = validation.validate_reason(body.get("reason"))
         identifiers = _identifiers_from(body)
         fields = {key: value for key, value in validation.flat_fields(body).items()
+                  if key not in ("reason", "identifiers")}
