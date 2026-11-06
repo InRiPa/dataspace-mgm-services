@@ -263,3 +263,4 @@ def find_companies(*, status=None, name=None, bpn=None, has_bpn=None, company_ro
            + " ORDER BY c.created_at DESC, c.id DESC LIMIT %s OFFSET %s")
     with _connection() as connection:
         rows = _fetch_all(connection, sql, (*params, size, max(page, 0) * size))
+    total = int(rows[0].pop("total")) if rows else 0
