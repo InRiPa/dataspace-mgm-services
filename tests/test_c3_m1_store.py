@@ -196,3 +196,4 @@ def test_set_identifiers_enforces_one_per_type(make):
                                              {"type": "VAT_ID", "value": "DE987654321"}])
 
 
+def test_set_identifiers_enforces_the_enums(make):
