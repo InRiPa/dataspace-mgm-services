@@ -472,3 +472,4 @@ def list_change_requests(*, company_id: str | None = None, status=None,
     return rows, total
 
 
+def decide_change_request(change_request_id: str, status: str, *, decided_by: str | None = None,
