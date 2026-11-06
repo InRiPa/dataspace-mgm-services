@@ -238,3 +238,4 @@ def create_company(input: dict) -> dict:
              if config.assignable_by(role) == "COMPANY"]
 
     errors = validation.validate_company(row)
+    errors += validation.validate_identifiers(identifiers, row["country_code"])
