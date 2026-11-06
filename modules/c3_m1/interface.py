@@ -598,3 +598,4 @@ def add_company_role(companyId: str, body: dict, sub: str | None = None,
     return _role_state(companyId, lang or "en")
 
 
+def remove_company_role(companyId: str, companyRole: str, sub: str | None = None,
