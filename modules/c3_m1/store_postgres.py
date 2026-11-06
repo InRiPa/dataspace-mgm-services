@@ -521,3 +521,4 @@ def add_document(change_request_id: str, *, file_name: str, media_type: str,
         if _fetch_one(connection, "SELECT id FROM change_request WHERE id = %s",
                       (change_request_id,)) is None:
             raise ValueError(f"unknown change request: {change_request_id}")
+        return _fetch_one(  # type: ignore[return-value]
