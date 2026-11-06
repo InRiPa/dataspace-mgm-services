@@ -187,3 +187,4 @@ def _text(errors: list[dict], field: str, value, *, required: bool = False,
     if min_length and len(value.strip()) < min_length:
         errors.append(_error(field, "too-short"))
 
+
