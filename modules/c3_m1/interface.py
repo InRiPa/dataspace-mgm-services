@@ -74,3 +74,4 @@ def reset() -> None:
     try:
         store.reset()
         target = store
+    except Problem as error:
