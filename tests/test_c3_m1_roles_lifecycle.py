@@ -34,3 +34,4 @@ from test_c3_m1_attestation import _keys  # noqa: F401  (fixture: attestation en
 from test_c3_m1_steps import A1, A3, ADDRESS, CONSENTS, P1, U3, seed, step
 
 A5 = "a0000005-0000-4000-8000-000000000005"
+A6 = "a0000006-0000-4000-8000-000000000006"
