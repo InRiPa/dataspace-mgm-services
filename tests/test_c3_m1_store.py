@@ -350,3 +350,4 @@ def test_reset_clears_every_table(make):
     store.set_identifiers(company["id"], [{"type": "VAT_ID", "value": "DE123456789"}])
     store.add_role(company["id"], "ACTIVE_PARTICIPANT")
     store.set_consent(company["id"], "terms-active-participant", version="1.0")
+    request = store.create_change_request({"company_id": company["id"]})
