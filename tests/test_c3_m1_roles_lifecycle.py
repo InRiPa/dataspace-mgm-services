@@ -69,3 +69,4 @@ def test_the_consent_checks(active):
         interface.add_company_role(U1, {"companyRole": "APP_PROVIDER", "consents": [
             {"agreementKey": "terms-app-provider", "version": "0.9"}]}, P1_SUB)
     assert error.value.name == "consent-missing"
+
