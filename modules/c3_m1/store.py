@@ -110,3 +110,4 @@ def _delegate(name: str):
 
 reset = _delegate("reset")
 lock = _delegate("lock")
+get_company = _delegate("get_company")
