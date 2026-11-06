@@ -127,3 +127,4 @@ def test_status_enum_is_enforced(make):
 
 def test_core_data_source_enum_is_enforced(make):
     with pytest.raises(ValueError):
+        make(core_data_source="MASTER_DATA")
