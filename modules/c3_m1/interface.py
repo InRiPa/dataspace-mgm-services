@@ -407,3 +407,4 @@ def _changed_fields(row: dict, body: dict, identifiers: list[dict] | None) -> li
         if before != after:
             changed.append("identifiers")
     return changed
+
