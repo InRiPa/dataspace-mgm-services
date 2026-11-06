@@ -27,3 +27,4 @@
 Active when `DATABASE_URL` is set; the schema is `schema.sql` next to this file. The functions,
 the field names and the invariants are the ones of `store_memory`, so the caller never learns
 which transport runs. Timestamps leave as ISO 8601 strings and bytea as `bytes`, like the memory
+transport returns them.
