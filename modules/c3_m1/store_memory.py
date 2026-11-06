@@ -332,3 +332,4 @@ def open_change_request(company_id: str) -> dict | None:
     return next((_copy(row) for row in _change_requests.values()
                  if row["company_id"] == company_id and row["status"] == "OPEN"), None)
 
+
