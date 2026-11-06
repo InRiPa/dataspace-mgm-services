@@ -560,3 +560,4 @@ def add_if_unused(jti: str, company_id: str) -> bool:
             " ON CONFLICT (jti) DO NOTHING RETURNING jti", (jti, company_id, _now())).fetchone()
     return row is not None
 
+
