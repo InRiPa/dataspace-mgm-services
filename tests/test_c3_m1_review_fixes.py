@@ -32,3 +32,4 @@ from modules.c3_m1 import config, interface, store
 from portal_common import events
 from portal_common.problems import Problem
 
+from fastapi import FastAPI
