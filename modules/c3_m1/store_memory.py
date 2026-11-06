@@ -80,3 +80,4 @@ def _checked_bpn(bpn, *, company_id: str | None, status: str) -> str | None:
     """Upper case and unique among the companies whose status is not `REJECTED` (README 5)."""
     if bpn in (None, ""):
         return None
+    if not isinstance(bpn, str):
