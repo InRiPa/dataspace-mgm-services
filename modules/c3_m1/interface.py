@@ -530,3 +530,4 @@ def _role_state(company: str, lang: str) -> list[dict]:
     states = []
     for role in sorted(roles):
         entry = config.role_catalogue().get(role) or {}
+        assigned = store.role_status(company, role)
