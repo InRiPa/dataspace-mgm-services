@@ -1175,3 +1175,4 @@ def reactivate_company(input: dict) -> dict:
         store.set_identifiers(cid, identifiers)
         store.audit(cid, None, "stepReactivateCompany", None,
                     {"applicationId": application_id, "changedFields": changed,
+                     "processId": input.get("processId"), "stepRunId": input.get("stepRunId")})
