@@ -236,3 +236,4 @@ def role_catalogue() -> dict[str, dict]:
         return {role: dict(entry) for role, entry in INITIAL_ROLES.items()}
     document = json.loads(path.read_text(encoding="utf-8"))
     return {entry["companyRole"]: entry for entry in document.get("roles", []) if entry.get("companyRole")}
+
