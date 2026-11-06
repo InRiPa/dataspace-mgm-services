@@ -889,3 +889,4 @@ def _apply_changes(companyId: str, row: dict, changes: dict) -> tuple[list[str],
         raise Problem(MODULE, 409, "attestation-required")
     changed = _changed_fields(row, fields, identifiers)
     updates = validation.flat_fields(fields)
+    if core_changed:
