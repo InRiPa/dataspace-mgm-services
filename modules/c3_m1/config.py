@@ -225,3 +225,4 @@ INITIAL_ROLES = {
 }
 
 
+def role_catalogue() -> dict[str, dict]:
