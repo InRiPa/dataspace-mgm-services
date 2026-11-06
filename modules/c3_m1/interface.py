@@ -953,3 +953,4 @@ def decline_change_request(changeRequestId: str, body: dict | None = None,
     return _change_request_view(decided, osp=True)
 
 
+# ----------------------------------------------------- change with an attestation (7.3, 6.3, 6.7)
