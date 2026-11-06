@@ -990,3 +990,4 @@ def update_company_from_attestation(companyId: str, body: dict, sub: str | None 
     """7.3: core data from a new verification attestation, immediately and without OSP staff."""
     with store.lock(companyId):
         row = get_company(companyId)
+        if row["status"] != "ACTIVE":
