@@ -95,3 +95,4 @@ def query_companies(id: list[str] | None = Query(None), bpn: list[str] | None = 
 def find_identifier_matches(body: dict = Body(...),
                             _: dict = standin.perm(MODULE, "POST",
                                                    "/internal/companies/identifier-matches")):
+    return interface.find_identifier_matches(**body)
