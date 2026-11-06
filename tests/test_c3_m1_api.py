@@ -82,3 +82,4 @@ def active(client: TestClient) -> dict:
         iam.add_portal_roles(uid, [role])
         iam.bind(uid, company, bpn)
     return {"U1": U1, "U2": U2}
+
