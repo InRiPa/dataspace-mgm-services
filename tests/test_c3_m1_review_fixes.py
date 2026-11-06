@@ -160,3 +160,4 @@ def test_the_attestation_update_keeps_old_values_in_the_audit(active):
     entry = [row for row in store.list_audit(U1)
              if row["operation"] == "updateCompanyFromAttestation"][-1]
     assert entry["details"]["old"]["name"] == "Beispiel Maschinenbau GmbH"
+
