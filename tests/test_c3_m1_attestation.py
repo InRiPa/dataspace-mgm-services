@@ -204,3 +204,4 @@ def test_an_unreadable_jwks_is_an_upstream_error(monkeypatch, tmp_path):
         update()
     assert error.value.status == 502 and error.value.name == "upstream-error"
     assert error.value.ext["retryable"] is True
+
