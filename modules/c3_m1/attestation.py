@@ -81,3 +81,4 @@ def _load_keys() -> list[dict]:
     now = time.monotonic()
     if _cache["keys"] and now - float(_cache["fetched_at"]) < config.attestation_jwks_cache_seconds():
         return _cache["keys"]
+    try:
