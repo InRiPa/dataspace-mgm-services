@@ -377,3 +377,4 @@ def test_normalise_is_nfkc_trimmed_and_collapsed():
     assert not v.same_value("Beispiel Maschinenbau GmbH", "Beispiel Maschinenbau AG")
 
 
+def test_value_normalized_drops_spaces_and_punctuation():
