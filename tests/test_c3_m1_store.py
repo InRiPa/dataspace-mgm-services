@@ -179,3 +179,4 @@ def test_find_companies_is_newest_first_and_paged(make):
 def test_set_identifiers_normalises_and_replaces(make):
     company = make()
     rows = store.set_identifiers(company["id"], [
+        {"type": "VAT_ID", "value": "de 123.456.789", "source": "DECLARED"},
