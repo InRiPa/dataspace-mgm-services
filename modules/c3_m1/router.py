@@ -140,3 +140,4 @@ def list_company_roles(companyId: str, lang: str | None = None,
                                                    "/companies/{companyId}/company-roles")):
     standin.company_scope(MODULE, claims, companyId)
     return interface.list_company_roles(companyId, lang)
+
