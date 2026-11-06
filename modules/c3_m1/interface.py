@@ -1162,3 +1162,4 @@ def reactivate_company(input: dict) -> dict:
             raise Problem(MODULE, 400, "validation", errors=errors, retryable=False)
 
         attestation_claims = application.get("attestation") or {}
+        updates = dict(fields)
