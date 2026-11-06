@@ -84,3 +84,4 @@ def reject_company(body: dict = Body(...),
     return interface.reject_company(body)
 
 
+# ------------------------------------------------------------------------- queries (9.2, 9.3, 9.4)
