@@ -221,3 +221,4 @@ def update_company(company_id: str, **fields) -> dict | None:
         fields["bpn"] = (fields["bpn"] or "").strip().upper() or None
     assignments = ", ".join(f"{field} = %({field})s" for field in fields)
     with _connection() as connection:
+        if _fetch_one(connection, "SELECT id FROM company WHERE id = %s", (company_id,)) is None:
