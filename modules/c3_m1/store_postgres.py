@@ -225,3 +225,4 @@ def update_company(company_id: str, **fields) -> dict | None:
             return None
         try:
             return _fetch_one(connection,
+                              f"UPDATE company SET {assignments}, changed_at = %(now)s "
