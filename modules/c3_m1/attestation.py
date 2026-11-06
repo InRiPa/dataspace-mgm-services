@@ -142,3 +142,4 @@ def verify(attestation: str, *, now: dt.datetime | None = None) -> dict:
         raise _invalid("format", f"payload unreadable: {error}") from error
     if claims.get("iss") != config.attestation_issuer():
         raise _invalid("issuer", f"iss {claims.get('iss')!r}")
+
