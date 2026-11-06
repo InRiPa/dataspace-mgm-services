@@ -79,3 +79,4 @@ def number(name: str) -> int:
         return int(value(name))
     except ValueError:
         raise ValueError(f"{name}: not a number ({value(name)!r})") from None
+
