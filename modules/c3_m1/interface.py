@@ -737,3 +737,4 @@ def create_change_request(companyId: str, data: dict,
         row = get_company(companyId)
         if row["status"] != "ACTIVE":
             raise Problem(MODULE, 409, "invalid-state", detail=row["status"])
+        if store.open_change_request(companyId):
