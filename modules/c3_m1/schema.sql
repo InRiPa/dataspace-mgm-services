@@ -98,3 +98,4 @@ CREATE TABLE company_role_assignment (
     company_role   text         NOT NULL,
     status         text         NOT NULL,
     source_kind    text         NOT NULL,
+    source_ref     text,
