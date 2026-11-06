@@ -39,3 +39,4 @@ from conftest import BASE, bearer, person_token
 
 U1 = "c0000001-0000-4000-8000-000000000001"
 U2 = "c0000002-0000-4000-8000-000000000002"
+P1, P2, P3, P4 = "erika", "max", "hans", "lieschen"
