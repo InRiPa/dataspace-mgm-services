@@ -103,3 +103,4 @@ def test_an_unknown_or_malformed_id_is_not_found(postgres):
     assert postgres.get_change_request("nope") is None
 
 
+def test_reset_empties_the_tables(postgres):
