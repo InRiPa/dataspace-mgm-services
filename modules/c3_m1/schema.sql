@@ -121,3 +121,4 @@ CREATE TABLE consent (
     consented_at      timestamptz,
     changed_at        timestamptz  NOT NULL,
     PRIMARY KEY (company_id, agreement_key),
+    CONSTRAINT consent_status_enum CHECK (status IN ('ACTIVE', 'INACTIVE')),
