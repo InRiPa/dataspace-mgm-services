@@ -101,3 +101,4 @@ def backend_memory() -> ModuleType:
 
 def _delegate(name: str):
     def call(*args, **kwargs):
+        return getattr(backend(), name)(*args, **kwargs)
