@@ -735,3 +735,4 @@ def create_change_request(companyId: str, data: dict,
         raise Problem(MODULE, 409, "change-requests-disabled")
     with store.lock(companyId):
         row = get_company(companyId)
+        if row["status"] != "ACTIVE":
