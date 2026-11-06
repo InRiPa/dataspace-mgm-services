@@ -91,3 +91,4 @@ def query_companies(id: list[str] | None = Query(None), bpn: list[str] | None = 
     return interface.query_companies(id=id, bpn=bpn)
 
 
+@router.post("/internal/companies/identifier-matches")
