@@ -58,3 +58,4 @@ CREATE TABLE company (
     CONSTRAINT company_house_number_length CHECK (house_number IS NULL OR char_length(house_number) <= 50),
     CONSTRAINT company_address_addition_length CHECK (address_addition IS NULL OR char_length(address_addition) <= 255),
     CONSTRAINT company_postal_code_length CHECK (postal_code IS NULL OR char_length(postal_code) <= 12),
+    CONSTRAINT company_city_length      CHECK (char_length(city) BETWEEN 1 AND 255),
