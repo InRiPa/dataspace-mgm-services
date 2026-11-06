@@ -606,3 +606,4 @@ def remove_company_role(companyId: str, companyRole: str, sub: str | None = None
         if row["status"] != "ACTIVE":
             raise Problem(MODULE, 409, "invalid-state", detail=row["status"])
         if companyRole not in config.role_catalogue():
+            raise Problem(MODULE, 404, "not-found")
