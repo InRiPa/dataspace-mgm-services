@@ -124,3 +124,4 @@ def update_from_attestation(companyId: str, body: dict = Body(...),
                                                         "/companies/{companyId}/attestation-updates")):
     standin.company_scope(MODULE, claims, companyId)
     return interface.update_company_from_attestation(companyId, body, claims.get("sub"))
+
