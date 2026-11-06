@@ -544,3 +544,4 @@ def _role_state(company: str, lang: str) -> list[dict]:
                             "consentStatus": (own.get(term["agreementKey"]) or {}).get("status"),
                             "consentedVersion": (own.get(term["agreementKey"]) or {}).get("agreement_version"),
                             "consentedAt": (own.get(term["agreementKey"]) or {}).get("consented_at")}
+                           for term in terms if role in (term.get("companyRoles") or [])],
