@@ -222,3 +222,4 @@ def set_identifiers(company_id: str, identifiers: list[dict]) -> list[dict]:
     _identifiers[company_id] = rows
     return list_identifiers(company_id)
 
+
