@@ -1193,3 +1193,4 @@ def query_company_role_catalog(*, lang: str | None = None, **_other) -> list[dic
     wanted = lang or "en"
     return [{"companyRole": role, "assignableBy": entry.get("assignableBy"),
              "description": config.description(role, wanted),
+             "descriptions": entry.get("descriptions") or {}}
