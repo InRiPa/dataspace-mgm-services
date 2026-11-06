@@ -224,3 +224,4 @@ def create_company(input: dict) -> dict:
         raise Problem(MODULE, 409, "invalid-state",
                       detail=f"application {application.get('status')}", retryable=False)
 
+    data = application.get("companyData") or {}
