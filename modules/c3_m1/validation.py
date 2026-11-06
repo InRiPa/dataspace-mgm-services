@@ -140,3 +140,4 @@ def _reference_data() -> dict | None:
 
 
 def known_countries() -> set[str] | None:
+    """Country codes of the reference data; `None` if there is no usable reference data."""
