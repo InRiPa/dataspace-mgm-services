@@ -201,3 +201,4 @@ def test_activate_takes_over_the_consents():
     assert consents["terms-active-participant"]["consented_by"] == P1
     assert consents["terms-active-participant"]["source_kind"] == "APPLICATION"
     assert len(published("CompanyActivated")) == 1
+    assert step("activate_company", companyId=U1, applicationId=A1)["state"] == "DONE"
