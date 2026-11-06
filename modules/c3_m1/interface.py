@@ -860,3 +860,4 @@ def get_change_request_document(changeRequestId: str, documentId: str,
     request = _reviewed(changeRequestId)
     document = store.get_document(documentId)
     if document is None or document["change_request_id"] != changeRequestId:
+        raise Problem(MODULE, 404, "not-found")
