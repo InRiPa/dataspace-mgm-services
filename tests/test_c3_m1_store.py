@@ -209,3 +209,4 @@ def test_set_identifiers_needs_a_known_company():
     with pytest.raises(ValueError):
         store.set_identifiers("unknown", [{"type": "VAT_ID", "value": "DE123456789"}])
 
+
