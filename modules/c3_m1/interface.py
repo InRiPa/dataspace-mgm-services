@@ -77,3 +77,4 @@ def reset() -> None:
     except Problem as error:
         if error.status != 501:
             raise
+        # the start survives an unusable database; the seed then lands in memory, calls answer 501
