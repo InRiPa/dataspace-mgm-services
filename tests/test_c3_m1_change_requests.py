@@ -89,3 +89,4 @@ def test_a_request_without_a_change_is_refused(active):
         submit(identifiers=[{"type": "VAT_ID", "value": "DE123456789"}])
     assert error.value.status == 400 and error.value.name == "validation"
 
+
