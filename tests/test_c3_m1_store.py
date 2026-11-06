@@ -426,3 +426,4 @@ def test_company_enums_and_bpn_format():
     assert {"field": "status", "reason": "unknown"} in v.validate_company({"status": "DELETED", **base})
     assert {"field": "core_data_source", "reason": "unknown"} in v.validate_company(
         {"core_data_source": "X", **base})
+    assert {"field": "deactivation_reason", "reason": "unknown"} in v.validate_company(
