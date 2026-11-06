@@ -35,3 +35,4 @@ PDF = ("auszug.pdf", b"%PDF-1.7 Auszug", "application/pdf")
 S2_SUB = "5a1c0012-0000-4000-8000-000000000012"
 S1_SUB = "bbede0f3-fbc4-433b-b7ca-1982e8724912"
 P1_SUB = "5a1c0001-0000-4000-8000-000000000001"
+
