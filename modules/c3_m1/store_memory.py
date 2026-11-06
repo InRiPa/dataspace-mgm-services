@@ -333,3 +333,4 @@ def open_change_request(company_id: str) -> dict | None:
                  if row["company_id"] == company_id and row["status"] == "OPEN"), None)
 
 
+def list_change_requests(*, company_id: str | None = None, status=None,
