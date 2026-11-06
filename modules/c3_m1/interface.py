@@ -820,3 +820,4 @@ def withdraw_change_request(companyId: str, changeRequestId: str, sub: str | Non
 
 
 # ----------------------------------------------------------------------- review by OSP staff (7.14 - 7.18)
+def _reviewed(changeRequestId: str) -> dict:
