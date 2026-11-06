@@ -909,3 +909,4 @@ def approve_change_request(changeRequestId: str, body: dict | None = None,
             raise Problem(MODULE, 409, "invalid-state", detail=row["status"])
         if row["requested_by"] and row["requested_by"] == sub:
             raise Problem(MODULE, 409, "same-person")
+        company = get_company(row["company_id"])
