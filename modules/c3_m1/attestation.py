@@ -79,3 +79,4 @@ def _load_keys() -> list[dict]:
             raise Problem(MODULE, 502, "upstream-error",
                           detail=f"JWKS file unreadable: {error}", retryable=True) from error
     now = time.monotonic()
+    if _cache["keys"] and now - float(_cache["fetched_at"]) < config.attestation_jwks_cache_seconds():
