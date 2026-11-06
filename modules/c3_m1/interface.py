@@ -1148,3 +1148,4 @@ def reactivate_company(input: dict) -> dict:
             if verification == "EBW":
                 if entry.get("type") not in CORE_IDENTIFIERS:
                     continue
+                source = "BUSINESS_WALLET" if (stored.get(entry["type"]) or {}).get("source") == "BUSINESS_WALLET" else "DECLARED"
