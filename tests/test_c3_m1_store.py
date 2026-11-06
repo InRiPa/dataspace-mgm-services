@@ -142,3 +142,4 @@ def test_deactivation_reason_enum_and_state_are_enforced(make):
         store.update_company(company["id"], status="ACTIVE")
 
 
+def test_find_companies_filters(make):
