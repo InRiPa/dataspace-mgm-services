@@ -165,3 +165,4 @@ def update_company(company_id: str, **fields) -> dict | None:
     row["changed_at"] = _now()
     return _copy(row)
 
+
