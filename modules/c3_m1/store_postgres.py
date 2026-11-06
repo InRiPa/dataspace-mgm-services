@@ -327,3 +327,4 @@ def list_roles(company_id: str) -> dict[str, str]:
     with _connection() as connection:
         rows = _fetch_all(connection, "SELECT company_role, status FROM company_role_assignment "
                                       "WHERE company_id = %s", (company_id,))
+    return {row["company_role"]: row["status"] for row in rows}
