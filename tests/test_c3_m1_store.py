@@ -530,3 +530,4 @@ def test_comment_and_reason_lengths():
     assert v.validate_comment("x" * 1001) == [{"field": "comment", "reason": "too-long"}]
     assert v.validate_comment("x" * 1000) == []
     assert v.validate_reason("x" * 501) == [{"field": "reason", "reason": "too-long"}]
+    assert v.validate_reason("x" * 500) == []
