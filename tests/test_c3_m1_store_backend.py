@@ -23,3 +23,4 @@
 #  Assisted-By: Hermes Agent (deepseek-v4.1-flash)
 #################################################################################
 """The transport switch of `modules/c3_m1/store.py`: `DATABASE_URL` empty = in memory, set = the
+module's own PostgreSQL database (README 4, 5).
