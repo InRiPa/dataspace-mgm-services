@@ -58,3 +58,4 @@ def create_company(body: dict = Body(...),
 def assign_identifier(body: dict = Body(...),
                       _: dict = standin.perm(MODULE, "POST", "/steps/assign-identifier")):
     return interface.assign_identifier(body)
+
