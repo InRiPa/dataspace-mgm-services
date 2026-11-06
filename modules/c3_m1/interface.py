@@ -349,3 +349,4 @@ def activate_company(input: dict) -> dict:
             raise Problem(MODULE, 409, "roles-without-consent", missing=sorted(pending),
                           retryable=False)
 
+        applicant = (application.get("applicant") or {}).get("sub")
