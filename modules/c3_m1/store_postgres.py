@@ -418,3 +418,4 @@ def get_change_request(change_request_id: str | None) -> dict | None:
     with _connection() as connection:
         return _fetch_one(connection, "SELECT * FROM change_request WHERE id = %s",
                           (change_request_id,))
+
