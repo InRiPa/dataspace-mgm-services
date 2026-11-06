@@ -167,3 +167,4 @@ def create_change_request(companyId: str, data: str = Form(...),
                                                       "/companies/{companyId}/change-requests")):
     standin.company_scope(MODULE, claims, companyId)
     try:
+        parsed = json.loads(data)
