@@ -123,3 +123,4 @@ def test_decline_and_withdraw(active):
     assert error.value.status == 400 and error.value.name == "validation"
     declined = interface.decline_change_request(answer["id"], {"reason": "Unterlagen fehlen"}, S1_SUB)
     assert declined["status"] == "DECLINED" and declined["decisionReason"] == "Unterlagen fehlen"
+    own = interface.list_own_change_requests(U1)
