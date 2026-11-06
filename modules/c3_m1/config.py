@@ -66,3 +66,4 @@ def _fallback(path: Path, *candidates: Path) -> Path:
 
 
 def value(name: str, default: str | None = None) -> str:
+    """The variable from the environment, else its README default, else `default` (or empty)."""
