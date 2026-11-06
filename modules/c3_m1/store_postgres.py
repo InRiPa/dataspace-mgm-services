@@ -423,3 +423,4 @@ def get_change_request(change_request_id: str | None) -> dict | None:
 def create_change_request(row: dict) -> dict:
     """At most one change request with status `OPEN` per company (partial unique index)."""
     company_id: str = row.get("company_id") or ""
+    status = row.get("status") or "OPEN"
