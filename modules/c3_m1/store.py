@@ -34,3 +34,4 @@
 Both transports answer the same functions and the same invariants; only the storage differs. A
 caller therefore never learns which one runs, except through `backend_name()`. Field names are the
 snake_case ones of README 5 — the interface and router map them to camelCase.
+
