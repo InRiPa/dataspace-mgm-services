@@ -127,3 +127,4 @@ def test_the_short_name_is_changed_and_locked_fields_refused(client, active):
     assert response.status_code == 200
 
     response = call(client, "PATCH", f"/api/c3-m1/companies/{U1}", P1, json={"name": "Neu AG"})
+    assert response.status_code == 409 and response.json()["type"].endswith("field-locked")
