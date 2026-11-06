@@ -680,3 +680,4 @@ CORE_IDENTIFIERS = ("EUID", "EBWOID")
 def _differs_field(row: dict, key: str, value) -> bool:
     """`True` if this part of a request differs from the current state (7.4 point 5/6)."""
     if key == "address":
+        return any(not validation.same_value(row.get(field), entry)
