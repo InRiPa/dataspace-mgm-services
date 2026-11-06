@@ -116,3 +116,4 @@ def test_an_unchanged_name_does_not_need_an_attestation(active):
 def test_a_changed_name_still_needs_the_attestation(active):
     with pytest.raises(Problem) as error:
         interface.create_change_request(U1, {"comment": "x", "name": "Neu AG"}, [PDF], P1_SUB)
+    assert error.value.status == 409 and error.value.name == "attestation-required"
