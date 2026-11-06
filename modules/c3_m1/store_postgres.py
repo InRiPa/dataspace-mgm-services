@@ -170,3 +170,4 @@ def lock(company_id: str | None = None):
 # ------------------------------------------------------------------ company (README 5)
 def get_company(company_id: str | None) -> dict | None:
     if not company_id or not _uuid_ok(company_id):
+        return None
