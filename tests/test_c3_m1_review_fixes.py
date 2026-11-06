@@ -102,3 +102,4 @@ def test_an_empty_identifier_list_keeps_the_wallet_identifiers(active):
     interface.approve_change_request(request["id"], {}, S1_SUB)
     assert {entry["type"] for entry in store.list_identifiers(U1)} == {"EBWOID", "EUID"}
 
+
