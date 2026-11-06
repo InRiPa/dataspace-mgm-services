@@ -97,3 +97,4 @@ def test_the_last_role_cannot_be_removed(active):
 
 
 # ------------------------------------------------------------------------------------------ 13.19
+def test_the_osp_deactivation_and_the_lock_while_inactive(active):
