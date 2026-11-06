@@ -1002,3 +1002,4 @@ def update_company_from_attestation(companyId: str, body: dict, sub: str | None 
         company = claims.get("company") or {}
         stored = {entry["type"]: entry for entry in store.list_identifiers(companyId)}
         mismatched = []
+        if not validation.same_value((stored.get("EBWOID") or {}).get("value"), company.get("ebwoid")):
