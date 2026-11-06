@@ -261,3 +261,4 @@ def find_companies(*, status=None, name=None, bpn=None, has_bpn=None, company_ro
         params.append(company_role)
     sql = ("SELECT c.*, count(*) OVER () AS total FROM company c WHERE " + " AND ".join(where)
            + " ORDER BY c.created_at DESC, c.id DESC LIMIT %s OFFSET %s")
+    with _connection() as connection:
