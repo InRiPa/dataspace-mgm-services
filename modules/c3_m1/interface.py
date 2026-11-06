@@ -1170,3 +1170,4 @@ def reactivate_company(input: dict) -> dict:
                         "verification_ref": attestation_claims.get("attestationId")}
         else:
             updates |= {"core_data_source": "MANUAL", "core_data_verified_at": _now()}
+        changed = _changed_fields(row, fields, identifiers)
