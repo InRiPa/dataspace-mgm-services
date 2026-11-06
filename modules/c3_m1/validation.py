@@ -370,3 +370,4 @@ def detect_media_type(content) -> str | None:
         return "image/jpeg"
     return None
 
+
