@@ -127,3 +127,4 @@ def verify(attestation: str, *, now: dt.datetime | None = None) -> dict:
         raise _invalid("format", "not a compact JWS")
     try:
         header = json.loads(_b64(parts[0]))
+    except (ValueError, TypeError) as error:
