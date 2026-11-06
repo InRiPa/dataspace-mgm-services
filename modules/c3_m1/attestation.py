@@ -74,3 +74,4 @@ def _load_keys() -> list[dict]:
     file = config.attestation_jwks_file()
     if file is not None:
         try:
+            return json.loads(file.read_text(encoding="utf-8")).get("keys") or []
