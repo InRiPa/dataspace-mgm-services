@@ -300,3 +300,4 @@ def set_consent(company_id: str, agreement_key: str, *, version: str | None = No
                 "consented_by": consented_by, "consented_at": consented_at, "changed_at": _now()})
     if version is not None:
         row["agreement_version"] = version
+    _consents[(company_id, agreement_key)] = row
