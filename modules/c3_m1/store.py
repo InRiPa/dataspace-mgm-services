@@ -62,3 +62,4 @@ MEDIA_TYPES = ("application/pdf", "image/png", "image/jpeg")
 #: All fields of table `company` (README 5), in the order of the table.
 COMPANY_FIELDS = (
     "id", "name", "short_name", "street", "house_number", "address_addition", "postal_code",
+    "city", "region", "country_code", "status", "bpn", "bpn_assigned_at", "core_data_source",
