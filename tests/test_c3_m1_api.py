@@ -46,3 +46,4 @@ S1, S2 = "rolf", "otto"
 @pytest.fixture
 def client() -> TestClient:
     app = FastAPI()
+    problems.install(app)
