@@ -1111,3 +1111,4 @@ def reactivate_company(input: dict) -> dict:
         expected = "TRANSFER" if row["deactivation_reason"] == "TRANSFERRED" else "REACTIVATION"
         if application.get("kind") != expected:
             raise Problem(MODULE, 409, "invalid-state",
+                          detail=f"kind {application.get('kind')} does not match the reason",
