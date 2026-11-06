@@ -156,3 +156,4 @@ def test_find_companies_filters(make):
     assert all(c["core_data_source"] == "EBW" for c in store.find_companies(core_data_source="EBW")[0])
 
 
+def test_find_companies_company_role_matches_active_roles_only(make):
