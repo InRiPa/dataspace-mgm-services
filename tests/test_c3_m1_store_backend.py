@@ -127,3 +127,4 @@ def test_a_missing_driver_answers_not_implemented(monkeypatch, postgres_url):
     monkeypatch.setattr(store.importlib, "import_module", fake_import)
     with pytest.raises(Problem) as error:
         store.get_company("c0000001-0000-4000-8000-000000000001")
+    assert error.value.status == 501
