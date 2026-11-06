@@ -334,3 +334,4 @@ def activate_company(input: dict) -> dict:
                           retryable=False)
 
         application = _application(application_id)
+        terms = _terms_of_roles()
