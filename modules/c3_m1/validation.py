@@ -53,3 +53,4 @@ MEDIA_TYPES = ("application/pdf", "image/png", "image/jpeg")
 NAME_MAX = 160
 SHORT_NAME_MAX = 100
 STREET_MAX = 255
+HOUSE_NUMBER_MAX = 50
