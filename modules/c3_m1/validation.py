@@ -290,3 +290,4 @@ def validate_identifiers(identifiers, country_code: str | None,
     if identifiers is None:
         return [_error("identifiers", "missing")]
     if not isinstance(identifiers, list):
+        return [_error("identifiers", "type")]
