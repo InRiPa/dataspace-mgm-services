@@ -75,3 +75,4 @@ CREATE TABLE company (
 CREATE UNIQUE INDEX company_bpn_unique ON company (bpn) WHERE status <> 'REJECTED';
 
 -- C3-M1 5 Table company_identifier
+CREATE TABLE company_identifier (
