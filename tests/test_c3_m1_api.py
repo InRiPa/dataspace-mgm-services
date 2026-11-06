@@ -135,3 +135,4 @@ def test_the_short_name_is_changed_and_locked_fields_refused(client, active):
 def test_osp_permissions_do_not_overlap(client, active):
     assert call(client, "GET", "/api/c3-m1/osp/change-requests", P1).status_code == 403
     assert call(client, "PATCH", f"/api/c3-m1/osp/companies/{U1}", S1, json={}).status_code == 403
+
