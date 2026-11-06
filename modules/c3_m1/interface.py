@@ -61,3 +61,4 @@ def _now() -> str:
     return dt.datetime.now(dt.UTC).isoformat()
 
 
+def _audit(company_id: str | None, operation: str, input: dict, details: dict | None = None) -> None:
