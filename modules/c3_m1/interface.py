@@ -702,3 +702,4 @@ def _changes_differs(row: dict, changes: dict) -> bool:
                 return True
         elif _differs_field(row, key, value):
             return True
+    return False
