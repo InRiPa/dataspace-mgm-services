@@ -1026,3 +1026,4 @@ def update_company_from_attestation(companyId: str, body: dict, sub: str | None 
         store.update_company(companyId, **updates)
         store.set_identifiers(companyId, list(identifiers.values()))
         store.add_if_unused(claims["jti"], companyId)
+        store.audit(companyId, sub, "updateCompanyFromAttestation", None,
