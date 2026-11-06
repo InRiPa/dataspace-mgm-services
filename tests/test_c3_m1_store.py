@@ -386,3 +386,4 @@ def test_value_normalized_drops_spaces_and_punctuation():
 def test_name_rules():
     base = {"street": "Weg 1", "city": "Stadt", "country_code": "DE"}
     assert v.validate_company({"name": "Beispiel GmbH", **base}) == []
+    assert {"field": "name", "reason": "required"} in v.validate_company(base)
