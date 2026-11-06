@@ -553,3 +553,4 @@ def test_a_stated_media_type_is_ignored():
         {"field": "document", "reason": "too-large"}]
 
 
+def test_file_name_rules():
