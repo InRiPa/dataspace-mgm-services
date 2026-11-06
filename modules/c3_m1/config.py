@@ -127,3 +127,4 @@ def attestation_jwks_file() -> Path | None:
     path = _path(MODULE_DIR, value("ATTESTATION_JWKS_FILE"))
     return path if path else None
 
+
