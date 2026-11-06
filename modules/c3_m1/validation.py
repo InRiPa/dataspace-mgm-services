@@ -253,3 +253,4 @@ def validate_country_code(country_code, *, required: bool = True) -> list[dict]:
 
 
 # ------------------------------------------------------------------------------- identifiers (6.4)
+def validate_identifier(entry: dict, country_code: str | None, field: str) -> list[dict]:
