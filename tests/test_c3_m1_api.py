@@ -168,3 +168,4 @@ def test_a_correction_without_a_reason_is_a_validation_error(client, active):
                     json={"shortName": "X"})
     assert response.status_code == 400 and response.json()["type"].endswith("validation")
 
+
