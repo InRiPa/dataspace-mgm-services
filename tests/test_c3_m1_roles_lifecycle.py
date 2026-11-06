@@ -169,3 +169,4 @@ def test_a_company_transfers_to_this_installation():
 
 # ------------------------------------------------------------------------------------------ 13.26, 13.27 over HTTP
 def test_the_roles_are_visible_with_terms(client, active):
+    response = call(client, "GET", f"/api/c3-m1/companies/{U1}/company-roles?lang=de", P1)
