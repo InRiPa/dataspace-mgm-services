@@ -85,3 +85,4 @@ def test_the_seed_role_is_not_assignable(active):
         interface.add_company_role(U1, {"companyRole": "ONBOARDING_SERVICE_PROVIDER",
                                         "consents": []}, P1_SUB)
     assert error.value.status == 409 and error.value.name == "role-not-assignable"
+
