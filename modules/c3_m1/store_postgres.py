@@ -286,3 +286,4 @@ def set_identifiers(company_id: str, identifiers: list[dict]) -> list[dict]:
             raise ValueError("type: required")
         if kind in rows:
             raise ValueError(f"type: {kind} given twice")
+        _check_enum(entry.get("source") or "DECLARED", IDENTIFIER_SOURCES, "source")
