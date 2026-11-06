@@ -463,3 +463,4 @@ def test_identifier_type_enum_and_one_per_type():
 def test_de_vat_id_accepts_and_rejects():
     assert v.validate_identifiers([{"type": "VAT_ID", "value": "DE123456789"}], "DE") == []
     errors = v.validate_identifiers([{"type": "VAT_ID", "value": "DE12345678"}], "DE")
+    assert errors == [{"field": "identifiers[0].value", "reason": "format"}]
