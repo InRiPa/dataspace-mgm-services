@@ -742,3 +742,4 @@ def create_change_request(companyId: str, data: dict,
 
         changes = {key: value for key, value in data.items() if key in ("name", "address", "identifiers")}
         identifiers = changes.get("identifiers")
+        wallet = [{"type": entry["type"], "value": entry["value"], "source": entry["source"]}
