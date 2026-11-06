@@ -188,3 +188,4 @@ def test_the_wrong_typ_is_an_algorithm_error():
     with pytest.raises(Problem) as error:
         interface.update_company_from_attestation(U1, {"attestation": sign(claims(), typ="JWT")})
     assert error.value.ext["reason"] == "algorithm"
+
