@@ -198,3 +198,4 @@ def create_company(row: dict) -> dict:
             created = _fetch_one(connection,
                                  f"INSERT INTO company ({columns}) VALUES ({placeholders}) RETURNING *",
                                  values)
+        except errors.IntegrityError as error:
