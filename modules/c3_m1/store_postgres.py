@@ -290,3 +290,4 @@ def set_identifiers(company_id: str, identifiers: list[dict]) -> list[dict]:
         value = entry.get("value")
         if not isinstance(value, str) or not value:
             raise ValueError("value: required")
+        rows[kind] = {"company_id": company_id, "type": kind, "value": value,
