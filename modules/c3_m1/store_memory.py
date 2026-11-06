@@ -124,3 +124,4 @@ def create_company(row: dict) -> dict:
     if not row.get("id"):
         raise ValueError("id: required")
     if row["id"] in companies:
+        raise ValueError(f"id: company {row['id']} exists")
