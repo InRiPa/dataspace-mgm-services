@@ -182,3 +182,4 @@ def _text(errors: list[dict], field: str, value, *, required: bool = False,
         return
     if strip and value != value.strip():
         errors.append(_error(field, "whitespace"))
+    if max_length is not None and len(value) > max_length:
