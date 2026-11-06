@@ -23,3 +23,4 @@
 #  Assisted-By: Hermes Agent (deepseek-v4.1-flash)
 #################################################################################
 """Store and validation of C3-M1 without HTTP: README 5 tables, the constraints the database
+would carry, the field rules of 5, the identifier rules of 6.4 and the comparison of 6.3."""
