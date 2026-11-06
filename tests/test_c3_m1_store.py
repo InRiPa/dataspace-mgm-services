@@ -517,3 +517,4 @@ def test_change_request_needs_a_change_a_comment_and_declared_identifiers():
     assert errors == [{"field": "changes", "reason": "missing"}]
     errors = v.validate_change_request({"name": "Neu"}, "DE")
     assert errors == [{"field": "comment", "reason": "required"}]
+    errors = v.validate_change_request({"identifiers": [{"type": "VAT_ID", "value": "DE123456789",
