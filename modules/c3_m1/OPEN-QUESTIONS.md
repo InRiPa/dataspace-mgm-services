@@ -1,3 +1,28 @@
+#################################################################################
+#  Copyright (c) 2026 Contributors to the Eclipse Foundation
+#
+#  See the NOTICE file(s) distributed with this work for additional
+#  information regarding copyright ownership.
+#
+#  This program and the accompanying materials are made available under the
+#  terms of the Apache License, Version 2.0 which is available at
+#  https://www.apache.org/licenses/LICENSE-2.0.
+#
+#  Unless required by applicable law or agreed to in writing, software
+#  distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+#  WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+#  License for the specific language governing permissions and limitations
+#  under the License.
+#
+#  AI Disclosure: This file was entirely AI-generated.
+#  The AI-generated portions are made available under CC0-1.0 and not subject
+#  to the project's license. The human contributor has reviewed and verified
+#  that the code is correct.
+#
+#  SPDX-License-Identifier: Apache-2.0 AND CC0-1.0
+#  Assisted-By: Hermes Agent (deepseek-v4.1-flash)
+#################################################################################
+
 # C3-M1 open questions
 
 Points the spec leaves open, contradicts or that the scaffold does not carry yet. Each names the
@@ -17,3 +42,7 @@ reading is in the code, marked as such.
 | 9 | The scaffold calls every module's `reset()` at each start; with `DATABASE_URL` set, the PostgreSQL transport drops and recreates its tables there, so a restart empties the module's own database. | C3-M1 4 (seed data), FRAMEWORK 1 | `reset()` keeps its scaffold meaning (empty state, for tests and boot). The seed is written only when the OSP company does not exist yet, so a restart does not duplicate it; the tables still start empty on every boot. Without the driver the start degrades to the in-memory transport, and the calls answer 501. Durable data across restarts is later work. | Maintainers (scaffold lifecycle) |
 | 10 | README 4 writes `ATTESTATION_JWKS_FILE` and `STUB_APPLICATIONS_FILE` as bare names; FRAMEWORK 4.8 only defines relative paths for installation settings, not for configuration variables. | C3-M1 4, 14; FRAMEWORK 4.8 | A bare name counts from this module folder (where the two files live), an absolute path as given. | Spec authors |
 | 11 | 8.6 point 3 asks for the address "as in 6.3", but the application of C1-M2 carries `streetName` and `streetNumber` separately, while 6.3 maps a single `street_address` claim and leaves the house number empty. | C3-M1 6.3, 8.6, 11.1 | For a reactivation the split application fields are taken over as they are (`streetName` → `street`, `streetNumber` → `houseNumber`); 6.3's "house number empty" applies only to an attestation claim. | C1-M2, spec authors |
+| 12 | 8.6 names "Application approved" as the precondition, but `ApplicationStatus` of C1-M2 has no `APPROVED`, and `flows.yaml` (`reactivation`, `return`) runs `reactivate-company` while the application is still `SUBMITTED` (the approval is the C1-M3 decision, `complete-application` follows later). | C3-M1 8.6; C1-M2 openapi (`ApplicationStatus`); C12-M1 flows.yaml | Only `CREATED`, `WITHDRAWN` and `DECLINED` are refused (`409 invalid-state`); `SUBMITTED` and `COMPLETED` are accepted. So the flows run and an unsubmitted or withdrawn application is still caught. | Spec authors (an `APPROVED` status for C1-M2) |
+| 13 | The registration address has to reach `portal_common.neighbours`, which reads `<MODULE>_URL` / `MODULE_URLS` (AGENTS 6), while README 4 names `REGISTRATION_URL`. | C3-M1 4, 11.1; AGENTS 6; FRAMEWORK 4.7 | `config.apply_registration_url()` copies `REGISTRATION_URL` into `C1_M2_URL` once per `reset()`. When the variable is empty the copy leaves `C1_M2_URL` alone, so `MODULE_URLS` and in-process mode keep working. | Maintainers, once `neighbours` reads the section-4 names |
+| 14 | FRAMEWORK 4.8 makes the Example column of section 4 the default, but README 4 marks the JWKS file "tests only"; with a default, an installation would trust a key committed to the repository. | C3-M1 4; FRAMEWORK 4.8 | No default for `ATTESTATION_JWKS_FILE`: empty means `ATTESTATION_JWKS_URL` or no check at all. Tests and `demo.py` set the file. `STUB_APPLICATIONS_FILE` keeps its default, as it is the documented stand-in data. | Spec authors |
+| 15 | README 12 lists a `reason` for `attestation-invalid`, but the openapi `Error` items require `{field, message}` for `validation`. | C3-M1 12; openapi `Error` | Follows the openapi: `errors[]` carries `field` and `message`. `attestation-invalid` keeps `reason` at the top level, as section 12 names it there. | Spec authors |
