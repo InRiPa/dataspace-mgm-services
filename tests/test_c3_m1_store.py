@@ -479,3 +479,4 @@ def test_euid_and_ebwoid_are_loose():
         [{"type": "EBWOID", "value": "EBWOID DE 1"}], "DE")
 
 
+def test_lei_and_eori_formats():
