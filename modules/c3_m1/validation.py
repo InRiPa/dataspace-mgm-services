@@ -192,3 +192,4 @@ def field_name(key: str) -> str:
     return ALIASES.get(key, key)
 
 
+def flat_fields(data: dict) -> dict:
