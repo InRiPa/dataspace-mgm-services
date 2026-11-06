@@ -207,3 +207,4 @@ def create_company(input: dict) -> dict:
     existing = store.get_company(cid)
     if existing is not None:
         if existing["application_id"] == application_id:
+            return standin.step_reply(input, {"companyId": cid, "status": existing["status"],
