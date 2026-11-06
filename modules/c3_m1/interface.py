@@ -692,3 +692,4 @@ def _differs_identifiers(row: dict, identifiers: list[dict]) -> bool:
               if entry["source"] != "BUSINESS_WALLET"}
     after = {(entry["type"], validation.value_normalized(entry["value"])) for entry in identifiers}
     return before != after
+
