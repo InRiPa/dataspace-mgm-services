@@ -52,3 +52,4 @@ from .store import (CHANGE_REQUEST_STATUSES, COMPANY_FIELDS, CONSENT_STATUSES, C
                     ROLE_SOURCE_KINDS, ROLE_STATUSES, STATUSES)
 from .validation import value_normalized
 
+SCHEMA = Path(__file__).with_name("schema.sql")
