@@ -168,3 +168,4 @@ def role_view(cid: str | None) -> dict:
     row = get_company(cid)
     view = company_view(cid)
     view["companyRoles"] = [{"companyRole": role, "status": status}
+                            for role, status in store.list_roles(row["id"]).items()]
