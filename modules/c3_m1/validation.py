@@ -395,3 +395,4 @@ def validate_company_role(company_role, catalogue: dict | None = None) -> list[d
     if not company_role:
         return [_error("companyRole", "required")]
     if catalogue is not None and company_role not in catalogue:
+        return [_error("companyRole", "unknown")]
