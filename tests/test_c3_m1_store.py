@@ -117,3 +117,4 @@ def test_rejecting_a_company_keeps_its_bpn(make):
     assert store.update_company(company["id"], status="REJECTED")["bpn"] == "BPNL00000000AAAA"
 
 
+def test_status_enum_is_enforced(make):
