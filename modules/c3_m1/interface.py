@@ -976,3 +976,4 @@ def _attested_values(row: dict, claims: dict) -> tuple[dict, dict[str, dict]]:
     address = company.get("address")
     if isinstance(address, dict):
         same_street = validation.same_value(
+            " ".join(filter(None, (row["street"], row["house_number"]))), address.get("street_address"))
