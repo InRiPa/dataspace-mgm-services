@@ -161,3 +161,4 @@ def company_internal(cid: str | None) -> dict:
                              if status == "ACTIVE"],
             "deactivationReason": row["deactivation_reason"], "createdAt": row["created_at"],
             "activatedAt": row["activated_at"], "deactivatedAt": row["deactivated_at"]}
+
