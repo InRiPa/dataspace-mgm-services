@@ -104,3 +104,4 @@ def test_the_scope_hides_other_companies(client, active):
                 P1).status_code == 404
     response = call(client, "GET", f"/api/c3-m1/companies/{U1}", P2)
     assert response.status_code == 200 and response.json()["id"] == U1
+    assert response.json()["createdAt"]
