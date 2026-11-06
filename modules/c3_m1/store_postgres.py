@@ -388,3 +388,4 @@ def set_consent(company_id: str, agreement_key: str, *, version: str | None = No
                 status: str = "ACTIVE", source_kind: str = "COMPANY",
                 source_ref: str | None = None, consented_by: str | None = None,
                 consented_at: str | None = None) -> dict:
+    """One row per company and terms, with the latest state (README 5)."""
