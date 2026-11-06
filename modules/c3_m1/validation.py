@@ -59,3 +59,4 @@ POSTAL_CODE_MAX = 12
 CITY_MAX = 255
 REGION_PATTERN = re.compile(r"^[A-Z0-9]{1,3}$")
 COUNTRY_PATTERN = re.compile(r"^[A-Z]{2}$")
+BPN_PATTERN = re.compile(r"^BPNL[A-Z0-9]{12}$")
