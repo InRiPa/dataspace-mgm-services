@@ -636,3 +636,4 @@ def _summary(row: dict) -> dict:
             "coreDataSource": row["core_data_source"], "countryCode": row["country_code"],
             "companyRoles": [role for role, status in store.list_roles(row["id"]).items()
                              if status == "ACTIVE"],
+            "createdAt": row["created_at"]}
