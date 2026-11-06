@@ -196,3 +196,4 @@ def test_a_bpn_of_a_rejected_company_is_free_again():
 
 def test_an_attestation_without_a_change_still_stamps_the_verification(active):
     interface.update_company_from_attestation(U1, {"attestation": sign(claims())}, P1_SUB)
+    before = store.get_company(U1)["core_data_verified_at"]
