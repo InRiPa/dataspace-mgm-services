@@ -92,3 +92,4 @@ def _load_keys() -> list[dict]:
     return keys
 
 
+def _key_for(kid: str | None) -> dict:
