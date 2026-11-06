@@ -774,3 +774,4 @@ def create_change_request(companyId: str, data: dict,
             raise Problem(MODULE, 400, "document-invalid", errors=errors)
 
         created = store.create_change_request({
+            "company_id": companyId, "changes": changes, "comment": data.get("comment"),
