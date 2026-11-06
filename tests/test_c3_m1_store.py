@@ -469,3 +469,4 @@ def test_de_vat_id_accepts_and_rejects():
 
 
 def test_euid_and_ebwoid_are_loose():
+    assert v.validate_identifiers([{"type": "EUID", "value": "DEXX001T.HRB100001"}], "DE") == []
