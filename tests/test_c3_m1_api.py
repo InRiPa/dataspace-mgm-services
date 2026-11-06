@@ -55,3 +55,4 @@ def client() -> TestClient:
     return TestClient(app, base_url=BASE)
 
 
+@pytest.fixture
