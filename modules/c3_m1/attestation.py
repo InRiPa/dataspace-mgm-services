@@ -152,3 +152,4 @@ def verify(attestation: str, *, now: dt.datetime | None = None) -> dict:
     except jwt.PyJWTError as error:
         raise _invalid("signature", str(error)) from error
 
+    audience = claims.get("aud")
