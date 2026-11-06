@@ -110,3 +110,4 @@ def query_company(companyId: str,
     return interface.query_company(companyId=companyId)
 
 
+# -------------------------------------------------------------------- own company, people (7.1, 7.2)
