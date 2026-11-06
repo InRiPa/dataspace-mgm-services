@@ -32,3 +32,4 @@ Paths in the settings count from the settings file (FRAMEWORK 4.8); the path of 
 variable (`COMPANY_ROLES_FILE`) counts from the repository root.
 """
 from __future__ import annotations
+
