@@ -134,3 +134,4 @@ def _reference_data() -> dict | None:
     except (OSError, ValueError):
         return None
     if not isinstance(data, dict):
+        return None
