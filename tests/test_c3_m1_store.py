@@ -404,3 +404,4 @@ def test_required_address_fields_and_lengths():
         ("address_addition", "too-long"), ("postal_code", "too-long")}
 
 
+def test_region_rules():
