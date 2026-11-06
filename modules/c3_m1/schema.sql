@@ -89,3 +89,4 @@ CREATE TABLE company_identifier (
     CONSTRAINT company_identifier_source_enum CHECK (source IN ('BUSINESS_WALLET', 'DECLARED'))
 );
 
+-- C3-M1 5: index for the duplicate search on the normalised value (README 6.4, 9.3)
