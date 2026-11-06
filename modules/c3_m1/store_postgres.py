@@ -525,3 +525,4 @@ def add_document(change_request_id: str, *, file_name: str, media_type: str,
             connection,
             "INSERT INTO change_request_document (id, change_request_id, file_name, media_type,"
             " size_bytes, sha256, content, created_at) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)"
+            " RETURNING *",
