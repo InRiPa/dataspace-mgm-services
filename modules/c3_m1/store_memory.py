@@ -322,3 +322,4 @@ def create_change_request(row: dict) -> dict:
         "changes": copy.deepcopy(row.get("changes") or {}), "comment": row.get("comment"),
         "requested_by": row.get("requested_by"), "decided_by": row.get("decided_by"),
         "decision_reason": row.get("decision_reason"),
+        "created_at": row.get("created_at") or _now(), "closed_at": row.get("closed_at"),
