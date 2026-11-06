@@ -31,3 +31,4 @@ tokens are short and stable: `required`, `type`, `too-long`, `too-short`, `white
 `media-type`, `too-large`.
 
 Patterns come from the shared reference data (`masterDataFile`, settings key of the same name,
+resolved relative to the settings file, OP-13). If the file or a type is missing, the fallback
