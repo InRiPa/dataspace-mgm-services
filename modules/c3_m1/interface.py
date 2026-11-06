@@ -622,3 +622,4 @@ def remove_company_role(companyId: str, companyRole: str, sub: str | None = None
                       if status == "ACTIVE" and companyRole != role
                       and term["agreementKey"] in [t["agreementKey"] for t in _terms_of(role, _terms()).values()]]
             if not others:
+                store.set_consent(companyId, term["agreementKey"], status="INACTIVE",
