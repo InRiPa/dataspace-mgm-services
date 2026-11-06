@@ -429,3 +429,4 @@ def test_company_enums_and_bpn_format():
     assert {"field": "deactivation_reason", "reason": "unknown"} in v.validate_company(
         {"deactivation_reason": "NO_PSP", **base})
     assert v.validate_company({"bpn": "BPNL00000000AAAA", **base}) == []
+    assert {"field": "bpn", "reason": "format"} in v.validate_company({"bpn": "DE123", **base})
