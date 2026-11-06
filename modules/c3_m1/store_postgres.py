@@ -224,3 +224,4 @@ def update_company(company_id: str, **fields) -> dict | None:
         if _fetch_one(connection, "SELECT id FROM company WHERE id = %s", (company_id,)) is None:
             return None
         try:
+            return _fetch_one(connection,
