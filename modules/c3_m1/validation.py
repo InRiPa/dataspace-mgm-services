@@ -113,3 +113,4 @@ def same_value(left, right) -> bool:
     return normalise(left).casefold() == normalise(right).casefold()
 
 
+# ------------------------------------------------------------------------- reference data (6.4)
