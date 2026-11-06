@@ -86,3 +86,4 @@ def active(client: TestClient) -> dict:
 
 def call(client: TestClient, method: str, path: str, person: str | None = None, **kwargs):
     """As a person; `person` = "svc" uses the service account of the module (query_c3_m1)."""
+    if person == "svc":
