@@ -289,3 +289,4 @@ def test_list_change_requests_filters_and_order(make):
     company = make()
     first = store.create_change_request({"company_id": company["id"], "comment": "1"})
     store.withdraw_change_request(first["id"])
+    second = store.create_change_request({"company_id": company["id"], "comment": "2",
