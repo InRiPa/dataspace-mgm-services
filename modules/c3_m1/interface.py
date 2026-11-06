@@ -309,3 +309,4 @@ def _terms_of_roles() -> dict[str, set[str]]:
     terms: dict[str, set[str]] = {}
     for agreement in agreements:
         if agreement.get("scope") != "COMPANY_ROLE":
+            continue
