@@ -66,3 +66,4 @@ def test_a_request_with_identifiers_is_created(active):
     answer = submit()
     assert answer["status"] == "OPEN" and answer["documents"][0]["fileName"] == "auszug.pdf"
     assert len(events.RELAY.log) >= 1
+    assert events.RELAY.log[-1]["type"] == "CompanyChangeRequestSubmitted"
