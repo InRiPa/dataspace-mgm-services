@@ -111,3 +111,4 @@ def test_create_company_is_idempotent():
     seed()
     step("create_company", companyId=U1, applicationId=A1)
     reply = step("create_company", companyId=U1, applicationId=A1)
+    assert reply["state"] == "DONE"
