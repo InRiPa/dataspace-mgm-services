@@ -409,3 +409,4 @@ def set_consent(company_id: str, agreement_key: str, *, version: str | None = No
              "source_kind": source_kind, "source_ref": source_ref, "consented_by": consented_by,
              "consented_at": consented_at, "now": _now()},
         )  # type: ignore[return-value]
+
