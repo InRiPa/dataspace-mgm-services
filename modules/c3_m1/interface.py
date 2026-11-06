@@ -311,3 +311,4 @@ def _terms_of_roles() -> dict[str, set[str]]:
         if agreement.get("scope") != "COMPANY_ROLE":
             continue
         for role in agreement.get("companyRoles") or []:
+            terms.setdefault(agreement["agreementKey"], set()).add(role)
