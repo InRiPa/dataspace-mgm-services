@@ -362,3 +362,4 @@ def test_reset_clears_every_table(make):
     assert store.list_identifiers(company["id"]) == []
     assert store.list_roles(company["id"]) == {}
     assert store.list_consents(company["id"]) == []
+    assert store.list_change_requests(company_id=company["id"]) == ([], 0)
