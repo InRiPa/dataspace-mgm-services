@@ -1101,3 +1101,4 @@ def reactivate_company(input: dict) -> dict:
             return standin.step_reply(input, {"companyId": cid, "status": row["status"],
                                               "bpn": row["bpn"], "companyRoles": _active_roles(cid),
                                               "changedFields": []})
+        if row["status"] != "INACTIVE":
