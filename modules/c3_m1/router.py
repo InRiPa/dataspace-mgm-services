@@ -213,3 +213,4 @@ def get_change_request_document(changeRequestId: str, documentId: str,
                                     "/osp/change-requests/{changeRequestId}/documents/{documentId}")):
     answer = interface.get_change_request_document(changeRequestId, documentId, claims.get("sub"))
     return Response(answer["content"], media_type=answer["media_type"], headers={
+        "Content-Disposition": f'attachment; filename="{answer["file_name"]}"'})
