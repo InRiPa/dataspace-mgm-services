@@ -61,3 +61,4 @@ def postgres(monkeypatch, postgres_url):
     store.reset()
 
 
+def test_the_default_transport_is_in_memory(monkeypatch):
