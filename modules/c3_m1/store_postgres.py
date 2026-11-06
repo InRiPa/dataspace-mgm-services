@@ -395,3 +395,4 @@ def set_consent(company_id: str, agreement_key: str, *, version: str | None = No
     with _connection() as connection:
         _check_known(connection, company_id)
         return _fetch_one(
+            connection,
