@@ -285,3 +285,4 @@ def test_decide_enforces_the_decision_status(make):
     assert store.decide_change_request("unknown", "APPROVED") is None
 
 
+def test_list_change_requests_filters_and_order(make):
