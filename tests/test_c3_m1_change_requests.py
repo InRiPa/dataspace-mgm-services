@@ -125,3 +125,4 @@ def test_decline_and_withdraw(active):
     assert declined["status"] == "DECLINED" and declined["decisionReason"] == "Unterlagen fehlen"
     own = interface.list_own_change_requests(U1)
     assert own["items"][0]["decisionReason"] == "Unterlagen fehlen"
+    assert "decidedBy" not in own["items"][0] and own["items"][0]["status"] == "DECLINED"
