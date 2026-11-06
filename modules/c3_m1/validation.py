@@ -400,3 +400,4 @@ def validate_company_role(company_role, catalogue: dict | None = None) -> list[d
 
 
 def validate_media_type(media_type) -> list[dict]:
+    if media_type not in MEDIA_TYPES:
