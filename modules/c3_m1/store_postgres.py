@@ -413,3 +413,4 @@ def set_consent(company_id: str, agreement_key: str, *, version: str | None = No
 
 # ------------------------------------------------------------- change_request (README 5, 7.4)
 def get_change_request(change_request_id: str | None) -> dict | None:
+    if not change_request_id or not _uuid_ok(change_request_id):
