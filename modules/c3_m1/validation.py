@@ -245,3 +245,4 @@ def validate_country_code(country_code, *, required: bool = True) -> list[dict]:
     if country_code in (None, ""):
         return [_error("country_code", "required")] if required else []
     if not isinstance(country_code, str) or not COUNTRY_PATTERN.match(country_code):
+        return [_error("country_code", "format")]
