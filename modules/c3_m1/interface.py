@@ -495,3 +495,4 @@ def correct_company(companyId: str, body: dict, sub: str | None = None) -> dict:
                 updates["core_data_source"] = "MANUAL"
                 updates["verification_ref"] = None
         store.update_company(companyId, **updates)
+        if identifiers is not None:
