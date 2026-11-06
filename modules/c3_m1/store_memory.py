@@ -228,3 +228,4 @@ def get_role(company_id: str, company_role: str) -> dict | None:
     return _copy(_roles.get(company_id, {}).get(company_role))
 
 
+def role_status(company_id: str, company_role: str) -> str:
