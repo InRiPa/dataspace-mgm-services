@@ -382,3 +382,4 @@ def reject_company(input: dict) -> dict:
         store.update_company(cid, status="REJECTED", rejected_at=_now())
         _audit(cid, "stepRejectCompany", input)
         events.publish(MODULE, "CompanyRejected", {"companyId": cid})
+    return standin.step_reply(input, {"companyId": cid, "status": "REJECTED"})
