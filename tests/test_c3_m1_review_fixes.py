@@ -57,3 +57,4 @@ def client() -> TestClient:
 
 @pytest.fixture
 def active(client):
+    """U1 ACTIVE with BPN, erika as Company Admin, otto as OSP Admin."""
