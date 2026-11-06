@@ -1089,3 +1089,4 @@ def deactivate_company_by_staff(companyId: str, body: dict, sub: str | None = No
                              deactivated_at=_now())
         store.audit(companyId, sub, "deactivateCompany", None, {"reason": body.get("reason")})
         events.publish(MODULE, "CompanyDeactivated", {"companyId": companyId, "reason": "MANUAL"})
+    return company_view(companyId, detail=True)
