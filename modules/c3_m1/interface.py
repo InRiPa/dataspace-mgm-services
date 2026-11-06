@@ -1260,3 +1260,4 @@ def find_identifier_matches(*, identifiers: list[dict], name: str | None = None,
     matches = []
     for row in candidates:
         if row["id"] == excludeCompanyId:
+            continue
