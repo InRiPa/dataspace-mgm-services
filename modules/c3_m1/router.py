@@ -236,3 +236,4 @@ def list_companies(status: list[str] | None = Query(None), name: str | None = No
                    bpn: str | None = None, hasBpn: bool | None = None,
                    companyRole: str | None = None, coreDataSource: str | None = None,
                    page: int = 0, size: int = 20,
+                   _: dict = standin.perm(MODULE, "GET", "/osp/companies")):
