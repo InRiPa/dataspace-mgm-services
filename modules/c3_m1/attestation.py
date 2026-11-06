@@ -149,3 +149,4 @@ def verify(attestation: str, *, now: dt.datetime | None = None) -> dict:
                             options={"verify_aud": False, "verify_exp": False, "verify_iat": False})
     except jwt.InvalidSignatureError as error:
         raise _invalid("signature", "signature does not verify") from error
+    except jwt.PyJWTError as error:
