@@ -866,3 +866,4 @@ def get_change_request_document(changeRequestId: str, documentId: str,
             "file_name": document["file_name"]}
 
 
+def _apply_changes(companyId: str, row: dict, changes: dict) -> tuple[list[str], bool]:
