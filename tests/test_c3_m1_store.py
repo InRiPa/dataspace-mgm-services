@@ -177,3 +177,4 @@ def test_find_companies_is_newest_first_and_paged(make):
 
 # --------------------------------------------------------------------------- identifiers (5, 6.4)
 def test_set_identifiers_normalises_and_replaces(make):
+    company = make()
