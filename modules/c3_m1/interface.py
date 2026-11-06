@@ -627,3 +627,4 @@ def remove_company_role(companyId: str, companyRole: str, sub: str | None = None
         active = [name for name, status in store.list_roles(companyId).items() if status == "ACTIVE"]
         store.audit(companyId, sub, "removeCompanyRole", companyRole, {"companyRole": companyRole})
         events.publish(MODULE, "CompanyRolesChanged", {"companyId": companyId, "companyRoles": active})
+    return _role_state(companyId, lang or "en")
