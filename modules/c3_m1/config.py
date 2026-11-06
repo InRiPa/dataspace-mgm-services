@@ -162,3 +162,4 @@ def stub_applications_file() -> Path | None:
 
 
 # ------------------------------------------------------------------ installation settings (4.8)
+def apply_registration_url() -> None:
