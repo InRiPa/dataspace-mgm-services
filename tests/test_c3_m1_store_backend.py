@@ -39,3 +39,4 @@ from modules.c3_m1 import store
 COMPANY = {
     "id": "c0000001-0000-4000-8000-000000000001", "name": "Beispiel Maschinenbau GmbH",
     "street": "Musterstraße 1", "city": "Stuttgart", "country_code": "DE",
+    "status": "REQUESTED", "core_data_source": "EBW", "bpn": "BPNLIUK2REMLK3F4",
