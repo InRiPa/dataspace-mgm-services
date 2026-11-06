@@ -517,3 +517,4 @@ def add_document(change_request_id: str, *, file_name: str, media_type: str,
     _check_enum(media_type, MEDIA_TYPES, "media_type")
     if not _uuid_ok(change_request_id):
         raise ValueError(f"unknown change request: {change_request_id}")
+    with _connection() as connection:
