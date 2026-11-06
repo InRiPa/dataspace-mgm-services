@@ -1084,3 +1084,4 @@ def deactivate_company_by_staff(companyId: str, body: dict, sub: str | None = No
             raise Problem(MODULE, 409, "invalid-state", detail=row["status"])
         errors = validation.validate_reason(body.get("reason"))
         if errors:
+            raise Problem(MODULE, 400, "validation", errors=errors)
