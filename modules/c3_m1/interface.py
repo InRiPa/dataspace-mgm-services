@@ -654,3 +654,4 @@ def list_companies(*, status: list[str] | str | None = None, name: str | None = 
     return {"items": [_summary(row) for row in items], "page": int(page or 0),
             "size": int(size or 20), "total": total}
 
+
