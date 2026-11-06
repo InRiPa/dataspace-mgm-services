@@ -294,3 +294,4 @@ def set_identifiers(company_id: str, identifiers: list[dict]) -> list[dict]:
                       "value_normalized": value_normalized(value),
                       "source": entry.get("source") or "DECLARED"}
     with _connection() as connection:
+        _check_known(connection, company_id)
