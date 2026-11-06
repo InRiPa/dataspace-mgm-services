@@ -39,3 +39,4 @@ from modules.c3_m1 import interface, store
 from portal_common import events
 from portal_common.problems import Problem
 
+from test_c3_m1_api import P3, active, call, client  # noqa: F401  (fixtures for the HTTP test)
