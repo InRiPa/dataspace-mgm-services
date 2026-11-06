@@ -188,3 +188,4 @@ def create_company(row: dict) -> dict:
     now = _now()
     values = {field: row.get(field) for field in COMPANY_FIELDS}
     values.update({"id": row["id"], "status": status,
+                   "core_data_source": row.get("core_data_source") or "MANUAL",
