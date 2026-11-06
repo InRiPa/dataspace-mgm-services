@@ -276,3 +276,4 @@ def remove_role(company_id: str, company_role: str) -> dict | None:
 def get_consent(company_id: str, agreement_key: str) -> dict | None:
     return _copy(_consents.get((company_id, agreement_key)))
 
+
