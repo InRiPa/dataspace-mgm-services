@@ -92,3 +92,4 @@ def test_bpn_is_stored_in_upper_case(make):
     assert make(bpn="bpnl00000000aaaa")["bpn"] == "BPNL00000000AAAA"
 
 
+def test_bpn_is_unique_among_companies_that_are_not_rejected(make):
