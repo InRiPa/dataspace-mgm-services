@@ -90,3 +90,4 @@ def call(client: TestClient, method: str, path: str, person: str | None = None, 
         headers = bearer(test_iam.iam().client_token("svc-c3-m1"))
     else:
         headers = bearer(person_token(person)) if person else {}
+    return client.request(method, path, headers=headers, **kwargs)
