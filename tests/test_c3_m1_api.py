@@ -107,3 +107,4 @@ def test_the_scope_hides_other_companies(client, active):
     assert response.json()["createdAt"]
 
 
+def test_a_member_may_read_but_not_patch(client, active):
