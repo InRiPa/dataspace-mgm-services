@@ -106,3 +106,4 @@ def _key_for(kid: str | None) -> dict:
         _cache.update({"keys": [], "fetched_at": 0.0})
         keys = _load_keys()
         key = next((entry for entry in keys if entry.get("kid") == kid), None)
+    if key is None:
