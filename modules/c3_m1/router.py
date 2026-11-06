@@ -149,3 +149,4 @@ def add_company_role(companyId: str, body: dict = Body(...), lang: str | None = 
     standin.company_scope(MODULE, claims, companyId)
     return interface.add_company_role(companyId, body, claims.get("sub"), lang)
 
+
