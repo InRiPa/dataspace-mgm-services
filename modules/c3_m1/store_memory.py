@@ -369,3 +369,4 @@ def decide_change_request(change_request_id: str, status: str, *, decided_by: st
 def withdraw_change_request(change_request_id: str, *, closed_at: str | None = None) -> dict | None:
     row = _change_requests.get(change_request_id)
     if row is None:
+        return None
