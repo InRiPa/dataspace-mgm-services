@@ -305,3 +305,4 @@ def validate_identifiers(identifiers, country_code: str | None,
                     errors.append(_error(f"{field}.type", "duplicate-type"))
                 seen.add(kind)
             if not allow_business_wallet and entry.get("source") == "BUSINESS_WALLET":
+                errors.append(_error(f"{field}.source", "business-wallet-source"))
