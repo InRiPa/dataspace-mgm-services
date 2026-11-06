@@ -230,3 +230,4 @@ def test_add_role_enforces_the_enums(make):
     with pytest.raises(ValueError):
         store.add_role(company["id"], "ACTIVE_PARTICIPANT", status="ADDED")
     with pytest.raises(ValueError):
+        store.add_role(company["id"], "ACTIVE_PARTICIPANT", source_kind="FLOW")
