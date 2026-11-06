@@ -591,3 +591,4 @@ def add_company_role(companyId: str, body: dict, sub: str | None = None,
         for key in terms:
             store.set_consent(companyId, key, version=terms[key]["version"], status="ACTIVE",
                               source_kind="COMPANY", consented_by=sub, consented_at=now)
+        store.add_role(companyId, role, status="ACTIVE", source_kind="COMPANY", source_ref=sub)
