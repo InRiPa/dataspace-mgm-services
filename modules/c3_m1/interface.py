@@ -1154,3 +1154,4 @@ def reactivate_company(input: dict) -> dict:
             identifiers = [item for item in identifiers if item["type"] != entry["type"]]
             identifiers.append({"type": entry["type"], "value": entry["value"], "source": source})
         identifiers = [{"type": entry["type"], "value": entry["value"], "source": entry["source"]}
+                       for entry in identifiers]
