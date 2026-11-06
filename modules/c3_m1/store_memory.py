@@ -75,3 +75,4 @@ def _check_known(company_id: str) -> dict:
         raise ValueError(f"unknown company: {company_id}")
     return companies[company_id]
 
+
