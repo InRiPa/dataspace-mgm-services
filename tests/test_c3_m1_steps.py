@@ -125,3 +125,4 @@ def test_create_company_conflicts():
 
 
 def test_create_company_refuses_a_reactivation():
+    seed(A5, U1, kind="REACTIVATION")
