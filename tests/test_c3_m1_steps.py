@@ -99,3 +99,4 @@ def test_create_company_maps_the_application():
     row = store.get_company(U1)
     assert row["core_data_source"] == "EBW"
     assert row["verification_ref"] == ATTESTATION["attestationId"]
+    assert row["core_data_verified_at"] == ATTESTATION["verifiedAt"]
