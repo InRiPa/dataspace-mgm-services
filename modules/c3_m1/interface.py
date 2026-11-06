@@ -869,3 +869,4 @@ def get_change_request_document(changeRequestId: str, documentId: str,
 def _apply_changes(companyId: str, row: dict, changes: dict) -> tuple[list[str], bool]:
     """Apply the request and return the changed field names and whether core data changed (7.17)."""
     fields = {key: value for key, value in changes.items() if key in ("name", "address")}
+    identifiers = changes.get("identifiers")
