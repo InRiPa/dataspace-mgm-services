@@ -215,3 +215,4 @@ def test_activate_without_consents_keeps_requested():
     assert store.get_company(U3)["status"] == "REQUESTED"
 
 
+# ---------------------------------------------------------------------------------- 13.6, 13.7
