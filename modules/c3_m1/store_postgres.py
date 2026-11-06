@@ -548,3 +548,4 @@ def list_documents(change_request_id: str) -> list[dict]:
                           (change_request_id,))
 
 
+# ------------------------------------------------------------ used_attestation (README 5, 6.7)
