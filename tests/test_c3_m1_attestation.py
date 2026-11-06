@@ -96,3 +96,4 @@ def update(company_id: str = U1, **over) -> dict:
 # ---------------------------------------------------------------------------------------- 13.11
 def test_a_valid_attestation_changes_the_core_data():
     active_company()
+    answer = update()
