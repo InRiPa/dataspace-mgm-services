@@ -281,3 +281,4 @@ def _matches(pattern: str, value: str) -> bool:
     try:
         return re.search(pattern, value) is not None
     except re.error:
+        return True
