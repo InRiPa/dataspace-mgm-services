@@ -156,3 +156,4 @@ def company_internal(cid: str | None) -> dict:
                          ("postalCode", "postal_code"), ("city", "city"),
                          ("region", "region"), ("countryCode", "country_code"))},
             "identifiers": _identifiers(row), "coreDataSource": row["core_data_source"],
+            "status": row["status"], "bpn": row["bpn"],
