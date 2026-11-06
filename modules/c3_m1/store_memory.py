@@ -277,3 +277,4 @@ def get_consent(company_id: str, agreement_key: str) -> dict | None:
     return _copy(_consents.get((company_id, agreement_key)))
 
 
+def list_consents(company_id: str) -> list[dict]:
