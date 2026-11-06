@@ -392,3 +392,4 @@ def test_name_rules():
     assert {"field": "name", "reason": "too-long"} in v.validate_company({"name": "x" * 161, **base})
 
 
+def test_required_address_fields_and_lengths():
