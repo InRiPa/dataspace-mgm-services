@@ -1066,3 +1066,4 @@ def deactivate_company(input: dict) -> dict:
     return standin.step_reply(input, {"companyId": cid, "status": "INACTIVE",
                                       "deactivationReason": reason})
 
+
