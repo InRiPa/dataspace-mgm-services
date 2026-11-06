@@ -69,3 +69,4 @@ def test_create_company_fills_defaults_and_timestamps(make):
     company = store.create_company({"id": "c0000001-0000-4000-8000-000000000001", "name": "A",
                                     "street": "Weg 1", "city": "Stadt", "country_code": "DE"})
     assert company["status"] == "REQUESTED"
+    assert company["core_data_source"] == "MANUAL"
