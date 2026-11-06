@@ -304,3 +304,4 @@ def _terms_of_roles() -> dict[str, set[str]]:
     """
     if neighbours.is_standin("c1-m2"):
         agreements = testdata.agreements()
+    else:
