@@ -43,3 +43,4 @@ def _empty_store():
     store.reset()
 
 
+@pytest.fixture
