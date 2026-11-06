@@ -98,3 +98,4 @@ def test_bpn_is_unique_among_companies_that_are_not_rejected(make):
         make(bpn="BPNL00000000AAAA")
 
 
+def test_bpn_of_a_rejected_company_frees_it(make):
