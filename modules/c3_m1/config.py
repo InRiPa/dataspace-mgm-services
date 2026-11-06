@@ -207,3 +207,4 @@ def company_roles_file() -> Path | None:
 #: Initial values of README 6.5, used while the installation has no `COMPANY_ROLES_FILE`.
 INITIAL_ROLES = {
     "ACTIVE_PARTICIPANT": {
+        "assignableBy": "COMPANY",
