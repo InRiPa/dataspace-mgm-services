@@ -1005,3 +1005,4 @@ def update_company_from_attestation(companyId: str, body: dict, sub: str | None 
         if not validation.same_value((stored.get("EBWOID") or {}).get("value"), company.get("ebwoid")):
             mismatched.append("EBWOID")
         if (row["country_code"] or "") != (company.get("country") or ""):
+            mismatched.append("countryCode")
