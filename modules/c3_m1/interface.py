@@ -103,3 +103,4 @@ def get_company(cid: str | None) -> dict:
     row = store.get_company(cid)
     if row is None:
         raise Problem(MODULE, 404, "not-found", retryable=False)
+    return row
