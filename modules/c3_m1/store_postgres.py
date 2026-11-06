@@ -276,3 +276,4 @@ def list_identifiers(company_id: str) -> list[dict]:
                                       "ORDER BY type", (company_id,))
 
 
+def set_identifiers(company_id: str, identifiers: list[dict]) -> list[dict]:
