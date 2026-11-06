@@ -224,3 +224,4 @@ def set_identifiers(company_id: str, identifiers: list[dict]) -> list[dict]:
 
 
 # ------------------------------------------------------- company_role_assignment (README 5, 6.5)
+def get_role(company_id: str, company_role: str) -> dict | None:
