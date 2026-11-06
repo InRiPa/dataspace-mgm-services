@@ -174,3 +174,4 @@ def apply_registration_url() -> None:
         return
     os.environ["C1_M2_URL"] = url
 
+
