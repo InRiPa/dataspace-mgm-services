@@ -930,3 +930,4 @@ def approve_change_request(changeRequestId: str, body: dict | None = None,
     return _change_request_view(decided, osp=True)
 
 
+def decline_change_request(changeRequestId: str, body: dict | None = None,
