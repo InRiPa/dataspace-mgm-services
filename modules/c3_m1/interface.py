@@ -731,3 +731,4 @@ def create_change_request(companyId: str, data: dict,
                           documents: list[tuple[str, bytes, str | None]],
                           sub: str | None = None) -> dict:
     """7.4: a change request with supporting documents."""
+    if not config.change_requests_enabled():
