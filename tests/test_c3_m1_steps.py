@@ -72,3 +72,4 @@ def seed(application: str = A1, company: str = U1, **over) -> dict:
                                          "source": "ATTESTATION"},
                                         {"type": "EUID", "value": "DEXX001T.HRB100001",
                                          "source": "ATTESTATION"},
+                                        {"type": "VAT_ID", "value": "DE123456789",
