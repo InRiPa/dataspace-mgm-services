@@ -253,3 +253,4 @@ def description(company_role: str, lang: str) -> str | None:
     descriptions = (role_catalogue().get(company_role) or {}).get("descriptions") or {}
     return descriptions.get(lang) or descriptions.get("en")
 
+
