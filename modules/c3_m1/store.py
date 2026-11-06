@@ -32,3 +32,4 @@
   `schema.sql`. The database user of the module owns that schema; nothing else reads it.
 
 Both transports answer the same functions and the same invariants; only the storage differs. A
+caller therefore never learns which one runs, except through `backend_name()`. Field names are the
