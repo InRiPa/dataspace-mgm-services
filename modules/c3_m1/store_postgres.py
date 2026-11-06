@@ -433,3 +433,4 @@ def create_change_request(row: dict) -> dict:
                 "INSERT INTO change_request (id, company_id, status, changes, comment, requested_by,"
                 " decided_by, decision_reason, created_at, closed_at)"
                 " VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s) RETURNING *",
+                (row.get("id") or str(uuid.uuid4()), company_id, status,
