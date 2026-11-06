@@ -109,3 +109,4 @@ def test_reset_empties_the_tables(postgres):
     postgres.reset()
     assert postgres.get_company(COMPANY["id"]) is None
     assert postgres.list_audit() == []
+
