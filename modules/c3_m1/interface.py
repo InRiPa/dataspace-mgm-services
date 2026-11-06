@@ -806,3 +806,4 @@ def _own_change_request(companyId: str, changeRequestId: str) -> dict:
 def withdraw_change_request(companyId: str, changeRequestId: str, sub: str | None = None) -> dict:
     """7.6"""
     with store.lock(companyId):
+        row = _own_change_request(companyId, changeRequestId)
