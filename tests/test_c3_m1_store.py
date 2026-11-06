@@ -319,3 +319,4 @@ def test_documents_are_stored_with_checksum(make):
 # ------------------------------------------------------------------------ used attestation (5)
 def test_an_attestation_is_used_exactly_once(make):
     company = make()
+    assert store.add_if_unused("jti-1", company["id"]) is True
