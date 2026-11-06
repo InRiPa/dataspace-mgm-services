@@ -120,3 +120,4 @@ MODULE_DIR = Path(__file__).parent
 
 def attestation_jwks_file() -> Path | None:
     """Tests only: the JWKS as a file; set means no fetch (README 11.2).
+
