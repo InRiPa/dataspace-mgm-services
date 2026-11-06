@@ -132,3 +132,4 @@ def create_company(row: dict) -> dict:
     _check_enum(row.get("deactivation_reason"), DEACTIVATION_REASONS, "deactivation_reason")
     if row.get("deactivation_reason") and status != "INACTIVE":
         raise ValueError("deactivation_reason: only with status INACTIVE")
+    now = _now()
