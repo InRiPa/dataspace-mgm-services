@@ -117,3 +117,4 @@ def get_company(company_id: str | None) -> dict | None:
     return _copy(companies.get(company_id)) if company_id else None
 
 
+def create_company(row: dict) -> dict:
