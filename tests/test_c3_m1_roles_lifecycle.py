@@ -126,3 +126,4 @@ def test_the_reactivation_with_a_new_attestation(active):
     types = [event["type"] for event in events.RELAY.log]
     assert types == ["CompanyDataChanged", "CompanyReactivated"]
 
+    events.RELAY.log.clear()
