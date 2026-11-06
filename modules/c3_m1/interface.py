@@ -1150,3 +1150,4 @@ def reactivate_company(input: dict) -> dict:
                     continue
                 source = "BUSINESS_WALLET" if (stored.get(entry["type"]) or {}).get("source") == "BUSINESS_WALLET" else "DECLARED"
             else:
+                source = "DECLARED" if (stored.get(entry["type"]) or {}).get("source") != "BUSINESS_WALLET" else "BUSINESS_WALLET"
