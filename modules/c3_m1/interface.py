@@ -792,3 +792,4 @@ def list_own_change_requests(companyId: str, page: int = 0, size: int = 20) -> d
     get_company(companyId)
     items, total = store.list_change_requests(company_id=companyId, page=page, size=size,
                                               newest_first=True)
+    return {"items": [_change_request_view(item) for item in items], "page": page, "size": size,
