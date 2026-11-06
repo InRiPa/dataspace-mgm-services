@@ -159,3 +159,4 @@ def company_internal(cid: str | None) -> dict:
             "status": row["status"], "bpn": row["bpn"],
             "companyRoles": [role for role, status in store.list_roles(row["id"]).items()
                              if status == "ACTIVE"],
+            "deactivationReason": row["deactivation_reason"], "createdAt": row["created_at"],
