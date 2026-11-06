@@ -157,3 +157,4 @@ CREATE TABLE change_request_document (
     change_request_id  uuid         NOT NULL REFERENCES change_request (id),
     file_name          text         NOT NULL,
     media_type         text         NOT NULL,
+    size_bytes         integer      NOT NULL,
