@@ -232,3 +232,4 @@ def test_reject_company():
     with pytest.raises(Problem) as error:
         step("reject_company", companyId=U1)
     assert error.value.name == "invalid-state"
+
