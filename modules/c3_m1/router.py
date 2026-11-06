@@ -118,3 +118,4 @@ def read_own_company(companyId: str,
     return role_view(companyId)
 
 
+@router.post("/companies/{companyId}/attestation-updates")
