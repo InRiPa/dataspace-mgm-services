@@ -337,3 +337,4 @@ def activate_company(input: dict) -> dict:
         terms = _terms_of_roles()
         given = {consent.get("agreementKey"): consent for consent in application.get("consents") or []}
         active, pending = [], []
+        for role, status in store.list_roles(cid).items():
