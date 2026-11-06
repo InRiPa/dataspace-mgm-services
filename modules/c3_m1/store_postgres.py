@@ -495,3 +495,4 @@ def decide_change_request(change_request_id: str, status: str, *, decided_by: st
                            change_request_id))
 
 
+def withdraw_change_request(change_request_id: str, *, closed_at: str | None = None) -> dict | None:
