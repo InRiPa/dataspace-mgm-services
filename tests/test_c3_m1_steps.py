@@ -31,3 +31,4 @@ import json
 
 import pytest
 
+from modules.c1_m2 import interface as c1_m2
