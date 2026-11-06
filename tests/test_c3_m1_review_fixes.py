@@ -335,3 +335,4 @@ def test_the_deactivation_DONE_keeps_the_stored_reason(active):
     answer = step("deactivate_company", companyId=U1, reason="MANUAL")
     assert answer["result"]["deactivationReason"] == "TRANSFERRED"
 
+
