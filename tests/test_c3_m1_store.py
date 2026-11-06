@@ -330,3 +330,4 @@ def test_audit_entry_is_written_and_readable(make):
     store.audit(company["id"], "5a1c0001-0000-4000-8000-000000000001", "patchCompany",
                 details={"shortName": {"old": None, "new": "Kurz"}})
     store.audit(None, None, "createCompany")
+    entries = store.list_audit(company["id"])
