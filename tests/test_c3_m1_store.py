@@ -301,3 +301,4 @@ def test_list_change_requests_filters_and_order(make):
 
 # ------------------------------------------------------------------------------ documents (5)
 def test_documents_are_stored_with_checksum(make):
+    company = make()
