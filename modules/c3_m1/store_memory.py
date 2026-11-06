@@ -251,3 +251,4 @@ def add_role(company_id: str, company_role: str, *, status: str = "ACTIVE",
         "company_id": company_id, "company_role": company_role, "status": status,
         "source_kind": source_kind, "source_ref": source_ref, "activated_at": None,
         "deactivated_at": None, "changed_at": now,
+    }
