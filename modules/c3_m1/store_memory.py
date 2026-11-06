@@ -402,3 +402,4 @@ def list_documents(change_request_id: str) -> list[dict]:
 
 # ------------------------------------------------------------ used_attestation (README 5, 6.7)
 def add_if_unused(jti: str, company_id: str) -> bool:
+    """`True` if the `jti` was free and is now used, `False` if it was used already."""
