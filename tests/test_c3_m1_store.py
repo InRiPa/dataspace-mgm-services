@@ -94,3 +94,4 @@ def test_bpn_is_stored_in_upper_case(make):
 
 def test_bpn_is_unique_among_companies_that_are_not_rejected(make):
     make(bpn="BPNL00000000AAAA")
+    with pytest.raises(ValueError):
