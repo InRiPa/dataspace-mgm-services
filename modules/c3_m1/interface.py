@@ -693,3 +693,4 @@ def _differs_identifiers(row: dict, identifiers: list[dict]) -> bool:
     after = {(entry["type"], validation.value_normalized(entry["value"])) for entry in identifiers}
     return before != after
 
+
