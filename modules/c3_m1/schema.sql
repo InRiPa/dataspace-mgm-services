@@ -22,3 +22,4 @@
 -- #  SPDX-License-Identifier: Apache-2.0 AND CC0-1.0
 -- #  Assisted-By: Hermes Agent (deepseek-v4.1-flash)
 -- #################################################################################
+-- C3-M1 Company Profile, own database `c3_m1` (README 4, 5). Field names, types, NOT NULLs,
