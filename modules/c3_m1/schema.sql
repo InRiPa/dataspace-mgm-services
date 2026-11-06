@@ -127,3 +127,4 @@ CREATE TABLE consent (
     CONSTRAINT consent_consented_by_length CHECK (consented_by IS NULL OR char_length(consented_by) <= 200)
 );
 
+-- C3-M1 5 Table change_request
