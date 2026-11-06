@@ -179,3 +179,4 @@ def _stub_applications() -> dict[str, dict]:
     if path is None:
         return {}
     document = json.loads(path.read_text(encoding="utf-8"))
+    entries = document.get("applications") if isinstance(document, dict) else document
