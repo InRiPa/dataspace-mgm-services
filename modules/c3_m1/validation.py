@@ -315,3 +315,4 @@ def validate_change_request(data: dict, country_code: str | None) -> list[dict]:
     flat = flat_fields(data)
     errors: list[dict] = []
     has_name = flat.get("name") not in (None, "")
+    has_address = any(flat.get(field) not in (None, "") for field in ADDRESS_FIELDS)
