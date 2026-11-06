@@ -49,3 +49,4 @@ def postgres_url() -> str:
     if not url:
         pytest.skip("TEST_DATABASE_URL is not set")
     return url
+
