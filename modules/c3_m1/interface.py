@@ -634,3 +634,4 @@ def remove_company_role(companyId: str, companyRole: str, sub: str | None = None
 def _summary(row: dict) -> dict:
     return {"id": row["id"], "name": row["name"], "status": row["status"], "bpn": row["bpn"],
             "coreDataSource": row["core_data_source"], "countryCode": row["country_code"],
+            "companyRoles": [role for role, status in store.list_roles(row["id"]).items()
