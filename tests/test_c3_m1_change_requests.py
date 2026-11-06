@@ -120,3 +120,4 @@ def test_decline_and_withdraw(active):
     answer = submit()
     with pytest.raises(Problem) as error:
         interface.decline_change_request(answer["id"], {}, S1_SUB)
+    assert error.value.status == 400 and error.value.name == "validation"
