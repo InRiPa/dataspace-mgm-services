@@ -152,3 +152,4 @@ def lock(company_id: str | None = None):
     """Lock of README 6.9 for the duration of the block, one caller per company.
 
     A session advisory lock instead of `SELECT ... FOR UPDATE`: the write functions of this
+    transport run in their own transactions, so a row lock held here would block on the very
