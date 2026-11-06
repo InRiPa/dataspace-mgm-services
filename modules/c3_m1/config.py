@@ -175,3 +175,4 @@ def apply_registration_url() -> None:
     os.environ["C1_M2_URL"] = url
 
 
+def osp_company_id() -> str:
