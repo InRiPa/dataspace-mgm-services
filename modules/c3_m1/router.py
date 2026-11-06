@@ -169,3 +169,4 @@ def create_change_request(companyId: str, data: str = Form(...),
     try:
         parsed = json.loads(data)
     except ValueError as error:
+        raise Problem(MODULE, 400, "validation",
