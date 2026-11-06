@@ -125,3 +125,4 @@ def attestation_jwks_file() -> Path | None:
     lives here), an absolute path as given.
     """
     path = _path(MODULE_DIR, value("ATTESTATION_JWKS_FILE"))
+    return path if path else None
