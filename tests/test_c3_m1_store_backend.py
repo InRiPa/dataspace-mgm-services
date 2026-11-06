@@ -95,3 +95,4 @@ def test_the_database_keeps_the_invariants(postgres):
     with pytest.raises(ValueError):
         postgres.create_company(dict(COMPANY, id="c0000003-0000-4000-8000-000000000003",
                                      status="DELETED"))
+
