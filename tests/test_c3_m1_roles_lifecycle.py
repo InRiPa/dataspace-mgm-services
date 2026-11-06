@@ -152,3 +152,4 @@ def test_the_transfer_away_and_the_return(active):
     assert step("assign_identifier", companyId=U2, bpn="BPNL00000000U2LG")["state"] == "DONE"
     assert step("reactivate_company", companyId=U2, applicationId=A7)["result"]["status"] == "ACTIVE"
 
+
