@@ -67,3 +67,4 @@ def activate_company(body: dict = Body(...),
 
 
 @router.post("/steps/deactivate-company")
+def deactivate_company(body: dict = Body(...),
