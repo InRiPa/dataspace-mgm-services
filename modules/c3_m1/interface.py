@@ -433,3 +433,4 @@ def update_company(companyId: str, body: dict, sub: str | None = None) -> dict:
         if locked:
             raise Problem(MODULE, 409, "field-locked", fields=locked)
         errors = validation.validate_company(body, partial=True)
+        if errors:
