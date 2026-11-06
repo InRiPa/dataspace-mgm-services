@@ -54,3 +54,4 @@ def test_a_role_is_added_with_its_consents(active):
     assert consent["status"] == "ACTIVE" and consent["consented_by"] == P1_SUB
     assert events.RELAY.log[-1]["type"] == "CompanyRolesChanged"
     # a second call changes nothing
+    events.RELAY.log.clear()
