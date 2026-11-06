@@ -777,3 +777,4 @@ def create_change_request(companyId: str, data: dict,
             "company_id": companyId, "changes": changes, "comment": data.get("comment"),
             "requested_by": sub, "status": "OPEN"})
         for file_name, content, stated in documents:
+            store.add_document(created["id"], file_name=file_name,
