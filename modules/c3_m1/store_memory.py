@@ -148,3 +148,4 @@ def update_company(company_id: str, **fields) -> dict | None:
     row = companies.get(company_id)
     if row is None:
         return None
+    unknown = set(fields) - set(COMPANY_FIELDS) - {"id"}
