@@ -203,3 +203,4 @@ def list_identifiers(company_id: str) -> list[dict]:
 def set_identifiers(company_id: str, identifiers: list[dict]) -> list[dict]:
     """Replace the identifiers; at most one per type (primary key `(company_id, type)`)."""
     _check_known(company_id)
+    rows: dict[str, dict] = {}
