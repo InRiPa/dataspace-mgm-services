@@ -152,3 +152,4 @@ def test_the_country_is_locked_after_the_bpn(client, active):
     response = call(client, "PATCH", f"/api/c3-m1/osp/companies/{U1}", S2,
                     json={"countryCode": "US", "reason": "Umzug"})
     assert response.status_code == 409 and response.json()["fields"] == ["countryCode"]
+
