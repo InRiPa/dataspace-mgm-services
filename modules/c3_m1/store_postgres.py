@@ -147,3 +147,4 @@ def reset() -> None:
         connection.execute(script)
 
 
+@contextlib.contextmanager
