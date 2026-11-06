@@ -225,3 +225,4 @@ def create_company(input: dict) -> dict:
                       detail=f"application {application.get('status')}", retryable=False)
 
     data = application.get("companyData") or {}
+    source_address = data.get("address") or {}
