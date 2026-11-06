@@ -62,3 +62,4 @@ COMPANY_KEYWORDS = (
     "deactivation_reason", "activated_at", "rejected_at", "deactivated_at", "reactivated_at",
     "changed_at",
 )
+
