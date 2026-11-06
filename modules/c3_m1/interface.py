@@ -499,3 +499,4 @@ def correct_company(companyId: str, body: dict, sub: str | None = None) -> dict:
             store.set_identifiers(companyId, identifiers)
         store.audit(companyId, sub, "correctCompany", None,
                     {"changedFields": changed, "reason": body.get("reason"),
+                     "old": {field: row.get(field) for field in updates},
