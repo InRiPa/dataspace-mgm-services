@@ -237,3 +237,4 @@ def create_company(input: dict) -> dict:
     roles = [role for role in application.get("companyRoles") or []
              if config.assignable_by(role) == "COMPANY"]
 
+    errors = validation.validate_company(row)
