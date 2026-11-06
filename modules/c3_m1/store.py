@@ -26,3 +26,4 @@
 
 `DATABASE_URL` selects the transport, read at call time and never at import (AGENTS.md 6):
 
+- empty: `store_memory`, the in-memory transport. Every state is in the process, so the module
