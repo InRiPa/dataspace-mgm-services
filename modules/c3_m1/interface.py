@@ -986,3 +986,4 @@ def _attested_values(row: dict, claims: dict) -> tuple[dict, dict[str, dict]]:
     return fields, {entry["type"]: entry for entry in identifiers}
 
 
+def update_company_from_attestation(companyId: str, body: dict, sub: str | None = None) -> dict:
