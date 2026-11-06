@@ -369,3 +369,4 @@ def detect_media_type(content) -> str | None:
     if content.startswith(b"\xff\xd8\xff"):
         return "image/jpeg"
     return None
+
