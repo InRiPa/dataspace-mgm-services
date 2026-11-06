@@ -28,3 +28,4 @@ Every route takes its permission from `x-permission` of the spec through `standi
 the scope `company` additionally check `company_id` against the path (FRAMEWORK 4.3: another
 company's object stays invisible, 404). No business logic here.
 """
+from __future__ import annotations
