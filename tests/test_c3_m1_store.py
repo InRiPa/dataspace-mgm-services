@@ -76,3 +76,4 @@ def test_create_company_fills_defaults_and_timestamps(make):
 
 
 def test_create_company_rejects_unknown_field(make):
+    with pytest.raises(ValueError):
