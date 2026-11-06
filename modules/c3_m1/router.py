@@ -206,3 +206,4 @@ def get_change_request(changeRequestId: str,
     return interface.get_change_request(changeRequestId)
 
 
+@router.get("/osp/change-requests/{changeRequestId}/documents/{documentId}")
