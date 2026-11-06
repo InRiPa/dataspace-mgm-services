@@ -45,3 +45,4 @@ from portal_common.problems import Problem
 
 from . import config
 
+MODULE = "c3-m1"
