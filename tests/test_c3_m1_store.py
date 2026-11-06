@@ -472,3 +472,4 @@ def test_euid_and_ebwoid_are_loose():
     assert v.validate_identifiers([{"type": "EUID", "value": "DEXX001T.HRB100001"}], "DE") == []
     assert v.validate_identifiers([{"type": "EBWOID", "value": "EBWOID-DE-0000000001"}], "DE") == []
     assert v.validate_identifiers([{"type": "EBWOID", "value": "A" * 200}], "DE") == []
+    assert {"field": "identifiers[0].value", "reason": "format"} in v.validate_identifiers(
