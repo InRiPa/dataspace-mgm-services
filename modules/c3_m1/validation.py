@@ -90,3 +90,4 @@ ALIASES = {
     "deactivationReason": "deactivation_reason", "createdAt": "created_at",
     "changedAt": "changed_at", "activatedAt": "activated_at", "rejectedAt": "rejected_at",
     "deactivatedAt": "deactivated_at", "reactivatedAt": "reactivated_at",
+}
