@@ -339,3 +339,4 @@ def test_the_deactivation_DONE_keeps_the_stored_reason(active):
 def test_the_activation_DONE_lists_active_roles_only(active):
     interface.add_company_role(U1, {"companyRole": "APP_PROVIDER",
                                     "consents": [{"agreementKey": "terms-app-provider",
+                                                  "version": "1.0"}]}, P1_SUB)
