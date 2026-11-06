@@ -214,3 +214,4 @@ def update_company(company_id: str, **fields) -> dict | None:
     if "status" in fields:
         _check_enum(fields["status"], STATUSES, "status")
     if "core_data_source" in fields:
+        _check_enum(fields["core_data_source"], CORE_DATA_SOURCES, "core_data_source")
