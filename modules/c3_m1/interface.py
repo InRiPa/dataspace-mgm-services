@@ -846,3 +846,4 @@ def get_change_request(changeRequestId: str) -> dict:
     """7.15: the request with the current state of the company."""
     row = _reviewed(changeRequestId)
     company = store.get_company(row["company_id"]) or {}
+    view = _change_request_view(row, osp=True, company=company)
