@@ -887,3 +887,4 @@ def _apply_changes(companyId: str, row: dict, changes: dict) -> tuple[list[str],
         core_changed = True
     if core_changed and row["core_data_source"] == "EBW":
         raise Problem(MODULE, 409, "attestation-required")
+    changed = _changed_fields(row, fields, identifiers)
