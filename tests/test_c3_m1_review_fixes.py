@@ -272,3 +272,4 @@ def test_the_activation_calls_neither_the_csp_nor_c3_m2(active, monkeypatch):
 
 def test_the_document_goes_out_over_http_with_its_content_type(client, active):
     request = interface.create_change_request(U1, {"comment": "x", "identifiers": [
+        {"type": "VAT_ID", "value": "DE555444333"}]}, [PDF], P1_SUB)
