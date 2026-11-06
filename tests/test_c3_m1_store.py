@@ -401,3 +401,4 @@ def test_required_address_fields_and_lengths():
                                  "address_addition": "x" * 256, "postal_code": "x" * 13})
     assert {(e["field"], e["reason"]) for e in errors} >= {
         ("short_name", "too-long"), ("house_number", "too-long"),
+        ("address_addition", "too-long"), ("postal_code", "too-long")}
