@@ -268,3 +268,4 @@ def create_company(input: dict) -> dict:
                                       "coreDataSource": created["core_data_source"]})
 
 
+# ----------------------------------------------------------------------------------- steps (8.2)
