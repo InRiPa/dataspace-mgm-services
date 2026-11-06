@@ -125,3 +125,4 @@ def _check_known(connection, company_id: str) -> None:
             connection, "SELECT id FROM company WHERE id = %s", (company_id,)) is None:
         raise ValueError(f"unknown company: {company_id}")
 
+
