@@ -104,3 +104,4 @@ def reset() -> None:
 
 @contextlib.contextmanager
 def lock(company_id: str | None = None):
+    """Placeholder for the row lock of README 6.9 (`SELECT ... FOR UPDATE`).
