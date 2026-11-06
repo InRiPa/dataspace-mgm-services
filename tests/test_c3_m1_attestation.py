@@ -57,3 +57,4 @@ def _keys(monkeypatch):
     yield
 
 
+def now() -> dt.datetime:
