@@ -80,3 +80,4 @@ def _row(row: dict | None) -> dict | None:
         return None
     for key, value in row.items():
         if isinstance(value, uuid.UUID):
+            row[key] = str(value)
