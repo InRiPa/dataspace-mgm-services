@@ -156,3 +156,4 @@ def update_company(company_id: str, **fields) -> dict | None:
     _check_enum(fields.get("core_data_source", row["core_data_source"]), CORE_DATA_SOURCES,
                 "core_data_source")
     reason = fields.get("deactivation_reason", row["deactivation_reason"])
+    _check_enum(reason, DEACTIVATION_REASONS, "deactivation_reason")
