@@ -240,3 +240,4 @@ def test_consents_are_keyed_by_company_and_key(make):
                       source_kind="COMPANY", consented_by="sub")
     store.set_consent(company["id"], "terms-active-participant", version="1.0", status="INACTIVE")
     store.set_consent(company["id"], "security-regulations", version="1.0")
+    consent = store.get_consent(company["id"], "terms-active-participant")
