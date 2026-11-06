@@ -62,3 +62,4 @@ def postgres(monkeypatch, postgres_url):
 
 
 def test_the_default_transport_is_in_memory(monkeypatch):
+    monkeypatch.delenv("DATABASE_URL", raising=False)
