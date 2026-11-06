@@ -196,3 +196,4 @@ def create_company(row: dict) -> dict:
     with _connection() as connection:
         try:
             created = _fetch_one(connection,
+                                 f"INSERT INTO company ({columns}) VALUES ({placeholders}) RETURNING *",
