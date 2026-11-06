@@ -427,3 +427,4 @@ def audit(company_id: str | None, sub: str | None, operation: str,
     return _copy(row)  # type: ignore[return-value]
 
 
+def list_audit(company_id: str | None = None) -> list[dict]:
