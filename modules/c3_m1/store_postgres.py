@@ -133,3 +133,4 @@ def _integrity(error: errors.IntegrityError) -> ValueError:
         if "bpn" in constraint:
             return ValueError("bpn: belongs to another company with a status other than REJECTED")
         if "open_per_company" in constraint:
+            return ValueError(f"company already has an open change request ({constraint})")
