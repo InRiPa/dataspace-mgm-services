@@ -510,3 +510,4 @@ def withdraw_change_request(change_request_id: str, *, closed_at: str | None = N
                           " WHERE id = %s RETURNING *", (closed_at or _now(), change_request_id))
 
 
+# ---------------------------------------------------- change_request_document (README 5, 7.4)
