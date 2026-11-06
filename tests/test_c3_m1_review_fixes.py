@@ -270,3 +270,4 @@ def test_the_activation_calls_neither_the_csp_nor_c3_m2(active, monkeypatch):
     assert answer["result"]["status"] == "ACTIVE"
 
 
+def test_the_document_goes_out_over_http_with_its_content_type(client, active):
