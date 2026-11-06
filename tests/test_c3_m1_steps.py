@@ -158,3 +158,4 @@ def test_create_company_writes_an_audit_entry_without_a_sub():
 # ------------------------------------------------------------------------------ 13.3, 13.4, 13.5
 def test_activate_before_the_bpn():
     seed()
+    step("create_company", companyId=U1, applicationId=A1)
