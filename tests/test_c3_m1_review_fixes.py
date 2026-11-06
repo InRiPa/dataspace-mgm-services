@@ -310,3 +310,4 @@ def test_an_undecodable_payload_is_a_format_error(active):
     assert error.value.status == 400 and error.value.ext["reason"] == "format"
 
 
+def test_client_id_is_optional_without_a_configured_list(active, monkeypatch):
