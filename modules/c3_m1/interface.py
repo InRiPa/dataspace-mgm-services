@@ -577,3 +577,4 @@ def add_company_role(companyId: str, body: dict, sub: str | None = None,
         if store.role_status(companyId, role) == "ACTIVE":
             return _role_state(companyId, lang or "en")
 
+        terms = _terms_of(role, _terms())
