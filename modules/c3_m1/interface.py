@@ -523,3 +523,4 @@ def _role_state(company: str, lang: str) -> list[dict]:
     """`CompanyRoleState` of 7.7: catalogue roles plus the roles the company has or had."""
     terms = _terms()
     roles: dict[str, set[str]] = {}
+    for role in config.roles_assignable_by_company():
