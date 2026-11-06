@@ -173,3 +173,4 @@ def test_a_correction_without_a_reason_is_a_validation_error(client, active):
 def test_the_search_filters_over_http(client, active):
     response = call(client, "GET", "/api/c3-m1/osp/companies?status=ACTIVE&hasBpn=true", S1)
     assert response.status_code == 200
+    ids = [item["id"] for item in response.json()["items"]]
