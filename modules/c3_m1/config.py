@@ -81,3 +81,4 @@ def number(name: str) -> int:
         raise ValueError(f"{name}: not a number ({value(name)!r})") from None
 
 
+def flag(name: str) -> bool:
