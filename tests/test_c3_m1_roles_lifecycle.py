@@ -114,3 +114,4 @@ def test_the_reactivation_with_a_new_attestation(active):
     interface.deactivate_company_by_staff(U1, {"reason": "Pause"}, S2_SUB)
     seed(A5, U1, status="APPROVED", kind="REACTIVATION", companyData={
         "legalName": "Beispiel Maschinenbau GmbH", "address": dict(ADDRESS, streetName="Musterstraße",
+                                                                   streetNumber="7"),
