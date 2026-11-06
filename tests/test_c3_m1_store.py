@@ -536,3 +536,4 @@ def test_comment_and_reason_lengths():
 
 
 # ------------------------------------------------------------------------ documents (4, 5)
+def test_media_type_comes_from_the_first_bytes():
