@@ -48,3 +48,4 @@ from . import config
 MODULE = "c3-m1"
 TYP = "ebw-attestation+jwt"
 ALGORITHM = "ES256"
+REQUIRED_CLAIMS = ("jti", "verified_at", "purpose", "company", "representation")
