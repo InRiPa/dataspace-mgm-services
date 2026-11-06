@@ -328,3 +328,4 @@ def create_change_request(row: dict) -> dict:
     return _copy(created)  # type: ignore[return-value]
 
 
+def open_change_request(company_id: str) -> dict | None:
