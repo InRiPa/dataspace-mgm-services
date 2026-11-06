@@ -95,3 +95,4 @@ def _load_keys() -> list[dict]:
 def _key_for(kid: str | None) -> dict:
     """The key of `kid`; an unknown `kid` reloads the cache at most once per minute (6.7)."""
     global _last_reload
+    keys = _load_keys()
