@@ -27,3 +27,4 @@ import pytest
 
 from modules.c3_m1 import interface, store
 from portal_common import events
+from portal_common.problems import Problem
