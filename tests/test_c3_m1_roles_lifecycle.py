@@ -176,3 +176,4 @@ def test_the_roles_are_visible_with_terms(client, active):
     assert [term["agreementKey"] for term in states["ACTIVE_PARTICIPANT"]["agreements"]] == \
         ["terms-active-participant", "security-regulations"]
     assert "APP_PROVIDER" in states
+
