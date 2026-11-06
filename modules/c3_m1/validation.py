@@ -127,3 +127,4 @@ def _reference_data() -> dict | None:
     if path is None or not path.is_file():
         return None
     try:
+        stat = path.stat()
