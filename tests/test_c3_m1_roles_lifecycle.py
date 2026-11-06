@@ -112,7 +112,7 @@ def test_the_osp_deactivation_and_the_lock_while_inactive(active):
 # ------------------------------------------------------------------------------------------ 13.20
 def test_the_reactivation_with_a_new_attestation(active):
     interface.deactivate_company_by_staff(U1, {"reason": "Pause"}, S2_SUB)
-    seed(A5, U1, status="APPROVED", kind="REACTIVATION", companyData={
+    seed(A5, U1, status="SUBMITTED", kind="REACTIVATION", companyData={
         "legalName": "Beispiel Maschinenbau GmbH", "address": dict(ADDRESS, streetName="Musterstraße",
                                                                    streetNumber="7"),
         "identifiers": [{"type": "EBWOID", "value": "EBWOID-DE-0000000001", "source": "ATTESTATION"},
@@ -133,7 +133,7 @@ def test_the_reactivation_with_a_new_attestation(active):
 
 def test_the_reactivation_needs_the_matching_kind(active):
     step("deactivate_company", companyId=U1, reason="TRANSFERRED")
-    seed(A6, U1, kind="REACTIVATION", status="APPROVED")
+    seed(A6, U1, kind="REACTIVATION", status="SUBMITTED")
     with pytest.raises(Problem) as error:
         step("reactivate_company", companyId=U1, applicationId=A6)
     assert error.value.status == 409 and error.value.name == "invalid-state"

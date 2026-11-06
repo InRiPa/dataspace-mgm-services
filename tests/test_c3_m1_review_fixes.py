@@ -42,7 +42,7 @@ from tools import test_iam
 from modules.c3_m1 import router as c3_router
 from test_c3_m1_api import BASE
 from test_c3_m1_attestation import _keys, claims, sign  # noqa: F401
-from test_c3_m1_steps import A1, A2, U3, _c1_m2, seed, step  # noqa: F401  (_c1_m2: fixture)
+from test_c3_m1_steps import A1, A2, A3, U3, _c1_m2, seed, step  # noqa: F401  (_c1_m2: fixture)
 
 @pytest.fixture
 def client() -> TestClient:
@@ -216,7 +216,7 @@ def test_the_approval_event_carries_the_resulting_source(active):
 
 
 def test_the_reactivation_keeps_the_house_number_of_the_application(active):
-    seed("a0000005-0000-4000-8000-000000000009", U1, kind="REACTIVATION", status="APPROVED",
+    seed("a0000005-0000-4000-8000-000000000009", U1, kind="REACTIVATION", status="SUBMITTED",
          companyData={"legalName": "Beispiel Maschinenbau GmbH",
                       "address": {"streetName": "Musterstraße", "streetNumber": "7",
                                   "postalCode": "70569", "city": "Stuttgart", "countryCode": "DE"},
@@ -247,8 +247,10 @@ def test_the_start_survives_a_database_without_a_driver(monkeypatch):
 
 def test_the_readme_data_files_resolve_without_configuration(monkeypatch):
     from pathlib import Path
-    assert config.stub_applications_file() is not None
+    assert config.stub_applications_file() is not None        # README 4: apps come from the stub file
     monkeypatch.delenv("ATTESTATION_JWKS_FILE")
+    assert config.attestation_jwks_file() is None             # README 4: JWKS is a test setting only
+    monkeypatch.setenv("ATTESTATION_JWKS_FILE", "stub-ebw-jwks.json")
     assert config.attestation_jwks_file() is not None
     assert config.attestation_jwks_file().name == "stub-ebw-jwks.json"
     assert config.attestation_jwks_file().parent == Path(config.__file__).parent
@@ -279,6 +281,33 @@ def test_the_document_goes_out_over_http_with_its_content_type(client, active):
     assert answer.headers["content-type"] == "application/pdf"
     assert "attachment" in answer.headers["content-disposition"]
     assert answer.content.startswith(b"%PDF")
+
+
+# ------------------------------------------------------------------------- concurrency (6.9)
+def test_two_threads_create_the_same_company_once():
+    from concurrent.futures import ThreadPoolExecutor
+    interface.reset()
+    seed(A1, U1)
+    with ThreadPoolExecutor(max_workers=2) as pool:
+        results = list(pool.map(lambda _: step("create_company", companyId=U1,
+                                              applicationId=A1), range(2)))
+    assert all(reply["state"] == "DONE" for reply in results)
+    assert len([event for event in events.RELAY.log if event["type"] == "CompanyCreated"]) == 1
+    assert len(store.find_companies(size=100)[0]) == 2          # seed + U1
+
+
+def test_two_threads_assign_the_same_bpn_once():
+    from concurrent.futures import ThreadPoolExecutor
+    interface.reset()
+    seed(A1, U1)
+    step("create_company", companyId=U1, applicationId=A1)
+    events.RELAY.log.clear()
+    with ThreadPoolExecutor(max_workers=2) as pool:
+        results = list(pool.map(lambda _: step("assign_identifier", companyId=U1,
+                                              bpn="BPNLIUK2REMLK3F4"), range(2)))
+    assert all(reply["state"] == "DONE" for reply in results)
+    assert len([event for event in events.RELAY.log
+                if event["type"] == "CompanyIdentifierAssigned"]) == 1
 
 
 # ------------------------------------------------------------------- shortName alias and lang
@@ -345,11 +374,21 @@ def test_the_activation_DONE_lists_active_roles_only(active):
     assert answer["result"]["companyRoles"] == ["ACTIVE_PARTICIPANT", "APP_PROVIDER"]
 
 
-def test_the_reactivation_needs_an_approved_application(active):
+def test_the_reactivation_accepts_a_submitted_application(active):
+    """flows.yaml `reactivation` runs this step right after ApplicationSubmitted (review 1)."""
     step("deactivate_company", companyId=U1, reason="MANUAL")
     seed("a0000005-0000-4000-8000-000000000005", U1, kind="REACTIVATION", status="SUBMITTED")
+    reply = step("reactivate_company", companyId=U1,
+                 applicationId="a0000005-0000-4000-8000-000000000005")
+    assert reply["state"] == "DONE" and reply["result"]["status"] == "ACTIVE"
+
+
+def test_the_reactivation_refuses_a_withdrawn_application(active):
+    step("deactivate_company", companyId=U1, reason="MANUAL")
+    seed("a0000005-0000-4000-8000-000000000006", U1, kind="REACTIVATION", status="WITHDRAWN")
     with pytest.raises(Problem) as error:
-        step("reactivate_company", companyId=U1, applicationId="a0000005-0000-4000-8000-000000000005")
+        step("reactivate_company", companyId=U1,
+             applicationId="a0000005-0000-4000-8000-000000000006")
     assert error.value.status == 409 and error.value.name == "invalid-state"
 
 
@@ -365,3 +404,108 @@ def test_the_rejected_bpn_abort_of_the_seed_file(tmp_path, monkeypatch):
     monkeypatch.setitem(settings.load(), "ospCompanyFile", str(seed_file))
     with pytest.raises(ValueError):
         config.seed_company()
+
+A8 = "a0000008-0000-4000-8000-000000000008"
+U4 = "c0000004-0000-4000-8000-000000000004"
+
+
+def ebw_company() -> None:
+    """An active company with source EBW (application 8 is verified over EBW)."""
+    seed(A8, U4)
+    step("create_company", companyId=U4, applicationId=A8)
+    step("assign_identifier", companyId=U4, bpn="BPNLIUK2REMLK3F5")
+    step("activate_company", companyId=U4, applicationId=A8)
+
+
+# --------------------------------------------------------- review 2: the readings of the second review
+def test_a_validation_error_answers_field_and_message():
+    """README 12 + openapi `Error`: `errors[]` carries `field` and `message` (review 15)."""
+    interface.reset()
+    seed(A1, U1)
+    step("create_company", companyId=U1, applicationId=A1)
+    with pytest.raises(Problem) as error:
+        interface.correct_company(U1, {"reason": "x", "name": ""})
+    assert error.value.status == 400
+    assert error.value.ext["errors"][0]["field"] == "name"
+    assert "message" in error.value.ext["errors"][0]
+
+
+def test_an_ebw_company_may_take_a_declared_identifier_without_attestation(active):
+    """6.6: an attestation is needed for name and address, a DECLARED identifier is not (review 4)."""
+    ebw_company()
+    assert store.get_company(U4)["core_data_source"] == "EBW"
+    interface.correct_company(U4, {"reason": "Nachtrag", "identifiers": [
+        {"type": "VAT_ID", "value": "DE123456789", "source": "DECLARED"}]}, P1_SUB)
+    assert store.get_company(U4)["core_data_source"] == "EBW"      # no name or address changed
+
+
+def test_correcting_with_the_stored_values_keeps_an_ebw_source(active):
+    """7.17: presence is not a change; equal values must not need an attestation or flip the source."""
+    ebw_company()
+    stored = store.get_company(U4)
+    interface.correct_company(U4, {"reason": "Abgleich", "name": stored["name"]}, P1_SUB)
+    assert store.get_company(U4)["core_data_source"] == "EBW"
+
+
+def test_the_review_filter_needs_a_list(client):
+    answer = call(client, "POST", "/api/c3-m1/internal/companies/identifier-matches", "svc",
+                  json={"statuses": ["ACTIVE"]})
+    assert answer.status_code == 400
+    assert answer.json()["errors"][0]["field"] == "identifiers"
+
+
+def test_a_change_request_body_must_be_an_object(client, active):
+    response = call(client, "POST", "/api/c3-m1/companies/u1/change-requests".replace("u1", U1), P1,
+                    data={"data": "[1, 2]"}, files={"documents": PDF})
+    assert response.status_code == 400
+    assert response.json()["errors"][0]["field"] == "data"
+
+
+def test_a_role_the_company_may_not_assign_is_a_validation_error(active):
+    seed("a0000009-0000-4000-8000-000000000009", "c0000009-0000-4000-8000-000000000009",
+         companyRoles=["OSP_ADMIN"])
+    with pytest.raises(Problem) as error:
+        step("create_company", companyId="c0000009-0000-4000-8000-000000000009",
+             applicationId="a0000009-0000-4000-8000-000000000009")
+    assert error.value.status == 400
+    assert any(entry["field"] == "companyRole" for entry in error.value.ext["errors"])
+
+
+def test_a_short_name_of_the_company_survives_the_reactivation(active):
+    interface.update_company(U1, {"shortName": "Kurz"}, P1_SUB)
+    step("deactivate_company", companyId=U1, reason="MANUAL")
+    seed("a0000005-0000-4000-8000-000000000008", U1, kind="REACTIVATION",
+         companyData={"legalName": "Anderer Name AG", "address": {
+             "streetName": "Neue Straße", "streetNumber": "9", "postalCode": "01067",
+             "city": "Dresden", "countryCode": "DE"}}, verification="DOCUMENTS", attestation=None)
+    step("reactivate_company", companyId=U1,
+         applicationId="a0000005-0000-4000-8000-000000000008")
+    assert store.get_company(U1)["short_name"] == "Kurz"
+
+
+def test_a_change_of_the_source_alone_publishes_data_changed(active):
+    """7.3 point 5: a changed source counts, not only changed fields."""
+    ebw_company()
+    store.update_company(U4, core_data_source="MANUAL", name="Beispiel Maschinenbau GmbH")
+    events.RELAY.log.clear()
+    interface.update_company_from_attestation(U4, {"attestation": sign(claims())}, P1_SUB)
+    assert [event["type"] for event in events.RELAY.log] == ["CompanyDataChanged"]
+
+
+def test_the_download_file_name_is_escaped(client, active):
+    seed(A3, U3, companyData={
+        "legalName": "Beispiel Maschinenbau GmbH",
+        "address": {"streetName": "Musterstraße", "streetNumber": "1", "postalCode": "70569",
+                    "city": "Stuttgart", "countryCode": "DE"},
+        "identifiers": [{"type": "VAT_ID", "value": "DE123456789", "source": "APPLICANT"}]},
+        verification="DOCUMENTS", attestation=None)
+    step("create_company", companyId=U3, applicationId=A3)
+    step("assign_identifier", companyId=U3, bpn="BPNLIUK2REMLK3F6")
+    step("activate_company", companyId=U3, applicationId=A3)
+    request = interface.create_change_request(U3, {"comment": "x", "identifiers": [
+        {"type": "EUID", "value": "DEXX001T.HRB100001"}]},
+        [("Größe Angabe.pdf", b"%PDF-1.7", "application/pdf")], P1_SUB)
+    response = call(client, "GET", f"/api/c3-m1/osp/change-requests/{request['id']}"
+                                   f"/documents/{request['documents'][0]['id']}", S1)
+    assert response.status_code == 200
+    assert "%C3%9F" in response.headers["content-disposition"]
