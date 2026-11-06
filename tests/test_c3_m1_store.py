@@ -192,3 +192,4 @@ def test_set_identifiers_normalises_and_replaces(make):
 def test_set_identifiers_enforces_one_per_type(make):
     company = make()
     with pytest.raises(ValueError):
+        store.set_identifiers(company["id"], [{"type": "VAT_ID", "value": "DE123456789"},
