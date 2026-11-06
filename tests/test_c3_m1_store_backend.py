@@ -116,3 +116,4 @@ def test_a_missing_driver_answers_not_implemented(monkeypatch, postgres_url):
     from portal_common.problems import Problem
 
     monkeypatch.setenv("DATABASE_URL", postgres_url)
+    monkeypatch.setattr(store, "_cache", None)
