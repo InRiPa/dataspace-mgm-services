@@ -132,3 +132,4 @@ def test_a_changed_euid_counts_as_core_data():
     step("assign_identifier", companyId=U1, bpn="BPNLIUK2REMLK3F4")
     step("activate_company", companyId=U1, applicationId=A1)
     request = interface.create_change_request(U1, {"comment": "x", "identifiers": [
+        {"type": "EUID", "value": "DEXX001T.HRB200002"},
