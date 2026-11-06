@@ -89,3 +89,4 @@ def _checked_bpn(bpn, *, company_id: str | None, status: str) -> str | None:
                 raise ValueError(f"bpn: {bpn} belongs to company {other_id}")
     return bpn
 
+
