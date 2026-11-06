@@ -158,3 +158,4 @@ def update_company(company_id: str, **fields) -> dict | None:
     reason = fields.get("deactivation_reason", row["deactivation_reason"])
     _check_enum(reason, DEACTIVATION_REASONS, "deactivation_reason")
     if reason and status != "INACTIVE":
+        raise ValueError("deactivation_reason: only with status INACTIVE")
