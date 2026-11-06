@@ -105,3 +105,4 @@ def test_review_download_and_approval_of_a_manual_company(active):
     assert document["media_type"] == "application/pdf" and document["file_name"] == "auszug.pdf"
     assert [entry for entry in store.list_audit(U2) if entry["operation"] == "getChangeRequestDocument"]
 
+    approved = interface.approve_change_request(answer["id"], {}, S1_SUB)
