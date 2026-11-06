@@ -192,3 +192,4 @@ def test_no_token_attestation_document_or_person_name_leaks(active, _keys):
             [str(entry["details"]) for entry in store.list_audit(U1)]
     assert len(dumps) > 5
     for text in dumps:
+        assert "eyJ" not in text          # no attestation, no token
