@@ -60,3 +60,4 @@
       "applicant": { "sub": "5a1c0001-0000-4000-8000-000000000001" },
       "companyData": {
         "legalName": "Beispiel Maschinenbau GmbH",
+        "address": { "streetName": "Musterstraße", "streetNumber": "7", "postalCode": "70569", "city": "Stuttgart", "countryCode": "DE" },
