@@ -221,3 +221,4 @@ def test_reject_company():
     step("create_company", companyId=U3, applicationId=A3)
     reply = step("reject_company", companyId=U3)
     assert reply["result"]["status"] == "REJECTED"
+    assert len(published("CompanyRejected")) == 1
