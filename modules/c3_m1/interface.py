@@ -235,3 +235,4 @@ def create_company(input: dict) -> dict:
                     "source": "BUSINESS_WALLET" if entry.get("source") == "ATTESTATION" else "DECLARED"}
                    for entry in data.get("identifiers") or []]
     roles = [role for role in application.get("companyRoles") or []
+             if config.assignable_by(role) == "COMPANY"]
