@@ -194,3 +194,4 @@ def withdraw_change_request(companyId: str, changeRequestId: str,
 
 # --------------------------------------------------------------------- change requests, review (7.14 - 7.18)
 @router.get("/osp/change-requests")
+def list_change_requests(status: list[str] | None = Query(None), companyId: str | None = None,
