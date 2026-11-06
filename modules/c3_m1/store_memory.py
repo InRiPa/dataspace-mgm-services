@@ -140,3 +140,4 @@ def create_company(row: dict) -> dict:
         "bpn": _checked_bpn(row.get("bpn"), company_id=row["id"], status=status),
         "created_at": row.get("created_at") or now, "changed_at": row.get("changed_at") or now,
     })
+    companies[str(created["id"])] = created
