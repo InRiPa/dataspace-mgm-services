@@ -190,3 +190,4 @@ def test_assign_identifier_and_its_errors():
     assert error.value.status == 400 and error.value.name == "validation"
 
 
+def test_activate_takes_over_the_consents():
