@@ -282,3 +282,4 @@ def test_the_document_goes_out_over_http_with_its_content_type(client, active):
 
 
 # ------------------------------------------------------------------- shortName alias and lang
+def test_the_snake_case_alias_writes_the_short_name(client, active):
