@@ -397,3 +397,4 @@ def set_consent(company_id: str, agreement_key: str, *, version: str | None = No
         return _fetch_one(
             connection,
             "INSERT INTO consent (company_id, agreement_key, agreement_version, status, source_kind,"
+            " source_ref, consented_by, consented_at, changed_at)"
