@@ -57,3 +57,4 @@ TABLES = ("audit_log", "used_attestation", "change_request_document", "change_re
           "company_role_assignment", "company_identifier", "company")
 
 COMPANY_KEYWORDS = (
+    "short_name", "house_number", "address_addition", "postal_code", "region", "bpn",
