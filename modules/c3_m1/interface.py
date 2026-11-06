@@ -154,3 +154,4 @@ def company_internal(cid: str | None) -> dict:
             "address": {key: row.get(field) for key, field in
                         (("street", "street"), ("houseNumber", "house_number"),
                          ("postalCode", "postal_code"), ("city", "city"),
+                         ("region", "region"), ("countryCode", "country_code"))},
