@@ -188,3 +188,4 @@ def withdraw_change_request(companyId: str, changeRequestId: str,
                             claims: dict = standin.perm(
                                 MODULE, "POST",
                                 "/companies/{companyId}/change-requests/{changeRequestId}/withdraw")):
+    standin.company_scope(MODULE, claims, companyId)
