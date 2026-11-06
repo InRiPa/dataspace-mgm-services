@@ -364,3 +364,4 @@ def activate_company(input: dict) -> dict:
         _audit(cid, "stepActivateCompany", input, {"applicationId": application_id,
                                                    "companyRoles": sorted(active)})
         events.publish(MODULE, "CompanyActivated", {"companyId": cid, "bpn": row["bpn"],
+                                                    "companyRoles": sorted(active)})
