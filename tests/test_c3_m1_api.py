@@ -80,3 +80,4 @@ def active(client: TestClient) -> dict:
                                        (P3, "Company Admin", U2, "BPNL00000000U2LG")):
         uid = iam.find(person) or ""
         iam.add_portal_roles(uid, [role])
+        iam.bind(uid, company, bpn)
