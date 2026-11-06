@@ -27,3 +27,4 @@
 -- Not executed by the tests: `modules/c3_m1/store.py` keeps the same shape in memory.
 
 -- C3-M1 5 Table company
+CREATE TABLE company (
