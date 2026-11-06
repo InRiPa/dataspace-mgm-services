@@ -314,3 +314,4 @@ def _terms_of_roles() -> dict[str, set[str]]:
             terms.setdefault(agreement["agreementKey"], set()).add(role)
     return terms
 
+
