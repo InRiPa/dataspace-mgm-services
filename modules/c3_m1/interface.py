@@ -810,3 +810,4 @@ def withdraw_change_request(companyId: str, changeRequestId: str, sub: str | Non
         if row["status"] == "WITHDRAWN":
             return _change_request_view(row)
         if row["status"] != "OPEN":
+            raise Problem(MODULE, 409, "invalid-state", detail=row["status"])
