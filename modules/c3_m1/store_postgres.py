@@ -549,3 +549,4 @@ def list_documents(change_request_id: str) -> list[dict]:
 
 
 # ------------------------------------------------------------ used_attestation (README 5, 6.7)
+def add_if_unused(jti: str, company_id: str) -> bool:
