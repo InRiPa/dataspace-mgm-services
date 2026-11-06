@@ -357,3 +357,4 @@ def test_the_rejected_bpn_abort_of_the_seed_file(tmp_path, monkeypatch):
     """13.25: a seed file with another companyId aborts the start."""
     seed_file = tmp_path / "osp-company.json"
     seed_file.write_text(json.dumps({"companyId": "c0000009-0000-4000-8000-000000000009",
+                                     "name": "X", "bpn": "BPNL00000000OSPA",
