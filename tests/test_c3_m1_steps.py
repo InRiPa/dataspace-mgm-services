@@ -288,3 +288,4 @@ def test_the_built_in_stand_in_reads_the_stub_file(tmp_path, monkeypatch):
 
 # --------------------------------------------------------------------------------------------- 13.25
 def test_the_seed_company_is_there_after_reset():
+    row = store.get_company("11111111-1111-4111-8111-111111111111")
