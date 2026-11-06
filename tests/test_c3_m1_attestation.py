@@ -115,3 +115,4 @@ def test_a_valid_attestation_changes_the_core_data():
 def test_an_unchanged_address_keeps_its_spelling():
     active_company()
     update()
+    second = update(jti="jti-t2", verified_at=int((now() + dt.timedelta(minutes=1)).timestamp()),
