@@ -269,3 +269,4 @@ def test_decide_requires_open_and_a_reason_for_declined(make):
     request = store.create_change_request({"company_id": company["id"], "comment": "c"})
     with pytest.raises(ValueError):
         store.decide_change_request(request["id"], "DECLINED", decided_by="sub")
+    decided = store.decide_change_request(request["id"], "DECLINED", decided_by="sub",
