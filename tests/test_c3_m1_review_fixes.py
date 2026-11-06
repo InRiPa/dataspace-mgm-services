@@ -96,3 +96,4 @@ def test_an_approval_keeps_the_wallet_identifiers(active):
     assert sources["LEI_CODE"] == "DECLARED"
 
 
+def test_an_empty_identifier_list_keeps_the_wallet_identifiers(active):
