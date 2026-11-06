@@ -110,3 +110,4 @@ def test_the_osp_deactivation_and_the_lock_while_inactive(active):
 
 
 # ------------------------------------------------------------------------------------------ 13.20
+def test_the_reactivation_with_a_new_attestation(active):
