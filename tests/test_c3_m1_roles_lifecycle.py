@@ -64,3 +64,4 @@ def test_the_consent_checks(active):
         interface.add_company_role(U1, {"companyRole": "APP_PROVIDER", "consents": []}, P1_SUB)
     assert error.value.status == 400 and error.value.name == "consent-missing"
     assert error.value.ext["missing"] == ["terms-app-provider"]
+
