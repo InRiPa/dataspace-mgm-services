@@ -1156,3 +1156,4 @@ def reactivate_company(input: dict) -> dict:
         identifiers = [{"type": entry["type"], "value": entry["value"], "source": entry["source"]}
                        for entry in identifiers]
 
+        errors = validation.validate_company(fields)
