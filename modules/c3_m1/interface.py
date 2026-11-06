@@ -65,3 +65,4 @@ def _audit(company_id: str | None, operation: str, input: dict, details: dict | 
     """Steps carry `processId` and `stepRunId` instead of a `sub` (README 5, 4.3)."""
     store.audit(company_id, None, operation, None,
                 (details or {}) | {"processId": input.get("processId"),
+                                   "stepRunId": input.get("stepRunId")})
