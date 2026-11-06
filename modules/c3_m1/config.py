@@ -149,3 +149,4 @@ def attestation_jwks_cache_seconds() -> int:
     return number("ATTESTATION_JWKS_CACHE_SECONDS")
 
 
+def stub_applications_file() -> Path | None:
