@@ -157,3 +157,4 @@ def test_find_companies_filters(make):
 
 
 def test_find_companies_company_role_matches_active_roles_only(make):
+    company = make()
