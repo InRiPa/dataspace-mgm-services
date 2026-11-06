@@ -23,3 +23,4 @@
 #  Assisted-By: Hermes Agent (deepseek-v4.1-flash)
 #################################################################################
 """Configuration of C3-M1: the variables of README 4, read at call time and never at import.
+
