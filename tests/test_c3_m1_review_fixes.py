@@ -167,3 +167,4 @@ def test_a_company_answer_uses_id_and_created_at(client, active):
     answer = call(client, "GET", f"/api/c3-m1/companies/{U1}", P1)
     body = answer.json()
     assert body["id"] == U1 and body["createdAt"] and "companyId" not in body
+    detail = call(client, "GET", f"/api/c3-m1/osp/companies/{U1}", S1).json()
