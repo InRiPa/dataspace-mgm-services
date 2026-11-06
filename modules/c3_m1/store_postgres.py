@@ -579,3 +579,4 @@ def audit(company_id: str | None, sub: str | None, operation: str,
             (str(uuid.uuid4()), _now(), sub or "", company_id, operation, object_id,
              json.dumps(details or {})))
 
+
