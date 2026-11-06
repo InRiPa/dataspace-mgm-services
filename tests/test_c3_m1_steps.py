@@ -285,3 +285,4 @@ def test_the_built_in_stand_in_reads_the_stub_file(tmp_path, monkeypatch):
     assert reply["result"]["status"] == "ACTIVE"
     assert store.role_status(U1, "ACTIVE_PARTICIPANT") == "ACTIVE"
 
+
