@@ -132,3 +132,4 @@ def test_the_short_name_is_changed_and_locked_fields_refused(client, active):
 
 
 # ------------------------------------------------------------------------------------- 13.17, 13.18
+def test_osp_permissions_do_not_overlap(client, active):
