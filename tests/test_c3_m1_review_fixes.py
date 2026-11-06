@@ -38,3 +38,4 @@ from fastapi.testclient import TestClient
 from test_c3_m1_api import P1, P3, S1, S2, U1, U2, call
 from portal_common import http as phttp
 from portal_common import problems
+from tools import test_iam
