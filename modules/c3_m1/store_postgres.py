@@ -90,3 +90,4 @@ def _row(row: dict | None) -> dict | None:
         if isinstance(row.get(key), dt.datetime):
             row[key] = row[key].isoformat()
     return row
+
