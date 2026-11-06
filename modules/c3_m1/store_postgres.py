@@ -107,3 +107,4 @@ def _fetch_all(connection, sql: str, params: tuple | dict = ()) -> list[dict]:
 
 
 def _check_enum(value, allowed: tuple[str, ...], field: str) -> None:
+    if value is not None and value not in allowed:
