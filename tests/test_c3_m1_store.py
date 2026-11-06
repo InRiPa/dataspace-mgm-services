@@ -444,3 +444,4 @@ def test_partial_validation_checks_only_given_fields():
     assert v.validate_company({"short_name": "Kurz"}, partial=True) == []
     assert v.validate_company({"name": " A"}, partial=True) == [{"field": "name",
                                                                 "reason": "whitespace"}]
+
