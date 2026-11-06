@@ -445,3 +445,4 @@ def open_change_request(company_id: str) -> dict | None:
     if not _uuid_ok(company_id):
         return None
     with _connection() as connection:
+        return _fetch_one(connection, "SELECT * FROM change_request WHERE company_id = %s"
