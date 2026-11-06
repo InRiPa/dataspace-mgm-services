@@ -228,3 +228,4 @@ def update_company(company_id: str, **fields) -> dict | None:
                               f"UPDATE company SET {assignments}, changed_at = %(now)s "
                               "WHERE id = %(id)s RETURNING *",
                               fields | {"now": _now(), "id": company_id})
+        except errors.IntegrityError as error:
