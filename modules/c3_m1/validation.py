@@ -50,3 +50,4 @@ DEACTIVATION_REASONS = ("MANUAL", "TRANSFERRED")
 CORE_DATA_SOURCES = ("EBW", "MANUAL")
 MEDIA_TYPES = ("application/pdf", "image/png", "image/jpeg")
 
+NAME_MAX = 160
