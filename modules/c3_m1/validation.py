@@ -330,3 +330,4 @@ def validate_change_request(data: dict, country_code: str | None) -> list[dict]:
                                        allow_business_wallet=False)
     errors += validate_comment(flat.get("comment"))
     return errors
+
