@@ -357,3 +357,4 @@ def add_role(company_id: str, company_role: str, *, status: str = "ACTIVE",
         )  # type: ignore[return-value]
 
 
+def remove_role(company_id: str, company_role: str) -> dict | None:
