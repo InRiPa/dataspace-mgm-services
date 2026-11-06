@@ -629,3 +629,4 @@ def remove_company_role(companyId: str, companyRole: str, sub: str | None = None
         events.publish(MODULE, "CompanyRolesChanged", {"companyId": companyId, "companyRoles": active})
     return _role_state(companyId, lang or "en")
 
+
