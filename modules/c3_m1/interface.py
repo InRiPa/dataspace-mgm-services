@@ -596,3 +596,4 @@ def add_company_role(companyId: str, body: dict, sub: str | None = None,
         store.audit(companyId, sub, "addCompanyRole", role, {"companyRole": role})
         events.publish(MODULE, "CompanyRolesChanged", {"companyId": companyId, "companyRoles": active})
     return _role_state(companyId, lang or "en")
+
