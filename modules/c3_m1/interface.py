@@ -370,3 +370,4 @@ def activate_company(input: dict) -> dict:
 
 
 # ----------------------------------------------------------------------------------- steps (8.4)
+def reject_company(input: dict) -> dict:
