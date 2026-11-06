@@ -93,3 +93,4 @@ def test_an_approval_keeps_the_wallet_identifiers(active):
     interface.approve_change_request(request["id"], {}, S1_SUB)
     sources = {entry["type"]: entry["source"] for entry in store.list_identifiers(U1)}
     assert sources["EBWOID"] == "BUSINESS_WALLET" and sources["EUID"] == "BUSINESS_WALLET"
+    assert sources["LEI_CODE"] == "DECLARED"
