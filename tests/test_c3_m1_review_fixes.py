@@ -258,3 +258,4 @@ def test_an_address_part_needs_street_and_city(active):
     with pytest.raises(Problem) as error:
         interface.create_change_request(U1, {"comment": "x", "address": {"street": "Nur Straße"}},
                                         [PDF], P1_SUB)
+    assert error.value.status == 400 and error.value.name == "validation"
