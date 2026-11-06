@@ -151,3 +151,4 @@ def test_nobody_approves_their_own_request(active):
 
 
 # ---------------------------------------------------------------------------------- 13.13 over HTTP
+def test_submission_over_multipart(client, active):
