@@ -227,3 +227,4 @@ INITIAL_ROLES = {
 
 def role_catalogue() -> dict[str, dict]:
     """Role catalogue of the installation: `companyRole` -> `{assignableBy, descriptions}`.
+
