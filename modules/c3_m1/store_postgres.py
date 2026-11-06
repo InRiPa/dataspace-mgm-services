@@ -405,3 +405,4 @@ def set_consent(company_id: str, agreement_key: str, *, version: str | None = No
             " consented_by = EXCLUDED.consented_by, consented_at = EXCLUDED.consented_at,"
             " agreement_version = COALESCE(%(version)s, consent.agreement_version),"
             " changed_at = EXCLUDED.changed_at RETURNING *",
+            {"company_id": company_id, "key": agreement_key, "version": version, "status": status,
