@@ -199,3 +199,4 @@ def test_activate_takes_over_the_consents():
     assert store.role_status(U1, "ACTIVE_PARTICIPANT") == "ACTIVE"
     consents = {c["agreement_key"]: c for c in store.list_consents(U1)}
     assert consents["terms-active-participant"]["consented_by"] == P1
+    assert consents["terms-active-participant"]["source_kind"] == "APPLICATION"
