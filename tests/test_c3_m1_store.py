@@ -459,3 +459,4 @@ def test_identifier_type_enum_and_one_per_type():
     assert {"field": "identifiers[0].type", "reason": "unknown"} in errors
     assert {"field": "identifiers[2].type", "reason": "duplicate-type"} in errors
 
+
