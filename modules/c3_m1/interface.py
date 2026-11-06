@@ -234,3 +234,4 @@ def create_company(input: dict) -> dict:
     identifiers = [{"type": entry["type"], "value": entry["value"],
                     "source": "BUSINESS_WALLET" if entry.get("source") == "ATTESTATION" else "DECLARED"}
                    for entry in data.get("identifiers") or []]
+    roles = [role for role in application.get("companyRoles") or []
