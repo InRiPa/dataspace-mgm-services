@@ -64,3 +64,4 @@ def test_the_event_fields_are_the_ones_c11_reads(active):
 
 def test_a_request_with_identifiers_is_created(active):
     answer = submit()
+    assert answer["status"] == "OPEN" and answer["documents"][0]["fileName"] == "auszug.pdf"
