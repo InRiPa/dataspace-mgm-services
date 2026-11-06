@@ -123,3 +123,4 @@ def test_a_changed_name_still_needs_the_attestation(active):
 def test_a_changed_euid_counts_as_core_data():
     interface.reset()
     seed(A1, U1, verification="DOCUMENTS", _attestation=None, companyData={
+        "legalName": "Beispiel Maschinenbau GmbH",
