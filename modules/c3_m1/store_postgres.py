@@ -232,3 +232,4 @@ def update_company(company_id: str, **fields) -> dict | None:
             raise _integrity(error) from None
 
 
+def find_companies(*, status=None, name=None, bpn=None, has_bpn=None, company_role=None,
