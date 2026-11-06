@@ -96,3 +96,4 @@ def _row(row: dict | None) -> dict | None:
 def _connection():
     with psycopg.connect(_dsn(), row_factory=dict_row) as connection:
         yield connection
+
