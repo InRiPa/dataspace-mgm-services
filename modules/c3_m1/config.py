@@ -210,3 +210,4 @@ INITIAL_ROLES = {
         "assignableBy": "COMPANY",
         "descriptions": {"de": "Teilnehmer am Datenaustausch", "en": "Participant in data exchange"},
     },
+    "APP_PROVIDER": {
