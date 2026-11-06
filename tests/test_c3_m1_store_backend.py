@@ -25,3 +25,4 @@
 """The transport switch of `modules/c3_m1/store.py`: `DATABASE_URL` empty = in memory, set = the
 module's own PostgreSQL database (README 4, 5).
 
+The live tests need a server and are skipped without it:
