@@ -71,3 +71,4 @@ def claims(**over) -> dict:
         "iss": "https://ebw-connector.example.org", "aud": "portal-registration",
         "client_id": "demo-osp", "purpose": "onboarding", "jti": "jti-t1",
         "iat": now(), "exp": now() + dt.timedelta(hours=1),
+        "verified_at": int((now() - dt.timedelta(hours=1)).timestamp()),
