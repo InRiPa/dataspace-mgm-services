@@ -117,3 +117,4 @@ def _moment(value, field: str) -> dt.datetime:
     return dt.datetime.fromtimestamp(value, dt.UTC)
 
 
+def verify(attestation: str, *, now: dt.datetime | None = None) -> dict:
