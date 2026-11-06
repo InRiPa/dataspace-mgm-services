@@ -61,3 +61,4 @@ def _now() -> str:
     return dt.datetime.now(dt.UTC).isoformat()
 
 
+def _copy(row: dict | None) -> dict | None:
