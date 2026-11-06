@@ -198,3 +198,4 @@ def flat_fields(data: dict) -> dict:
         return {}
     flat = {}
     for key, value in data.items():
+        if key == "address" and isinstance(value, dict):
