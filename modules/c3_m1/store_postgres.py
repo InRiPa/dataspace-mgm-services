@@ -498,3 +498,4 @@ def decide_change_request(change_request_id: str, status: str, *, decided_by: st
 def withdraw_change_request(change_request_id: str, *, closed_at: str | None = None) -> dict | None:
     if not _uuid_ok(change_request_id):
         return None
+    with _connection() as connection:
