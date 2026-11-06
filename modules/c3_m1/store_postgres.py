@@ -248,3 +248,4 @@ def find_companies(*, status=None, name=None, bpn=None, has_bpn=None, company_ro
         params.append(f"%{name.casefold()}%")
     if bpn:
         where.append("upper(c.bpn) = upper(%s)")
+        params.append(bpn)
