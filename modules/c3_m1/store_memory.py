@@ -65,3 +65,4 @@ def _copy(row: dict | None) -> dict | None:
     return copy.deepcopy(row) if row is not None else None
 
 
+def _check_enum(value, allowed: tuple[str, ...], field: str) -> None:
