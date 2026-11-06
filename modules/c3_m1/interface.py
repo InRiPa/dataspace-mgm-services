@@ -1007,3 +1007,4 @@ def update_company_from_attestation(companyId: str, body: dict, sub: str | None 
         if (row["country_code"] or "") != (company.get("country") or ""):
             mismatched.append("countryCode")
         if mismatched:
+            raise Problem(MODULE, 409, "company-mismatch", fields=mismatched)
