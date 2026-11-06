@@ -1208,3 +1208,4 @@ def query_companies(*, id: list[str] | str | None = None, bpn: list[str] | str |
     ids = [id] if isinstance(id, str) else list(id or [])
     bpns = [bpn] if isinstance(bpn, str) else list(bpn or [])
     if bool(ids) == bool(bpns):
+        raise Problem(MODULE, 400, "validation",
