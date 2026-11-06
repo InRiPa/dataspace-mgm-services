@@ -66,3 +66,4 @@
           { "type": "VAT_ID", "value": "DE123456789", "source": "APPLICANT" }
         ]
       },
+      "companyRoles": [ "ACTIVE_PARTICIPANT" ],
