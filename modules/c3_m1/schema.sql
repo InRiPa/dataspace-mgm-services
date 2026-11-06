@@ -40,3 +40,4 @@ CREATE TABLE company (
     country_code           char(2)                  NOT NULL,
     status                 text                     NOT NULL,
     bpn                    text,
+    bpn_assigned_at        timestamptz,
