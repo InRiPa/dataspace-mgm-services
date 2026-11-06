@@ -130,3 +130,4 @@ def test_the_short_name_is_changed_and_locked_fields_refused(client, active):
     assert response.status_code == 409 and response.json()["type"].endswith("field-locked")
     assert response.json()["fields"] == ["name"]
 
+
