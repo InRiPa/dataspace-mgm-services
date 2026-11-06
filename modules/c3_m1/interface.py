@@ -553,3 +553,4 @@ def list_company_roles(companyId: str, lang: str | None = None) -> list[dict]:
     """7.7"""
     get_company(companyId)
     return _role_state(companyId, lang or "en")
+
