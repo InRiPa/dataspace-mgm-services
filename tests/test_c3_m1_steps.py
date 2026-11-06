@@ -124,3 +124,4 @@ def test_create_company_conflicts():
     assert error.value.status == 409 and error.value.name == "conflict"
 
 
+def test_create_company_refuses_a_reactivation():
