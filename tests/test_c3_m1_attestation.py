@@ -206,3 +206,4 @@ def test_an_unreadable_jwks_is_an_upstream_error(monkeypatch, tmp_path):
     assert error.value.ext["retryable"] is True
 
 
+def test_only_active_companies_take_an_attestation():
