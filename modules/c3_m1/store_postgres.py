@@ -142,3 +142,4 @@ def reset() -> None:
     """Drop the module's tables and apply `schema.sql` again."""
     script = SCHEMA.read_text(encoding="utf-8")
     with _connection() as connection:
+        for table in TABLES:
