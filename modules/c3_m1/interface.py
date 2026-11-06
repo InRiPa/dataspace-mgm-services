@@ -57,3 +57,4 @@ def _timestamp(value: str | None) -> dt.datetime | None:
         return None
 
 
+def _now() -> str:
