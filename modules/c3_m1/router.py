@@ -258,3 +258,4 @@ def deactivate_company_by_staff(companyId: str, body: dict = Body(...),
 @router.patch("/osp/companies/{companyId}")
 def correct_company(companyId: str, body: dict = Body(...),
                     claims: dict = standin.perm(MODULE, "PATCH", "/osp/companies/{companyId}")):
+    return interface.correct_company(companyId, body, claims.get("sub"))
