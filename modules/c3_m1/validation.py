@@ -155,3 +155,4 @@ def pattern_for(identifier_type: str, country_code: str | None) -> str | None:
                       if isinstance(t, dict) and t.get("type") == identifier_type), None)
         if entry is not None:
             patterns = entry.get("patterns") or {}
+            pattern = patterns.get(country_code or "") or patterns.get("Worldwide")
