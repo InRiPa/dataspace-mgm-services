@@ -263,3 +263,4 @@ def create_company(input: dict) -> dict:
         created = get_company(cid)
         events.publish(MODULE, "CompanyCreated", {"companyId": cid, "applicationId": application_id,
                                                   "coreDataSource": created["core_data_source"]})
+    return standin.step_reply(input, {"companyId": cid, "status": created["status"],
