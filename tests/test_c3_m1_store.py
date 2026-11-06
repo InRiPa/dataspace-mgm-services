@@ -545,3 +545,4 @@ def test_media_type_comes_from_the_first_bytes():
 
 
 def test_a_stated_media_type_is_ignored():
+    assert v.validate_document("auszug.pdf", b"%PDF-1.7") == []
