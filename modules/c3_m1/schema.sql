@@ -188,3 +188,4 @@ CREATE TABLE audit_log (
 
 CREATE INDEX audit_log_company ON audit_log (company_id, occurred_at);
 
+-- C3-M1 5: in addition the table `outbox` of the base skeleton (events in the same transaction, 6.9)
