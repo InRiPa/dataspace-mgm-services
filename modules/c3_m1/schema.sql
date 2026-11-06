@@ -136,3 +136,4 @@ CREATE TABLE change_request (
     comment          text,
     requested_by     text,
     decided_by       text,
+    decision_reason  text,
