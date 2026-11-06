@@ -47,3 +47,4 @@ CREATE TABLE company (
     application_id         uuid,
     deactivation_reason    text,
     created_at             timestamptz              NOT NULL,
+    changed_at             timestamptz              NOT NULL,
