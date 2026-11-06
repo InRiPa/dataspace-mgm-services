@@ -35,3 +35,4 @@ CREATE TABLE company (
     house_number           text,
     address_addition       text,
     postal_code            text,
+    city                   text                     NOT NULL,
