@@ -206,3 +206,4 @@ def test_an_attestation_without_a_change_still_stamps_the_verification(active):
 
 
 def test_the_approval_event_carries_the_resulting_source(active):
+    request = interface.create_change_request(U1, {"comment": "x", "identifiers": [
