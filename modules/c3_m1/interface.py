@@ -341,3 +341,4 @@ def activate_company(input: dict) -> dict:
             if status != "REQUESTED":
                 continue
             needed = {key for key, roles in terms.items() if role in roles}
+            if needed <= set(given):
