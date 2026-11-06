@@ -247,3 +247,4 @@ def assignable_by(company_role: str) -> str | None:
 def roles_assignable_by_company() -> list[str]:
     return [role for role, entry in role_catalogue().items() if entry.get("assignableBy") == "COMPANY"]
 
+
