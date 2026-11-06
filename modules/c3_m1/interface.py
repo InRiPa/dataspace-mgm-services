@@ -1041,3 +1041,4 @@ def update_company_from_attestation(companyId: str, body: dict, sub: str | None 
 # ---------------------------------------------------------------- deactivation and return (7.13, 8.5, 8.6)
 def deactivate_company(input: dict) -> dict:
     """8.5: deactivation by Process Orchestration with reason `MANUAL` or `TRANSFERRED`."""
+    cid, reason = input.get("companyId"), input.get("reason")
