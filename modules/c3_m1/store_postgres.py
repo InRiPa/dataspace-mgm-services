@@ -430,3 +430,4 @@ def create_change_request(row: dict) -> dict:
         try:
             return _fetch_one(  # type: ignore[return-value]
                 connection,
+                "INSERT INTO change_request (id, company_id, status, changes, comment, requested_by,"
