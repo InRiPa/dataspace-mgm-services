@@ -441,3 +441,4 @@ def update_company(companyId: str, body: dict, sub: str | None = None) -> dict:
         before = {"short_name": row["short_name"]}
         store.update_company(companyId, short_name=validation.flat_fields(body).get("short_name"))
         store.audit(companyId, sub, "updateCompany", None,
+                    {"changedFields": changed, "old": before,
