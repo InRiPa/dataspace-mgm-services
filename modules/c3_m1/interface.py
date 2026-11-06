@@ -1013,3 +1013,4 @@ def update_company_from_attestation(companyId: str, body: dict, sub: str | None 
         if stored_verified_at is not None and claims["_verified_at"] <= stored_verified_at:
             raise Problem(MODULE, 409, "attestation-outdated")
 
+        fields, identifiers = _attested_values(row, claims)
