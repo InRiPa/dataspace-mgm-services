@@ -225,3 +225,4 @@ def validate_company(data: dict, *, partial: bool = False) -> list[dict]:
     if region not in (None, "") and not (isinstance(region, str) and REGION_PATTERN.match(region)):
         errors.append(_error("region", "format"))
     errors += validate_country_code(flat.get("country_code"), required=not partial)
+    if flat.get("bpn") not in (None, ""):
