@@ -331,3 +331,4 @@ def test_audit_entry_is_written_and_readable(make):
                 details={"shortName": {"old": None, "new": "Kurz"}})
     store.audit(None, None, "createCompany")
     entries = store.list_audit(company["id"])
+    assert len(entries) == 1
