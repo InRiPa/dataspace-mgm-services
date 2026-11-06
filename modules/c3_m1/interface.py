@@ -728,3 +728,4 @@ def _identifier_core_changed(row: dict, identifiers: list[dict]) -> bool:
 
 
 def create_change_request(companyId: str, data: dict,
+                          documents: list[tuple[str, bytes, str | None]],
