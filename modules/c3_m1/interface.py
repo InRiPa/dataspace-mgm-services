@@ -936,3 +936,4 @@ def decline_change_request(changeRequestId: str, body: dict | None = None,
     with store.lock((store.get_change_request(changeRequestId) or {}).get("company_id")):
         row = _reviewed(changeRequestId)
         reason = (body or {}).get("reason")
+        if row["status"] == "DECLINED":
