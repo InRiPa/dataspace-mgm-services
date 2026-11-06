@@ -94,3 +94,4 @@ ALIASES = {
 ADDRESS_FIELDS = ("street", "house_number", "address_addition", "postal_code", "city", "region",
                   "country_code")
 
+_reference_cache: tuple[str, int, dict | None] | None = None
