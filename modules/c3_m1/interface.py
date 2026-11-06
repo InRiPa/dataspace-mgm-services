@@ -904,3 +904,4 @@ def approve_change_request(changeRequestId: str, body: dict | None = None,
     with store.lock((store.get_change_request(changeRequestId) or {}).get("company_id")):
         row = _reviewed(changeRequestId)
         if row["status"] == "APPROVED":
+            return _change_request_view(row, osp=True)
