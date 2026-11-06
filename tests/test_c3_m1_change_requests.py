@@ -136,3 +136,4 @@ def test_decline_and_withdraw(active):
     assert events.RELAY.log == []
 
     with pytest.raises(Problem) as error:
+        interface.withdraw_change_request(U1, answer["id"], P1_SUB)
