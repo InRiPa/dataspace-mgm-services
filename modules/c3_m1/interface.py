@@ -1231,3 +1231,4 @@ def find_identifier_matches(*, identifiers: list[dict], name: str | None = None,
                             excludeCompanyId: str | None = None,
                             statuses: list[str] | str | None = None, **_other) -> dict:
     """9.3: local duplicate search; the caller decides whether a match is a duplicate."""
+    wanted_statuses = [statuses] if isinstance(statuses, str) else list(statuses or [])
