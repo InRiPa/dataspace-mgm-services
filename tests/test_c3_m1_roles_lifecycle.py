@@ -76,3 +76,4 @@ def test_the_consent_checks(active):
     assert error.value.status == 400 and error.value.name == "validation"
 
     with pytest.raises(Problem) as error:
+        interface.add_company_role(U1, {"companyRole": "NOPE", "consents": []}, P1_SUB)
