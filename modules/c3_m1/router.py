@@ -154,3 +154,4 @@ def add_company_role(companyId: str, body: dict = Body(...), lang: str | None = 
 def remove_company_role(companyId: str, companyRole: str, lang: str | None = None,
                         claims: dict = standin.perm(
                             MODULE, "DELETE",
+                            "/companies/{companyId}/company-roles/{companyRole}")):
