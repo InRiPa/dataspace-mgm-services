@@ -256,3 +256,4 @@ def validate_country_code(country_code, *, required: bool = True) -> list[dict]:
 def validate_identifier(entry: dict, country_code: str | None, field: str) -> list[dict]:
     if not isinstance(entry, dict):
         return [_error(field, "type")]
+    errors: list[dict] = []
