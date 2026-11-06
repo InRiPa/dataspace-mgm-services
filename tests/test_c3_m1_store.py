@@ -8,3 +8,4 @@
 #  terms of the Apache License, Version 2.0 which is available at
 #  https://www.apache.org/licenses/LICENSE-2.0.
 #
+#  Unless required by applicable law or agreed to in writing, software
