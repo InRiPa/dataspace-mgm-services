@@ -76,3 +76,4 @@ def seed(application: str = A1, company: str = U1, **over) -> dict:
                                          "source": "APPLICANT"}]},
         "companyRoles": ["ACTIVE_PARTICIPANT"], "consents": CONSENTS,
     }
+    entry.update(over)
