@@ -47,3 +47,4 @@ S1, S2 = "rolf", "otto"
 def client() -> TestClient:
     app = FastAPI()
     problems.install(app)
+    app.include_router(test_iam.router)
