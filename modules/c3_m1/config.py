@@ -212,3 +212,4 @@ INITIAL_ROLES = {
     },
     "APP_PROVIDER": {
         "assignableBy": "COMPANY",
+        "descriptions": {"de": "Anbieter von Apps", "en": "Provider of apps"},
