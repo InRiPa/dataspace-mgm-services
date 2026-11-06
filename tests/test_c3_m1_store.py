@@ -367,3 +367,4 @@ def test_reset_clears_every_table(make):
     assert not store.is_used("jti")
     assert store.list_audit() == []
     assert store.find_companies()[1] == 0
+
