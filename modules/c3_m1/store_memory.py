@@ -32,3 +32,4 @@ identifier per type, one OPEN change request per company, BPN unique among compa
 `REJECTED`) is enforced here as well.
 
 Reads return copies: a caller changes rows through `update_company` and the other write functions,
+never by mutating a returned dict. No FastAPI, no HTTP, no events.
