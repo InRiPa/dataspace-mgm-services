@@ -87,3 +87,4 @@ def step(name: str, **payload) -> dict:
     return getattr(interface, name)(payload)
 
 
+def published(name: str) -> list[dict]:
