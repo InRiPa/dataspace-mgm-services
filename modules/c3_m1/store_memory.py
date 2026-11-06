@@ -205,3 +205,4 @@ def set_identifiers(company_id: str, identifiers: list[dict]) -> list[dict]:
     _check_known(company_id)
     rows: dict[str, dict] = {}
     now = _now()
+    for entry in identifiers:
