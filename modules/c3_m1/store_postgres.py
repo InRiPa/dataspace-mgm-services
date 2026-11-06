@@ -356,3 +356,4 @@ def add_role(company_id: str, company_role: str, *, status: str = "ACTIVE",
              "deactivated": now if status == "INACTIVE" else None, "now": now},
         )  # type: ignore[return-value]
 
+
