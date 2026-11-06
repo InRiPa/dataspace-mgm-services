@@ -129,3 +129,4 @@ def test_create_company_refuses_a_reactivation():
     with pytest.raises(Problem) as error:
         step("create_company", companyId=U1, applicationId=A5)
     assert error.value.status == 409 and error.value.name == "conflict"
+
