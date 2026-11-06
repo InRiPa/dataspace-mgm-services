@@ -171,3 +171,4 @@ def test_a_company_answer_uses_id_and_created_at(client, active):
     assert detail["id"] == U1 and detail["createdAt"]
 
 
+def test_the_role_terms_carry_name_names_and_document_url(client, active):
