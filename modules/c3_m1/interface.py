@@ -488,3 +488,4 @@ def correct_company(companyId: str, body: dict, sub: str | None = None) -> dict:
         core_changed = any(validation.field_name(key) in CORE_TEXT_FIELDS for key in fields)
         if identifiers is not None and _identifier_core_changed(row, identifiers):
             core_changed = True
+        updates = validation.flat_fields(fields)
