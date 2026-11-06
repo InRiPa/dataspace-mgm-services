@@ -159,3 +159,4 @@ def pattern_for(identifier_type: str, country_code: str | None) -> str | None:
             if pattern:
                 return pattern
     fallback = FALLBACK_PATTERNS.get(identifier_type) or {}
+    return fallback.get(country_code or "") or fallback.get("Worldwide")
