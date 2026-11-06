@@ -139,3 +139,4 @@ CREATE TABLE change_request (
     decision_reason  text,
     created_at       timestamptz  NOT NULL,
     closed_at        timestamptz,
+    CONSTRAINT change_request_status_enum CHECK (status IN ('OPEN', 'APPROVED', 'DECLINED', 'WITHDRAWN')),
