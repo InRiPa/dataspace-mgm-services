@@ -56,3 +56,4 @@ def test_a_role_is_added_with_its_consents(active):
     # a second call changes nothing
     events.RELAY.log.clear()
     interface.add_company_role(U1, {"companyRole": "APP_PROVIDER", "consents": CONSENT_APP}, P1_SUB)
+    assert events.RELAY.log == []
