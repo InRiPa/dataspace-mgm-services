@@ -145,3 +145,4 @@ def test_a_foreign_key_is_a_signature_error():
     foreign = ec.generate_private_key(ec.SECP256R1())
     with pytest.raises(Problem) as error:
         interface.update_company_from_attestation(
+            U1, {"attestation": jwt.encode(claims(), foreign, algorithm="ES256",
