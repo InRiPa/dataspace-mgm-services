@@ -247,3 +247,4 @@ def create_company(input: dict) -> dict:
         raise Problem(MODULE, 400, "validation", errors=errors, retryable=False)
 
     attestation = application.get("attestation") or {}
+    with store.lock(cid):
