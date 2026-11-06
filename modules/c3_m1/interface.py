@@ -1196,3 +1196,4 @@ def query_company_role_catalog(*, lang: str | None = None, **_other) -> list[dic
              "descriptions": entry.get("descriptions") or {}}
             for role, entry in config.role_catalogue().items()]
 
+
