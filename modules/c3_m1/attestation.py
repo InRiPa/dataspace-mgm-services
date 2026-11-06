@@ -60,3 +60,4 @@ def reset() -> None:
     _cache.update({"keys": [], "fetched_at": 0.0})
     _last_reload = 0.0
 
+
