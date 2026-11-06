@@ -148,3 +148,4 @@ def test_the_osp_correction_switches_the_source_to_manual(client, active):
     assert [e for e in interface.store.list_audit(U1) if e["operation"] == "correctCompany"]
 
 
+def test_the_country_is_locked_after_the_bpn(client, active):
