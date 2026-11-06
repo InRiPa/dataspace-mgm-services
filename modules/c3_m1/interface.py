@@ -1081,3 +1081,4 @@ def deactivate_company_by_staff(companyId: str, body: dict, sub: str | None = No
         if row["status"] == "INACTIVE":
             return company_view(companyId, detail=True)
         if row["status"] != "ACTIVE":
+            raise Problem(MODULE, 409, "invalid-state", detail=row["status"])
