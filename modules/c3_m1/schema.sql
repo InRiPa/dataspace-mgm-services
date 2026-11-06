@@ -96,3 +96,4 @@ CREATE INDEX company_identifier_value_normalized ON company_identifier (type, va
 CREATE TABLE company_role_assignment (
     company_id     uuid         NOT NULL REFERENCES company (id),
     company_role   text         NOT NULL,
+    status         text         NOT NULL,
