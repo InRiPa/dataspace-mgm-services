@@ -271,3 +271,4 @@ def test_decide_requires_open_and_a_reason_for_declined(make):
         store.decide_change_request(request["id"], "DECLINED", decided_by="sub")
     decided = store.decide_change_request(request["id"], "DECLINED", decided_by="sub",
                                           decision_reason="fehlt")
+    assert decided["status"] == "DECLINED" and decided["decided_by"] == "sub"
