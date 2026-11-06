@@ -360,3 +360,4 @@ def test_the_rejected_bpn_abort_of_the_seed_file(tmp_path, monkeypatch):
                                      "name": "X", "bpn": "BPNL00000000OSPA",
                                      "address": {"street": "s", "city": "c", "countryCode": "DE"},
                                      "companyRoles": []}), encoding="utf-8")
+    monkeypatch.setenv("OSP_COMPANY_FILE", str(seed_file))
