@@ -43,3 +43,4 @@ P1, P2, P3, P4 = "erika", "max", "hans", "lieschen"
 S1, S2 = "rolf", "otto"
 
 
+@pytest.fixture
