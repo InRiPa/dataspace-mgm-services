@@ -325,3 +325,4 @@ def create_change_request(row: dict) -> dict:
         "created_at": row.get("created_at") or _now(), "closed_at": row.get("closed_at"),
     }
     _change_requests[created["id"]] = created
+    return _copy(created)  # type: ignore[return-value]
