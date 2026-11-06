@@ -1044,3 +1044,4 @@ def deactivate_company(input: dict) -> dict:
     cid, reason = input.get("companyId"), input.get("reason")
     with store.lock(cid):
         row = get_company(cid)
+        if row["status"] == "INACTIVE":
