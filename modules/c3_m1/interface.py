@@ -130,3 +130,4 @@ def _roles(row: dict) -> list[dict]:
 def company_view(cid: str | None, *, detail: bool = False) -> dict:
     """`Company` (7.1) and `CompanyDetail` (7.11) in camelCase, with the dataspace name for people."""
     row = get_company(cid)
+    view = {"id": row["id"], "name": row["name"], "shortName": row["short_name"],
