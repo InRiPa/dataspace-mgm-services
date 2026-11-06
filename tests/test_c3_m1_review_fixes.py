@@ -145,3 +145,4 @@ def test_the_correction_reports_wallet_conflicts_as_validation(client, active):
     answer = call(client, "PATCH", f"/api/c3-m1/osp/companies/{U1}", S2,
                   json={"identifiers": [{"type": "EUID", "value": "X"}], "reason": "r"})
     assert answer.status_code == 400 and answer.json()["type"].endswith("validation")
+
