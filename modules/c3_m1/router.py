@@ -159,3 +159,4 @@ def remove_company_role(companyId: str, companyRole: str, lang: str | None = Non
     return interface.remove_company_role(companyId, companyRole, claims.get("sub"), lang)
 
 
+# ------------------------------------------------------------------------------ change requests (7.4 - 7.6)
