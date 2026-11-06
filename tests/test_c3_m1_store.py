@@ -47,3 +47,4 @@ def _empty_store():
 def make():
     """A company row in the shape of README 5 (id assigned here, the store validates it)."""
     def _make(**fields) -> dict:
+        n = next(_ids)
