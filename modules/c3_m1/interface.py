@@ -652,3 +652,4 @@ def list_companies(*, status: list[str] | str | None = None, name: str | None = 
     except ValueError as error:
         raise Problem(MODULE, 400, "validation", errors=[{"field": "filter", "reason": str(error)}])
     return {"items": [_summary(row) for row in items], "page": int(page or 0),
+            "size": int(size or 20), "total": total}
