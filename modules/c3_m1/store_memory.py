@@ -76,3 +76,4 @@ def _check_known(company_id: str) -> dict:
     return companies[company_id]
 
 
+def _checked_bpn(bpn, *, company_id: str | None, status: str) -> str | None:
