@@ -71,3 +71,4 @@ CREATE TABLE company (
         CHECK (deactivation_reason IS NULL OR status = 'INACTIVE')
 );
 
+-- C3-M1 5: BPN unique among all companies with a status other than REJECTED (partial unique index)
