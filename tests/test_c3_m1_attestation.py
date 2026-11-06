@@ -162,3 +162,4 @@ def test_a_too_old_attestation_is_refused():
 def test_an_older_attestation_does_not_reset_newer_data():
     active_company()
     update(jti="jti-new", verified_at=int((now() - dt.timedelta(minutes=30)).timestamp()))
+    with pytest.raises(Problem) as error:
