@@ -1062,3 +1062,4 @@ def deactivate_company(input: dict) -> dict:
         store.audit(cid, None, "stepDeactivateCompany", None,
                     {"deactivationReason": reason, "processId": input.get("processId"),
                      "stepRunId": input.get("stepRunId")})
+        events.publish(MODULE, "CompanyDeactivated", {"companyId": cid, "reason": reason})
