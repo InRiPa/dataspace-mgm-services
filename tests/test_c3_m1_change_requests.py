@@ -71,3 +71,4 @@ def test_a_request_with_identifiers_is_created(active):
         submit()
     assert error.value.status == 409 and error.value.name == "change-request-open"
 
+
