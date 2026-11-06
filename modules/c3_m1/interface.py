@@ -726,3 +726,4 @@ def _identifier_core_changed(row: dict, identifiers: list[dict]) -> bool:
         return True
     return any(not validation.same_value(stored[kind], value) for kind, value in now.items())
 
+
