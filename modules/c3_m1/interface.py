@@ -1157,3 +1157,4 @@ def reactivate_company(input: dict) -> dict:
                        for entry in identifiers]
 
         errors = validation.validate_company(fields)
+        errors += validation.validate_identifiers(identifiers, fields["country_code"])
