@@ -296,3 +296,4 @@ def validate_identifiers(identifiers, country_code: str | None,
         errors.append(_error("identifiers", "missing"))
     seen: set[str] = set()
     for index, entry in enumerate(identifiers):
+        field = f"identifiers[{index}]"
