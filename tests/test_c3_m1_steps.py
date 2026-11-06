@@ -165,3 +165,4 @@ def test_activate_before_the_bpn():
 
 
 def test_assign_identifier_and_its_errors():
+    seed()
