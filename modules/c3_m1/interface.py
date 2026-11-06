@@ -534,3 +534,4 @@ def _role_state(company: str, lang: str) -> list[dict]:
         own = {consent["agreement_key"]: consent for consent in store.list_consents(company)}
         states.append({
             "companyRole": role, "assignableBy": entry.get("assignableBy"),
+            "status": "NONE" if assigned == "NONE" else assigned,
