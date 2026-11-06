@@ -87,3 +87,4 @@ CREATE TABLE company_identifier (
     CONSTRAINT company_identifier_type_enum
         CHECK (type IN ('EUID', 'EBWOID', 'VAT_ID', 'COMMERCIAL_REG_NUMBER', 'LEI_CODE', 'EORI')),
     CONSTRAINT company_identifier_source_enum CHECK (source IN ('BUSINESS_WALLET', 'DECLARED'))
+);
