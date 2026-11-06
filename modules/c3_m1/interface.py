@@ -88,3 +88,4 @@ def reset() -> None:
     target.create_company({
         "id": seed["companyId"], "name": seed["name"], "bpn": seed.get("bpn"),
         "street": address.get("street"), "house_number": address.get("houseNumber"),
+        "postal_code": address.get("postalCode"), "city": address.get("city"),
