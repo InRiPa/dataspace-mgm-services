@@ -61,3 +61,4 @@ def test_the_event_fields_are_the_ones_c11_reads(active):
     assert set(closed["data"]) == {"companyId", "changeRequestId", "outcome"}
     assert closed["data"]["outcome"] == "WITHDRAWN"
 
+
