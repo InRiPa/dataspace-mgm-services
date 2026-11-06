@@ -48,3 +48,4 @@ CREATE TABLE company (
     deactivation_reason    text,
     created_at             timestamptz              NOT NULL,
     changed_at             timestamptz              NOT NULL,
+    activated_at           timestamptz,
