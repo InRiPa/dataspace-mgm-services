@@ -579,3 +579,4 @@ def add_company_role(companyId: str, body: dict, sub: str | None = None,
 
         terms = _terms_of(role, _terms())
         given = {consent.get("agreementKey"): consent for consent in body.get("consents") or []}
+        missing = sorted(key for key in terms if (given.get(key) or {}).get("version") != terms[key]["version"])
