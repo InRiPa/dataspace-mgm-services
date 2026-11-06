@@ -284,3 +284,4 @@ def assign_identifier(input: dict) -> dict:
             raise Problem(MODULE, 409, "bpn-mismatch", detail=f"company has {row['bpn']}",
                           retryable=False)
         if row["status"] != "REQUESTED":
+            raise Problem(MODULE, 409, "invalid-state", detail=row["status"], retryable=False)
