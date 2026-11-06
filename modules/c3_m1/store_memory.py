@@ -270,3 +270,4 @@ def remove_role(company_id: str, company_role: str) -> dict | None:
         return None
     row.update({"status": "INACTIVE", "changed_at": _now(), "deactivated_at": _now()})
     return _copy(row)
+
