@@ -346,3 +346,4 @@ def test_the_activation_DONE_lists_active_roles_only(active):
 
 
 def test_the_reactivation_needs_an_approved_application(active):
+    step("deactivate_company", companyId=U1, reason="MANUAL")
