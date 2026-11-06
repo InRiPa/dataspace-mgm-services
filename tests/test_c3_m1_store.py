@@ -325,3 +325,4 @@ def test_an_attestation_is_used_exactly_once(make):
 
 
 # ---------------------------------------------------------------------------------- audit (5)
+def test_audit_entry_is_written_and_readable(make):
