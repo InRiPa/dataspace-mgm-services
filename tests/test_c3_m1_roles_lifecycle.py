@@ -194,3 +194,4 @@ def test_no_token_attestation_document_or_person_name_leaks(active, _keys):
     for text in dumps:
         assert "eyJ" not in text          # no attestation, no token
         assert "%PDF" not in text         # no document content
+        assert "Mustermann" not in text   # no names of people
