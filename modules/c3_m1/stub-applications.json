@@ -48,3 +48,4 @@
       "companyData": {
         "legalName": "Ohne Zustimmung GmbH",
         "address": { "streetName": "Ringstraße", "streetNumber": "3", "postalCode": "76131", "city": "Karlsruhe", "countryCode": "DE" },
+        "identifiers": [ { "type": "VAT_ID", "value": "DE111111111", "source": "APPLICANT" } ]
