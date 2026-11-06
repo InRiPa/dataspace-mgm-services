@@ -384,3 +384,4 @@ def reject_company(input: dict) -> dict:
         events.publish(MODULE, "CompanyRejected", {"companyId": cid})
     return standin.step_reply(input, {"companyId": cid, "status": "REJECTED"})
 
+
