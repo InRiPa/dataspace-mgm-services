@@ -162,3 +162,4 @@ def pattern_for(identifier_type: str, country_code: str | None) -> str | None:
     return fallback.get(country_code or "") or fallback.get("Worldwide")
 
 
+# ---------------------------------------------------------------------------------- helpers
