@@ -218,3 +218,4 @@ def validate_company(data: dict, *, partial: bool = False) -> list[dict]:
     _text(errors, "house_number", flat.get("house_number"), max_length=HOUSE_NUMBER_MAX)
     _text(errors, "address_addition", flat.get("address_addition"),
           max_length=ADDRESS_ADDITION_MAX)
+    _text(errors, "postal_code", flat.get("postal_code"), max_length=POSTAL_CODE_MAX)
