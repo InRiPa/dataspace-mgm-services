@@ -23,3 +23,4 @@
 -- #  Assisted-By: Hermes Agent (deepseek-v4.1-flash)
 -- #################################################################################
 -- C3-M1 Company Profile, own database `c3_m1` (README 4, 5). Field names, types, NOT NULLs,
+-- enums and indexes are the ones of README 5; the comments name the section of every block.
