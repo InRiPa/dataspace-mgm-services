@@ -101,3 +101,4 @@ CREATE TABLE company_role_assignment (
     source_ref     text,
     activated_at   timestamptz,
     deactivated_at timestamptz,
+    changed_at     timestamptz  NOT NULL,
