@@ -470,3 +470,4 @@ def correct_company(companyId: str, body: dict, sub: str | None = None) -> dict:
             locked.append("countryCode")
         if locked:
             raise Problem(MODULE, 409, "field-locked", fields=locked)
+
