@@ -163,3 +163,4 @@ def update_company(company_id: str, **fields) -> dict | None:
         fields["bpn"] = _checked_bpn(fields["bpn"], company_id=company_id, status=status)
     row.update(fields)
     row["changed_at"] = _now()
+    return _copy(row)
