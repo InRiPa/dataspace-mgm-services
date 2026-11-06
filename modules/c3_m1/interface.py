@@ -259,3 +259,4 @@ def create_company(input: dict) -> dict:
         for role in roles:
             store.add_role(cid, role, status="REQUESTED", source_kind="APPLICATION",
                            source_ref=application_id)
+        _audit(cid, "stepCreateCompany", input, {"applicationId": application_id})
