@@ -573,3 +573,4 @@ def audit(company_id: str | None, sub: str | None, operation: str,
     """Every changing operation, every step and every read of a document (FRAMEWORK 4.3)."""
     with _connection() as connection:
         return _fetch_one(  # type: ignore[return-value]
+            connection,
