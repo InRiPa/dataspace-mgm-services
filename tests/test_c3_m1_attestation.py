@@ -148,3 +148,4 @@ def test_a_foreign_key_is_a_signature_error():
             U1, {"attestation": jwt.encode(claims(), foreign, algorithm="ES256",
                                            headers={"typ": "ebw-attestation+jwt",
                                                     "kid": PRIVATE["kid"]})})
+    assert error.value.status == 400
