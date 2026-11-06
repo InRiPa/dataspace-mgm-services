@@ -441,3 +441,4 @@ def test_camel_case_and_nested_address_are_understood():
 
 
 def test_partial_validation_checks_only_given_fields():
+    assert v.validate_company({"short_name": "Kurz"}, partial=True) == []
