@@ -175,3 +175,4 @@ def test_find_companies_is_newest_first_and_paged(make):
     assert len(rest) == 1
 
 
+# --------------------------------------------------------------------------- identifiers (5, 6.4)
