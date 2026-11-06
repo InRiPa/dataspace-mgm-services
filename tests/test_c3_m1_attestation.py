@@ -194,3 +194,4 @@ def test_a_broken_compact_serialisation_is_a_format_error():
     active_company()
     with pytest.raises(Problem) as error:
         interface.update_company_from_attestation(U1, {"attestation": "nur-ein-teil"})
+    assert error.value.ext["reason"] == "format"
