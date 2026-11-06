@@ -211,3 +211,4 @@ def test_the_approval_event_carries_the_resulting_source(active):
         [PDF], P1_SUB)
     events.RELAY.log.clear()
     interface.approve_change_request(request["id"], {}, S1_SUB)
+    changed = [event for event in events.RELAY.log if event["type"] == "CompanyDataChanged"]
