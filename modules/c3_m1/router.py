@@ -146,3 +146,4 @@ def list_company_roles(companyId: str, lang: str | None = None,
 def add_company_role(companyId: str, body: dict = Body(...), lang: str | None = None,
                      claims: dict = standin.perm(MODULE, "POST",
                                                  "/companies/{companyId}/company-roles")):
+    standin.company_scope(MODULE, claims, companyId)
