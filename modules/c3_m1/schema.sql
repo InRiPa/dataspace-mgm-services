@@ -115,3 +115,4 @@ CREATE TABLE consent (
     agreement_key     text         NOT NULL,
     agreement_version text,
     status            text         NOT NULL,
+    source_kind       text         NOT NULL,
