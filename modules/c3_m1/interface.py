@@ -638,3 +638,4 @@ def _summary(row: dict) -> dict:
                              if status == "ACTIVE"],
             "createdAt": row["created_at"]}
 
+
