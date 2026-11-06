@@ -557,3 +557,4 @@ def add_if_unused(jti: str, company_id: str) -> bool:
         _check_known(connection, company_id)
         row = connection.execute(
             "INSERT INTO used_attestation (jti, company_id, used_at) VALUES (%s, %s, %s)"
+            " ON CONFLICT (jti) DO NOTHING RETURNING jti", (jti, company_id, _now())).fetchone()
