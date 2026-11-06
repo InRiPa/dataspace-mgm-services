@@ -29,3 +29,4 @@
 -- C3-M1 5 Table company
 CREATE TABLE company (
     id                     uuid                     PRIMARY KEY,
+    name                   text                     NOT NULL,
