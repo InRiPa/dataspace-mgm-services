@@ -137,3 +137,4 @@ def test_deactivation_reason_enum_and_state_are_enforced(make):
         make(status="ACTIVE", deactivation_reason="MANUAL")
     company = make()
     assert store.update_company(company["id"], status="INACTIVE",
+                                deactivation_reason="MANUAL")["deactivation_reason"] == "MANUAL"
