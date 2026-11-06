@@ -5,3 +5,4 @@ spec section, the reading implemented here and who can decide. Nothing here is a
 reading is in the code, marked as such.
 
 | No. | Question | Spec | Reading implemented | To be decided by |
+|---|---|---|---|---|
