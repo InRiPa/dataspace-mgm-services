@@ -383,3 +383,4 @@ def test_value_normalized_drops_spaces_and_punctuation():
 
 
 # ------------------------------------------------------------------ field rules of section 5
+def test_name_rules():
