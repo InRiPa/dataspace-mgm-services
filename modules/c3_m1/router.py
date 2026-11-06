@@ -63,3 +63,4 @@ def assign_identifier(body: dict = Body(...),
 @router.post("/steps/activate-company")
 def activate_company(body: dict = Body(...),
                      _: dict = standin.perm(MODULE, "POST", "/steps/activate-company")):
+    return interface.activate_company(body)
