@@ -52,3 +52,4 @@ def _timestamp(value: str | None) -> dt.datetime | None:
     if not value:
         return None
     try:
+        return dt.datetime.fromisoformat(value.replace("Z", "+00:00"))
