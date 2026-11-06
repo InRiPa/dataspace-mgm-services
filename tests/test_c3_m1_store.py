@@ -304,3 +304,4 @@ def test_documents_are_stored_with_checksum(make):
     company = make()
     request = store.create_change_request({"company_id": company["id"]})
     document = store.add_document(request["id"], file_name="auszug.pdf",
+                                  media_type="application/pdf", content=b"%PDF-1.7 test")
