@@ -305,3 +305,4 @@ def set_identifiers(company_id: str, identifiers: list[dict]) -> list[dict]:
     return list_identifiers(company_id)
 
 
+# ------------------------------------------------------- company_role_assignment (README 5, 6.5)
