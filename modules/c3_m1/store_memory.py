@@ -54,3 +54,4 @@ _consents: dict[tuple[str, str], dict] = {}
 _change_requests: dict[str, dict] = {}
 _documents: dict[str, dict] = {}
 _used_attestations: dict[str, dict] = {}
+_audit: list[dict] = []
