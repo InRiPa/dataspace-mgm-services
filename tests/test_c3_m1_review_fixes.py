@@ -354,3 +354,4 @@ def test_the_reactivation_needs_an_approved_application(active):
 
 
 def test_the_rejected_bpn_abort_of_the_seed_file(tmp_path, monkeypatch):
+    """13.25: a seed file with another companyId aborts the start."""
