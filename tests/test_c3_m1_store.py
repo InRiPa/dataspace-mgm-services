@@ -195,3 +195,4 @@ def test_set_identifiers_enforces_one_per_type(make):
         store.set_identifiers(company["id"], [{"type": "VAT_ID", "value": "DE123456789"},
                                              {"type": "VAT_ID", "value": "DE987654321"}])
 
+
