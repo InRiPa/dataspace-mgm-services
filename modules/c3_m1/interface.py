@@ -1048,3 +1048,4 @@ def deactivate_company(input: dict) -> dict:
             _check_deactivation_reason(reason)
             if reason == "TRANSFERRED" and row["deactivation_reason"] == "MANUAL":
                 store.update_company(cid, deactivation_reason="TRANSFERRED")
+                store.audit(cid, None, "stepDeactivateCompany", None,
