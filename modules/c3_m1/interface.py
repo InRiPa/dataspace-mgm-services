@@ -795,3 +795,4 @@ def list_own_change_requests(companyId: str, page: int = 0, size: int = 20) -> d
     return {"items": [_change_request_view(item) for item in items], "page": page, "size": size,
             "total": total}
 
+
