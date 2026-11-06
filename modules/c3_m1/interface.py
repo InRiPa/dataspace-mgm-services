@@ -1172,3 +1172,4 @@ def reactivate_company(input: dict) -> dict:
             updates |= {"core_data_source": "MANUAL", "core_data_verified_at": _now()}
         changed = _changed_fields(row, fields, identifiers)
         store.update_company(cid, **updates)
+        store.set_identifiers(cid, identifiers)
