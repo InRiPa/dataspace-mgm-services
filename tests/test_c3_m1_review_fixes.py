@@ -221,3 +221,4 @@ def test_the_reactivation_keeps_the_house_number_of_the_application(active):
                       "address": {"streetName": "Musterstraße", "streetNumber": "7",
                                   "postalCode": "70569", "city": "Stuttgart", "countryCode": "DE"},
                       "identifiers": [{"type": "EBWOID", "value": "EBWOID-DE-0000000001",
+                                       "source": "ATTESTATION"}]})
