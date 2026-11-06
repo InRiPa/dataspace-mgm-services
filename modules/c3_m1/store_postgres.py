@@ -70,3 +70,4 @@ def _dsn() -> str:
     return dsn
 
 
+def _now() -> str:
