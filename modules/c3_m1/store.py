@@ -47,3 +47,4 @@ from portal_common.problems import Problem
 
 MODULE = "c3-m1"
 
+STATUSES = ("REQUESTED", "ACTIVE", "REJECTED", "INACTIVE")
