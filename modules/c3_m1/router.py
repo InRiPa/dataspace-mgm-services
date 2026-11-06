@@ -66,3 +66,4 @@ def activate_company(body: dict = Body(...),
     return interface.activate_company(body)
 
 
+@router.post("/steps/deactivate-company")
