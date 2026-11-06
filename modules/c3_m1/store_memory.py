@@ -281,3 +281,4 @@ def list_consents(company_id: str) -> list[dict]:
     return [_copy(row) for (cid, _key), row in _consents.items() if cid == company_id]  # type: ignore[misc]
 
 
+def set_consent(company_id: str, agreement_key: str, *, version: str | None = None,
