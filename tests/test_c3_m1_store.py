@@ -420,3 +420,4 @@ def test_country_code_rules():
     assert {"field": "country_code", "reason": "unknown-country"} in v.validate_country_code("AT")
     assert {"field": "country_code", "reason": "required"} in v.validate_country_code(None)
 
+
