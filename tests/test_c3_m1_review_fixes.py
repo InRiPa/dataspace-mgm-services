@@ -158,3 +158,4 @@ def test_the_correction_keeps_old_values_in_the_audit(client, active):
 def test_the_attestation_update_keeps_old_values_in_the_audit(active):
     interface.update_company_from_attestation(U1, {"attestation": sign(claims())}, P1_SUB)
     entry = [row for row in store.list_audit(U1)
+             if row["operation"] == "updateCompanyFromAttestation"][-1]
