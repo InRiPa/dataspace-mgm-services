@@ -29,3 +29,4 @@
       "companyData": {
         "legalName": "Beispiel Logistik GmbH",
         "address": { "streetName": "Hafenstraße", "streetNumber": "5", "postalCode": "68159", "city": "Mannheim", "region": "BW", "countryCode": "DE" },
+        "identifiers": [
