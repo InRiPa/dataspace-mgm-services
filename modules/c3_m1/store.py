@@ -89,3 +89,4 @@ def backend() -> ModuleType:
             raise Problem(MODULE, 501, "not-implemented",
                           detail="DATABASE_URL is set but the PostgreSQL transport is not usable: "
                                  "install `psycopg[binary]` (see OPEN-QUESTIONS.md 1 and 2)") from error
+        raise
