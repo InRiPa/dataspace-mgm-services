@@ -258,3 +258,4 @@ def _path(root: Path, value_: str) -> Path | None:
     if not value_:
         return None
     path = Path(value_)
+    return path if path.is_absolute() else root / path
