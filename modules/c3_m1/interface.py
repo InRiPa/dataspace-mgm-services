@@ -755,3 +755,4 @@ def create_change_request(companyId: str, data: dict,
             raise Problem(MODULE, 400, "validation", errors=errors)
         core_changed = any(_differs_field(row, key, value)
                            for key, value in changes.items() if key != "identifiers")
+        if identifiers is not None and _identifier_core_changed(row, identifiers):
