@@ -1233,3 +1233,4 @@ def find_identifier_matches(*, identifiers: list[dict], name: str | None = None,
     """9.3: local duplicate search; the caller decides whether a match is a duplicate."""
     wanted_statuses = [statuses] if isinstance(statuses, str) else list(statuses or [])
     errors = []
+    if not 1 <= len(identifiers) <= 10:
