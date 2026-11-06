@@ -168,3 +168,4 @@ def test_an_older_attestation_does_not_reset_newer_data():
 
 
 @pytest.mark.parametrize("over,reason", [
+    ({"iss": "https://other.example.org"}, "issuer"),
