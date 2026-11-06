@@ -24,3 +24,4 @@
 #################################################################################
 """Thin HTTP layer of C3-M1: token, permission, scope, then the interface (AGENTS.md 5).
 
+Every route takes its permission from `x-permission` of the spec through `standin.perm`. Paths in
