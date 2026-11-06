@@ -250,3 +250,4 @@ def create_company(input: dict) -> dict:
     with store.lock(cid):
         store.create_company(row | {
             "id": cid, "status": "REQUESTED",
+            "core_data_source": "EBW" if verification == "EBW" else "MANUAL",
