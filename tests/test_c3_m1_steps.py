@@ -214,3 +214,4 @@ def test_activate_without_consents_keeps_requested():
     assert error.value.status == 409 and error.value.name == "roles-without-consent"
     assert store.get_company(U3)["status"] == "REQUESTED"
 
+
