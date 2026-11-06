@@ -37,3 +37,4 @@ from tools import test_iam
 
 from conftest import BASE, bearer, person_token
 
+U1 = "c0000001-0000-4000-8000-000000000001"
