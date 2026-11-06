@@ -509,3 +509,4 @@ def test_patterns_fall_back_to_readme_6_4_without_reference_data(tmp_path, monke
     assert v.validate_identifiers([{"type": "VAT_ID", "value": "DE123456789"}], "DE") == []
     assert {"field": "identifiers[0].value", "reason": "format"} in v.validate_identifiers(
         [{"type": "VAT_ID", "value": "DE12345678"}], "DE")
+
