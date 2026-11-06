@@ -102,3 +102,4 @@ def test_an_unknown_or_malformed_id_is_not_found(postgres):
     assert postgres.update_company("nope", name="x") is None
     assert postgres.get_change_request("nope") is None
 
+
