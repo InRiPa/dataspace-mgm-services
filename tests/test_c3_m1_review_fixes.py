@@ -313,3 +313,4 @@ def test_an_undecodable_payload_is_a_format_error(active):
 def test_client_id_is_optional_without_a_configured_list(active, monkeypatch):
     monkeypatch.delenv("ATTESTATION_CLIENT_IDS")
     payload = claims()
+    payload.pop("client_id")
