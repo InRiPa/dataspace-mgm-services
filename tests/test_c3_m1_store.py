@@ -55,3 +55,4 @@ def make():
         return store.create_company(row)
     return _make
 
+
