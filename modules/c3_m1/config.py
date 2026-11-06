@@ -255,3 +255,4 @@ def description(company_role: str, lang: str) -> str | None:
 
 
 def _path(root: Path, value_: str) -> Path | None:
+    if not value_:
