@@ -91,3 +91,4 @@ def _checked_bpn(bpn, *, company_id: str | None, status: str) -> str | None:
 
 
 def reset() -> None:
+    """Empty every table (test helper; the PostgreSQL transport drops and recreates the schema)."""
