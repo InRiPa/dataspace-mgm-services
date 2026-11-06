@@ -101,3 +101,4 @@ _reference_cache: tuple[str, int, dict | None] | None = None
 def normalise(value) -> str:
     """NFKC, trimmed, inner whitespace collapsed to one space; case stays (6.3)."""
     return " ".join(unicodedata.normalize("NFKC", str(value)).split())
+
