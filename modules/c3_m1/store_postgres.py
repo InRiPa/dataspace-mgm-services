@@ -448,3 +448,4 @@ def open_change_request(company_id: str) -> dict | None:
         return _fetch_one(connection, "SELECT * FROM change_request WHERE company_id = %s"
                                       " AND status = 'OPEN'", (company_id,))
 
+
