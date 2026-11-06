@@ -121,3 +121,4 @@ def test_an_unchanged_address_keeps_its_spelling():
         "country": "DE", "address": {"street_address": "industriestraße 10",
                                      "postal_code": "70565", "locality": "STUTTGART"}}})
     assert second["changedFields"] == []
+
