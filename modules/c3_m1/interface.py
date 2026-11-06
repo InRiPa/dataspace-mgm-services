@@ -676,3 +676,4 @@ def _change_request_view(row: dict, *, osp: bool = False, company: dict | None =
 
 CORE_IDENTIFIERS = ("EUID", "EBWOID")
 
+
