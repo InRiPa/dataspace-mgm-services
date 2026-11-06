@@ -32,3 +32,4 @@ transport returns them.
 `psycopg` is imported at module load: `DATABASE_URL` set without the driver is an error naming the
 package (store.py). Nothing here is FastAPI, HTTP or events.
 """
+from __future__ import annotations
