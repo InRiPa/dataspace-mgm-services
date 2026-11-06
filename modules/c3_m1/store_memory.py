@@ -139,3 +139,4 @@ def create_company(row: dict) -> dict:
         "id": row["id"], "status": status, "core_data_source": core_data_source,
         "bpn": _checked_bpn(row.get("bpn"), company_id=row["id"], status=status),
         "created_at": row.get("created_at") or now, "changed_at": row.get("changed_at") or now,
+    })
