@@ -512,3 +512,4 @@ def correct_company(companyId: str, body: dict, sub: str | None = None) -> dict:
 def _terms() -> list[dict]:
     """Active terms of C1-M2 with scope COMPANY_ROLE (11.1); unreachable stays 502."""
     config.apply_registration_url()
+    if neighbours.is_standin("c1-m2"):
