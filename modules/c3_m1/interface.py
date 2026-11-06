@@ -188,3 +188,4 @@ def _application(application_id: str | None) -> dict:
     """The application at C1-M2 (11.1); a failed call is an error, not "not found" (skill 5)."""
     if neighbours.is_standin("c1-m2"):
         application = _stub_applications().get(application_id or "")
+        if application is None:
