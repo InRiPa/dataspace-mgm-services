@@ -85,3 +85,4 @@ ALIASES = {
     "shortName": "short_name", "houseNumber": "house_number",
     "addressAddition": "address_addition", "postalCode": "postal_code",
     "countryCode": "country_code", "coreDataSource": "core_data_source",
+    "bpnAssignedAt": "bpn_assigned_at", "coreDataVerifiedAt": "core_data_verified_at",
