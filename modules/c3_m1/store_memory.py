@@ -103,3 +103,4 @@ def reset() -> None:
 
 
 @contextlib.contextmanager
+def lock(company_id: str | None = None):
