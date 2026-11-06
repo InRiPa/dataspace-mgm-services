@@ -58,3 +58,4 @@ ADDRESS_ADDITION_MAX = 255
 POSTAL_CODE_MAX = 12
 CITY_MAX = 255
 REGION_PATTERN = re.compile(r"^[A-Z0-9]{1,3}$")
+COUNTRY_PATTERN = re.compile(r"^[A-Z]{2}$")
