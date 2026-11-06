@@ -50,3 +50,4 @@ DEFAULTS = {
     "COMPANY_ROLES_FILE": "config/company-roles.json",
     "ATTESTATION_ISSUER": "https://ebw.osp-a.example.org",
     "ATTESTATION_AUDIENCE": "portal-registration",
+    "ATTESTATION_MAX_AGE_HOURS": "24",
