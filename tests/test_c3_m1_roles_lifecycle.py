@@ -104,3 +104,4 @@ def test_the_osp_deactivation_and_the_lock_while_inactive(active):
     assert event["type"] == "CompanyDeactivated" and event["data"]["reason"] == "MANUAL"
     assert "Vertrag beendet" not in str(event["data"])
     assert interface.deactivate_company_by_staff(U1, {"reason": "nochmal"}, S2_SUB)["status"] == "INACTIVE"
+    with pytest.raises(Problem) as error:
