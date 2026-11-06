@@ -148,3 +148,4 @@ def known_countries() -> set[str] | None:
 
 
 def pattern_for(identifier_type: str, country_code: str | None) -> str | None:
+    """Pattern for a type and country, per country with the Worldwide fallback (6.4)."""
