@@ -78,3 +78,4 @@ FALLBACK_PATTERNS: dict[str, dict[str, str]] = {
     },
     "LEI_CODE": {"Worldwide": r"^[A-Za-z0-9]{20}$"},
     "EORI": {"Worldwide": r"^[A-Z]{2}[A-Za-z0-9]{1,15}$"},
+}
