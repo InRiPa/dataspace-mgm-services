@@ -449,3 +449,4 @@ def open_change_request(company_id: str) -> dict | None:
                                       " AND status = 'OPEN'", (company_id,))
 
 
+def list_change_requests(*, company_id: str | None = None, status=None,
