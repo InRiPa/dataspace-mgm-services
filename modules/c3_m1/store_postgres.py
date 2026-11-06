@@ -303,3 +303,4 @@ def set_identifiers(company_id: str, identifiers: list[dict]) -> list[dict]:
                 " created_at, changed_at) VALUES (%(company_id)s, %(type)s, %(value)s,"
                 " %(value_normalized)s, %(source)s, %(now)s, %(now)s)", row | {"now": now})
     return list_identifiers(company_id)
+
