@@ -245,3 +245,4 @@ def create_company(input: dict) -> dict:
         errors.append({"field": "identifiers", "reason": "EBWOID required with a verification"})
     if errors:
         raise Problem(MODULE, 400, "validation", errors=errors, retryable=False)
+
