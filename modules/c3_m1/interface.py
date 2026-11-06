@@ -490,3 +490,4 @@ def correct_company(companyId: str, body: dict, sub: str | None = None) -> dict:
             core_changed = True
         updates = validation.flat_fields(fields)
         if core_changed:
+            updates["core_data_verified_at"] = _now()
