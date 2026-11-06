@@ -531,3 +531,4 @@ def add_document(change_request_id: str, *, file_name: str, media_type: str,
              sha256 or hashlib.sha256(content).hexdigest(), content, _now()))
 
 
+def get_document(document_id: str | None) -> dict | None:
