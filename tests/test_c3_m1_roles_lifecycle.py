@@ -131,3 +131,4 @@ def test_the_reactivation_with_a_new_attestation(active):
     assert events.RELAY.log == []
 
 
+def test_the_reactivation_needs_the_matching_kind(active):
