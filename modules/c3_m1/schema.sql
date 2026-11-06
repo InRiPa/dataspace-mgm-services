@@ -70,3 +70,4 @@ CREATE TABLE company (
     CONSTRAINT company_deactivation_reason_state
         CHECK (deactivation_reason IS NULL OR status = 'INACTIVE')
 );
+
