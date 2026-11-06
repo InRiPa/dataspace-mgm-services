@@ -491,3 +491,4 @@ def test_lei_and_eori_formats():
 def test_a_business_wallet_source_can_be_refused():
     errors = v.validate_identifiers([{"type": "EUID", "value": "DEXX001T.HRB100001",
                                       "source": "BUSINESS_WALLET"}], "DE",
+                                    allow_business_wallet=False)
