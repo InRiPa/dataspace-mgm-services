@@ -63,3 +63,4 @@ CREATE TABLE company (
     CONSTRAINT company_country_format   CHECK (country_code ~ '^[A-Z]{2}$'),
     CONSTRAINT company_status_enum      CHECK (status IN ('REQUESTED', 'ACTIVE', 'REJECTED', 'INACTIVE')),
     CONSTRAINT company_bpn_format       CHECK (bpn IS NULL OR bpn ~ '^BPNL[A-Z0-9]{12}$'),
+    CONSTRAINT company_core_data_source_enum CHECK (core_data_source IN ('EBW', 'MANUAL')),
