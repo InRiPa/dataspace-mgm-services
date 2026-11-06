@@ -131,3 +131,4 @@ def test_the_short_name_is_changed_and_locked_fields_refused(client, active):
     assert response.json()["fields"] == ["name"]
 
 
+# ------------------------------------------------------------------------------------- 13.17, 13.18
