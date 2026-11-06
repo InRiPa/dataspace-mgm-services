@@ -132,3 +132,4 @@ def test_a_missing_driver_answers_not_implemented(monkeypatch, postgres_url):
 
 
 def test_a_path_id_that_is_no_uuid_is_not_found_in_memory(monkeypatch):
+    monkeypatch.delenv("DATABASE_URL", raising=False)
