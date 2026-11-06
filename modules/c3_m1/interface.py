@@ -110,3 +110,4 @@ def _address(row: dict) -> dict:
     return {key: row.get(field) for key, field in
             (("street", "street"), ("houseNumber", "house_number"),
              ("addressAddition", "address_addition"), ("postalCode", "postal_code"),
+             ("city", "city"), ("region", "region"), ("countryCode", "country_code"))}
