@@ -222,3 +222,4 @@ def approve_change_request(changeRequestId: str, body: dict | None = Body(None),
                                MODULE, "POST", "/osp/change-requests/{changeRequestId}/approve")):
     return interface.approve_change_request(changeRequestId, body, claims.get("sub"))
 
+
