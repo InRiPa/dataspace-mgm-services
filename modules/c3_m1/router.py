@@ -42,3 +42,4 @@ from .interface import MODULE, company_view, role_view
 
 router = standin.router(MODULE)
 
+
