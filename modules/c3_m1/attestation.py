@@ -83,3 +83,4 @@ def _load_keys() -> list[dict]:
         return _cache["keys"]
     try:
         response = httpx.get(config.attestation_jwks_url(), timeout=5.0)
+        response.raise_for_status()
