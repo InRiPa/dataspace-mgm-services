@@ -416,3 +416,4 @@ def is_used(jti: str) -> bool:
     return jti in _used_attestations
 
 
+# ------------------------------------------------------------------- audit_log (README 5, 4.3)
