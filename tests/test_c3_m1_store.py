@@ -295,3 +295,4 @@ def test_list_change_requests_filters_and_order(make):
     assert total == 2 and [row["id"] for row in items] == [first["id"], second["id"]]
     newest, _ = store.list_change_requests(company_id=company["id"], newest_first=True)
     assert newest[0]["id"] == second["id"]
+    assert store.list_change_requests(status="OPEN")[1] == 1
