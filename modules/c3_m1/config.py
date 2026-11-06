@@ -89,3 +89,4 @@ def languages() -> list[str]:
     """Languages for descriptions in this installation; `en` always answers as the fallback."""
     return [code.strip() for code in value("LANGUAGES").split(",") if code.strip()] or ["en"]
 
+
