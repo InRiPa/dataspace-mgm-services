@@ -511,3 +511,4 @@ def test_patterns_fall_back_to_readme_6_4_without_reference_data(tmp_path, monke
         [{"type": "VAT_ID", "value": "DE12345678"}], "DE")
 
 
+# -------------------------------------------------------------------- change request (7.4)
