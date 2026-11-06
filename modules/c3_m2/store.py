@@ -25,26 +25,84 @@
 #################################################################################
 """Own data of C3-M2 (README 5), in memory for the hackathon.
 
-The rows keep the column names of the tables `csp_registration`, `csp_connector`,
-`csp_notification` and `audit_entry`; `interface.registration_view` maps a row to the camelCase
-of the API. Nothing here holds company data beyond the BPN, and
-the audit log holds no response content and no tokens (README 5).
+One dataclass per table (`csp_registration`, `csp_connector`, `csp_notification`, `audit_entry`),
+with the column names of README 5. `interface.registration_view` maps a registration to the
+camelCase of the API. Nothing here holds company data beyond the BPN, and the audit log holds no
+response content and no tokens (README 5).
 """
 from __future__ import annotations
 
 import datetime as dt
 import json
+from dataclasses import dataclass, field
+from typing import Literal
 
 from portal_common import settings
 
-registrations: dict[str, dict] = {}    # company_id -> row of csp_registration
-connectors: dict[str, dict] = {}       # connector_id -> row of csp_connector
-notifications: dict[str, dict] = {}    # notification_id -> row of csp_notification
-audit: list[dict] = []                 # rows of audit_entry
+RegistrationStatus = Literal["PENDING", "REGISTERED", "FAILED", "TRANSFERRED_AWAY"]   # README 6.1
+Membership = Literal["NONE", "REGISTERED", "DEREGISTERED"]
+ConnectorStatus = Literal["REGISTERED", "DEREGISTERED"]
+NotificationType = Literal["OperationCompleted", "CompanyTransferredAway"]
 
 
 def now() -> str:
     return dt.datetime.now(dt.UTC).isoformat(timespec="seconds").replace("+00:00", "Z")
+
+
+@dataclass(slots=True)
+class Registration:
+    """Row of `csp_registration`: one company of the installation at the CSP."""
+    company_id: str
+    bpn: str | None = None
+    status: RegistrationStatus | None = None    # None: row exists, but the CSP has not answered yet
+    failure_reason: str | None = None
+    pending_operation_id: str | None = None
+    did: str | None = None
+    membership: Membership = "NONE"
+    registered_at: str | None = None
+    updated_at: str = field(default_factory=now)
+    last_update_step_run: str | None = None     # repetition of update-company (OPEN-QUESTIONS 5)
+
+    def touch(self) -> None:
+        self.updated_at = now()
+
+
+@dataclass(slots=True)
+class Connector:
+    """Row of `csp_connector`: one connector entered in the discovery of the CSP."""
+    connector_id: str
+    company_id: str
+    bpn: str
+    endpoint_url: str
+    status: ConnectorStatus
+    registered_at: str
+    updated_at: str
+
+
+@dataclass(slots=True, frozen=True)
+class Notification:
+    """Row of `csp_notification`: one accepted notification of the CSP."""
+    notification_id: str
+    type: NotificationType
+    bpn: str | None
+    received_at: str
+
+
+@dataclass(slots=True, frozen=True)
+class AuditEntry:
+    """Row of `audit_entry`: one call to the CSP or one notification. No content, no tokens."""
+    time: str
+    operation: str
+    company_id: str | None
+    bpn: str | None
+    http_status: int | None
+    error_type: str | None
+
+
+registrations: dict[str, Registration] = {}    # company_id -> row
+connectors: dict[str, Connector] = {}          # connector_id -> row
+notifications: dict[str, Notification] = {}    # notification_id -> row
+audit: list[AuditEntry] = []
 
 
 def reset() -> None:
@@ -61,44 +119,35 @@ def seed() -> None:
     path = settings.resolve_path(settings.get("ospCompanyFile"))
     if path is None or not path.exists():
         return
-    company = json.loads(path.read_text(encoding="utf-8"))
-    company_id, bpn = company.get("companyId"), company.get("bpn")
-    if not company_id or not bpn or company_id in registrations:
+    company: object = json.loads(path.read_text(encoding="utf-8"))
+    if not isinstance(company, dict):
         return
-    row = new_registration(company_id)
-    row.update(bpn=bpn, status="REGISTERED", membership="REGISTERED", registered_at=row["updated_at"])
-    registrations[company_id] = row
+    company_id, bpn = company.get("companyId"), company.get("bpn")
+    if not isinstance(company_id, str) or not isinstance(bpn, str) or company_id in registrations:
+        return
+    stamp = now()
+    registrations[company_id] = Registration(company_id, bpn=bpn, status="REGISTERED", membership="REGISTERED",
+                                             registered_at=stamp, updated_at=stamp)
 
 
-def new_registration(company_id: str) -> dict:
-    return {"company_id": company_id, "bpn": None, "status": None, "failure_reason": None,
-            "pending_operation_id": None, "did": None, "membership": "NONE", "registered_at": None,
-            "updated_at": now(), "last_update_step_run": None}
-
-
-def registration_row(company_id: str) -> dict:
+def registration_row(company_id: str) -> Registration:
     """The row of the company; created (without status) if there is none yet."""
     row = registrations.get(company_id)
     if row is None:
-        row = registrations[company_id] = new_registration(company_id)
+        row = registrations[company_id] = Registration(company_id)
     return row
 
 
-def touch(row: dict) -> None:
-    row["updated_at"] = now()
+def find_by_operation(operation_id: str) -> Registration | None:
+    return next((r for r in registrations.values() if r.pending_operation_id == operation_id), None)
 
 
-def find_by_operation(operation_id: str) -> dict | None:
-    return next((r for r in registrations.values() if r["pending_operation_id"] == operation_id), None)
-
-
-def find_by_bpn(bpn: str, *, exclude: str | None = None, status: str | None = None) -> dict | None:
+def find_by_bpn(bpn: str, *, exclude: str | None = None,
+                status: RegistrationStatus | None = None) -> Registration | None:
     return next((r for r in registrations.values()
-                 if r["bpn"] == bpn and r["company_id"] != exclude and (status is None or r["status"] == status)),
-                None)
+                 if r.bpn == bpn and r.company_id != exclude and (status is None or r.status == status)), None)
 
 
 def record_audit(operation: str, company_id: str | None, bpn: str | None, http_status: int | None,
                  error_type: str | None = None) -> None:
-    audit.append({"time": now(), "operation": operation, "company_id": company_id, "bpn": bpn,
-                  "http_status": http_status, "error_type": error_type})
+    audit.append(AuditEntry(now(), operation, company_id, bpn, http_status, error_type))

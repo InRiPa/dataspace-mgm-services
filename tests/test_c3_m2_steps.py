@@ -27,6 +27,7 @@
 called in-process through `interface.py`, as Process Orchestration calls them."""
 import json
 import uuid
+from dataclasses import asdict
 
 import pytest
 
@@ -72,7 +73,7 @@ def published(type_: str) -> list[dict]:
 
 
 def csp_calls(operation: str) -> int:
-    return sum(1 for a in store.audit if a["operation"] == operation)
+    return sum(1 for a in store.audit if a.operation == operation)
 
 
 def problem(fn, *args, **kwargs) -> Problem:
@@ -202,13 +203,13 @@ def test_12_connector_in_the_discovery():
     bpn = register()
     r = interface.register_connector(step(connectorId=CONNECTOR, endpointUrl=ENDPOINT))
     assert r["result"] == {"bpn": bpn, "connectorId": CONNECTOR}
-    assert store.connectors[CONNECTOR]["status"] == "REGISTERED"
+    assert store.connectors[CONNECTOR].status == "REGISTERED"
     interface.register_connector(step(connectorId=CONNECTOR, endpointUrl=ENDPOINT))
     assert csp_calls("register-connector") == 1 and len(published("ConnectorRegisteredAtCsp")) == 1
     interface.register_connector(step(connectorId=CONNECTOR, endpointUrl=ENDPOINT + "/v2"))
     assert csp_calls("register-connector") == 2 and len(published("ConnectorRegisteredAtCsp")) == 2
     interface.deregister_connector(step(connectorId=CONNECTOR))
-    assert store.connectors[CONNECTOR]["status"] == "DEREGISTERED"
+    assert store.connectors[CONNECTOR].status == "DEREGISTERED"
     interface.deregister_connector(step(connectorId=CONNECTOR))
     assert published("ConnectorDeregisteredAtCsp") == [{"companyId": COMPANY, "bpn": bpn, "connectorId": CONNECTOR}]
     assert csp_calls("deregister-connector") == 1
@@ -259,5 +260,5 @@ def test_notification_for_unknown_company_is_404():
 def test_no_secrets_in_audit_or_events():
     register()
     interface.register_membership(step())
-    text = json.dumps(store.audit) + json.dumps(events.RELAY.log)
+    text = json.dumps([asdict(a) for a in store.audit]) + json.dumps(events.RELAY.log)
     assert "access_token" not in text and "Bearer" not in text and "client_assertion" not in text
