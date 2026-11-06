@@ -152,3 +152,4 @@ CREATE TABLE change_request (
 CREATE UNIQUE INDEX change_request_open_per_company ON change_request (company_id) WHERE status = 'OPEN';
 
 -- C3-M1 5 Table change_request_document
+CREATE TABLE change_request_document (
