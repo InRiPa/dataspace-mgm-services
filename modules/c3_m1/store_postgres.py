@@ -98,3 +98,4 @@ def _connection():
         yield connection
 
 
+def _fetch_one(connection, sql: str, params: tuple | dict = ()) -> dict | None:
