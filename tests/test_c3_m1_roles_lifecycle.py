@@ -79,3 +79,4 @@ def test_the_consent_checks(active):
         interface.add_company_role(U1, {"companyRole": "NOPE", "consents": []}, P1_SUB)
     assert error.value.name == "validation"
 
+
