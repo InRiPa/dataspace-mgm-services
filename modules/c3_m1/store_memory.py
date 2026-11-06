@@ -387,3 +387,4 @@ def add_document(change_request_id: str, *, file_name: str, media_type: str,
            "file_name": file_name, "media_type": media_type,
            "size_bytes": len(content) if size_bytes is None else size_bytes,
            "sha256": sha256 or hashlib.sha256(content).hexdigest(),
+           "content": content, "created_at": _now()}
