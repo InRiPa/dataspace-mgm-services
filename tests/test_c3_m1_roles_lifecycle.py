@@ -186,3 +186,4 @@ def test_no_token_attestation_document_or_person_name_leaks(active, _keys):
         {"type": "VAT_ID", "value": "DE555444333"}]},
         [("auszug.pdf", b"%PDF-1.7 Vertraulich", "application/pdf")], P1_SUB)
     interface.update_company_from_attestation(U1, {"attestation": sign(attestation_claims())}, P1_SUB)
+    interface.deactivate_company_by_staff(U1, {"reason": "Grund"}, S2_SUB)
