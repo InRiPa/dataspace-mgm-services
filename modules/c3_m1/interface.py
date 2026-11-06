@@ -1045,3 +1045,4 @@ def deactivate_company(input: dict) -> dict:
     with store.lock(cid):
         row = get_company(cid)
         if row["status"] == "INACTIVE":
+            _check_deactivation_reason(reason)
