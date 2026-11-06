@@ -157,3 +157,4 @@ def lock(company_id: str | None = None):
     guaranteed in `finally`.
     """
     key = zlib.crc32(company_id.encode()) if company_id else 0
+    with psycopg.connect(_dsn(), autocommit=True) as connection:
