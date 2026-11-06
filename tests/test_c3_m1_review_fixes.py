@@ -95,3 +95,4 @@ def test_an_approval_keeps_the_wallet_identifiers(active):
     assert sources["EBWOID"] == "BUSINESS_WALLET" and sources["EUID"] == "BUSINESS_WALLET"
     assert sources["LEI_CODE"] == "DECLARED"
 
+
