@@ -75,3 +75,4 @@ def test_the_consent_checks(active):
             {"agreementKey": "security-regulations", "version": "1.0"}]}, P1_SUB)
     assert error.value.status == 400 and error.value.name == "validation"
 
+    with pytest.raises(Problem) as error:
