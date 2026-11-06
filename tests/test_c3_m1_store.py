@@ -292,3 +292,4 @@ def test_list_change_requests_filters_and_order(make):
     second = store.create_change_request({"company_id": company["id"], "comment": "2",
                                          "changes": {"name": "Neu"}})
     items, total = store.list_change_requests(company_id=company["id"])
+    assert total == 2 and [row["id"] for row in items] == [first["id"], second["id"]]
