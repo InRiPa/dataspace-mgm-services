@@ -150,3 +150,4 @@ def attestation_jwks_cache_seconds() -> int:
 
 
 def stub_applications_file() -> Path | None:
+    """Stand-in for C1-M2: applications in the format of C1-M2 `ApplicationInternal` (11.1).
