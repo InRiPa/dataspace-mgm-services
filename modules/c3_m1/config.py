@@ -77,3 +77,4 @@ def value(name: str, default: str | None = None) -> str:
 def number(name: str) -> int:
     try:
         return int(value(name))
+    except ValueError:
