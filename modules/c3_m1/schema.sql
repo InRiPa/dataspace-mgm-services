@@ -137,3 +137,4 @@ CREATE TABLE change_request (
     requested_by     text,
     decided_by       text,
     decision_reason  text,
+    created_at       timestamptz  NOT NULL,
