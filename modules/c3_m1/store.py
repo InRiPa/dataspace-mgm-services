@@ -39,3 +39,4 @@ Nothing here is FastAPI, HTTP or events, and nothing is cached across a `reset()
 """
 from __future__ import annotations
 
+import importlib
