@@ -109,3 +109,4 @@ def test_review_download_and_approval_of_a_manual_company(active):
     assert approved["status"] == "APPROVED"
     row = store.get_company(U2)
     assert row["name"] == "Beispiel Logistik SE" and row["core_data_source"] == "MANUAL"
+    types = [event["type"] for event in events.RELAY.log]
