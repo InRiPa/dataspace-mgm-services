@@ -183,3 +183,4 @@ def _stub_applications() -> dict[str, dict]:
     return {entry["id"]: entry for entry in entries or []}
 
 
+def _application(application_id: str | None) -> dict:
