@@ -528,3 +528,4 @@ def add_document(change_request_id: str, *, file_name: str, media_type: str,
             " RETURNING *",
             (str(uuid.uuid4()), change_request_id, file_name, media_type,
              len(content) if size_bytes is None else size_bytes,
+             sha256 or hashlib.sha256(content).hexdigest(), content, _now()))
