@@ -187,3 +187,4 @@ def test_a_bpn_of_a_rejected_company_is_free_again():
     seed("a0000008-0000-4000-8000-000000000008", U4, kind="TRANSFER", companyData={
         "legalName": "Andere Beispiel AG",
         "address": {"streetName": "Beispielweg", "streetNumber": "2", "postalCode": "80331",
+                    "city": "München", "countryCode": "DE"},
