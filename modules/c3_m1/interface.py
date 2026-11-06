@@ -1257,3 +1257,4 @@ def find_identifier_matches(*, identifiers: list[dict], name: str | None = None,
             break
         page += 1
     wanted_name = validation.normalise(name) if name else None
+    matches = []
