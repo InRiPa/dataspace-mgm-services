@@ -37,3 +37,4 @@ patterns of README 6.4 apply.
 from __future__ import annotations
 
 import json
+import re
