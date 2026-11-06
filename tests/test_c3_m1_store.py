@@ -214,3 +214,4 @@ def test_set_identifiers_needs_a_known_company():
 def test_roles_report_status_and_none(make):
     company = make()
     assert store.role_status(company["id"], "APP_PROVIDER") == "NONE"
+    store.add_role(company["id"], "ACTIVE_PARTICIPANT", status="ACTIVE")
