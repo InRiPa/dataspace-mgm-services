@@ -84,3 +84,4 @@ def backend() -> ModuleType:
     try:
         module = importlib.import_module(f".store_{name}", __package__)
     except ModuleNotFoundError as error:
+        if name == "postgres" and error.name in ("psycopg", "psycopg.rows"):
