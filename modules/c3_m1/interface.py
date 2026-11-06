@@ -1091,3 +1091,4 @@ def deactivate_company_by_staff(companyId: str, body: dict, sub: str | None = No
         events.publish(MODULE, "CompanyDeactivated", {"companyId": companyId, "reason": "MANUAL"})
     return company_view(companyId, detail=True)
 
+
