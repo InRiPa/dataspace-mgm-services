@@ -296,3 +296,4 @@ def test_the_role_add_answers_in_the_requested_language(client, active):
             if entry["companyRole"] == "APP_PROVIDER"] == ["Anbieter von Apps"]
 
 
+def test_a_malformed_json_part_is_a_validation_error(client, active):
