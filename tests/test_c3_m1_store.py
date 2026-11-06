@@ -351,3 +351,4 @@ def test_reset_clears_every_table(make):
     store.add_role(company["id"], "ACTIVE_PARTICIPANT")
     store.set_consent(company["id"], "terms-active-participant", version="1.0")
     request = store.create_change_request({"company_id": company["id"]})
+    store.add_document(request["id"], file_name="a.pdf", media_type="application/pdf",
