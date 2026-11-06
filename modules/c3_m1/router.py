@@ -98,3 +98,4 @@ def find_identifier_matches(body: dict = Body(...),
     return interface.find_identifier_matches(**body)
 
 
+@router.get("/internal/company-roles")
