@@ -122,3 +122,4 @@ def _reference_path() -> Path | None:
 
 
 def _reference_data() -> dict | None:
+    global _reference_cache
