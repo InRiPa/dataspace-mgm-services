@@ -46,3 +46,4 @@ CREATE TABLE company (
     verification_ref       text,
     application_id         uuid,
     deactivation_reason    text,
+    created_at             timestamptz              NOT NULL,
