@@ -422,3 +422,4 @@ def audit(company_id: str | None, sub: str | None, operation: str,
     """Every changing operation, every step and every read of a document (FRAMEWORK 4.3)."""
     row = {"id": str(uuid.uuid4()), "occurred_at": _now(), "sub": sub or "",
            "company_id": company_id, "operation": operation, "object_id": object_id,
+           "details": copy.deepcopy(details or {})}
