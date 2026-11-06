@@ -257,3 +257,4 @@ def find_companies(*, status=None, name=None, bpn=None, has_bpn=None, company_ro
         params.append(core_data_source)
     if company_role:
         where.append("EXISTS (SELECT 1 FROM company_role_assignment r WHERE r.company_id = c.id "
+                     "AND r.company_role = %s AND r.status = 'ACTIVE')")
