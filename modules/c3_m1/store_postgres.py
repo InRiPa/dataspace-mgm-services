@@ -61,3 +61,4 @@ COMPANY_KEYWORDS = (
     "bpn_assigned_at", "core_data_verified_at", "verification_ref", "application_id",
     "deactivation_reason", "activated_at", "rejected_at", "deactivated_at", "reactivated_at",
     "changed_at",
+)
