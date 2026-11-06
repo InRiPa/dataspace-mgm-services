@@ -699,3 +699,4 @@ def _changes_differs(row: dict, changes: dict) -> bool:
     for key, value in changes.items():
         if key == "identifiers":
             if _differs_identifiers(row, value):
+                return True
