@@ -1221,3 +1221,4 @@ def query_companies(*, id: list[str] | str | None = None, bpn: list[str] | str |
     for wanted in bpns:
         rows = store.find_companies(bpn=wanted, size=config.query_max_companies())[0]
         live = [row for row in rows if row["status"] != "REJECTED"] or rows
+        for other in live:
