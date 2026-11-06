@@ -374,3 +374,4 @@ def test_normalise_is_nfkc_trimmed_and_collapsed():
     assert v.normalise("  Beispiel \t Maschinenbau  GmbH ") == "Beispiel Maschinenbau GmbH"
     assert v.normalise("ＡＧ") == "AG"
     assert v.same_value("Beispiel  Maschinenbau GmbH", "beispiel maschinenbau gmbh")
+    assert not v.same_value("Beispiel Maschinenbau GmbH", "Beispiel Maschinenbau AG")
