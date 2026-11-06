@@ -190,3 +190,4 @@ def find_companies(*, status=None, name=None, bpn=None, has_bpn=None, company_ro
             continue
         items.append(row)
     items.sort(key=lambda row: (row["created_at"] or "", row["id"]), reverse=True)
+    total = len(items)
