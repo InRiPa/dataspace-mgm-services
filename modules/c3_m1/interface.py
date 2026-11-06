@@ -918,3 +918,4 @@ def approve_change_request(changeRequestId: str, body: dict | None = None,
                                               decision_reason=None)
         store.audit(row["company_id"], sub, "approveChangeRequest", changeRequestId,
                     {"changedFields": changed, "comment": (body or {}).get("comment")})
+        if changed:
