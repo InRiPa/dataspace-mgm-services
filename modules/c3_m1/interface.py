@@ -1068,3 +1068,4 @@ def deactivate_company(input: dict) -> dict:
 
 
 def _check_deactivation_reason(reason) -> None:
+    if reason not in store.DEACTIVATION_REASONS:
