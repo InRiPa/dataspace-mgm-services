@@ -28,3 +28,4 @@ queries of other modules (9) and the read paths.
 Names and signatures follow the call convention of AGENTS.md: a step is
 `def create_company(input: dict) -> dict` returning `{stepRunId, state, result}`, a query takes its
 parameters by their openapi names. No token checks here.
+
