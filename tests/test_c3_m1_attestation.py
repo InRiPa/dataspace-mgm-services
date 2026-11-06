@@ -154,3 +154,4 @@ def test_a_foreign_key_is_a_signature_error():
 
 def test_a_too_old_attestation_is_refused():
     active_company()
+    with pytest.raises(Problem) as error:
