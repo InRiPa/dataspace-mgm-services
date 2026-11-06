@@ -439,3 +439,4 @@ def test_camel_case_and_nested_address_are_understood():
     assert errors == [{"field": "short_name", "reason": "too-long"},
                       {"field": "country_code", "reason": "format"}]
 
+
