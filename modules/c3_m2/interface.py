@@ -165,6 +165,20 @@ def _mark_failed(row: Registration, reason: str) -> None:
         events.publish(MODULE, "CompanyRegistrationAtCspFailed", {"companyId": row.company_id, "reason": reason})
 
 
+def _mark_transferred_away(row: Registration) -> None:
+    """Status `TRANSFERRED_AWAY`. The new home OSP owns the company at the CSP now (FRAMEWORK 5.6), so
+    what this module knew about the company's DID, membership and connectors at the CSP is no longer
+    true: forget the DID, set the membership `NONE` and mark the connectors `DEREGISTERED`. After a
+    return, register-did, register-membership and register-connector then call the CSP again, even
+    with unchanged values (README 6.4, 8.5; OPEN-QUESTIONS 14). No event for these resets."""
+    row.status, row.did, row.membership = "TRANSFERRED_AWAY", None, "NONE"
+    row.touch()
+    stamp = store.now()
+    for con in store.connectors.values():
+        if con.company_id == row.company_id and con.status == "REGISTERED":
+            con.status, con.updated_at = "DEREGISTERED", stamp
+
+
 def _registration_answer(input: StepInputJson, company_id: str, status: int, answer: object) -> StepReply:
     """Answer of `POST /companies` or `POST /companies/{bpn}/transfer` (README 8.1, 8.2)."""
     body: dict[str, Any] = answer if isinstance(answer, dict) else {}
@@ -403,11 +417,13 @@ def find_companies(*, ebwoid: str | None = None, euid: str | None = None, identi
     csp_client.raise_for(status, answer, ok=(200,))
     if not isinstance(answer, list):
         raise errors.upstream_error("the CSP answered without a list")
+    if not all(isinstance(m, dict) for m in answer):
+        raise errors.upstream_error("the CSP answered a match that is not an object")
     own = csp_client.osp_id()
     return [{"bpn": m.get("bpn"), "legalName": m.get("legalName"), "country": m.get("country"),
              "matchedBy": m.get("matchedBy"), "homeOspId": m.get("homeOspId"), "homeOspName": m.get("homeOspName"),
              "homeIsThisOsp": m.get("homeOspId") == own, "memberActive": m.get("memberActive")}
-            for m in answer if isinstance(m, dict)]
+            for m in answer]
 
 
 # ---------------------------------------------------------------- callback of the CSP (README 7.2)
@@ -432,10 +448,12 @@ def receive_csp_notification(body: dict[str, Any]) -> dict[str, str | bool]:
             raise errors.validation("outcome must be SUCCEEDED or FAILED")
         if outcome == "SUCCEEDED" and not bpn:
             raise errors.validation("bpn is required with outcome SUCCEEDED")
-        # The operation id identifies the registration; the BPN is the fallback (README 7.2 step 2).
-        # An unknown one answers 404 and is not stored, so the CSP can send it again once it is known
-        # here (OPEN-QUESTIONS 9).
-        row = store.find_by_operation(operation_id) or (store.find_by_bpn(bpn) if bpn else None)
+        # The operation id identifies the registration; the BPN is the fallback (README 7.2 step 2),
+        # but only for a registration that still waits (PENDING): a late notification must not
+        # revive a FAILED or TRANSFERRED_AWAY company (README 6.1). An unknown one answers 404 and
+        # is not stored, so the CSP can send it again once it is known here (OPEN-QUESTIONS 9).
+        row = store.find_by_operation(operation_id) or (
+            store.find_by_bpn(bpn, status="PENDING") if bpn else None)
         if row is None:
             raise errors.unknown_company(f"no registration for operation {operation_id}")
         if outcome == "SUCCEEDED" and bpn:
@@ -450,8 +468,7 @@ def receive_csp_notification(body: dict[str, Any]) -> dict[str, str | bool]:
         if row is None:
             raise errors.unknown_company(f"no registration for BPN {bpn}")
         if row.status != "TRANSFERRED_AWAY":
-            row.status = "TRANSFERRED_AWAY"
-            row.touch()
+            _mark_transferred_away(row)
             events.publish(MODULE, "CompanyTransferredAway", {"companyId": row.company_id, "bpn": bpn})
 
     # Stored only after it was processed, so a failed processing does not swallow the notification.

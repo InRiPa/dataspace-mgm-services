@@ -70,9 +70,9 @@ def _stub_companies() -> list[JsonObject]:
         return []
     data = _read_json(Path(path))
     items = data.get("companies", []) if isinstance(data, dict) else data
-    if not isinstance(items, list):
-        raise ValueError("CSP_STUB_FILE must hold a list of companies")
-    return [c for c in items if isinstance(c, dict)]
+    if not isinstance(items, list) or not all(isinstance(c, dict) for c in items):
+        raise ValueError("CSP_STUB_FILE must hold a list of company objects")
+    return items
 
 
 def _osp_company() -> list[JsonObject]:

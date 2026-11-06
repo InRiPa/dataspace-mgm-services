@@ -44,7 +44,9 @@ OTHER_EBWOID, OTHER_BPN = "EBWOID-DE-0000000002", "BPNL00000000002B"
 CONNECTOR, ENDPOINT = "7c1e5a2b-4d3f-4e6a-9b8c-0d1e2f3a4b5c", "https://edc.beispiel-maschinenbau.example/dsp"
 CSP_STUB = [{"bpn": OTHER_BPN, "legalName": "Andere Beispiel AG", "ebwoid": OTHER_EBWOID, "country": "DE",
              "homeOspId": OSP_B, "homeOspName": "OSP B", "memberActive": True}]
-COMPANY = str(uuid.uuid5(uuid.NAMESPACE_URL, "c3-m2-test-company"))   # companyId is assigned by C1-M2 (no 7a ID)
+COMPANY = "c0000001-0000-4000-8000-000000000001"    # Beispiel Maschinenbau GmbH (FRAMEWORK 7a)
+LOGISTIK = "c0000002-0000-4000-8000-000000000002"   # Beispiel Logistik GmbH, without Business Wallet (7a)
+MASCHINENBAU_BPN = "BPNLIUK2REMLK3F4"               # its BPN from the CSP stand-in (7a, README 11.3)
 
 
 @pytest.fixture(autouse=True)
@@ -91,7 +93,7 @@ def test_1_register_company_is_repeatable():
     first = interface.register_company(maschinenbau())
     assert first["state"] == "DONE"
     bpn = first["result"]["bpn"]
-    assert bpn == derive_bpn(EBWOID) and bpn.startswith("BPNL") and len(bpn) == 16
+    assert bpn == MASCHINENBAU_BPN == derive_bpn(EBWOID) and bpn.startswith("BPNL") and len(bpn) == 16
     again = interface.register_company(maschinenbau())
     assert again["result"]["bpn"] == bpn
     assert csp_calls("register-company") == 1
@@ -188,10 +190,11 @@ def test_8_and_14_transferred_away_and_return():
 
 def test_11_identifier_without_business_wallet():
     reg = [{"type": "COMMERCIAL_REG_NUMBER", "value": "HRB 200002"}]
-    r = interface.register_company(step(legalName="Beispiel Logistik GmbH", country="DE", identifiers=reg))
+    r = interface.register_company(step(companyId=LOGISTIK, legalName="Beispiel Logistik GmbH", country="DE",
+                                        identifiers=reg))
     assert r["result"]["bpn"] == derive_bpn("COMMERCIAL_REG_NUMBER:HRB 200002")
     p = problem(interface.register_company, step(legalName="Beispiel Logistik GmbH", country="DE",
-                                                 companyId=str(uuid.uuid4())))
+                                                 companyId=LOGISTIK))
     assert (p.status, p.name, p.ext["retryable"]) == (400, "validation", False)
     found = interface.find_companies(identifier="COMMERCIAL_REG_NUMBER:HRB 200002")
     assert [(m["bpn"], m["matchedBy"]) for m in found] == [(r["result"]["bpn"], "IDENTIFIER")]
@@ -262,3 +265,86 @@ def test_no_secrets_in_audit_or_events():
     interface.register_membership(step())
     text = json.dumps([asdict(a) for a in store.audit]) + json.dumps(events.RELAY.log)
     assert "access_token" not in text and "Bearer" not in text and "client_assertion" not in text
+
+
+# ---------------------------------------------------------------- review findings (review-module, 2026-11-06)
+def move_away(bpn: str) -> None:
+    interface.receive_csp_notification({"notificationId": str(uuid.uuid4()), "type": "CompanyTransferredAway",
+                                        "bpn": bpn})
+
+
+def test_return_after_a_move_registers_did_membership_and_connector_again():
+    """OPEN-QUESTIONS 14: while the company was away, the new home OSP may have changed them at the CSP."""
+    bpn = register()
+    did = f"did:web:wallet.example.org:{bpn}"
+    interface.register_did(step(did=did))
+    interface.register_membership(step())
+    interface.register_connector(step(connectorId=CONNECTOR, endpointUrl=ENDPOINT))
+    move_away(bpn)
+    view = interface.get_csp_registration(companyId=COMPANY)
+    assert "did" not in view and view["membership"] == "NONE"
+    assert store.connectors[CONNECTOR].status == "DEREGISTERED"
+    # while away: removing the connector is DONE without a call (the new home OSP owns it)
+    interface.deregister_connector(step(connectorId=CONNECTOR))
+    assert csp_calls("deregister-connector") == 0
+    interface.transfer_company(step(bpn=bpn, ebwoid=EBWOID))
+    # same values as before the move: each step calls the CSP again and publishes its event again
+    interface.register_did(step(did=did))
+    interface.register_membership(step())
+    interface.register_connector(step(connectorId=CONNECTOR, endpointUrl=ENDPOINT))
+    assert (csp_calls("register-did"), csp_calls("register-membership"), csp_calls("register-connector")) == (2, 2, 2)
+    assert len(published("CompanyDidRegistered")) == 2
+    assert len(published("MembershipRegistered")) == 2
+    assert len(published("ConnectorRegisteredAtCsp")) == 2
+
+
+def test_late_operation_completed_does_not_revive_a_moved_company():
+    """README 6.1: TRANSFERRED_AWAY stays until transfer-company; the BPN fallback is for PENDING only."""
+    bpn = register()
+    move_away(bpn)
+    late = {"notificationId": "n-late", "type": "OperationCompleted", "operationId": "unknown-operation",
+            "outcome": "SUCCEEDED", "bpn": bpn}
+    p = problem(interface.receive_csp_notification, late)
+    assert (p.status, p.name) == (404, "unknown-company")
+    assert interface.get_csp_registration(companyId=COMPANY)["status"] == "TRANSFERRED_AWAY"
+    assert len(published("CompanyRegisteredAtCsp")) == 1
+    assert "n-late" not in store.notifications
+
+
+def test_operation_completed_falls_back_to_the_bpn_of_a_pending_registration():
+    """README 7.2 step 2: a PENDING registration is found by its BPN when the operation id is unknown."""
+    row = store.registration_row(COMPANY)
+    row.status, row.bpn, row.pending_operation_id = "PENDING", MASCHINENBAU_BPN, "operation-1"
+    interface.receive_csp_notification({"notificationId": "n-1", "type": "OperationCompleted",
+                                        "operationId": "operation-2", "outcome": "SUCCEEDED",
+                                        "bpn": MASCHINENBAU_BPN})
+    assert interface.get_csp_registration(companyId=COMPANY)["status"] == "REGISTERED"
+    assert published("CompanyRegisteredAtCsp") == [{"companyId": COMPANY, "bpn": MASCHINENBAU_BPN}]
+
+
+def test_transfer_company_is_repeatable():
+    """FRAMEWORK 4.4: the same transfer-company again returns the BPN without a call and without an event."""
+    bpn = register()
+    move_away(bpn)
+    s = step(bpn=bpn, ebwoid=EBWOID)
+    first = interface.transfer_company(s)
+    again = interface.transfer_company(s)
+    assert first == again and again["result"] == {"bpn": bpn} and again["state"] == "DONE"
+    assert csp_calls("transfer-company") == 1
+    assert len(published("CompanyRegisteredAtCsp")) == 2   # the registration and the return, nothing more
+
+
+def test_stub_file_entries_must_be_company_objects(tmp_path, monkeypatch):
+    bad = tmp_path / "bad-stub.json"
+    bad.write_text(json.dumps(CSP_STUB + ["not a company"]))
+    monkeypatch.setenv("CSP_STUB_FILE", str(bad))
+    interface.reset()
+    with pytest.raises(ValueError, match="CSP_STUB_FILE"):
+        interface.find_companies(ebwoid=OTHER_EBWOID)
+
+
+def test_find_companies_rejects_a_malformed_csp_answer(monkeypatch):
+    from modules.c3_m2 import csp_client
+    monkeypatch.setattr(csp_client, "call", lambda *a, **k: (200, [CSP_STUB[0], "not a match"]))
+    p = problem(interface.find_companies, ebwoid=OTHER_EBWOID)
+    assert (p.status, p.name, p.ext["retryable"]) == (502, "upstream-error", True)
