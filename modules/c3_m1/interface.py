@@ -1145,3 +1145,4 @@ def reactivate_company(input: dict) -> dict:
         for entry in data.get("identifiers") or []:
             if entry.get("type") == "EBWOID":
                 continue
+            if verification == "EBW":
