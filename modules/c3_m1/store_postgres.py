@@ -220,3 +220,4 @@ def update_company(company_id: str, **fields) -> dict | None:
     if "bpn" in fields:
         fields["bpn"] = (fields["bpn"] or "").strip().upper() or None
     assignments = ", ".join(f"{field} = %({field})s" for field in fields)
+    with _connection() as connection:
