@@ -92,3 +92,4 @@ def published(name: str) -> list[dict]:
 
 
 # ------------------------------------------------------------------------------ 13.1, 13.2, 13.28
+def test_create_company_maps_the_application():
