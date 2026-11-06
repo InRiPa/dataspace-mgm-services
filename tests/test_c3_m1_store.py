@@ -339,3 +339,4 @@ def test_audit_entry_is_written_and_readable(make):
 
 
 # ----------------------------------------------------------------------------------- lock (6.9)
+def test_lock_yields_the_company_id():
