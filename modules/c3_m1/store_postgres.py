@@ -59,3 +59,4 @@ TABLES = ("audit_log", "used_attestation", "change_request_document", "change_re
 COMPANY_KEYWORDS = (
     "short_name", "house_number", "address_addition", "postal_code", "region", "bpn",
     "bpn_assigned_at", "core_data_verified_at", "verification_ref", "application_id",
+    "deactivation_reason", "activated_at", "rejected_at", "deactivated_at", "reactivated_at",
