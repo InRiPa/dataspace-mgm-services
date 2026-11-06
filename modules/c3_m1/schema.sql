@@ -103,3 +103,4 @@ CREATE TABLE company_role_assignment (
     deactivated_at timestamptz,
     changed_at     timestamptz  NOT NULL,
     PRIMARY KEY (company_id, company_role),
+    CONSTRAINT company_role_assignment_status_enum CHECK (status IN ('REQUESTED', 'ACTIVE', 'INACTIVE')),
