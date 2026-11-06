@@ -155,3 +155,4 @@ CREATE UNIQUE INDEX change_request_open_per_company ON change_request (company_i
 CREATE TABLE change_request_document (
     id                 uuid         PRIMARY KEY,
     change_request_id  uuid         NOT NULL REFERENCES change_request (id),
+    file_name          text         NOT NULL,
