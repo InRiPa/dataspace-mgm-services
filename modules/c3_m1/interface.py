@@ -1022,3 +1022,4 @@ def update_company_from_attestation(companyId: str, body: dict, sub: str | None 
         changed = _changed_fields(row, fields, list(identifiers.values()))
         updates = dict(fields)
         updates |= {"core_data_source": "EBW", "core_data_verified_at": verified_at,
+                    "verification_ref": claims["jti"]}
