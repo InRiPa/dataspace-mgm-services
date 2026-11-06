@@ -155,3 +155,4 @@ def test_the_correction_keeps_old_values_in_the_audit(client, active):
     assert entry["details"]["new"]["street"] == "Neue Straße"
 
 
+def test_the_attestation_update_keeps_old_values_in_the_audit(active):
