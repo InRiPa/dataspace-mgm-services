@@ -205,3 +205,4 @@ def test_activate_takes_over_the_consents():
     assert len(published("CompanyActivated")) == 1
 
 
+def test_activate_without_consents_keeps_requested():
