@@ -537,3 +537,4 @@ def get_document(document_id: str | None) -> dict | None:
     with _connection() as connection:
         return _fetch_one(connection, "SELECT * FROM change_request_document WHERE id = %s",
                           (document_id,))
+
