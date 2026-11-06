@@ -107,3 +107,4 @@ def test_create_company_maps_the_application():
     assert published("CompanyCreated")[0]["data"]["coreDataSource"] == "EBW"
 
 
+def test_create_company_is_idempotent():
