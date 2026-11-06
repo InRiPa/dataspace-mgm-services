@@ -102,3 +102,4 @@ def test_a_valid_attestation_changes_the_core_data():
     assert row["name"] == "Beispiel Maschinenbau AG"
     assert (row["street"], row["house_number"], row["region"]) == ("Industriestraße 10", None, None)
     assert row["country_code"] == "DE"
+    assert row["core_data_source"] == "EBW" and row["verification_ref"] == "jti-t1"
