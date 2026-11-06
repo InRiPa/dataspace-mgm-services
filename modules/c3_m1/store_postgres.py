@@ -167,3 +167,4 @@ def lock(company_id: str | None = None):
                 connection.execute("SELECT pg_advisory_unlock(%s)", (key,))
 
 
+# ------------------------------------------------------------------ company (README 5)
