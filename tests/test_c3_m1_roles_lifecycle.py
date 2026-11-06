@@ -158,3 +158,4 @@ def test_a_company_transfers_to_this_installation():
     seed(A8, U4, kind="TRANSFER", companyData={
         "legalName": "Andere Beispiel AG", "address": {"streetName": "Beispielweg", "streetNumber": "2",
                                                        "postalCode": "80331", "city": "München",
+                                                       "region": "BY", "countryCode": "DE"},
