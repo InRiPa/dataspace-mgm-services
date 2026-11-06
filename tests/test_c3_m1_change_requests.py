@@ -131,3 +131,4 @@ def test_decline_and_withdraw(active):
     withdrawn = interface.withdraw_change_request(U1, second["id"], P1_SUB)
     assert withdrawn["status"] == "WITHDRAWN"
     assert events.RELAY.log[-1]["data"]["outcome"] == "WITHDRAWN"
+    events.RELAY.log.clear()
