@@ -656,3 +656,4 @@ def list_companies(*, status: list[str] | str | None = None, name: str | None = 
 
 
 # ------------------------------------------------------------ change requests (7.4 - 7.6, 7.14 - 7.18)
+def _document_info(row: dict) -> dict:
