@@ -180,3 +180,4 @@ def test_assign_identifier_and_its_errors():
     assert len(published("CompanyIdentifierAssigned")) == 1
 
     with pytest.raises(Problem) as error:
+        step("assign_identifier", companyId=U1, bpn="BPNL00000000U2LG")
