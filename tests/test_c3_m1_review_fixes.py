@@ -194,3 +194,4 @@ def test_a_bpn_of_a_rejected_company_is_free_again():
                 bpn="BPNLIUK2REMLK3F4")["result"]["bpn"] == "BPNLIUK2REMLK3F4"
 
 
+def test_an_attestation_without_a_change_still_stamps_the_verification(active):
