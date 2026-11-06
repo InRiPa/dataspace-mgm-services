@@ -1078,3 +1078,4 @@ def deactivate_company_by_staff(companyId: str, body: dict, sub: str | None = No
     """7.13: manual deactivation by OSP staff, always with a justification."""
     with store.lock(companyId):
         row = get_company(companyId)
+        if row["status"] == "INACTIVE":
