@@ -409,3 +409,4 @@ def add_if_unused(jti: str, company_id: str) -> bool:
     if jti in _used_attestations:
         return False
     _used_attestations[jti] = {"jti": jti, "company_id": company_id, "used_at": _now()}
+    return True
