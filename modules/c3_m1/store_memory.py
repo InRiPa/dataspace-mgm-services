@@ -128,3 +128,4 @@ def create_company(row: dict) -> dict:
     status = row.get("status") or "REQUESTED"
     core_data_source = row.get("core_data_source") or "MANUAL"
     _check_enum(status, STATUSES, "status")
+    _check_enum(core_data_source, CORE_DATA_SOURCES, "core_data_source")
