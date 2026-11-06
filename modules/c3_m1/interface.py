@@ -1010,3 +1010,4 @@ def update_company_from_attestation(companyId: str, body: dict, sub: str | None 
             raise Problem(MODULE, 409, "company-mismatch", fields=mismatched)
         verified_at = claims["_verified_at"].isoformat()
         stored_verified_at = _timestamp(row["core_data_verified_at"])
+        if stored_verified_at is not None and claims["_verified_at"] <= stored_verified_at:
