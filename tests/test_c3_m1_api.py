@@ -188,3 +188,4 @@ def test_the_bulk_query_takes_repeated_parameters(client, active):
     assert response.json()["notFound"] == ["c0000009-0000-4000-8000-000000000009"]
 
 
+def test_the_identifier_search_over_http(client, active):
