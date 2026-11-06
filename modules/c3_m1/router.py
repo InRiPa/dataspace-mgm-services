@@ -248,3 +248,4 @@ def read_company(companyId: str,
     return company_view(companyId, detail=True)
 
 
+@router.post("/osp/companies/{companyId}/deactivate")
