@@ -226,3 +226,4 @@ def test_reject_company():
     assert len(published("CompanyRejected")) == 1
 
     seed()
+    step("create_company", companyId=U1, applicationId=A1)
