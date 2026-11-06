@@ -543,3 +543,4 @@ def _role_state(company: str, lang: str) -> list[dict]:
                             or (term.get("documentUrls") or {}).get("en"),
                             "consentStatus": (own.get(term["agreementKey"]) or {}).get("status"),
                             "consentedVersion": (own.get(term["agreementKey"]) or {}).get("agreement_version"),
+                            "consentedAt": (own.get(term["agreementKey"]) or {}).get("consented_at")}
