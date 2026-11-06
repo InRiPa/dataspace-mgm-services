@@ -42,3 +42,4 @@ S2_SUB = "5a1c0012-0000-4000-8000-000000000012"
 P1_SUB = "5a1c0001-0000-4000-8000-000000000001"
 
 CONSENT_APP = [{"agreementKey": "terms-app-provider", "version": "1.0"}]
+
