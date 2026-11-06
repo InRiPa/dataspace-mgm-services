@@ -184,3 +184,4 @@ def _text(errors: list[dict], field: str, value, *, required: bool = False,
         errors.append(_error(field, "whitespace"))
     if max_length is not None and len(value) > max_length:
         errors.append(_error(field, "too-long"))
+    if min_length and len(value.strip()) < min_length:
