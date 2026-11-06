@@ -856,3 +856,4 @@ def get_change_request(changeRequestId: str) -> dict:
 
 def get_change_request_document(changeRequestId: str, documentId: str,
                                 sub: str | None = None) -> dict:
+    """7.16: content, media type and file name; the read is audited."""
