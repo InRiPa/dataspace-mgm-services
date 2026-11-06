@@ -86,3 +86,4 @@ def test_a_change_request_may_not_carry_a_wallet_identifier(active):
     assert "identifiers.EBWOID" in [entry["field"] for entry in error.value.ext["errors"]]
 
 
+def test_an_approval_keeps_the_wallet_identifiers(active):
