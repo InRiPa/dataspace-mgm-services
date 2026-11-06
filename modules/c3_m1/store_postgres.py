@@ -381,3 +381,4 @@ def list_consents(company_id: str) -> list[dict]:
         return []
     with _connection() as connection:
         return _fetch_all(connection, "SELECT * FROM consent WHERE company_id = %s"
+                                      " ORDER BY agreement_key", (company_id,))
