@@ -29,3 +29,4 @@ that differ per installation (the seed company, the dataspace, the reference dat
 installation settings through `portal_common.settings`; the module keeps no installation data.
 
 Paths in the settings count from the settings file (FRAMEWORK 4.8); the path of a configuration
+variable (`COMPANY_ROLES_FILE`) counts from the repository root.
