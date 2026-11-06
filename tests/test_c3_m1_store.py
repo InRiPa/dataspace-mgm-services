@@ -183,3 +183,4 @@ def test_set_identifiers_normalises_and_replaces(make):
         {"type": "EUID", "value": "DEXX001T.HRB100001", "source": "BUSINESS_WALLET"},
     ])
     assert {row["type"] for row in rows} == {"VAT_ID", "EUID"}
+    by_type = {row["type"]: row for row in store.list_identifiers(company["id"])}
