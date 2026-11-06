@@ -167,3 +167,4 @@ def role_view(cid: str | None) -> dict:
     """`Company` of the paths for people (7.1, 7.7): roles with status, so a role can read REQUESTED."""
     row = get_company(cid)
     view = company_view(cid)
+    view["companyRoles"] = [{"companyRole": role, "status": status}
