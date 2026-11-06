@@ -160,3 +160,4 @@ def test_a_too_old_attestation_is_refused():
 
 
 def test_an_older_attestation_does_not_reset_newer_data():
+    active_company()
