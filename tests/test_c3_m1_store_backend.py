@@ -97,3 +97,4 @@ def test_the_database_keeps_the_invariants(postgres):
                                      status="DELETED"))
 
 
+def test_an_unknown_or_malformed_id_is_not_found(postgres):
