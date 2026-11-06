@@ -82,3 +82,4 @@ FALLBACK_PATTERNS: dict[str, dict[str, str]] = {
 
 #: camelCase of the API -> snake_case of README 5 (`address` is nested, see `flat_fields`).
 ALIASES = {
+    "shortName": "short_name", "houseNumber": "house_number",
