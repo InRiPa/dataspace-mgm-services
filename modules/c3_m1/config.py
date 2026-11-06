@@ -168,3 +168,4 @@ def apply_registration_url() -> None:
     `portal_common.neighbours` reads `C1_M2_URL`, `MODULE_URLS` and `MODULE_URLS_DEFAULT`. Where the
     installation sets `REGISTRATION_URL` and the scaffold default is empty, that value is the
     neighbour address. An empty `MODULE_URLS_DEFAULT` keeps its meaning: built-in stand-in.
+    """
