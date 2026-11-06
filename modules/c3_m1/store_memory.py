@@ -359,3 +359,4 @@ def decide_change_request(change_request_id: str, status: str, *, decided_by: st
     _check_enum(status, ("APPROVED", "DECLINED"), "status")
     if row["status"] != "OPEN":
         raise ValueError(f"status: {row['status']} is not OPEN")
+    if status == "DECLINED" and not decision_reason:
