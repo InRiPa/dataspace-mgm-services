@@ -51,3 +51,4 @@ companies: dict[str, dict] = {}
 _identifiers: dict[str, dict[str, dict]] = {}
 _roles: dict[str, dict[str, dict]] = {}
 _consents: dict[tuple[str, str], dict] = {}
+_change_requests: dict[str, dict] = {}
