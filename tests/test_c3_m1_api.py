@@ -178,3 +178,4 @@ def test_the_search_filters_over_http(client, active):
     assert response.json()["total"] >= 2
     assert call(client, "GET", "/api/c3-m1/osp/companies?status=nope", S1).status_code == 400
 
+
