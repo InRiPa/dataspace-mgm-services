@@ -581,3 +581,4 @@ def add_company_role(companyId: str, body: dict, sub: str | None = None,
         given = {consent.get("agreementKey"): consent for consent in body.get("consents") or []}
         missing = sorted(key for key in terms if (given.get(key) or {}).get("version") != terms[key]["version"])
         if missing:
+            raise Problem(MODULE, 400, "consent-missing", missing=missing)
