@@ -363,3 +363,4 @@ def test_the_rejected_bpn_abort_of_the_seed_file(tmp_path, monkeypatch):
     monkeypatch.setenv("OSP_COMPANY_FILE", str(seed_file))
     from portal_common import settings
     monkeypatch.setitem(settings.load(), "ospCompanyFile", str(seed_file))
+    with pytest.raises(ValueError):
