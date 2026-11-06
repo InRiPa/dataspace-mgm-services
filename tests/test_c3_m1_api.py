@@ -113,3 +113,4 @@ def test_a_member_may_read_but_not_patch(client, active):
 
 
 # ------------------------------------------------------------------------------------------ 13.10
+def test_the_short_name_is_changed_and_locked_fields_refused(client, active):
