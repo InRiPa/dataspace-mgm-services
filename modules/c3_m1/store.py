@@ -91,3 +91,4 @@ def backend() -> ModuleType:
                                  "install `psycopg[binary]` (see OPEN-QUESTIONS.md 1 and 2)") from error
         raise
     _cache = (name, module)
+    return module
