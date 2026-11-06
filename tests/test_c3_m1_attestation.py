@@ -164,3 +164,4 @@ def test_an_older_attestation_does_not_reset_newer_data():
     update(jti="jti-new", verified_at=int((now() - dt.timedelta(minutes=30)).timestamp()))
     with pytest.raises(Problem) as error:
         update(jti="jti-old", verified_at=int((now() - dt.timedelta(hours=2)).timestamp()))
+    assert error.value.status == 409 and error.value.name == "attestation-outdated"
