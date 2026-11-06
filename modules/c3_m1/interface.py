@@ -1214,3 +1214,4 @@ def query_companies(*, id: list[str] | str | None = None, bpn: list[str] | str |
         raise Problem(MODULE, 400, "validation",
                       errors=[{"field": "id,bpn", "reason": "too many values"}])
     items, found = [], set()
+    for wanted in ids:
