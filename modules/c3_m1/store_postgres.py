@@ -120,3 +120,4 @@ def _uuid_ok(value) -> bool:
     return True
 
 
+def _check_known(connection, company_id: str) -> None:
