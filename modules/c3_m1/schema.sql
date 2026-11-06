@@ -120,3 +120,4 @@ CREATE TABLE consent (
     consented_by      text,
     consented_at      timestamptz,
     changed_at        timestamptz  NOT NULL,
+    PRIMARY KEY (company_id, agreement_key),
