@@ -321,3 +321,4 @@ def create_change_request(row: dict) -> dict:
         "id": row.get("id") or str(uuid.uuid4()), "company_id": company_id, "status": status,
         "changes": copy.deepcopy(row.get("changes") or {}), "comment": row.get("comment"),
         "requested_by": row.get("requested_by"), "decided_by": row.get("decided_by"),
+        "decision_reason": row.get("decision_reason"),
