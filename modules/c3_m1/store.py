@@ -90,3 +90,4 @@ def backend() -> ModuleType:
                           detail="DATABASE_URL is set but the PostgreSQL transport is not usable: "
                                  "install `psycopg[binary]` (see OPEN-QUESTIONS.md 1 and 2)") from error
         raise
+    _cache = (name, module)
