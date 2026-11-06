@@ -69,3 +69,4 @@ def value(name: str, default: str | None = None) -> str:
     """The variable from the environment, else its README default, else `default` (or empty)."""
     if name in os.environ:
         return os.environ[name]
+    if name in DEFAULTS:
