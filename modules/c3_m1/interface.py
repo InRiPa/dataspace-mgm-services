@@ -173,3 +173,4 @@ def role_view(cid: str | None) -> dict:
 
 
 # ----------------------------------------------------------------------------------- steps (8.1)
+def _stub_applications() -> dict[str, dict]:
