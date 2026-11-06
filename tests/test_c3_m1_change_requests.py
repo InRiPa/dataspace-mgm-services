@@ -68,3 +68,4 @@ def test_a_request_with_identifiers_is_created(active):
     assert len(events.RELAY.log) >= 1
     assert events.RELAY.log[-1]["type"] == "CompanyChangeRequestSubmitted"
     with pytest.raises(Problem) as error:
+        submit()
