@@ -1153,3 +1153,4 @@ def reactivate_company(input: dict) -> dict:
                 source = "DECLARED" if (stored.get(entry["type"]) or {}).get("source") != "BUSINESS_WALLET" else "BUSINESS_WALLET"
             identifiers = [item for item in identifiers if item["type"] != entry["type"]]
             identifiers.append({"type": entry["type"], "value": entry["value"], "source": source})
+        identifiers = [{"type": entry["type"], "value": entry["value"], "source": entry["source"]}
