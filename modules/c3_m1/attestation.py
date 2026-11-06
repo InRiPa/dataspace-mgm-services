@@ -102,3 +102,4 @@ def _key_for(kid: str | None) -> dict:
             raise _invalid("signature", f"kid {kid!r} is not in the JWKS")
         return key
     if time.monotonic() - _last_reload > 60:
+        _last_reload = time.monotonic()
