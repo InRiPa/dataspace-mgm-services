@@ -95,3 +95,4 @@ def query_max_companies() -> int:
 
 
 def change_requests_enabled() -> bool:
+    return flag("CHANGE_REQUESTS_ENABLED")
