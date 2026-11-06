@@ -164,3 +164,4 @@ def verify(attestation: str, *, now: dt.datetime | None = None) -> dict:
         raise _invalid("not-yet-valid", "iat is in the future")
 
     company = claims.get("company")
+    missing = [name for name in REQUIRED_CLAIMS if claims.get(name) in (None, "")]
