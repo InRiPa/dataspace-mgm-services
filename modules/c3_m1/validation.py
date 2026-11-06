@@ -301,3 +301,4 @@ def validate_identifiers(identifiers, country_code: str | None,
         if isinstance(entry, dict):
             kind = entry.get("type")
             if kind:
+                if kind in seen:
