@@ -250,3 +250,4 @@ def test_consents_are_keyed_by_company_and_key(make):
 def test_at_most_one_open_change_request_per_company(make):
     company = make()
     first = store.create_change_request({"company_id": company["id"], "comment": "neu",
+                                         "requested_by": "sub"})
