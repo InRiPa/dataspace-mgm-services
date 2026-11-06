@@ -254,3 +254,4 @@ def test_identifier_matches_normalise_and_exclude():
     seed()
     step("create_company", companyId=U1, applicationId=A1)
     matches = interface.find_identifier_matches(
+        identifiers=[{"type": "VAT_ID", "value": "de 123.456.789"}])
