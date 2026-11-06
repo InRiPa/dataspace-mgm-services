@@ -1033,3 +1033,4 @@ def update_company_from_attestation(companyId: str, body: dict, sub: str | None 
                      "new": fields})
         if changed:
             events.publish(MODULE, "CompanyDataChanged",
+                           {"companyId": companyId, "changedFields": changed,
