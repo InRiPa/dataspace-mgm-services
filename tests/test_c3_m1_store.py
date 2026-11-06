@@ -282,3 +282,4 @@ def test_decide_enforces_the_decision_status(make):
     request = store.create_change_request({"company_id": company["id"]})
     with pytest.raises(ValueError):
         store.decide_change_request(request["id"], "WITHDRAWN")
+    assert store.decide_change_request("unknown", "APPROVED") is None
