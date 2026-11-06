@@ -143,3 +143,4 @@ def test_the_osp_correction_switches_the_source_to_manual(client, active):
     assert response.status_code == 200
     body = response.json()
     assert body["address"]["street"] == "Neue Straße" and body["address"]["countryCode"] == "DE"
+    assert body["coreDataSource"] == "MANUAL" and body["verificationRef"] is None
