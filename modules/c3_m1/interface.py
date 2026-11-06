@@ -378,3 +378,4 @@ def reject_company(input: dict) -> dict:
         if row["status"] == "REJECTED":
             return standin.step_reply(input, {"companyId": cid, "status": row["status"]})
         if row["status"] in ("ACTIVE", "INACTIVE"):
+            raise Problem(MODULE, 409, "invalid-state", detail=row["status"], retryable=False)
