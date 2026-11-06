@@ -125,3 +125,4 @@ CREATE TABLE consent (
     CONSTRAINT consent_source_kind_enum CHECK (source_kind IN ('APPLICATION', 'COMPANY')),
     CONSTRAINT consent_source_ref_length CHECK (source_ref IS NULL OR char_length(source_ref) <= 100),
     CONSTRAINT consent_consented_by_length CHECK (consented_by IS NULL OR char_length(consented_by) <= 200)
+);
