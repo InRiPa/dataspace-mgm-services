@@ -91,3 +91,4 @@ def call(client: TestClient, method: str, path: str, person: str | None = None, 
     else:
         headers = bearer(person_token(person)) if person else {}
     return client.request(method, path, headers=headers, **kwargs)
+
