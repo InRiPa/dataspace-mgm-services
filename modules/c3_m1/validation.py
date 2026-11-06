@@ -371,3 +371,4 @@ def detect_media_type(content) -> str | None:
     return None
 
 
+def validate_document(file_name, content, *, stated_media_type: str | None = None,
