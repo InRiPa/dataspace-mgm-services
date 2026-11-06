@@ -48,3 +48,4 @@ JWKS = MODULE_DIR / "stub-ebw-jwks.json"
 
 
 @pytest.fixture(autouse=True)
+def _keys(monkeypatch):
