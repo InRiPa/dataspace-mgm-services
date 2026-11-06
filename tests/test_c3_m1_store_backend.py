@@ -86,3 +86,4 @@ def test_the_database_is_the_module_own_database(postgres):
     items, total = postgres.find_companies(status=["REQUESTED"])
     assert total == 1 and items[0]["id"] == COMPANY["id"]
 
+
