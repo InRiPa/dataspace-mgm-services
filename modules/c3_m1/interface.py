@@ -660,3 +660,4 @@ def _document_info(row: dict) -> dict:
     return {"id": row["id"], "fileName": row["file_name"], "mediaType": row["media_type"],
             "sizeBytes": row["size_bytes"]}
 
+
