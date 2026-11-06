@@ -1080,3 +1080,4 @@ def deactivate_company_by_staff(companyId: str, body: dict, sub: str | None = No
         row = get_company(companyId)
         if row["status"] == "INACTIVE":
             return company_view(companyId, detail=True)
+        if row["status"] != "ACTIVE":
