@@ -123,3 +123,4 @@ CREATE TABLE consent (
     PRIMARY KEY (company_id, agreement_key),
     CONSTRAINT consent_status_enum CHECK (status IN ('ACTIVE', 'INACTIVE')),
     CONSTRAINT consent_source_kind_enum CHECK (source_kind IN ('APPLICATION', 'COMPANY')),
+    CONSTRAINT consent_source_ref_length CHECK (source_ref IS NULL OR char_length(source_ref) <= 100),
