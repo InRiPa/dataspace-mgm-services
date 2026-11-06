@@ -46,3 +46,4 @@ MODULE = "c3-m1"
 DEFAULTS = {
     "LANGUAGES": "de,en",
     "QUERY_MAX_COMPANIES": "100",
+    "REGISTRATION_URL": "in-process",
