@@ -164,3 +164,4 @@ def test_a_business_wallet_identifier_needs_the_attestation(client, active):
 
 
 def test_a_correction_without_a_reason_is_a_validation_error(client, active):
+    response = call(client, "PATCH", f"/api/c3-m1/osp/companies/{U1}", S2,
