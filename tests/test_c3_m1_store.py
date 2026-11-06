@@ -467,3 +467,4 @@ def test_de_vat_id_accepts_and_rejects():
     errors = v.validate_identifiers([{"type": "VAT_ID", "value": "ATU12345678"}], "DE")
     assert errors == [{"field": "identifiers[0].value", "reason": "format"}]
 
+
