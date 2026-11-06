@@ -1086,3 +1086,4 @@ def deactivate_company_by_staff(companyId: str, body: dict, sub: str | None = No
         if errors:
             raise Problem(MODULE, 400, "validation", errors=errors)
         store.update_company(companyId, status="INACTIVE", deactivation_reason="MANUAL",
+                             deactivated_at=_now())
