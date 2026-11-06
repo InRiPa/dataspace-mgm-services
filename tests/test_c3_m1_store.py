@@ -79,3 +79,4 @@ def test_create_company_rejects_unknown_field(make):
     with pytest.raises(ValueError):
         make(payload="x")
 
+
