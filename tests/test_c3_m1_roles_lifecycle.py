@@ -123,3 +123,4 @@ def test_the_reactivation_with_a_new_attestation(active):
     row = store.get_company(U1)
     assert row["street"] == "Musterstraße" and row["house_number"] == "7"
     assert row["core_data_source"] == "EBW" and row["deactivation_reason"] is None
+    types = [event["type"] for event in events.RELAY.log]
