@@ -443,3 +443,4 @@ def update_company(companyId: str, body: dict, sub: str | None = None) -> dict:
         store.audit(companyId, sub, "updateCompany", None,
                     {"changedFields": changed, "old": before,
                      "new": {key: body.get(key) for key in body}})
+        events.publish(MODULE, "CompanyDataChanged",
