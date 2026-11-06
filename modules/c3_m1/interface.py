@@ -1179,3 +1179,4 @@ def reactivate_company(input: dict) -> dict:
         if changed:
             events.publish(MODULE, "CompanyDataChanged",
                            {"companyId": cid, "changedFields": changed, "coreDataChanged": True,
+                            "coreDataSource": updates["core_data_source"]})
