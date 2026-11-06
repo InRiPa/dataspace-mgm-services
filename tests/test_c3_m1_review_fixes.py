@@ -306,3 +306,4 @@ def test_a_malformed_json_part_is_a_validation_error(client, active):
 def test_an_undecodable_payload_is_a_format_error(active):
     header = sign(claims()).split(".")[0]
     with pytest.raises(Problem) as error:
+        interface.update_company_from_attestation(U1, {"attestation": f"{header}.%%%.sig"})
