@@ -54,3 +54,4 @@ def _keys(monkeypatch):
     monkeypatch.setenv("ATTESTATION_CLIENT_IDS", "demo-osp")
     monkeypatch.setenv("ATTESTATION_JWKS_FILE", str(JWKS))
     interface.reset()
+    yield
