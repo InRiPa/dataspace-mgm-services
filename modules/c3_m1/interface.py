@@ -834,3 +834,4 @@ def list_change_requests(*, status: list[str] | str | None = None,
     try:
         items, total = store.list_change_requests(status=status, company_id=companyId,
                                                   page=int(page or 0), size=int(size or 20))
+    except ValueError as error:
