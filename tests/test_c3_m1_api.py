@@ -58,3 +58,4 @@ def client() -> TestClient:
 @pytest.fixture
 def active(client: TestClient) -> dict:
     """U1 and U2 ACTIVE with BPN, erika/max bound to U1, hans to U2."""
+    from test_c3_m1_steps import A1, A2, seed, step
