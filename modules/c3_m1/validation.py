@@ -188,3 +188,4 @@ def _text(errors: list[dict], field: str, value, *, required: bool = False,
         errors.append(_error(field, "too-short"))
 
 
+def field_name(key: str) -> str:
