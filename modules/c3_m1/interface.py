@@ -913,3 +913,4 @@ def approve_change_request(changeRequestId: str, body: dict | None = None,
         if company["status"] != "ACTIVE":
             raise Problem(MODULE, 409, "invalid-state", detail=company["status"])
 
+        changed, core_changed = _apply_changes(row["company_id"], company, row["changes"])
