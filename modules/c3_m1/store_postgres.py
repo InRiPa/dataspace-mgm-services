@@ -210,3 +210,4 @@ def update_company(company_id: str, **fields) -> dict | None:
         return None
     unknown = set(fields) - set(COMPANY_FIELDS) - {"id", "created_at"}
     if unknown:
+        raise ValueError(f"unknown company fields: {', '.join(sorted(unknown))}")
