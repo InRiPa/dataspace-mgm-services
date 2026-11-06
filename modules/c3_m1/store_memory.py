@@ -144,3 +144,4 @@ def create_company(row: dict) -> dict:
     return _copy(created)  # type: ignore[return-value]
 
 
+def update_company(company_id: str, **fields) -> dict | None:
