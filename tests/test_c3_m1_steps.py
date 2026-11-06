@@ -197,3 +197,4 @@ def test_activate_takes_over_the_consents():
     reply = step("activate_company", companyId=U1, applicationId=A1)
     assert reply["result"]["status"] == "ACTIVE"
     assert store.role_status(U1, "ACTIVE_PARTICIPANT") == "ACTIVE"
+    consents = {c["agreement_key"]: c for c in store.list_consents(U1)}
