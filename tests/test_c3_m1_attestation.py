@@ -221,3 +221,4 @@ def test_the_endpoint_checks_permission_and_scope(client, active):
     assert call(client, "POST", url, "max", json=body).status_code == 403     # Member
     assert call(client, "POST", url, P3, json=body).status_code == 404        # other company
     answer = call(client, "POST", url, P1, json=body)
+    assert answer.status_code == 200 and "name" in answer.json()["changedFields"]
