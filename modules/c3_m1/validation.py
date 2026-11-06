@@ -108,3 +108,4 @@ def value_normalized(value) -> str:
     return NORMALISE_STRIP.sub("", unicodedata.normalize("NFKC", str(value))).upper()
 
 
+def same_value(left, right) -> bool:
