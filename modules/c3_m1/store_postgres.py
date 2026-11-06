@@ -252,3 +252,4 @@ def find_companies(*, status=None, name=None, bpn=None, has_bpn=None, company_ro
     if has_bpn is not None:
         where.append("(c.bpn IS NOT NULL) = %s")
         params.append(bool(has_bpn))
+    if core_data_source:
