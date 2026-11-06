@@ -179,3 +179,4 @@ def verify(attestation: str, *, now: dt.datetime | None = None) -> dict:
         raise _invalid("claims", "missing or wrong: " + ", ".join(missing))
 
     verified_at = _moment(claims.get("verified_at"), "verified_at")
+    if verified_at < points - dt.timedelta(hours=config.attestation_max_age_hours()):
