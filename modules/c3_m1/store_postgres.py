@@ -266,3 +266,4 @@ def find_companies(*, status=None, name=None, bpn=None, has_bpn=None, company_ro
     total = int(rows[0].pop("total")) if rows else 0
     return rows, total
 
+
