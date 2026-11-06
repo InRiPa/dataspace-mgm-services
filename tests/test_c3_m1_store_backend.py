@@ -55,3 +55,4 @@ def postgres_url() -> str:
 def postgres(monkeypatch, postgres_url):
     monkeypatch.setenv("DATABASE_URL", postgres_url)
     pytest.importorskip("psycopg", reason="the PostgreSQL transport needs psycopg[binary]")
+    assert store.backend_name() == "postgres"
