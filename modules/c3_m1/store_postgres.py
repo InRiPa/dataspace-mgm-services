@@ -441,3 +441,4 @@ def create_change_request(row: dict) -> dict:
             raise _integrity(error) from None
 
 
+def open_change_request(company_id: str) -> dict | None:
