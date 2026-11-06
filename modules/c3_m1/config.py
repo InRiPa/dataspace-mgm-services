@@ -172,3 +172,4 @@ def apply_registration_url() -> None:
     url = os.environ.get("REGISTRATION_URL")
     if not url or os.environ.get("C1_M2_URL") or not os.environ.get("MODULE_URLS_DEFAULT", "").strip():
         return
+    os.environ["C1_M2_URL"] = url
