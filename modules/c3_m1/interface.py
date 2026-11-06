@@ -1250,3 +1250,4 @@ def find_identifier_matches(*, identifiers: list[dict], name: str | None = None,
                       errors=[{"field": "identifiers", "reason": "1 to 10 entries"}])
     candidates, page, total = [], 0, None
     while total is None or len(candidates) < total:
+        batch, total = store.find_companies(
