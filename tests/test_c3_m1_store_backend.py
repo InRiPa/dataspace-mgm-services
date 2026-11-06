@@ -65,3 +65,4 @@ def test_the_default_transport_is_in_memory(monkeypatch):
     monkeypatch.delenv("DATABASE_URL", raising=False)
     assert store.backend_name() == "memory"
     assert store.backend().__name__ == "modules.c3_m1.store_memory"
+
