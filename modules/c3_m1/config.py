@@ -244,3 +244,4 @@ def assignable_by(company_role: str) -> str | None:
     return entry.get("assignableBy") if entry else None
 
 
+def roles_assignable_by_company() -> list[str]:
