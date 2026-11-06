@@ -141,3 +141,4 @@ def test_deactivation_reason_enum_and_state_are_enforced(make):
     with pytest.raises(ValueError):
         store.update_company(company["id"], status="ACTIVE")
 
+
