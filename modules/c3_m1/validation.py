@@ -314,3 +314,4 @@ def validate_change_request(data: dict, country_code: str | None) -> list[dict]:
     """7.4: at least one change, comment 1..1000, identifiers complete with source `DECLARED`."""
     flat = flat_fields(data)
     errors: list[dict] = []
+    has_name = flat.get("name") not in (None, "")
