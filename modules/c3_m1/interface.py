@@ -232,3 +232,4 @@ def create_company(input: dict) -> dict:
            "postal_code": source_address.get("postalCode"), "city": source_address.get("city"),
            "region": source_address.get("region"), "country_code": source_address.get("countryCode")}
     identifiers = [{"type": entry["type"], "value": entry["value"],
+                    "source": "BUSINESS_WALLET" if entry.get("source") == "ATTESTATION" else "DECLARED"}
