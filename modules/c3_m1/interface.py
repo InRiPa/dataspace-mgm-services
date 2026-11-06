@@ -213,3 +213,4 @@ def create_company(input: dict) -> dict:
         raise Problem(MODULE, 409, "conflict", detail="company belongs to another application",
                       retryable=False)
 
+    application = _application(application_id)
