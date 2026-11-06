@@ -997,3 +997,4 @@ def update_company_from_attestation(companyId: str, body: dict, sub: str | None 
 
         if store.is_used(claims["jti"]):
             raise Problem(MODULE, 409, "attestation-used")
+        if claims.get("representation", {}).get("confirmed") is not True:
