@@ -30,3 +30,4 @@ which transport runs. Timestamps leave as ISO 8601 strings and bytea as `bytes`,
 transport returns them.
 
 `psycopg` is imported at module load: `DATABASE_URL` set without the driver is an error naming the
+package (store.py). Nothing here is FastAPI, HTTP or events.
