@@ -62,3 +62,4 @@ def active(client):
     step("create_company", companyId=U1, applicationId=A1)
     step("assign_identifier", companyId=U1, bpn="BPNLIUK2REMLK3F4")
     step("activate_company", companyId=U1, applicationId=A1)
+    iam = test_iam.iam()
