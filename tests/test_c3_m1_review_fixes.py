@@ -147,3 +147,4 @@ def test_the_correction_reports_wallet_conflicts_as_validation(client, active):
     assert answer.status_code == 400 and answer.json()["type"].endswith("validation")
 
 
+def test_the_correction_keeps_old_values_in_the_audit(client, active):
