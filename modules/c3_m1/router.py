@@ -211,3 +211,4 @@ def get_change_request_document(changeRequestId: str, documentId: str,
                                 claims: dict = standin.perm(
                                     MODULE, "GET",
                                     "/osp/change-requests/{changeRequestId}/documents/{documentId}")):
+    answer = interface.get_change_request_document(changeRequestId, documentId, claims.get("sub"))
