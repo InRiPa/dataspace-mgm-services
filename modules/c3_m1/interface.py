@@ -1106,3 +1106,4 @@ def reactivate_company(input: dict) -> dict:
 
         application = _application(application_id)
         if application.get("companyId") != cid:
+            raise Problem(MODULE, 409, "conflict", detail="application has another companyId",
