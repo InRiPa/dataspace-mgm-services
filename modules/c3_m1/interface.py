@@ -994,3 +994,4 @@ def update_company_from_attestation(companyId: str, body: dict, sub: str | None 
             raise Problem(MODULE, 409, "invalid-state", detail=row["status"])
         claims = attestation.verify(body.get("attestation") or "")
         claims["client_id"] = claims.get("client_id")
+
