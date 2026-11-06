@@ -90,6 +90,7 @@ def reset() -> None:
 
 # ---------------------------------------------------------------- input checks
 def _required(input: StepInputJson, field: str) -> str:
+    """A non-empty string field of the input; otherwise 400 `validation` (never a KeyError)."""
     value = input.get(field)
     if not isinstance(value, str) or not value.strip():
         raise errors.validation(f"{field} is required")
@@ -97,6 +98,7 @@ def _required(input: StepInputJson, field: str) -> str:
 
 
 def _optional(input: StepInputJson, field: str) -> str | None:
+    """An optional string field; `None` and "" both count as absent (flows pass missing lookups as None)."""
     value = input.get(field)
     if value is None or value == "":
         return None
@@ -137,12 +139,15 @@ def _bpn(row: Registration) -> str:
 
 
 def _reply(input: StepInputJson, result: dict[str, str] | None = None, state: StepState = "DONE") -> StepReply:
+    """Step answer of FRAMEWORK 4.4; the shape of `portal_common.standin.step_reply`, typed."""
     step_run = input.get("stepRunId")
     return {"stepRunId": step_run if isinstance(step_run, str) else None, "state": state, "result": result or {}}
 
 
 # ---------------------------------------------------------------- status changes (README 6.1)
 def _mark_registered(row: Registration, bpn: str) -> None:
+    """Status `REGISTERED` with the BPN. The event goes out only on a change (FRAMEWORK 4.4), so a
+    repeated step or a repeated callback never starts the next flow step twice."""
     changed = row.status != "REGISTERED" or row.bpn != bpn
     row.status, row.bpn, row.failure_reason, row.pending_operation_id = "REGISTERED", bpn, None, None
     if changed:
@@ -152,6 +157,7 @@ def _mark_registered(row: Registration, bpn: str) -> None:
 
 
 def _mark_failed(row: Registration, reason: str) -> None:
+    """Status `FAILED` with the reason; the event goes out only on a change, as in `_mark_registered`."""
     changed = row.status != "FAILED" or row.failure_reason != reason
     row.status, row.failure_reason, row.pending_operation_id = "FAILED", reason, None
     if changed:
@@ -166,6 +172,9 @@ def _registration_answer(input: StepInputJson, company_id: str, status: int, ans
         bpn = body.get("bpn")
         if not isinstance(bpn, str) or not bpn:
             raise errors.upstream_error("the CSP confirmed without a BPN")
+        # Precondition of README 8.1: no other REGISTERED company with the same EBWOID or EUID. The
+        # module may not store them (README 5), so the check uses the BPN the CSP derives from them
+        # (OPEN-QUESTIONS 1). Nothing is changed on this path.
         if (other := store.find_by_bpn(bpn, exclude=company_id, status="REGISTERED")) is not None:
             raise errors.invalid_state(f"BPN {bpn} is already registered for company {other.company_id}")
         _mark_registered(store.registration_row(company_id), bpn)
@@ -178,6 +187,9 @@ def _registration_answer(input: StepInputJson, company_id: str, status: int, ans
         row.status, row.pending_operation_id, row.failure_reason = "PENDING", operation_id, None
         row.touch()
         return _reply(input, state="RUNNING")
+    # Final answers turn the row FAILED and publish the failure event: 409 = another OSP is the
+    # home OSP, any other 4xx = business rejection (OPEN-QUESTIONS 2, 3). A 5xx or no answer
+    # leaves the row as it was; raise_for answers retryable and C12 tries the step again.
     if status == 409:
         _mark_failed(store.registration_row(company_id), REASON_OTHER_OSP)
         home = body.get("homeOspId")
@@ -201,6 +213,9 @@ def register_company(input: StepInputJson) -> StepReply:
     if not (ebwoid or euid or identifiers):
         raise errors.validation("at least ebwoid, euid or an entry in identifiers is required (README 6.5)")
 
+    # Repetitions (README 6.4): a registered company returns its BPN, a running operation stays
+    # RUNNING; neither calls the CSP again. From TRANSFERRED_AWAY the only way back is
+    # transfer-company (README 6.1, OPEN-QUESTIONS 6). New or FAILED: call the CSP (again).
     row = store.registrations.get(company_id)
     if row is not None and row.status == "REGISTERED" and row.bpn:
         return _reply(input, {"bpn": row.bpn})
@@ -324,6 +339,8 @@ def register_connector(input: StepInputJson) -> StepReply:
     if not endpoint.startswith("https://"):
         raise errors.validation("endpointUrl must be an HTTPS address")
     bpn = _bpn(_registered(company_id))
+    # Call the CSP only for a new connector or a new address (README 6.4); the same call again
+    # answers DONE without a call and without an event.
     con = store.connectors.get(connector_id)
     unchanged = (con is not None and con.status == "REGISTERED" and con.endpoint_url == endpoint
                  and con.company_id == company_id and con.bpn == bpn)
@@ -344,6 +361,9 @@ def deregister_connector(input: StepInputJson) -> StepReply:
     """Step deregister-connector (README 8.6): unknown or already removed -> DONE without a call."""
     company_id = _required(input, "companyId")
     connector_id = _required(input, "connectorId")
+    # Unknown or already removed: DONE without a call (README 6.4). The result carries the BPN only
+    # when it is known (OPEN-QUESTIONS 8). A known connector needs a REGISTERED company
+    # (OPEN-QUESTIONS 7).
     con = store.connectors.get(connector_id)
     if con is None or con.status == "DEREGISTERED":
         row = store.registrations.get(company_id)
@@ -412,6 +432,9 @@ def receive_csp_notification(body: dict[str, Any]) -> dict[str, str | bool]:
             raise errors.validation("outcome must be SUCCEEDED or FAILED")
         if outcome == "SUCCEEDED" and not bpn:
             raise errors.validation("bpn is required with outcome SUCCEEDED")
+        # The operation id identifies the registration; the BPN is the fallback (README 7.2 step 2).
+        # An unknown one answers 404 and is not stored, so the CSP can send it again once it is known
+        # here (OPEN-QUESTIONS 9).
         row = store.find_by_operation(operation_id) or (store.find_by_bpn(bpn) if bpn else None)
         if row is None:
             raise errors.unknown_company(f"no registration for operation {operation_id}")
@@ -422,6 +445,7 @@ def receive_csp_notification(body: dict[str, Any]) -> dict[str, str | bool]:
     else:
         if not bpn:
             raise errors.validation("bpn is required with CompanyTransferredAway")
+        # Prefer the REGISTERED row: after a company came back, an older row with the same BPN can exist.
         row = store.find_by_bpn(bpn, status="REGISTERED") or store.find_by_bpn(bpn)
         if row is None:
             raise errors.unknown_company(f"no registration for BPN {bpn}")
@@ -430,6 +454,7 @@ def receive_csp_notification(body: dict[str, Any]) -> dict[str, str | bool]:
             row.touch()
             events.publish(MODULE, "CompanyTransferredAway", {"companyId": row.company_id, "bpn": bpn})
 
+    # Stored only after it was processed, so a failed processing does not swallow the notification.
     store.notifications[notification_id] = store.Notification(notification_id, kind_type, row.bpn, store.now())
     store.record_audit(f"notification:{kind_type}", row.company_id, row.bpn, 200)
     return {"notificationId": notification_id, "accepted": True}

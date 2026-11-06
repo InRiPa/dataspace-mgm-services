@@ -49,6 +49,7 @@ class Identifier(BaseModel):
 
 
 class Address(BaseModel):
+    """Address as the CSP takes it; C12 maps it from the C3-M1 address (flows.yaml, company-core-data)."""
     streetAddress: str | None = None
     postalCode: str | None = None
     locality: str | None = None
@@ -107,12 +108,14 @@ class RegisterConnectorInput(ConnectorInput):
 
 # ---------------------------------------------------------------- step result (FRAMEWORK 4.4)
 class StepResultData(BaseModel):
+    """Fields later steps read, for example `steps.register-company.bpn` in flows.yaml."""
     bpn: str | None = None
     did: str | None = None
     connectorId: UUID | None = None
 
 
 class StepResult(BaseModel):
+    """Answer of every step: DONE with the result, or RUNNING until the completing event."""
     stepRunId: UUID
     state: Literal["DONE", "RUNNING"]
     result: StepResultData | None = None

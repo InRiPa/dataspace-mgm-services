@@ -29,6 +29,12 @@ One dataclass per table (`csp_registration`, `csp_connector`, `csp_notification`
 with the column names of README 5. `interface.registration_view` maps a registration to the
 camelCase of the API. Nothing here holds company data beyond the BPN, and the audit log holds no
 response content and no tokens (README 5).
+
+Concurrency: the dicts are not locked. Steps run in the worker thread of C12, HTTP requests (the
+CSP's callbacks) in FastAPI's thread pool. A conflict needs two calls for the same company at the
+same moment, for example a repeated step while the callback arrives; the code then still converges
+because every write is idempotent, but an event could go out twice. A database with transactions
+(README 4 `DATABASE_URL`, OPEN-QUESTIONS 13) replaces this module after the hackathon.
 """
 from __future__ import annotations
 
@@ -144,10 +150,12 @@ def find_by_operation(operation_id: str) -> Registration | None:
 
 def find_by_bpn(bpn: str, *, exclude: str | None = None,
                 status: RegistrationStatus | None = None) -> Registration | None:
+    """First registration with this BPN, optionally of another company or in one status."""
     return next((r for r in registrations.values()
                  if r.bpn == bpn and r.company_id != exclude and (status is None or r.status == status)), None)
 
 
 def record_audit(operation: str, company_id: str | None, bpn: str | None, http_status: int | None,
                  error_type: str | None = None) -> None:
+    """One `audit_entry` (README 5): only status and error type, never the body or a token."""
     audit.append(AuditEntry(now(), operation, company_id, bpn, http_status, error_type))

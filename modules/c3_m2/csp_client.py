@@ -90,6 +90,8 @@ def _osp_company() -> list[JsonObject]:
 
 
 def _builtin_core() -> CoreServices:
+    """The built-in CSP stand-in (README 11.3), created on first use, so tests can set
+    `CSP_STUB_FILE` first; `reset()` drops it."""
     global _builtin
     if _builtin is None:
         stub = _stub_companies()
@@ -132,7 +134,7 @@ def call(operation: str, method: str, path: str, body: JsonObject | None = None,
 
 def is_business_rejection(status: int) -> bool:
     """README 12: a 4xx of the CSP is a business rejection, except a token problem (401) and
-    temporary answers (408, 429)."""
+    temporary answers (408, 429), which may pass on a retry (OPEN-QUESTIONS 4)."""
     return 400 <= status < 500 and status not in (401, 408, 429)
 
 

@@ -32,31 +32,38 @@ MODULE = "c3-m2"
 
 
 def validation(detail: str) -> Problem:
+    """400: invalid input."""
     return Problem(MODULE, 400, "validation", detail=detail, retryable=False)
 
 
 def not_found(detail: str = "company without registration") -> Problem:
+    """404: no registration for the company (GET /companies/{companyId})."""
     return Problem(MODULE, 404, "not-found", detail=detail)
 
 
 def unknown_company(detail: str) -> Problem:
+    """404: a notification of the CSP for an unknown BPN or operation."""
     return Problem(MODULE, 404, "unknown-company", detail=detail)
 
 
 def invalid_state(detail: str) -> Problem:
+    """409: a precondition of a step is missing, for example the company is not REGISTERED."""
     return Problem(MODULE, 409, "invalid-state", detail=detail, retryable=False)
 
 
 def registered_at_other_osp(home_osp_id: str | None) -> Problem:
+    """409: the CSP reports another home OSP; final for the step."""
     ext = {"homeOspId": home_osp_id} if home_osp_id else {}
     return Problem(MODULE, 409, "registered-at-other-osp",
                    detail="the CSP reports another home OSP for this company", retryable=False, **ext)
 
 
 def upstream_error(detail: str) -> Problem:
+    """502, retryable: the CSP is not reachable or answered 5xx; C12 tries the step again."""
     return Problem(MODULE, 502, "upstream-error", detail=detail, retryable=True)
 
 
 def csp_rejected(detail: str, csp_type: str | None) -> Problem:
+    """502, not retryable: the CSP rejects for business reasons; `cspType` keeps the CSP's own error type."""
     ext = {"cspType": csp_type} if csp_type else {}
     return Problem(MODULE, 502, "csp-rejected", detail=detail, retryable=False, **ext)

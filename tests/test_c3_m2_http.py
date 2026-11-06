@@ -234,7 +234,8 @@ def test_body_schema_errors_are_400_problems_with_the_field(api):
     assert [e["field"] for e in body["errors"]] == ["body.country"]
     r = api.post("/api/c3-m2/steps/register-did", json=step(), headers=service("svc-c12-m1"))
     assert r.status_code == 400 and [e["field"] for e in r.json()["errors"]] == ["body.did"]
-    r = api.post("/api/c3-m2/steps/register-membership", json={"companyId": "not-a-uuid"}, headers=service("svc-c12-m1"))
+    r = api.post("/api/c3-m2/steps/register-membership", json={"companyId": "not-a-uuid"},
+                 headers=service("svc-c12-m1"))
     assert r.status_code == 400
     assert {e["field"] for e in r.json()["errors"]} == {"body.processId", "body.stepRunId", "body.companyId"}
 

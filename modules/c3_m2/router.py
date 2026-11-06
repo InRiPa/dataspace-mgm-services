@@ -56,7 +56,11 @@ from .schemas import (
     UpdateCompanyInput,
 )
 
-Claims = dict[str, Any]   # claims of the verified token, from standin.perm
+# Every route declares its permission as a FastAPI dependency: `standin.perm(MODULE, method, path)`
+# reads `x-permission` of that operation in openapi.yaml and answers 401 or 403 before the handler
+# runs. `_` receives the token's claims; no route needs them, because every permission of this
+# module has scope `osp` (FRAMEWORK 4.3). The docstring of a route is its description in /docs.
+Claims = dict[str, Any]
 
 router = APIRouter(prefix=spec.module(MODULE).base_path, route_class=problems.route_class(MODULE),
                    tags=["c3-m2 CSP Connection"])
@@ -76,6 +80,7 @@ def _input(body: BaseModel) -> dict[str, Any]:
             response_model=CspRegistration, response_model_exclude_none=True)
 def get_csp_registration(companyId: str,  # openapi name
                          _: Claims = standin.perm(MODULE, "GET", "/companies/{companyId}")) -> dict[str, str]:
+    """README 7.1, for OSP staff (`view_csp_registration`). 404 without a registration."""
     return interface.get_csp_registration(companyId=companyId)
 
 
@@ -83,6 +88,8 @@ def get_csp_registration(companyId: str,  # openapi name
 @router.post("/csp-notifications", operation_id="receiveCspNotification", summary="Notification from the CSP")
 def receive_csp_notification(body: CspNotification,
                              _: Claims = standin.perm(MODULE, "POST", "/csp-notifications")) -> dict[str, str | bool]:
+    """README 7.2, called by the CSP's service account (`report_csp_notification`).
+    A known `notificationId` answers 200 and is not processed again."""
     return interface.receive_csp_notification(_input(body))
 
 
@@ -94,6 +101,8 @@ def find_companies(_: Claims = standin.perm(MODULE, "GET", "/internal/find-compa
                    identifier: list[str] = Query(default=[], description="<type>:<value>, repeatable"),
                    legalName: str | None = None,  # openapi name
                    country: str | None = Query(default=None, pattern=r"^[A-Z]{2}$")) -> list[dict[str, Any]]:
+    """README 9, duplicate check for C1-M3. At least `ebwoid`, `euid`, `identifier`, or
+    `legalName` with `country`. An empty list means no match."""
     return interface.find_companies(ebwoid=ebwoid, euid=euid, identifier=identifier, legalName=legalName,
                                     country=country)
 
@@ -104,6 +113,7 @@ def find_companies(_: Claims = standin.perm(MODULE, "GET", "/internal/find-compa
              response_model=StepResult, response_model_exclude_none=True)
 def register_company(body: RegisterCompanyInput,
                      _: Claims = standin.perm(MODULE, "POST", "/steps/register-company")) -> StepReply:
+    """README 8.1. DONE with `bpn`, or RUNNING until `CompanyRegisteredAtCsp`."""
     return interface.register_company(_input(body))
 
 
@@ -112,6 +122,7 @@ def register_company(body: RegisterCompanyInput,
              response_model=StepResult, response_model_exclude_none=True)
 def transfer_company(body: TransferCompanyInput,
                      _: Claims = standin.perm(MODULE, "POST", "/steps/transfer-company")) -> StepReply:
+    """README 8.2. The company moves to this OSP; answers as register-company."""
     return interface.transfer_company(_input(body))
 
 
@@ -120,6 +131,7 @@ def transfer_company(body: TransferCompanyInput,
              response_model=StepResult, response_model_exclude_none=True)
 def register_did(body: RegisterDidInput,
                  _: Claims = standin.perm(MODULE, "POST", "/steps/register-did")) -> StepReply:
+    """README 8.3. Needs status REGISTERED."""
     return interface.register_did(_input(body))
 
 
@@ -128,6 +140,7 @@ def register_did(body: RegisterDidInput,
              response_model=StepResult, response_model_exclude_none=True)
 def update_company(body: UpdateCompanyInput,
                    _: Claims = standin.perm(MODULE, "POST", "/steps/update-company")) -> StepReply:
+    """README 8.4. Needs status REGISTERED."""
     return interface.update_company(_input(body))
 
 
@@ -136,6 +149,7 @@ def update_company(body: UpdateCompanyInput,
              response_model=StepResult, response_model_exclude_none=True)
 def register_membership(body: StepInput,
                         _: Claims = standin.perm(MODULE, "POST", "/steps/register-membership")) -> StepReply:
+    """README 8.5. Needs status REGISTERED; calls the CSP only on a change."""
     return interface.register_membership(_input(body))
 
 
@@ -144,6 +158,7 @@ def register_membership(body: StepInput,
              response_model=StepResult, response_model_exclude_none=True)
 def deregister_membership(body: StepInput,
                           _: Claims = standin.perm(MODULE, "POST", "/steps/deregister-membership")) -> StepReply:
+    """README 8.5. After `CompanyTransferredAway`: DONE without a call."""
     return interface.deregister_membership(_input(body))
 
 
@@ -152,6 +167,7 @@ def deregister_membership(body: StepInput,
              response_model=StepResult, response_model_exclude_none=True)
 def register_connector(body: RegisterConnectorInput,
                        _: Claims = standin.perm(MODULE, "POST", "/steps/register-connector")) -> StepReply:
+    """README 8.6. Calls the CSP only for a new connector or a new address."""
     return interface.register_connector(_input(body))
 
 
@@ -160,4 +176,5 @@ def register_connector(body: RegisterConnectorInput,
              response_model=StepResult, response_model_exclude_none=True)
 def deregister_connector(body: ConnectorInput,
                          _: Claims = standin.perm(MODULE, "POST", "/steps/deregister-connector")) -> StepReply:
+    """README 8.6. Unknown or already removed: DONE without a call."""
     return interface.deregister_connector(_input(body))
