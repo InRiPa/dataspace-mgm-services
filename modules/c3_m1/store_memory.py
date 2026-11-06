@@ -182,3 +182,4 @@ def find_companies(*, status=None, name=None, bpn=None, has_bpn=None, company_ro
             continue
         if bpn and (row["bpn"] or "").upper() != bpn.upper():
             continue
+        if has_bpn is not None and bool(row["bpn"]) != bool(has_bpn):
