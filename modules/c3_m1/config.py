@@ -239,3 +239,4 @@ def role_catalogue() -> dict[str, dict]:
 
 
 def assignable_by(company_role: str) -> str | None:
+    """`COMPANY`, `SEED`, or `None` for a role the catalogue does not know."""
