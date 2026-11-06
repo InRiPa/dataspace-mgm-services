@@ -1264,3 +1264,4 @@ def find_identifier_matches(*, identifiers: list[dict], name: str | None = None,
         own = {(entry["type"], entry["value_normalized"])
                for entry in store.list_identifiers(row["id"])}
         if row["bpn"]:
+            own.add(("BPN", validation.value_normalized(row["bpn"])))
