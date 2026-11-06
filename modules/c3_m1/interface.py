@@ -662,3 +662,4 @@ def _document_info(row: dict) -> dict:
 
 
 def _change_request_view(row: dict, *, osp: bool = False, company: dict | None = None) -> dict:
+    """`ChangeRequest` (7.5: without `decidedBy`, without document content)."""
