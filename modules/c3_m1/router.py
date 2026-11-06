@@ -202,3 +202,4 @@ def list_change_requests(status: list[str] | None = Query(None), companyId: str 
 
 @router.get("/osp/change-requests/{changeRequestId}")
 def get_change_request(changeRequestId: str,
+                       _: dict = standin.perm(MODULE, "GET", "/osp/change-requests/{changeRequestId}")):
