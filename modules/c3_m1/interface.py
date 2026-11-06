@@ -280,3 +280,4 @@ def assign_identifier(input: dict) -> dict:
         bpn = raw.strip().upper()
         if row["bpn"]:
             if row["bpn"] == bpn:
+                return standin.step_reply(input, {"companyId": cid, "status": row["status"], "bpn": bpn})
