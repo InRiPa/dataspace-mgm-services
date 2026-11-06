@@ -55,3 +55,4 @@ ADDRESS = {"streetName": "Musterstraße", "streetNumber": "1", "postalCode": "70
            "city": "Stuttgart", "region": "BW", "countryCode": "DE"}
 
 
+@pytest.fixture(autouse=True)
