@@ -61,3 +61,4 @@ def active(client: TestClient) -> dict:
     from test_c3_m1_steps import A1, A2, seed, step
     seed(A1, U1)
     seed(A2, U2, verification="DOCUMENTS", _attestation=None,
+         companyData={"legalName": "Beispiel Logistik GmbH",
