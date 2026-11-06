@@ -60,3 +60,4 @@ def make():
 def test_get_company_returns_a_copy(make):
     company = make()
     fetched = store.get_company(company["id"])
+    fetched["name"] = "geändert"
