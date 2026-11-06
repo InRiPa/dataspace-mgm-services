@@ -106,3 +106,4 @@
         "identifiers": [ { "type": "EBWOID", "value": "EBWOID-DE-0000000002", "source": "ATTESTATION" } ]
       },
       "companyRoles": [ "ACTIVE_PARTICIPANT" ],
+      "consents": [
