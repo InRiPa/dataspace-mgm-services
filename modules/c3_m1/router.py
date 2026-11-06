@@ -136,3 +136,4 @@ def update_own_company(companyId: str, body: dict = Body(...),
 # ------------------------------------------------------------------------------- company roles (7.7 - 7.9)
 @router.get("/companies/{companyId}/company-roles")
 def list_company_roles(companyId: str, lang: str | None = None,
+                       claims: dict = standin.perm(MODULE, "GET",
