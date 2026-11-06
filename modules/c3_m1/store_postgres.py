@@ -304,3 +304,4 @@ def set_identifiers(company_id: str, identifiers: list[dict]) -> list[dict]:
                 " %(value_normalized)s, %(source)s, %(now)s, %(now)s)", row | {"now": now})
     return list_identifiers(company_id)
 
+
