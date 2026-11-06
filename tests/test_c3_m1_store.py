@@ -538,3 +538,4 @@ def test_comment_and_reason_lengths():
 # ------------------------------------------------------------------------ documents (4, 5)
 def test_media_type_comes_from_the_first_bytes():
     assert v.detect_media_type(b"%PDF-1.7") == "application/pdf"
+    assert v.detect_media_type(b"\x89PNG\r\n\x1a\n") == "image/png"
