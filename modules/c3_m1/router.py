@@ -90,3 +90,4 @@ def query_companies(id: list[str] | None = Query(None), bpn: list[str] | None = 
                     _: dict = standin.perm(MODULE, "GET", "/internal/companies")):
     return interface.query_companies(id=id, bpn=bpn)
 
+
