@@ -569,3 +569,4 @@ def add_company_role(companyId: str, body: dict, sub: str | None = None,
         row = get_company(companyId)
         if row["status"] != "ACTIVE":
             raise Problem(MODULE, 409, "invalid-state", detail=row["status"])
+        errors = validation.validate_company_role(role, config.role_catalogue())
