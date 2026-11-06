@@ -52,3 +52,4 @@ def test_a_role_is_added_with_its_consents(active):
     assert states["APP_PROVIDER"]["status"] == "ACTIVE"
     consent = store.get_consent(U1, "terms-app-provider")
     assert consent["status"] == "ACTIVE" and consent["consented_by"] == P1_SUB
+    assert events.RELAY.log[-1]["type"] == "CompanyRolesChanged"
