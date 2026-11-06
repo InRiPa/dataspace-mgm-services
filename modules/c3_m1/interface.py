@@ -744,3 +744,4 @@ def create_change_request(companyId: str, data: dict,
         identifiers = changes.get("identifiers")
         wallet = [{"type": entry["type"], "value": entry["value"], "source": entry["source"]}
                   for entry in store.list_identifiers(companyId) if entry["source"] == "BUSINESS_WALLET"]
+        errors = validation.validate_change_request(data, row["country_code"])
