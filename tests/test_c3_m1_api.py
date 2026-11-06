@@ -142,3 +142,4 @@ def test_the_osp_correction_switches_the_source_to_manual(client, active):
                     json={"address": {"street": "Neue Straße", "houseNumber": "9"}, "reason": "Hinweis"})
     assert response.status_code == 200
     body = response.json()
+    assert body["address"]["street"] == "Neue Straße" and body["address"]["countryCode"] == "DE"
