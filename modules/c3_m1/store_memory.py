@@ -390,3 +390,4 @@ def add_document(change_request_id: str, *, file_name: str, media_type: str,
            "content": content, "created_at": _now()}
     _documents[row["id"]] = row
     return _copy(row)  # type: ignore[return-value]
+
