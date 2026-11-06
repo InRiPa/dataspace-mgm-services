@@ -97,3 +97,4 @@ ADDRESS_FIELDS = ("street", "house_number", "address_addition", "postal_code", "
 _reference_cache: tuple[str, int, dict | None] | None = None
 
 
+# ------------------------------------------------------------------------ comparison (5, 6.3)
