@@ -497,3 +497,4 @@ def test_a_business_wallet_source_can_be_refused():
 
 def test_patterns_fall_back_to_readme_6_4_without_reference_data(tmp_path, monkeypatch):
     settings_file = tmp_path / "installation.json"
+    settings_file.write_text(json.dumps({"ospId": "22222222-2222-4222-8222-222222222222",
