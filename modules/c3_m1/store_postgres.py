@@ -372,3 +372,4 @@ def get_consent(company_id: str, agreement_key: str) -> dict | None:
     if not _uuid_ok(company_id):
         return None
     with _connection() as connection:
+        return _fetch_one(connection, "SELECT * FROM consent WHERE company_id = %s"
