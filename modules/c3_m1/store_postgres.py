@@ -92,3 +92,4 @@ def _row(row: dict | None) -> dict | None:
     return row
 
 
+@contextlib.contextmanager
