@@ -47,3 +47,4 @@ from . import attestation, config, store, validation
 MODULE = "c3-m1"
 
 
+def _timestamp(value: str | None) -> dt.datetime | None:
