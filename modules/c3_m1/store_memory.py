@@ -309,3 +309,4 @@ def get_change_request(change_request_id: str | None) -> dict | None:
     return _copy(_change_requests.get(change_request_id)) if change_request_id else None
 
 
+def create_change_request(row: dict) -> dict:
