@@ -160,3 +160,4 @@ def lock(company_id: str | None = None):
     with psycopg.connect(_dsn(), autocommit=True) as connection:
         if company_id:
             connection.execute("SELECT pg_advisory_lock(%s)", (key,))
+        try:
