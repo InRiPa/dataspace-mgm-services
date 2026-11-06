@@ -109,3 +109,4 @@ def test_the_osp_deactivation_and_the_lock_while_inactive(active):
     assert error.value.status == 409 and error.value.name == "invalid-state"
 
 
+# ------------------------------------------------------------------------------------------ 13.20
