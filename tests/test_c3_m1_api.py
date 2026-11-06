@@ -191,3 +191,4 @@ def test_the_bulk_query_takes_repeated_parameters(client, active):
 def test_the_identifier_search_over_http(client, active):
     response = call(client, "POST", "/api/c3-m1/internal/companies/identifier-matches", "svc",
                     json={"identifiers": [{"type": "VAT_ID", "value": "de 123.456.789"}]})
+    assert response.status_code == 200
