@@ -103,3 +103,4 @@ def normalise(value) -> str:
     return " ".join(unicodedata.normalize("NFKC", str(value)).split())
 
 
+def value_normalized(value) -> str:
