@@ -514,3 +514,4 @@ def _terms() -> list[dict]:
     config.apply_registration_url()
     if neighbours.is_standin("c1-m2"):
         agreements = testdata.agreements()
+    else:
