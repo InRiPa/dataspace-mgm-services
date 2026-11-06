@@ -739,3 +739,4 @@ def create_change_request(companyId: str, data: dict,
             raise Problem(MODULE, 409, "invalid-state", detail=row["status"])
         if store.open_change_request(companyId):
             raise Problem(MODULE, 409, "change-request-open")
+
