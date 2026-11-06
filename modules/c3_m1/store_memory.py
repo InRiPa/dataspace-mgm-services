@@ -302,3 +302,4 @@ def set_consent(company_id: str, agreement_key: str, *, version: str | None = No
         row["agreement_version"] = version
     _consents[(company_id, agreement_key)] = row
     return _copy(row)  # type: ignore[return-value]
+
