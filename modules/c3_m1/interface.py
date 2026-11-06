@@ -1006,3 +1006,4 @@ def update_company_from_attestation(companyId: str, body: dict, sub: str | None 
             mismatched.append("EBWOID")
         if (row["country_code"] or "") != (company.get("country") or ""):
             mismatched.append("countryCode")
+        if mismatched:
