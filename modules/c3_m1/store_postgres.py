@@ -425,3 +425,4 @@ def create_change_request(row: dict) -> dict:
     company_id: str = row.get("company_id") or ""
     status = row.get("status") or "OPEN"
     _check_enum(status, CHANGE_REQUEST_STATUSES, "status")
+    with _connection() as connection:
