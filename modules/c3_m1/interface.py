@@ -398,3 +398,4 @@ def _changed_fields(row: dict, body: dict, identifiers: list[dict] | None) -> li
         field = validation.field_name(key)
         if field in CORE_TEXT_FIELDS or field == "short_name":
             before, after = row.get(field), value
+            if (before or "") != (after or "") and not (
