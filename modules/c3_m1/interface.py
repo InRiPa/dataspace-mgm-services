@@ -113,3 +113,4 @@ def _address(row: dict) -> dict:
              ("city", "city"), ("region", "region"), ("countryCode", "country_code"))}
 
 
+def _identifiers(row: dict) -> list[dict]:
