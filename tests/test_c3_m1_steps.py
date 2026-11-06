@@ -22,3 +22,4 @@
 #  SPDX-License-Identifier: Apache-2.0 AND CC0-1.0
 #  Assisted-By: Hermes Agent (deepseek-v4.1-flash)
 #################################################################################
+"""C3-M1 steps and queries against the built-in stand-in of C1-M2 (README 8, 9, 13).
