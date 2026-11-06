@@ -31,3 +31,4 @@
 - set: `store_postgres`, the module's own database `c3_m1` (README 4) with the tables of
   `schema.sql`. The database user of the module owns that schema; nothing else reads it.
 
+Both transports answer the same functions and the same invariants; only the storage differs. A
