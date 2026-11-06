@@ -494,3 +494,4 @@ def test_a_business_wallet_source_can_be_refused():
                                     allow_business_wallet=False)
     assert errors == [{"field": "identifiers[0].source", "reason": "business-wallet-source"}]
 
+
