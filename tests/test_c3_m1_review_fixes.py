@@ -140,3 +140,4 @@ def test_a_changed_euid_counts_as_core_data():
     assert changed and changed[0]["data"]["coreDataChanged"] is True
 
 
+# ------------------------------------------------------------------- the correction path (7.12)
