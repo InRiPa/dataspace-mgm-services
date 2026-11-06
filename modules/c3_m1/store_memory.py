@@ -142,3 +142,4 @@ def create_company(row: dict) -> dict:
     })
     companies[str(created["id"])] = created
     return _copy(created)  # type: ignore[return-value]
+
