@@ -532,3 +532,4 @@ def _role_state(company: str, lang: str) -> list[dict]:
         entry = config.role_catalogue().get(role) or {}
         assigned = store.role_status(company, role)
         own = {consent["agreement_key"]: consent for consent in store.list_consents(company)}
+        states.append({
