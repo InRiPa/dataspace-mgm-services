@@ -64,3 +64,4 @@ def active(client: TestClient) -> dict:
          companyData={"legalName": "Beispiel Logistik GmbH",
                       "address": {"streetName": "Hafenstraße", "streetNumber": "5",
                                   "postalCode": "68159", "city": "Mannheim", "countryCode": "DE"},
+                      "identifiers": [{"type": "VAT_ID", "value": "DE987654321",
