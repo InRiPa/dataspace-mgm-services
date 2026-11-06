@@ -153,3 +153,4 @@ def test_the_country_is_locked_after_the_bpn(client, active):
                     json={"countryCode": "US", "reason": "Umzug"})
     assert response.status_code == 409 and response.json()["fields"] == ["countryCode"]
 
+
