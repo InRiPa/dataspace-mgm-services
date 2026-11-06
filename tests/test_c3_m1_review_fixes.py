@@ -65,3 +65,4 @@ def active(client):
     iam = test_iam.iam()
     for person, role in ((P1, "Company Admin"), (S2, "OSP Admin")):
         uid = iam.find(person) or ""
+        iam.add_portal_roles(uid, [role])
