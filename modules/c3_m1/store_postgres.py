@@ -23,3 +23,4 @@
 #  Assisted-By: Hermes Agent (deepseek-v4.1-flash)
 #################################################################################
 """PostgreSQL transport of the C3-M1 repository: the module's own database `c3_m1` (README 4, 5).
+
