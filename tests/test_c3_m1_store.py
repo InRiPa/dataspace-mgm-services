@@ -189,3 +189,4 @@ def test_set_identifiers_normalises_and_replaces(make):
     assert [row["type"] for row in store.list_identifiers(company["id"])] == ["LEI_CODE"]
 
 
+def test_set_identifiers_enforces_one_per_type(make):
