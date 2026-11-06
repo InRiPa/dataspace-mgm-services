@@ -19,3 +19,4 @@
 -- #  to the project's license. The human contributor has reviewed and verified
 -- #  that the code is correct.
 -- #
+-- #  SPDX-License-Identifier: Apache-2.0 AND CC0-1.0
