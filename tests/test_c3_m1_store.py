@@ -169,3 +169,4 @@ def test_find_companies_company_role_matches_active_roles_only(make):
 def test_find_companies_is_newest_first_and_paged(make):
     companies = [make() for _ in range(5)]
     items, total = store.find_companies(page=0, size=2)
+    assert total == 5 and len(items) == 2
