@@ -74,3 +74,4 @@ def value(name: str, default: str | None = None) -> str:
     return default if default is not None else ""
 
 
+def number(name: str) -> int:
