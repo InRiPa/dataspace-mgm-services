@@ -66,3 +66,4 @@ COMPANY_FIELDS = (
     "core_data_verified_at", "verification_ref", "application_id", "deactivation_reason",
     "created_at", "changed_at", "activated_at", "rejected_at", "deactivated_at", "reactivated_at",
 )
+
