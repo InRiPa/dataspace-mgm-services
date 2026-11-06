@@ -175,3 +175,4 @@ def _text(errors: list[dict], field: str, value, *, required: bool = False,
         return
     if not isinstance(value, str):
         errors.append(_error(field, "type"))
+        return
