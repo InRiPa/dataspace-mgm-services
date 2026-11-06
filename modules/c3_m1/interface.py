@@ -1236,3 +1236,4 @@ def find_identifier_matches(*, identifiers: list[dict], name: str | None = None,
     if not 1 <= len(identifiers) <= 10:
         errors.append({"field": "identifiers", "reason": "1 to 10 entries"})
     for entry in identifiers:
+        if entry.get("type") not in (*store.IDENTIFIER_TYPES, "BPN"):
