@@ -563,3 +563,4 @@ def add_if_unused(jti: str, company_id: str) -> bool:
 
 def is_used(jti: str) -> bool:
     with _connection() as connection:
+        return connection.execute("SELECT 1 FROM used_attestation WHERE jti = %s",
