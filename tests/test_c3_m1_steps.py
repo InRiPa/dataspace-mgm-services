@@ -118,3 +118,4 @@ def test_create_company_is_idempotent():
 
 def test_create_company_conflicts():
     seed()
+    step("create_company", companyId=U1, applicationId=A1)
