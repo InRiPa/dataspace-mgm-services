@@ -139,3 +139,4 @@ def test_an_unconfirmed_representation_is_refused():
     assert error.value.name == "representation-not-confirmed"
 
 
+def test_a_foreign_key_is_a_signature_error():
