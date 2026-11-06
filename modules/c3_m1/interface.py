@@ -276,3 +276,4 @@ def assign_identifier(input: dict) -> dict:
         row = get_company(cid)
         errors = validation.validate_bpn(raw)
         if errors:
+            raise Problem(MODULE, 400, "validation", errors=errors, retryable=False)
