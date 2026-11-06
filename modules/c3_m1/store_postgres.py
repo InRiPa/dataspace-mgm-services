@@ -342,3 +342,4 @@ def add_role(company_id: str, company_role: str, *, status: str = "ACTIVE",
         return _fetch_one(
             connection,
             "INSERT INTO company_role_assignment (company_id, company_role, status, source_kind,"
+            " source_ref, activated_at, deactivated_at, changed_at)"
