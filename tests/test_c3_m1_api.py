@@ -175,3 +175,4 @@ def test_the_search_filters_over_http(client, active):
     assert response.status_code == 200
     ids = [item["id"] for item in response.json()["items"]]
     assert U1 in ids and U2 in ids
+    assert response.json()["total"] >= 2
