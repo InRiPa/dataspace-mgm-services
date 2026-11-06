@@ -230,3 +230,4 @@ def role_catalogue() -> dict[str, dict]:
 
     Without `COMPANY_ROLES_FILE` the initial values of README 6.5 apply, so the module runs
     without configuration (FRAMEWORK 4.8, OPEN-QUESTIONS 7).
+    """
