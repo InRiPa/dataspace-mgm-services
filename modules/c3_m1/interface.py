@@ -710,3 +710,4 @@ def _wallet_identifier_conflict(row: dict, identifiers: list[dict]) -> list[dict
     stored = {entry["type"] for entry in store.list_identifiers(row["id"])
               if entry["source"] == "BUSINESS_WALLET"}
     return [{"field": f"identifiers.{entry.get('type')}", "reason": "source BUSINESS_WALLET"}
+            for entry in identifiers if entry.get("type") in stored]
