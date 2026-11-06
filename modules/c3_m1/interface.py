@@ -400,3 +400,4 @@ def _changed_fields(row: dict, body: dict, identifiers: list[dict] | None) -> li
             before, after = row.get(field), value
             if (before or "") != (after or "") and not (
                     before and after and validation.same_value(before, after)):
+                changed.append(CAMEL.get(field, field))
