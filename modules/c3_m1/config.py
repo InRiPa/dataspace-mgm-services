@@ -192,3 +192,4 @@ def seed_company() -> dict | None:
     path = settings.resolve_path(settings.get("ospCompanyFile"))
     if path is None or not path.exists():
         return None
+    seed = json.loads(path.read_text(encoding="utf-8"))
