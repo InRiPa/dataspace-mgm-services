@@ -118,3 +118,4 @@ def test_an_unchanged_address_keeps_its_spelling():
     second = update(jti="jti-t2", verified_at=int((now() + dt.timedelta(minutes=1)).timestamp()),
                     **{"company": {
         "legal_name": "Beispiel Maschinenbau AG", "ebwoid": "EBWOID-DE-0000000001",
+        "country": "DE", "address": {"street_address": "industriestraße 10",
