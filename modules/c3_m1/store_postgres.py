@@ -130,3 +130,4 @@ def _integrity(error: errors.IntegrityError) -> ValueError:
     """Database constraint -> ValueError, like the memory transport raises it."""
     if isinstance(error, errors.UniqueViolation):
         constraint = getattr(getattr(error, "diag", None), "constraint_name", "") or ""
+        if "bpn" in constraint:
