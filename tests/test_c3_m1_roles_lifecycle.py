@@ -102,3 +102,4 @@ def test_the_osp_deactivation_and_the_lock_while_inactive(active):
     assert answer["status"] == "INACTIVE" and answer["deactivationReason"] == "MANUAL"
     event = events.RELAY.log[-1]
     assert event["type"] == "CompanyDeactivated" and event["data"]["reason"] == "MANUAL"
+    assert "Vertrag beendet" not in str(event["data"])
