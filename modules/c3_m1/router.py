@@ -104,3 +104,4 @@ def query_company_role_catalog(lang: str | None = None,
     return interface.query_company_role_catalog(lang=lang)
 
 
+@router.get("/internal/companies/{companyId}")
