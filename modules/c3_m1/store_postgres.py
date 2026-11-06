@@ -203,3 +203,4 @@ def create_company(row: dict) -> dict:
     return created  # type: ignore[return-value]
 
 
+def update_company(company_id: str, **fields) -> dict | None:
