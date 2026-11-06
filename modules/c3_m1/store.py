@@ -41,3 +41,4 @@ from __future__ import annotations
 
 import importlib
 import os
+from types import ModuleType
