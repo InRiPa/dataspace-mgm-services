@@ -81,3 +81,4 @@ def test_a_change_request_may_not_carry_a_wallet_identifier(active):
     with pytest.raises(Problem) as error:
         interface.create_change_request(U1, {"comment": "x", "identifiers": [
             {"type": "EBWOID", "value": "EBWOID-DE-0000000009"},
+            {"type": "VAT_ID", "value": "DE123456789"}]}, [PDF], P1_SUB)
