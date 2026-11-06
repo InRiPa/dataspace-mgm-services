@@ -63,3 +63,4 @@ def _now() -> str:
 
 def _copy(row: dict | None) -> dict | None:
     return copy.deepcopy(row) if row is not None else None
+
