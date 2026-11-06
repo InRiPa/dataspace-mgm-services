@@ -438,3 +438,4 @@ def update_company(companyId: str, body: dict, sub: str | None = None) -> dict:
         changed = _changed_fields(row, body, None)
         if not changed:
             return company_view(companyId)
+        before = {"short_name": row["short_name"]}
