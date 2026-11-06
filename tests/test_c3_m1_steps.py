@@ -263,3 +263,4 @@ def test_identifier_matches_normalise_and_exclude():
 
 
 # --------------------------------------------------------------------------------------------- 13.28
+def test_the_built_in_stand_in_reads_the_stub_file(tmp_path, monkeypatch):
