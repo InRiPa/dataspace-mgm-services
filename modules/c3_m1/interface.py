@@ -1124,3 +1124,4 @@ def reactivate_company(input: dict) -> dict:
                   "street": source_address.get("streetName"),
                   "house_number": source_address.get("streetNumber"),
                   "postal_code": source_address.get("postalCode"), "city": source_address.get("city"),
+                  "region": source_address.get("region"),
