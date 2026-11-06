@@ -350,3 +350,4 @@ def activate_company(input: dict) -> dict:
                           retryable=False)
 
         applicant = (application.get("applicant") or {}).get("sub")
+        for role in active:
