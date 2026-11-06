@@ -392,3 +392,4 @@ def add_document(change_request_id: str, *, file_name: str, media_type: str,
     return _copy(row)  # type: ignore[return-value]
 
 
+def get_document(document_id: str | None) -> dict | None:
