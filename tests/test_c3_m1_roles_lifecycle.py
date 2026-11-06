@@ -132,3 +132,4 @@ def test_the_reactivation_with_a_new_attestation(active):
 
 
 def test_the_reactivation_needs_the_matching_kind(active):
+    step("deactivate_company", companyId=U1, reason="TRANSFERRED")
