@@ -297,3 +297,4 @@ def test_the_role_add_answers_in_the_requested_language(client, active):
 
 
 def test_a_malformed_json_part_is_a_validation_error(client, active):
+    answer = call(client, "POST", f"/api/c3-m1/companies/{U1}/change-requests", P1,
