@@ -33,3 +33,4 @@ Steps are idempotent (FRAMEWORK 4.4): the business key is looked up first, only 
 created, a repetition returns the stored result and publishes nothing. Every changing operation
 writes the audit log of README 5 and FRAMEWORK 4.3 before it publishes.
 """
+from __future__ import annotations
