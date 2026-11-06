@@ -468,3 +468,4 @@ def list_change_requests(*, company_id: str | None = None, status=None,
            + f" ORDER BY created_at {order}, id {order} LIMIT %s OFFSET %s")
     with _connection() as connection:
         rows = _fetch_all(connection, sql, (*params, size, max(page, 0) * size))
+    total = int(rows[0].pop("total")) if rows else 0
