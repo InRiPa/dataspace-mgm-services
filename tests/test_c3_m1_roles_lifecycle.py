@@ -159,3 +159,4 @@ def test_a_company_transfers_to_this_installation():
         "legalName": "Andere Beispiel AG", "address": {"streetName": "Beispielweg", "streetNumber": "2",
                                                        "postalCode": "80331", "city": "München",
                                                        "region": "BY", "countryCode": "DE"},
+        "identifiers": [{"type": "EBWOID", "value": "EBWOID-DE-0000000002", "source": "ATTESTATION"}]})
