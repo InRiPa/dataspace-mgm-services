@@ -47,3 +47,4 @@ from .store import (CORE_DATA_SOURCES, CHANGE_REQUEST_STATUSES, COMPANY_FIELDS, 
                     MEDIA_TYPES, ROLE_SOURCE_KINDS, ROLE_STATUSES, STATUSES)
 from .validation import value_normalized
 
+companies: dict[str, dict] = {}
