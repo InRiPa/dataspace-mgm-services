@@ -57,3 +57,4 @@ _used_attestations: dict[str, dict] = {}
 _audit: list[dict] = []
 
 
+def _now() -> str:
