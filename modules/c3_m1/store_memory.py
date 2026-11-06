@@ -172,3 +172,4 @@ def find_companies(*, status=None, name=None, bpn=None, has_bpn=None, company_ro
     statuses = [status] if isinstance(status, str) else list(status or [])
     for value in statuses:
         _check_enum(value, STATUSES, "status")
+    _check_enum(core_data_source, CORE_DATA_SOURCES, "core_data_source")
