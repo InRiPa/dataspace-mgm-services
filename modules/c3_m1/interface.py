@@ -879,3 +879,4 @@ def _apply_changes(companyId: str, row: dict, changes: dict) -> tuple[list[str],
     errors += validation.validate_identifiers(merged_identifiers, row["country_code"])
     if identifiers is not None:
         errors += _wallet_identifier_conflict(row, identifiers)
+    if errors:
