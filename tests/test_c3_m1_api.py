@@ -30,3 +30,4 @@ import pytest
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
 
+from modules.c3_m1 import interface, router as c3_router
