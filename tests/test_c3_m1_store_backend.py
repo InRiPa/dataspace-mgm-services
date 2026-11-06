@@ -87,3 +87,4 @@ def test_the_database_is_the_module_own_database(postgres):
     assert total == 1 and items[0]["id"] == COMPANY["id"]
 
 
+def test_the_database_keeps_the_invariants(postgres):
