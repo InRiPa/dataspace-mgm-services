@@ -78,3 +78,4 @@ def _load_keys() -> list[dict]:
         except (OSError, ValueError) as error:
             raise Problem(MODULE, 502, "upstream-error",
                           detail=f"JWKS file unreadable: {error}", retryable=True) from error
+    now = time.monotonic()
