@@ -83,3 +83,4 @@ def _row(row: dict | None) -> dict | None:
             row[key] = str(value)
     for key in ("content",):
         if isinstance(row.get(key), memoryview | bytearray):
+            row[key] = bytes(row[key])
