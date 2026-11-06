@@ -747,3 +747,4 @@ def create_change_request(companyId: str, data: dict,
         errors = validation.validate_change_request(data, row["country_code"])
         if identifiers is not None:
             if not identifiers and wallet:
+                # "afterwards at least one identifier" counts the wallet identifiers that stay
