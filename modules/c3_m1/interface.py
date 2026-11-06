@@ -1249,3 +1249,4 @@ def find_identifier_matches(*, identifiers: list[dict], name: str | None = None,
         raise Problem(MODULE, 400, "validation",
                       errors=[{"field": "identifiers", "reason": "1 to 10 entries"}])
     candidates, page, total = [], 0, None
+    while total is None or len(candidates) < total:
