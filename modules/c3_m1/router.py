@@ -252,3 +252,4 @@ def read_company(companyId: str,
 def deactivate_company_by_staff(companyId: str, body: dict = Body(...),
                                 claims: dict = standin.perm(
                                     MODULE, "POST", "/osp/companies/{companyId}/deactivate")):
+    return interface.deactivate_company_by_staff(companyId, body, claims.get("sub"))
