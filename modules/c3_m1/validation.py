@@ -205,3 +205,4 @@ def flat_fields(data: dict) -> dict:
     return flat
 
 
+# --------------------------------------------------------------------------- company fields (5)
