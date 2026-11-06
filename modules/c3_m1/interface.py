@@ -256,3 +256,4 @@ def create_company(input: dict) -> dict:
             "application_id": application_id,
         })
         store.set_identifiers(cid, identifiers)
+        for role in roles:
