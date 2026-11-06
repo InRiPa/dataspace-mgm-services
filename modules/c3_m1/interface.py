@@ -23,3 +23,4 @@
 #  Assisted-By: Hermes Agent (deepseek-v4.1-flash)
 #################################################################################
 """Public interface of C3-M1 Company Profile: the steps of Process Orchestration (README 8), the
+queries of other modules (9) and the read paths.
