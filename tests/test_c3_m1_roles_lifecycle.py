@@ -162,3 +162,4 @@ def test_a_company_transfers_to_this_installation():
         "identifiers": [{"type": "EBWOID", "value": "EBWOID-DE-0000000002", "source": "ATTESTATION"}]})
     step("create_company", companyId=U4, applicationId=A8)
     step("assign_identifier", companyId=U4, bpn="BPNL00000000002B")
+    answer = step("activate_company", companyId=U4, applicationId=A8)
