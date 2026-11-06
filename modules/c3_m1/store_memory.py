@@ -197,3 +197,4 @@ def find_companies(*, status=None, name=None, bpn=None, has_bpn=None, company_ro
 
 # ------------------------------------------------------- company_identifier (README 5, 6.4)
 def list_identifiers(company_id: str) -> list[dict]:
+    return [_copy(row) for row in _identifiers.get(company_id, {}).values()]  # type: ignore[misc]
