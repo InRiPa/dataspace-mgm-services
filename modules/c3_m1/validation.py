@@ -193,3 +193,4 @@ def field_name(key: str) -> str:
 
 
 def flat_fields(data: dict) -> dict:
+    """camelCase and a nested `address` to the flat snake_case fields of README 5."""
