@@ -1134,3 +1134,4 @@ def reactivate_company(input: dict) -> dict:
         stored = {entry["type"]: entry for entry in store.list_identifiers(cid)}
         if verification == "EBW":
             claimed_ebwoid = next((entry["value"] for entry in data.get("identifiers") or []
+                                   if entry.get("type") == "EBWOID"), None)
