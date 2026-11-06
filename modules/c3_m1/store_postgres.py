@@ -183,3 +183,4 @@ def create_company(row: dict) -> dict:
         raise ValueError("id: required")
     status = row.get("status") or "REQUESTED"
     _check_enum(status, STATUSES, "status")
+    _check_enum(row.get("core_data_source") or "MANUAL", CORE_DATA_SOURCES, "core_data_source")
