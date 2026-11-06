@@ -200,3 +200,4 @@ def test_an_attestation_without_a_change_still_stamps_the_verification(active):
     second = interface.update_company_from_attestation(
         U1, {"attestation": sign(claims(jti="jti-spaet", verified_at=int(
             (dt.datetime.now(dt.UTC) + dt.timedelta(minutes=1)).timestamp())))}, P1_SUB)
+    assert second["changedFields"] == []
