@@ -172,3 +172,4 @@ def test_find_companies_is_newest_first_and_paged(make):
     assert total == 5 and len(items) == 2
     assert items[0]["id"] == companies[-1]["id"]      # newest first (7.10)
     rest, _ = store.find_companies(page=2, size=2)
+    assert len(rest) == 1
