@@ -87,3 +87,4 @@ def test_a_request_needs_a_document_of_a_known_type(active):
 def test_a_request_without_a_change_is_refused(active):
     with pytest.raises(Problem) as error:
         submit(identifiers=[{"type": "VAT_ID", "value": "DE123456789"}])
+    assert error.value.status == 400 and error.value.name == "validation"
