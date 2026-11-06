@@ -238,3 +238,4 @@ def test_reject_company():
 def test_bulk_query_keeps_the_order_and_reports_the_missing():
     seed()
     seed(A2, U2, verification="DOCUMENTS", _attestation=None,
+         companyData={"legalName": "Beispiel Logistik GmbH", "address": ADDRESS,
