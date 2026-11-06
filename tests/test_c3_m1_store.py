@@ -255,3 +255,4 @@ def test_at_most_one_open_change_request_per_company(make):
         store.create_change_request({"company_id": company["id"], "comment": "nochmal"})
     store.withdraw_change_request(first["id"])
     assert store.create_change_request({"company_id": company["id"], "comment": "neu"})
+    assert store.get_change_request(first["id"])["status"] == "WITHDRAWN"
