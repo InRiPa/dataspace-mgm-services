@@ -42,3 +42,4 @@
     },
     {
       "id": "a0000003-0000-4000-8000-000000000003", "companyId": "c0000003-0000-4000-8000-000000000003",
+      "kind": "ONBOARDING", "existingCompany": false, "status": "SUBMITTED", "verification": "DOCUMENTS",
