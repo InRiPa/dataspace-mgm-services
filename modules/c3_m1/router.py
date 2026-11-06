@@ -198,3 +198,4 @@ def list_change_requests(status: list[str] | None = Query(None), companyId: str 
                          page: int = 0, size: int = 20,
                          _: dict = standin.perm(MODULE, "GET", "/osp/change-requests")):
     return interface.list_change_requests(status=status, companyId=companyId, page=page, size=size)
+
