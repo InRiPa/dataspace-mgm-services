@@ -299,3 +299,4 @@ def set_identifiers(company_id: str, identifiers: list[dict]) -> list[dict]:
         now = _now()
         for row in rows.values():
             connection.execute(
+                "INSERT INTO company_identifier (company_id, type, value, value_normalized, source,"
