@@ -1043,3 +1043,4 @@ def deactivate_company(input: dict) -> dict:
     """8.5: deactivation by Process Orchestration with reason `MANUAL` or `TRANSFERRED`."""
     cid, reason = input.get("companyId"), input.get("reason")
     with store.lock(cid):
+        row = get_company(cid)
