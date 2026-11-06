@@ -142,3 +142,4 @@ def list_company_roles(companyId: str, lang: str | None = None,
     return interface.list_company_roles(companyId, lang)
 
 
+@router.post("/companies/{companyId}/company-roles")
