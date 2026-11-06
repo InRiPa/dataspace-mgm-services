@@ -174,3 +174,4 @@ def test_assign_identifier_and_its_errors():
     step("create_company", companyId=U3, applicationId=A3)
 
     reply = step("assign_identifier", companyId=U1, bpn="BPNLIUK2REMLK3F4")
+    assert reply["result"]["bpn"] == "BPNLIUK2REMLK3F4"
