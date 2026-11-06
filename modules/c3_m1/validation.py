@@ -154,3 +154,4 @@ def pattern_for(identifier_type: str, country_code: str | None) -> str | None:
         entry = next((t for t in data.get("identifierTypes") or []
                       if isinstance(t, dict) and t.get("type") == identifier_type), None)
         if entry is not None:
+            patterns = entry.get("patterns") or {}
