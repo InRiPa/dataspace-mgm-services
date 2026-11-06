@@ -37,3 +37,4 @@ S1_SUB = "bbede0f3-fbc4-433b-b7ca-1982e8724912"
 P1_SUB = "5a1c0001-0000-4000-8000-000000000001"
 
 
+def submit(company: str = U1, person: str = P1_SUB, **data) -> dict:
