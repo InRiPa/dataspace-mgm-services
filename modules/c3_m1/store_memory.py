@@ -170,3 +170,4 @@ def find_companies(*, status=None, name=None, bpn=None, has_bpn=None, company_ro
                    core_data_source=None, page: int = 0, size: int = 20) -> tuple[list[dict], int]:
     """7.10: filters, newest first, paged. `company_role` matches active roles only."""
     statuses = [status] if isinstance(status, str) else list(status or [])
+    for value in statuses:
