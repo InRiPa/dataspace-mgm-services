@@ -207,3 +207,4 @@ def set_identifiers(company_id: str, identifiers: list[dict]) -> list[dict]:
     now = _now()
     for entry in identifiers:
         kind = entry.get("type")
+        _check_enum(kind, IDENTIFIER_TYPES, "type")
