@@ -120,3 +120,4 @@ def _identifiers(row: dict) -> list[dict]:
 
 def _active_roles(company: str | None) -> list[str]:
     return sorted(role for role, status in store.list_roles(company).items() if status == "ACTIVE")
+
