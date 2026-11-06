@@ -187,3 +187,4 @@ def find_companies(*, status=None, name=None, bpn=None, has_bpn=None, company_ro
         if core_data_source and row["core_data_source"] != core_data_source:
             continue
         if company_role and _roles.get(row["id"], {}).get(company_role, {}).get("status") != "ACTIVE":
+            continue
