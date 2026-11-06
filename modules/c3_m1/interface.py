@@ -375,3 +375,4 @@ def reject_company(input: dict) -> dict:
     cid = input.get("companyId")
     with store.lock(cid):
         row = get_company(cid)
+        if row["status"] == "REJECTED":
