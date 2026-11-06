@@ -408,3 +408,4 @@ def _changed_fields(row: dict, body: dict, identifiers: list[dict] | None) -> li
             changed.append("identifiers")
     return changed
 
+
