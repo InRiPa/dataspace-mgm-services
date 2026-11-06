@@ -421,3 +421,4 @@ def test_country_code_rules():
     assert {"field": "country_code", "reason": "required"} in v.validate_country_code(None)
 
 
+def test_company_enums_and_bpn_format():
