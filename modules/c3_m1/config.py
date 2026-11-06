@@ -91,3 +91,4 @@ def languages() -> list[str]:
 
 
 def query_max_companies() -> int:
+    return number("QUERY_MAX_COMPANIES")
