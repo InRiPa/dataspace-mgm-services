@@ -214,3 +214,4 @@ def test_the_approval_event_carries_the_resulting_source(active):
     changed = [event for event in events.RELAY.log if event["type"] == "CompanyDataChanged"]
     assert changed and changed[0]["data"]["coreDataSource"] == "EBW"
 
+
