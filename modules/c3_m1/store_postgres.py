@@ -554,3 +554,4 @@ def add_if_unused(jti: str, company_id: str) -> bool:
     if not jti:
         raise ValueError("jti: required")
     with _connection() as connection:
+        _check_known(connection, company_id)
