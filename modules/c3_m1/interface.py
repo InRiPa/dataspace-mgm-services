@@ -93,3 +93,4 @@ def reset() -> None:
         "status": "ACTIVE", "core_data_source": "MANUAL",
     })
     target.set_identifiers(seed["companyId"], seed.get("identifiers") or [])
+    for role in seed.get("companyRoles") or []:
