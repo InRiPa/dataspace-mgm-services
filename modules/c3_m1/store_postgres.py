@@ -143,3 +143,4 @@ def reset() -> None:
     script = SCHEMA.read_text(encoding="utf-8")
     with _connection() as connection:
         for table in TABLES:
+            connection.execute(f"DROP TABLE IF EXISTS {table} CASCADE")
