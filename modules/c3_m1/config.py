@@ -86,3 +86,4 @@ def flag(name: str) -> bool:
 
 
 def languages() -> list[str]:
+    """Languages for descriptions in this installation; `en` always answers as the fallback."""
