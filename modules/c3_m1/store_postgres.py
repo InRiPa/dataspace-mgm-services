@@ -234,3 +234,4 @@ def update_company(company_id: str, **fields) -> dict | None:
 
 def find_companies(*, status=None, name=None, bpn=None, has_bpn=None, company_role=None,
                    core_data_source=None, page: int = 0, size: int = 20) -> tuple[list[dict], int]:
+    """7.10: filters, newest first, paged. `company_role` matches active roles only."""
