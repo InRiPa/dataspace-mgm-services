@@ -525,3 +525,4 @@ def test_change_request_needs_a_change_a_comment_and_declared_identifiers():
                                       "comment": "c"}, "DE") == []
 
 
+def test_comment_and_reason_lengths():
