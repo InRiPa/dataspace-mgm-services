@@ -266,3 +266,4 @@ def create_company(input: dict) -> dict:
     return standin.step_reply(input, {"companyId": cid, "status": created["status"],
                                       "bpn": created["bpn"],
                                       "coreDataSource": created["core_data_source"]})
+
