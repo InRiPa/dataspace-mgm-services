@@ -142,3 +142,4 @@ def test_decline_and_withdraw(active):
 
 # ------------------------------------------------------------------------------------------ 13.16
 def test_nobody_approves_their_own_request(active):
+    osp_company = "11111111-1111-4111-8111-111111111111"
