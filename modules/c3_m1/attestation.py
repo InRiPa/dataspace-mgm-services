@@ -151,3 +151,4 @@ def verify(attestation: str, *, now: dt.datetime | None = None) -> dict:
         raise _invalid("signature", "signature does not verify") from error
     except jwt.PyJWTError as error:
         raise _invalid("signature", str(error)) from error
+
