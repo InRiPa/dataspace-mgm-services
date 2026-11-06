@@ -109,3 +109,4 @@ def change_request_max_document_bytes() -> int:
 def attestation_issuer() -> str:
     return value("ATTESTATION_ISSUER").rstrip("/")
 
+
