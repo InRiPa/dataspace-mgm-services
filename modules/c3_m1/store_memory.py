@@ -133,3 +133,4 @@ def create_company(row: dict) -> dict:
     if row.get("deactivation_reason") and status != "INACTIVE":
         raise ValueError("deactivation_reason: only with status INACTIVE")
     now = _now()
+    created: dict = {field: None for field in COMPANY_FIELDS}
