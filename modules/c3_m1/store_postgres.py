@@ -243,3 +243,4 @@ def find_companies(*, status=None, name=None, bpn=None, has_bpn=None, company_ro
     if statuses:
         where.append("c.status = ANY(%s)")
         params.append(statuses)
+    if name:
