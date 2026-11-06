@@ -543,3 +543,4 @@ def list_documents(change_request_id: str) -> list[dict]:
     if not _uuid_ok(change_request_id):
         return []
     with _connection() as connection:
+        return _fetch_all(connection, "SELECT * FROM change_request_document"
