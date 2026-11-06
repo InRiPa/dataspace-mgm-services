@@ -206,3 +206,4 @@ def test_activate_takes_over_the_consents():
 
 
 def test_activate_without_consents_keeps_requested():
+    seed(A3, U3, verification="DOCUMENTS", _attestation=None, consents=[])
