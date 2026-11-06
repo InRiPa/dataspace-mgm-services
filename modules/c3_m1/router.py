@@ -126,3 +126,4 @@ def update_from_attestation(companyId: str, body: dict = Body(...),
     return interface.update_company_from_attestation(companyId, body, claims.get("sub"))
 
 
+@router.patch("/companies/{companyId}")
