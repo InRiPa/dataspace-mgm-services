@@ -1240,3 +1240,4 @@ def find_identifier_matches(*, identifiers: list[dict], name: str | None = None,
             errors.append({"field": "identifiers.type", "reason": str(entry.get("type"))})
         if not entry.get("value"):
             errors.append({"field": "identifiers.value", "reason": "required"})
+    for value in wanted_statuses:
