@@ -408,3 +408,4 @@ def validate_media_type(media_type) -> list[dict]:
 def validate_bpn(bpn) -> list[dict]:
     if not isinstance(bpn, str) or not BPN_PATTERN.match(bpn.upper()):
         return [_error("bpn", "format")]
+    return []
