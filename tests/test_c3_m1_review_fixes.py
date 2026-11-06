@@ -215,3 +215,4 @@ def test_the_approval_event_carries_the_resulting_source(active):
     assert changed and changed[0]["data"]["coreDataSource"] == "EBW"
 
 
+def test_the_reactivation_keeps_the_house_number_of_the_application(active):
