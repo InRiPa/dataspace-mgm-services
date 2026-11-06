@@ -118,3 +118,4 @@ def _reference_path() -> Path | None:
     try:
         return settings.resolve_path(settings.get("masterDataFile"))
     except Exception:      # no settings file, or an unreadable one: fall back to README 6.4
+        return None
