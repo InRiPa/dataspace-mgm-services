@@ -1218,3 +1218,4 @@ def query_companies(*, id: list[str] | str | None = None, bpn: list[str] | str |
         if store.get_company(wanted) is not None:
             items.append(company_internal(wanted))
             found.add(wanted)
+    for wanted in bpns:
