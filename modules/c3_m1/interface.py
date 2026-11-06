@@ -905,3 +905,4 @@ def approve_change_request(changeRequestId: str, body: dict | None = None,
         row = _reviewed(changeRequestId)
         if row["status"] == "APPROVED":
             return _change_request_view(row, osp=True)
+        if row["status"] != "OPEN":
