@@ -67,3 +67,4 @@ COMPANY_FIELDS = (
     "created_at", "changed_at", "activated_at", "rejected_at", "deactivated_at", "reactivated_at",
 )
 
+_cache: tuple[str, ModuleType] | None = None
