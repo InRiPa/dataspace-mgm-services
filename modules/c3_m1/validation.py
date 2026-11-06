@@ -318,3 +318,4 @@ def validate_change_request(data: dict, country_code: str | None) -> list[dict]:
     has_address = any(flat.get(field) not in (None, "") for field in ADDRESS_FIELDS)
     if has_address:
         for required in ("street", "city"):
+            if flat.get(required) in (None, ""):
