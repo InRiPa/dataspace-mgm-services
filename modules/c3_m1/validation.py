@@ -222,3 +222,4 @@ def validate_company(data: dict, *, partial: bool = False) -> list[dict]:
     _text(errors, "city", flat.get("city"), required=not partial, min_length=1,
           max_length=CITY_MAX)
     region = flat.get("region")
+    if region not in (None, "") and not (isinstance(region, str) and REGION_PATTERN.match(region)):
