@@ -66,3 +66,4 @@ def _invalid(reason: str, detail: str | None = None) -> Problem:
 
 
 def _b64(part: str) -> bytes:
+    return base64.urlsafe_b64decode(part + "=" * (-len(part) % 4))
