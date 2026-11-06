@@ -84,3 +84,4 @@ def claims(**over) -> dict:
 
 def active_company(application: str = A1, company: str = U1) -> None:
     seed(application, company)
+    step("create_company", companyId=company, applicationId=application)
