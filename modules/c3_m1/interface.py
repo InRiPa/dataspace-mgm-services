@@ -812,3 +812,4 @@ def withdraw_change_request(companyId: str, changeRequestId: str, sub: str | Non
         if row["status"] != "OPEN":
             raise Problem(MODULE, 409, "invalid-state", detail=row["status"])
         closed = store.withdraw_change_request(changeRequestId)
+        store.audit(companyId, sub, "withdrawChangeRequest", changeRequestId)
