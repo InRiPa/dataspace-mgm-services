@@ -132,3 +132,4 @@ def update_own_company(companyId: str, body: dict = Body(...),
     standin.company_scope(MODULE, claims, companyId)
     return interface.update_company(companyId, body, claims.get("sub"))
 
+
