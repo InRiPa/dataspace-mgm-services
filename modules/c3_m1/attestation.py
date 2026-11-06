@@ -180,3 +180,4 @@ def verify(attestation: str, *, now: dt.datetime | None = None) -> dict:
 
     verified_at = _moment(claims.get("verified_at"), "verified_at")
     if verified_at < points - dt.timedelta(hours=config.attestation_max_age_hours()):
+        raise _invalid("too-old", "verified_at is older than the allowed age")
