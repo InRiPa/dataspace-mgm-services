@@ -875,3 +875,4 @@ def _apply_changes(companyId: str, row: dict, changes: dict) -> tuple[list[str],
               for entry in stored if entry["source"] == "BUSINESS_WALLET"]
     merged_identifiers = (list(identifiers) + wallet) if identifiers is not None else \
         [{"type": entry["type"], "value": entry["value"], "source": entry["source"]} for entry in stored]
+    errors = validation.validate_company(_validate_merge(row, fields), partial=False)
