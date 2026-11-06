@@ -171,3 +171,4 @@ def test_an_older_attestation_does_not_reset_newer_data():
     ({"iss": "https://other.example.org"}, "issuer"),
     ({"aud": "other"}, "audience"),
     ({"purpose": "login"}, "claims"),
+    ({"client_id": "fremd"}, "claims"),
