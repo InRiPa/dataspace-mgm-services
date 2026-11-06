@@ -184,3 +184,4 @@ def test_assign_identifier_and_its_errors():
     assert error.value.name == "bpn-mismatch"
     with pytest.raises(Problem) as error:
         step("assign_identifier", companyId=U3, bpn="BPNLIUK2REMLK3F4")
+    assert error.value.name == "bpn-taken"
