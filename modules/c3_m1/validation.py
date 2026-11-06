@@ -249,3 +249,4 @@ def validate_country_code(country_code, *, required: bool = True) -> list[dict]:
     countries = known_countries()
     if countries is not None and country_code not in countries:
         return [_error("country_code", "unknown-country")]
+    return []
