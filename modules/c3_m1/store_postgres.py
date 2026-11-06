@@ -429,3 +429,4 @@ def create_change_request(row: dict) -> dict:
         _check_known(connection, company_id)
         try:
             return _fetch_one(  # type: ignore[return-value]
+                connection,
