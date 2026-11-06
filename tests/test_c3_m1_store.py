@@ -262,3 +262,4 @@ def test_a_closed_request_does_not_block_another_company(make):
     a, b = make(), make()
     store.create_change_request({"company_id": a["id"]})
     assert store.create_change_request({"company_id": b["id"]})["status"] == "OPEN"
+
