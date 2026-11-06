@@ -775,3 +775,4 @@ def create_change_request(companyId: str, data: dict,
 
         created = store.create_change_request({
             "company_id": companyId, "changes": changes, "comment": data.get("comment"),
+            "requested_by": sub, "status": "OPEN"})
