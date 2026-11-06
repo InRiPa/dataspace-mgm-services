@@ -269,3 +269,4 @@ def create_company(input: dict) -> dict:
 
 
 # ----------------------------------------------------------------------------------- steps (8.2)
+def assign_identifier(input: dict) -> dict:
