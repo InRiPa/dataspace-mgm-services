@@ -286,3 +286,4 @@ def test_decide_enforces_the_decision_status(make):
 
 
 def test_list_change_requests_filters_and_order(make):
+    company = make()
