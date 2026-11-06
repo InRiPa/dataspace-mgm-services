@@ -329,3 +329,4 @@ def list_roles(company_id: str) -> dict[str, str]:
                                       "WHERE company_id = %s", (company_id,))
     return {row["company_role"]: row["status"] for row in rows}
 
+
