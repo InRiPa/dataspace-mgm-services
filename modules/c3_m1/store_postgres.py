@@ -384,3 +384,4 @@ def list_consents(company_id: str) -> list[dict]:
                                       " ORDER BY agreement_key", (company_id,))
 
 
+def set_consent(company_id: str, agreement_key: str, *, version: str | None = None,
