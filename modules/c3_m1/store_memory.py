@@ -288,3 +288,4 @@ def set_consent(company_id: str, agreement_key: str, *, version: str | None = No
     """One row per company and terms, with the latest state (README 5)."""
     _check_known(company_id)
     if not agreement_key:
+        raise ValueError("agreement_key: required")
