@@ -88,3 +88,4 @@ def _load_keys() -> list[dict]:
     except (httpx.HTTPError, ValueError) as error:
         raise Problem(MODULE, 502, "upstream-error",
                       detail=f"JWKS not reachable: {error}", retryable=True) from error
+    _cache.update({"keys": keys, "fetched_at": now})
