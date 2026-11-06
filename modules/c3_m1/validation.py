@@ -35,3 +35,4 @@ resolved relative to the settings file, OP-13). If the file or a type is missing
 patterns of README 6.4 apply.
 """
 from __future__ import annotations
+
