@@ -129,3 +129,4 @@ def attestation_jwks_file() -> Path | None:
 
 
 def attestation_client_ids() -> list[str]:
+    """Allowed `client_id` values of a verification attestation; empty means no check."""
