@@ -227,3 +227,4 @@ def set_identifiers(company_id: str, identifiers: list[dict]) -> list[dict]:
 def get_role(company_id: str, company_role: str) -> dict | None:
     return _copy(_roles.get(company_id, {}).get(company_role))
 
+
