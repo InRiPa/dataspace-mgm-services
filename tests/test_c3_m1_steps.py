@@ -250,3 +250,4 @@ def test_bulk_query_keeps_the_order_and_reports_the_missing():
         interface.query_companies(id=[U1], bpn=["BPNLIUK2REMLK3F4"])
 
 
+def test_identifier_matches_normalise_and_exclude():
