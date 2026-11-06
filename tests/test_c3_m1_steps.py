@@ -211,3 +211,4 @@ def test_activate_without_consents_keeps_requested():
     step("assign_identifier", companyId=U3, bpn="BPNL00000000U3OZ")
     with pytest.raises(Problem) as error:
         step("activate_company", companyId=U3, applicationId=A3)
+    assert error.value.status == 409 and error.value.name == "roles-without-consent"
