@@ -49,3 +49,4 @@ from .validation import value_normalized
 
 companies: dict[str, dict] = {}
 _identifiers: dict[str, dict[str, dict]] = {}
+_roles: dict[str, dict[str, dict]] = {}
