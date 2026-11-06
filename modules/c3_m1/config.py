@@ -180,3 +180,4 @@ def osp_company_id() -> str:
 
 
 def dataspace_name() -> str | None:
+    """`dataspace.name` for the responses to people (OP-14); not company data."""
