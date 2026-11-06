@@ -188,3 +188,4 @@ def test_set_identifiers_normalises_and_replaces(make):
     store.set_identifiers(company["id"], [{"type": "LEI_CODE", "value": "A" * 20}])
     assert [row["type"] for row in store.list_identifiers(company["id"])] == ["LEI_CODE"]
 
+
