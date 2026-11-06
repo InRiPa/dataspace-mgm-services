@@ -225,3 +225,4 @@ def test_roles_report_status_and_none(make):
     assert store.remove_role(company["id"], "SERVICE_PROVIDER") is None
 
 
+def test_add_role_enforces_the_enums(make):
