@@ -455,3 +455,4 @@ def list_change_requests(*, company_id: str | None = None, status=None,
     """7.5 (newest first) and 7.14 (oldest first, the default), paged."""
     statuses = [status] if isinstance(status, str) else list(status or [])
     for value in statuses:
+        _check_enum(value, CHANGE_REQUEST_STATUSES, "status")
