@@ -540,3 +540,4 @@ def _role_state(company: str, lang: str) -> list[dict]:
                             "name": (term.get("title") or {}).get(lang) or (term.get("title") or {}).get("en"),
                             "names": term.get("title") or {},
                             "documentUrl": (term.get("documentUrls") or {}).get(lang)
+                            or (term.get("documentUrls") or {}).get("en"),
