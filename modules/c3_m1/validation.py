@@ -144,3 +144,4 @@ def known_countries() -> set[str] | None:
     data = _reference_data()
     if data is None:
         return None
+    return {c["code"] for c in data.get("countries") or [] if isinstance(c, dict) and c.get("code")}
