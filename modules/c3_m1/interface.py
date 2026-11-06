@@ -910,3 +910,4 @@ def approve_change_request(changeRequestId: str, body: dict | None = None,
         if row["requested_by"] and row["requested_by"] == sub:
             raise Problem(MODULE, 409, "same-person")
         company = get_company(row["company_id"])
+        if company["status"] != "ACTIVE":
