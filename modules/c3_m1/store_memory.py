@@ -25,3 +25,4 @@
 """In-memory transport of the C3-M1 repository (README 5), used while `DATABASE_URL` is empty.
 
 One function per table, rows are dicts with the snake_case field names of README 5; the router and
+the interface map them to camelCase. The shape mirrors the tables one-to-one, so the PostgreSQL
