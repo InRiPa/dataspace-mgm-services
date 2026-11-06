@@ -465,3 +465,4 @@ def correct_company(companyId: str, body: dict, sub: str | None = None) -> dict:
         fields = {key: value for key, value in validation.flat_fields(body).items()
                   if key not in ("reason", "identifiers")}
 
+        locked = [key for key in fields if key not in CORE_TEXT_FIELDS + ("short_name",)]
