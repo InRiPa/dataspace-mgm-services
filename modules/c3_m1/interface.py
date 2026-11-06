@@ -1188,3 +1188,4 @@ def reactivate_company(input: dict) -> dict:
 
 
 # --------------------------------------------------------------------------- queries (9.1 - 9.3)
+def query_company_role_catalog(*, lang: str | None = None, **_other) -> list[dict]:
