@@ -244,3 +244,4 @@ def find_companies(*, status=None, name=None, bpn=None, has_bpn=None, company_ro
         where.append("c.status = ANY(%s)")
         params.append(statuses)
     if name:
+        where.append("lower(regexp_replace(c.name, '\\s+', ' ', 'g')) LIKE %s")
