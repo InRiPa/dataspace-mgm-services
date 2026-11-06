@@ -45,3 +45,4 @@ MODULE = "c3-m1"
 #: README 4, example column: the default of every variable that has one (FRAMEWORK 4.8).
 DEFAULTS = {
     "LANGUAGES": "de,en",
+    "QUERY_MAX_COMPANIES": "100",
