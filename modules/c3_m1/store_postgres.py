@@ -539,3 +539,4 @@ def get_document(document_id: str | None) -> dict | None:
                           (document_id,))
 
 
+def list_documents(change_request_id: str) -> list[dict]:
