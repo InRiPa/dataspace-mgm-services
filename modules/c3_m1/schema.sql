@@ -54,3 +54,4 @@ CREATE TABLE company (
     reactivated_at         timestamptz,
     CONSTRAINT company_name_length      CHECK (char_length(name) BETWEEN 1 AND 160 AND name = btrim(name)),
     CONSTRAINT company_short_name_length CHECK (short_name IS NULL OR char_length(short_name) <= 100),
+    CONSTRAINT company_street_length    CHECK (char_length(street) BETWEEN 1 AND 255),
