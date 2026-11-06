@@ -210,3 +210,4 @@ def validate_company(data: dict, *, partial: bool = False) -> list[dict]:
     """Field rules of README 5. `partial`: only the fields given are checked."""
     flat = flat_fields(data)
     errors: list[dict] = []
+    _text(errors, "name", flat.get("name"), required=not partial, min_length=1,
