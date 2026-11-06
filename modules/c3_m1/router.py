@@ -45,3 +45,4 @@ router = standin.router(MODULE)
 
 def reset() -> None:
     interface.reset()
+
