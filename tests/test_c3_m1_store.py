@@ -557,3 +557,4 @@ def test_file_name_rules():
     assert v.validate_file_name("auszug.pdf") == []
     assert v.validate_file_name("x" * 201) == [{"field": "file_name", "reason": "too-long"}]
     assert {"field": "file_name", "reason": "path-parts"} in v.validate_file_name("tmp/auszug.pdf")
+    assert {"field": "file_name", "reason": "path-parts"} in v.validate_file_name(r"tmp\auszug.pdf")
