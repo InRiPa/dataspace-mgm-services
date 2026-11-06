@@ -1046,3 +1046,4 @@ def deactivate_company(input: dict) -> dict:
         row = get_company(cid)
         if row["status"] == "INACTIVE":
             _check_deactivation_reason(reason)
+            if reason == "TRANSFERRED" and row["deactivation_reason"] == "MANUAL":
