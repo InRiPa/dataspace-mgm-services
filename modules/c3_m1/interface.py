@@ -1008,3 +1008,4 @@ def update_company_from_attestation(companyId: str, body: dict, sub: str | None 
             mismatched.append("countryCode")
         if mismatched:
             raise Problem(MODULE, 409, "company-mismatch", fields=mismatched)
+        verified_at = claims["_verified_at"].isoformat()
