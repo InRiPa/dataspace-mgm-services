@@ -98,3 +98,4 @@ def test_a_valid_attestation_changes_the_core_data():
     active_company()
     answer = update()
     assert set(answer["changedFields"]) == {"name", "street", "houseNumber", "postalCode", "region"}
+    row = store.get_company(U1)
