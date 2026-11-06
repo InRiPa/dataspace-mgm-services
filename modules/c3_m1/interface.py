@@ -261,3 +261,4 @@ def create_company(input: dict) -> dict:
                            source_ref=application_id)
         _audit(cid, "stepCreateCompany", input, {"applicationId": application_id})
         created = get_company(cid)
+        events.publish(MODULE, "CompanyCreated", {"companyId": cid, "applicationId": application_id,
