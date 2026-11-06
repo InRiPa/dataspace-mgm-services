@@ -53,3 +53,4 @@ from .store import (CHANGE_REQUEST_STATUSES, COMPANY_FIELDS, CONSENT_STATUSES, C
 from .validation import value_normalized
 
 SCHEMA = Path(__file__).with_name("schema.sql")
+TABLES = ("audit_log", "used_attestation", "change_request_document", "change_request", "consent",
