@@ -575,3 +575,4 @@ def add_company_role(companyId: str, body: dict, sub: str | None = None,
         if config.assignable_by(role) != "COMPANY":
             raise Problem(MODULE, 409, "role-not-assignable")
         if store.role_status(companyId, role) == "ACTIVE":
+            return _role_state(companyId, lang or "en")
