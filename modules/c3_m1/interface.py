@@ -843,3 +843,4 @@ def list_change_requests(*, status: list[str] | str | None = None,
 
 
 def get_change_request(changeRequestId: str) -> dict:
+    """7.15: the request with the current state of the company."""
