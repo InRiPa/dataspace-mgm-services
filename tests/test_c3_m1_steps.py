@@ -49,3 +49,4 @@ ATTESTATION = {"attestationId": "3f6c1e2a-7b4d-4e8f-9a51-2c0d6b8e4f17",
                "verifiedAt": "2026-11-06T08:00:00+00:00"}
 CONSENTS = [{"agreementKey": "terms-active-participant", "version": "1.0", "language": "en",
              "givenAt": "2026-11-06T08:05:00+00:00"},
+            {"agreementKey": "security-regulations", "version": "1.0", "language": "en",
