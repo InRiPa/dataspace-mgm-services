@@ -35,3 +35,4 @@ from portal_common.problems import Problem
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
 
+from test_c3_m1_api import P1, P3, S1, S2, U1, U2, call
