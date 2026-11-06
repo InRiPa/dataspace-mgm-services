@@ -154,3 +154,4 @@ def test_the_correction_keeps_old_values_in_the_audit(client, active):
     assert entry["details"]["old"]["street"] == "Musterstraße"
     assert entry["details"]["new"]["street"] == "Neue Straße"
 
+
