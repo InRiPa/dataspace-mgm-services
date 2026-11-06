@@ -195,3 +195,4 @@ def create_company(row: dict) -> dict:
     placeholders = ", ".join(f"%({field})s" for field in COMPANY_FIELDS)
     with _connection() as connection:
         try:
+            created = _fetch_one(connection,
