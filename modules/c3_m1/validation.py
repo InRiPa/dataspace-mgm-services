@@ -139,3 +139,4 @@ def _reference_data() -> dict | None:
     return data
 
 
+def known_countries() -> set[str] | None:
