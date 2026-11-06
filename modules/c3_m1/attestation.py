@@ -157,3 +157,4 @@ def verify(attestation: str, *, now: dt.datetime | None = None) -> dict:
     if config.attestation_audience() not in audience:
         raise _invalid("audience", f"aud {audience!r}")
 
+    expires, issued = _moment(claims.get("exp"), "exp"), _moment(claims.get("iat"), "iat")
