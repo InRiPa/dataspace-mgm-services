@@ -333,3 +333,4 @@ def test_audit_entry_is_written_and_readable(make):
     entries = store.list_audit(company["id"])
     assert len(entries) == 1
     assert entries[0]["operation"] == "patchCompany"
+    assert entries[0]["details"]["shortName"]["new"] == "Kurz"
