@@ -380,3 +380,4 @@ def list_consents(company_id: str) -> list[dict]:
     if not _uuid_ok(company_id):
         return []
     with _connection() as connection:
+        return _fetch_all(connection, "SELECT * FROM consent WHERE company_id = %s"
