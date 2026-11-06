@@ -241,3 +241,4 @@ def validate_company(data: dict, *, partial: bool = False) -> list[dict]:
     return errors
 
 
+def validate_country_code(country_code, *, required: bool = True) -> list[dict]:
