@@ -162,3 +162,4 @@ def remove_company_role(companyId: str, companyRole: str, lang: str | None = Non
 # ------------------------------------------------------------------------------ change requests (7.4 - 7.6)
 @router.post("/companies/{companyId}/change-requests", status_code=201)
 def create_change_request(companyId: str, data: str = Form(...),
+                          documents: list[UploadFile] = File(default=[]),
