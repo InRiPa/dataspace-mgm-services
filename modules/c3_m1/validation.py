@@ -358,3 +358,4 @@ def validate_file_name(file_name) -> list[dict]:
     return errors
 
 
+def detect_media_type(content) -> str | None:
