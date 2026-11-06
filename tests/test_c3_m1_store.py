@@ -166,3 +166,4 @@ def test_find_companies_company_role_matches_active_roles_only(make):
     assert store.find_companies(company_role="APP_PROVIDER")[1] == 0
 
 
+def test_find_companies_is_newest_first_and_paged(make):
