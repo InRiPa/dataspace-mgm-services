@@ -940,3 +940,4 @@ def decline_change_request(changeRequestId: str, body: dict | None = None,
             return _change_request_view(row, osp=True)
         if row["status"] != "OPEN":
             raise Problem(MODULE, 409, "invalid-state", detail=row["status"])
+        errors = validation.validate_decision_reason(reason)
