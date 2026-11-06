@@ -300,3 +300,4 @@ def set_identifiers(company_id: str, identifiers: list[dict]) -> list[dict]:
         for row in rows.values():
             connection.execute(
                 "INSERT INTO company_identifier (company_id, type, value, value_normalized, source,"
+                " created_at, changed_at) VALUES (%(company_id)s, %(type)s, %(value)s,"
