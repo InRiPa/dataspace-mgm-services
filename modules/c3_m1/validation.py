@@ -337,3 +337,4 @@ def validate_comment(comment) -> list[dict]:
     _text(errors, "comment", comment, required=True, min_length=1, max_length=COMMENT_MAX)
     return errors
 
+
