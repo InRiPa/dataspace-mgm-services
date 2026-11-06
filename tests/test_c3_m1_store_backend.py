@@ -115,3 +115,4 @@ def test_a_missing_driver_answers_not_implemented(monkeypatch, postgres_url):
     """DATABASE_URL set but no driver: 501 `not-implemented`, not a 500."""
     from portal_common.problems import Problem
 
+    monkeypatch.setenv("DATABASE_URL", postgres_url)
