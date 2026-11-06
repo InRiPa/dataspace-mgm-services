@@ -362,3 +362,4 @@ def activate_company(input: dict) -> dict:
             fields["core_data_verified_at"] = _now()
         store.update_company(cid, **fields)
         _audit(cid, "stepActivateCompany", input, {"applicationId": application_id,
+                                                   "companyRoles": sorted(active)})
