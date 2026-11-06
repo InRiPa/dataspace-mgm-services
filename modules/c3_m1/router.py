@@ -200,3 +200,4 @@ def list_change_requests(status: list[str] | None = Query(None), companyId: str 
     return interface.list_change_requests(status=status, companyId=companyId, page=page, size=size)
 
 
+@router.get("/osp/change-requests/{changeRequestId}")
