@@ -253,3 +253,4 @@ def create_company(input: dict) -> dict:
             "core_data_source": "EBW" if verification == "EBW" else "MANUAL",
             "core_data_verified_at": attestation.get("verifiedAt") if verification == "EBW" else None,
             "verification_ref": attestation.get("attestationId") if verification == "EBW" else None,
+            "application_id": application_id,
