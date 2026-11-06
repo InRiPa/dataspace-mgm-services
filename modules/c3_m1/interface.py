@@ -1140,3 +1140,4 @@ def reactivate_company(input: dict) -> dict:
                 mismatched.append("EBWOID")
         if mismatched:
             raise Problem(MODULE, 409, "company-mismatch", fields=mismatched, retryable=False)
+
