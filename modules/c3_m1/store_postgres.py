@@ -569,3 +569,4 @@ def is_used(jti: str) -> bool:
 
 # ------------------------------------------------------------------- audit_log (README 5, 4.3)
 def audit(company_id: str | None, sub: str | None, operation: str,
+          object_id: str | None = None, details: dict | None = None) -> dict:
