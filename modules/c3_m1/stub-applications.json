@@ -51,3 +51,4 @@
         "identifiers": [ { "type": "VAT_ID", "value": "DE111111111", "source": "APPLICANT" } ]
       },
       "companyRoles": [ "ACTIVE_PARTICIPANT" ],
+      "consents": []
