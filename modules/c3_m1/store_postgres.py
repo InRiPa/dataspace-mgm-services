@@ -527,3 +527,4 @@ def add_document(change_request_id: str, *, file_name: str, media_type: str,
             " size_bytes, sha256, content, created_at) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)"
             " RETURNING *",
             (str(uuid.uuid4()), change_request_id, file_name, media_type,
+             len(content) if size_bytes is None else size_bytes,
