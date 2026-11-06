@@ -351,3 +351,4 @@ def activate_company(input: dict) -> dict:
 
         applicant = (application.get("applicant") or {}).get("sub")
         for role in active:
+            store.add_role(cid, role, status="ACTIVE", source_kind="APPLICATION",
