@@ -337,3 +337,4 @@ def test_audit_entry_is_written_and_readable(make):
     assert store.list_audit()[1]["sub"] == ""       # steps have no sub
     assert store.list_audit("unknown") == []
 
+
