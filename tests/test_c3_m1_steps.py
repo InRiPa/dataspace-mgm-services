@@ -217,3 +217,4 @@ def test_activate_without_consents_keeps_requested():
 
 # ---------------------------------------------------------------------------------- 13.6, 13.7
 def test_reject_company():
+    seed(A3, U3, verification="DOCUMENTS", _attestation=None, consents=[])
