@@ -103,3 +103,4 @@ def test_bpn_of_a_rejected_company_frees_it(make):
     assert make(bpn="BPNL00000000AAAA")["bpn"] == "BPNL00000000AAAA"
     assert store.get_company(rejected["id"])["bpn"] == "BPNL00000000AAAA"
 
+
