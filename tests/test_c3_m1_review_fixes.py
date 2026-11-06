@@ -67,3 +67,4 @@ def active(client):
         uid = iam.find(person) or ""
         iam.add_portal_roles(uid, [role])
     iam.bind(iam.find(P1) or "", U1, "BPNLIUK2REMLK3F4")
+    return {"U1": U1}
