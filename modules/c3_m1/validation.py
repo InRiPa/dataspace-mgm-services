@@ -261,3 +261,4 @@ def validate_identifier(entry: dict, country_code: str | None, field: str) -> li
     if kind in (None, ""):
         errors.append(_error(f"{field}.type", "required"))
     elif kind not in IDENTIFIER_TYPES:
+        errors.append(_error(f"{field}.type", "unknown"))
