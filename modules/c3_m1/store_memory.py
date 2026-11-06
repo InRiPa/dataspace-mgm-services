@@ -393,3 +393,4 @@ def add_document(change_request_id: str, *, file_name: str, media_type: str,
 
 
 def get_document(document_id: str | None) -> dict | None:
+    return _copy(_documents.get(document_id)) if document_id else None
