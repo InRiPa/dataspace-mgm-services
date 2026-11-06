@@ -113,3 +113,4 @@ CREATE TABLE company_role_assignment (
 CREATE TABLE consent (
     company_id        uuid         NOT NULL REFERENCES company (id),
     agreement_key     text         NOT NULL,
+    agreement_version text,
