@@ -202,3 +202,4 @@ def flat_fields(data: dict) -> dict:
             flat.update({field_name(k): v for k, v in value.items()})
         else:
             flat[field_name(key)] = value
+    return flat
