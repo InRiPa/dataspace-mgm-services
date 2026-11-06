@@ -199,3 +199,4 @@ def flat_fields(data: dict) -> dict:
     flat = {}
     for key, value in data.items():
         if key == "address" and isinstance(value, dict):
+            flat.update({field_name(k): v for k, v in value.items()})
