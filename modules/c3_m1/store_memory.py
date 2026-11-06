@@ -317,3 +317,4 @@ def create_change_request(row: dict) -> dict:
     _check_enum(status, CHANGE_REQUEST_STATUSES, "status")
     if status == "OPEN" and open_change_request(company_id):
         raise ValueError(f"company {company_id} already has an open change request")
+    created = {
