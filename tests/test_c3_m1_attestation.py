@@ -132,3 +132,4 @@ def test_another_ebwoid_is_a_company_mismatch():
     assert error.value.ext["fields"] == ["EBWOID"]
 
 
+def test_an_unconfirmed_representation_is_refused():
