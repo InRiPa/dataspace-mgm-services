@@ -262,3 +262,4 @@ def add_role(company_id: str, company_role: str, *, status: str = "ACTIVE",
     _roles[company_id][company_role] = row
     return _copy(row)  # type: ignore[return-value]
 
+
