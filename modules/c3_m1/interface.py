@@ -882,3 +882,4 @@ def _apply_changes(companyId: str, row: dict, changes: dict) -> tuple[list[str],
     if errors:
         raise Problem(MODULE, 400, "validation", errors=errors)
 
+    core_changed = any(_differs_field(row, key, value) for key, value in fields.items())
