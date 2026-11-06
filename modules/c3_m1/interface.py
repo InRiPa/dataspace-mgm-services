@@ -496,3 +496,4 @@ def correct_company(companyId: str, body: dict, sub: str | None = None) -> dict:
                 updates["verification_ref"] = None
         store.update_company(companyId, **updates)
         if identifiers is not None:
+            store.set_identifiers(companyId, identifiers)
