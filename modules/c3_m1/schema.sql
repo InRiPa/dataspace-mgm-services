@@ -36,3 +36,4 @@ CREATE TABLE company (
     address_addition       text,
     postal_code            text,
     city                   text                     NOT NULL,
+    region                 text,
