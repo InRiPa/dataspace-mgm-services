@@ -289,3 +289,4 @@ def validate_identifiers(identifiers, country_code: str | None,
     """At least one identifier, at most one per type, format per country (6.4)."""
     if identifiers is None:
         return [_error("identifiers", "missing")]
+    if not isinstance(identifiers, list):
