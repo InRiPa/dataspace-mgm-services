@@ -351,3 +351,4 @@ def test_the_reactivation_needs_an_approved_application(active):
     with pytest.raises(Problem) as error:
         step("reactivate_company", companyId=U1, applicationId="a0000005-0000-4000-8000-000000000005")
     assert error.value.status == 409 and error.value.name == "invalid-state"
+
