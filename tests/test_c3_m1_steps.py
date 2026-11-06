@@ -274,3 +274,4 @@ def test_the_built_in_stand_in_reads_the_stub_file(tmp_path, monkeypatch):
         "companyData": {"legalName": "Beispiel Maschinenbau GmbH", "address": ADDRESS,
                         "identifiers": [{"type": "EBWOID", "value": "EBWOID-DE-0000000001",
                                          "source": "ATTESTATION"},
+                                        {"type": "VAT_ID", "value": "DE123456789",
