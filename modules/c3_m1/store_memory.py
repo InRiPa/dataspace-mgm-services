@@ -289,3 +289,4 @@ def set_consent(company_id: str, agreement_key: str, *, version: str | None = No
     _check_known(company_id)
     if not agreement_key:
         raise ValueError("agreement_key: required")
+    _check_enum(status, CONSENT_STATUSES, "status")
