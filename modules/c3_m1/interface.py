@@ -1057,3 +1057,4 @@ def deactivate_company(input: dict) -> dict:
         if row["status"] != "ACTIVE":
             raise Problem(MODULE, 409, "invalid-state", detail=row["status"], retryable=False)
         _check_deactivation_reason(reason)
+        store.update_company(cid, status="INACTIVE", deactivation_reason=reason,
