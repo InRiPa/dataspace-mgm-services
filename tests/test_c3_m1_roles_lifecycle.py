@@ -189,3 +189,4 @@ def test_no_token_attestation_document_or_person_name_leaks(active, _keys):
     interface.deactivate_company_by_staff(U1, {"reason": "Grund"}, S2_SUB)
 
     dumps = [str(event["data"]) for event in events.RELAY.log] + \
+            [str(entry["details"]) for entry in store.list_audit(U1)]
