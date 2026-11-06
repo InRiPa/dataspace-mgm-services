@@ -115,3 +115,4 @@ def test_the_reactivation_with_a_new_attestation(active):
     seed(A5, U1, status="APPROVED", kind="REACTIVATION", companyData={
         "legalName": "Beispiel Maschinenbau GmbH", "address": dict(ADDRESS, streetName="Musterstraße",
                                                                    streetNumber="7"),
+        "identifiers": [{"type": "EBWOID", "value": "EBWOID-DE-0000000001", "source": "ATTESTATION"},
