@@ -478,3 +478,4 @@ def correct_company(companyId: str, body: dict, sub: str | None = None) -> dict:
             errors += validation.validate_identifiers(list(identifiers) + wallet, row["country_code"])
             errors += _wallet_identifier_conflict(row, identifiers)
         errors += validation.validate_company(_validate_merge(row, fields), partial=False)
+        if errors:
