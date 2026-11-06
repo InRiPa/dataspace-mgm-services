@@ -373,3 +373,4 @@ def activate_company(input: dict) -> dict:
 def reject_company(input: dict) -> dict:
     """8.4: `REJECTED`, final; an assigned BPN becomes free."""
     cid = input.get("companyId")
+    with store.lock(cid):
