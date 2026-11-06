@@ -254,3 +254,4 @@ def description(company_role: str, lang: str) -> str | None:
     return descriptions.get(lang) or descriptions.get("en")
 
 
+def _path(root: Path, value_: str) -> Path | None:
