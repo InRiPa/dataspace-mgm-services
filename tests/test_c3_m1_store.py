@@ -307,3 +307,4 @@ def test_documents_are_stored_with_checksum(make):
                                   media_type="application/pdf", content=b"%PDF-1.7 test")
     assert document["size_bytes"] == len(b"%PDF-1.7 test")
     assert len(document["sha256"]) == 64
+    assert store.get_document(document["id"])["file_name"] == "auszug.pdf"
