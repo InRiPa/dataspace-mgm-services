@@ -149,3 +149,4 @@ def test_the_correction_reports_wallet_conflicts_as_validation(client, active):
 
 def test_the_correction_keeps_old_values_in_the_audit(client, active):
     call(client, "PATCH", f"/api/c3-m1/osp/companies/{U1}", S2,
+         json={"address": {"street": "Neue Straße"}, "reason": "Hinweis"})
