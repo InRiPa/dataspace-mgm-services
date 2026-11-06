@@ -1166,3 +1166,4 @@ def reactivate_company(input: dict) -> dict:
         updates |= {"status": "ACTIVE", "deactivation_reason": None, "reactivated_at": _now()}
         if verification == "EBW":
             updates |= {"core_data_source": "EBW",
+                        "core_data_verified_at": attestation_claims.get("verifiedAt"),
