@@ -1052,3 +1052,4 @@ def deactivate_company(input: dict) -> dict:
                             {"deactivationReason": ["MANUAL", "TRANSFERRED"],
                              "processId": input.get("processId"),
                              "stepRunId": input.get("stepRunId")})
+            return standin.step_reply(input, {"companyId": cid, "status": row["status"],
