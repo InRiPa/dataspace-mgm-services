@@ -263,3 +263,4 @@ def validate_identifier(entry: dict, country_code: str | None, field: str) -> li
     elif kind not in IDENTIFIER_TYPES:
         errors.append(_error(f"{field}.type", "unknown"))
     if "source" in entry and entry["source"] not in IDENTIFIER_SOURCES:
+        errors.append(_error(f"{field}.source", "unknown"))
