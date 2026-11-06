@@ -114,3 +114,4 @@ def _check_enum(value, allowed: tuple[str, ...], field: str) -> None:
 def _uuid_ok(value) -> bool:
     """A path parameter may be anything; PostgreSQL refuses a non-UUID instead of answering empty."""
     try:
+        uuid.UUID(str(value))
