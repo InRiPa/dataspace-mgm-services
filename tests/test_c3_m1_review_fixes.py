@@ -255,3 +255,4 @@ def test_the_readme_data_files_resolve_without_configuration(monkeypatch):
 
 
 def test_an_address_part_needs_street_and_city(active):
+    with pytest.raises(Problem) as error:
