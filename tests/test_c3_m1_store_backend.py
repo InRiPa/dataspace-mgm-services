@@ -125,3 +125,4 @@ def test_a_missing_driver_answers_not_implemented(monkeypatch, postgres_url):
         return real_import(name, package)
 
     monkeypatch.setattr(store.importlib, "import_module", fake_import)
+    with pytest.raises(Problem) as error:
