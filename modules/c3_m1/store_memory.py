@@ -141,3 +141,4 @@ def create_company(row: dict) -> dict:
         "created_at": row.get("created_at") or now, "changed_at": row.get("changed_at") or now,
     })
     companies[str(created["id"])] = created
+    return _copy(created)  # type: ignore[return-value]
