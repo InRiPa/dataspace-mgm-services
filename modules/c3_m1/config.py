@@ -232,3 +232,4 @@ def role_catalogue() -> dict[str, dict]:
     without configuration (FRAMEWORK 4.8, OPEN-QUESTIONS 7).
     """
     path = company_roles_file()
+    if path is None:
