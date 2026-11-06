@@ -59,3 +59,4 @@ DEFAULTS = {
     "STUB_APPLICATIONS_FILE": "stub-applications.json",
     "ATTESTATION_JWKS_FILE": "stub-ebw-jwks.json",
 }
+
