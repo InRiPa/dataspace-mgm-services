@@ -1203,3 +1203,4 @@ def query_company(*, companyId: str) -> dict:
 
 
 def query_companies(*, id: list[str] | str | None = None, bpn: list[str] | str | None = None,
+                    **_other) -> dict:
