@@ -81,3 +81,4 @@ def reset() -> None:
         target = store.backend_memory()
         target.reset()
     attestation.reset()
+    seed = config.seed_company()
