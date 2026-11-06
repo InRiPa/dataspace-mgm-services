@@ -274,3 +274,4 @@ def assign_identifier(input: dict) -> dict:
     cid, raw = input.get("companyId"), input.get("bpn") or ""
     with store.lock(cid):
         row = get_company(cid)
+        errors = validation.validate_bpn(raw)
