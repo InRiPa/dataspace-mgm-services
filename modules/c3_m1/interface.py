@@ -358,3 +358,4 @@ def activate_company(input: dict) -> dict:
                                   source_kind="APPLICATION", source_ref=application_id,
                                   consented_by=applicant, consented_at=given[key].get("givenAt"))
         fields = {"status": "ACTIVE", "activated_at": _now()}
+        if row["core_data_source"] == "MANUAL" and not row["core_data_verified_at"]:
