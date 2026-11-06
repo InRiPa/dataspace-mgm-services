@@ -28,3 +28,4 @@
 
 - empty: `store_memory`, the in-memory transport. Every state is in the process, so the module
   runs without a database (tests, `demo.py`, the hackathon installation).
+- set: `store_postgres`, the module's own database `c3_m1` (README 4) with the tables of
