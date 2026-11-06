@@ -123,3 +123,4 @@ def test_the_short_name_is_changed_and_locked_fields_refused(client, active):
     assert audit["details"]["old"]["short_name"] is None
 
     response = call(client, "PATCH", f"/api/c3-m1/companies/{U1}", P1,
+                    json={"shortName": "BMW"})
