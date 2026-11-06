@@ -157,3 +157,4 @@ def pattern_for(identifier_type: str, country_code: str | None) -> str | None:
             patterns = entry.get("patterns") or {}
             pattern = patterns.get(country_code or "") or patterns.get("Worldwide")
             if pattern:
+                return pattern
