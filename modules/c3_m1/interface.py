@@ -815,3 +815,4 @@ def withdraw_change_request(companyId: str, changeRequestId: str, sub: str | Non
         store.audit(companyId, sub, "withdrawChangeRequest", changeRequestId)
         events.publish(MODULE, "CompanyChangeRequestClosed",
                        {"companyId": companyId, "changeRequestId": changeRequestId,
+                        "outcome": "WITHDRAWN"})
