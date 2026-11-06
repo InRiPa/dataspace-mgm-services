@@ -61,3 +61,4 @@ DEFAULTS = {
 }
 
 
+def _fallback(path: Path, *candidates: Path) -> Path:
