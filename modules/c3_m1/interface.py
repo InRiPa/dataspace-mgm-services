@@ -1129,3 +1129,4 @@ def reactivate_company(input: dict) -> dict:
         if verification == "EBW" and validation.same_value(row["name"], data.get("legalName")):
             fields["name"] = row["name"]   # 6.3: an equal value keeps its stored spelling
         mismatched = []
+        if fields["country_code"] != row["country_code"]:
