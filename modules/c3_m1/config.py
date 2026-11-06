@@ -24,3 +24,4 @@
 #################################################################################
 """Configuration of C3-M1: the variables of README 4, read at call time and never at import.
 
+FRAMEWORK 4.8 makes the example column the default, so a module starts without any setting. Values
