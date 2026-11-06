@@ -1073,3 +1073,4 @@ def _check_deactivation_reason(reason) -> None:
                       errors=[{"field": "reason", "reason": "MANUAL or TRANSFERRED"}],
                       retryable=False)
 
+
