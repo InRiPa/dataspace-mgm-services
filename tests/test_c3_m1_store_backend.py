@@ -52,3 +52,4 @@ def postgres_url() -> str:
 
 
 @pytest.fixture
+def postgres(monkeypatch, postgres_url):
