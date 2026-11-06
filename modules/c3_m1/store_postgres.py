@@ -507,3 +507,4 @@ def withdraw_change_request(change_request_id: str, *, closed_at: str | None = N
             raise ValueError(f"status: {row['status']} is not OPEN")
         return _fetch_one(connection,
                           "UPDATE change_request SET status = 'WITHDRAWN', closed_at = %s"
+                          " WHERE id = %s RETURNING *", (closed_at or _now(), change_request_id))
