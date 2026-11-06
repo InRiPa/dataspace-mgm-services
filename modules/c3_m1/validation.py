@@ -86,3 +86,4 @@ ALIASES = {
     "addressAddition": "address_addition", "postalCode": "postal_code",
     "countryCode": "country_code", "coreDataSource": "core_data_source",
     "bpnAssignedAt": "bpn_assigned_at", "coreDataVerifiedAt": "core_data_verified_at",
+    "verificationRef": "verification_ref", "applicationId": "application_id",
