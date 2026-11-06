@@ -91,3 +91,4 @@ def test_a_request_without_a_change_is_refused(active):
 
 
 # ------------------------------------------------------------------------------------------ 13.14
+def test_review_download_and_approval_of_a_manual_company(active):
