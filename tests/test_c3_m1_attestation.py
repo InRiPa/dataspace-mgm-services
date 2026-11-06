@@ -152,3 +152,4 @@ def test_a_foreign_key_is_a_signature_error():
     assert error.value.name == "attestation-invalid" and error.value.ext["reason"] == "signature"
 
 
+def test_a_too_old_attestation_is_refused():
