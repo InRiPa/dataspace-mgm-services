@@ -416,3 +416,4 @@ def _validate_merge(row: dict, body: dict) -> dict:
     return merged
 
 
+def _identifiers_from(body: dict) -> list[dict] | None:
