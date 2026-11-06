@@ -1104,3 +1104,4 @@ def reactivate_company(input: dict) -> dict:
         if row["status"] != "INACTIVE":
             raise Problem(MODULE, 409, "invalid-state", detail=row["status"], retryable=False)
 
+        application = _application(application_id)
