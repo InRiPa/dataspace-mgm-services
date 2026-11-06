@@ -194,3 +194,4 @@ def _application(application_id: str | None) -> dict:
     try:
         application = neighbours.query(MODULE, "c1-m2", "get_application_internal",
                                        applicationId=application_id)
+    except Problem:
