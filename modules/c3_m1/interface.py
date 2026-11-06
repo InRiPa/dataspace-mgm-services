@@ -1055,3 +1055,4 @@ def deactivate_company(input: dict) -> dict:
             return standin.step_reply(input, {"companyId": cid, "status": row["status"],
                                               "deactivationReason": row["deactivation_reason"]})
         if row["status"] != "ACTIVE":
+            raise Problem(MODULE, 409, "invalid-state", detail=row["status"], retryable=False)
