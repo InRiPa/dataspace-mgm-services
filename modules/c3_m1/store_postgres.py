@@ -440,3 +440,4 @@ def create_change_request(row: dict) -> dict:
         except errors.IntegrityError as error:
             raise _integrity(error) from None
 
+
