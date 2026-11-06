@@ -667,3 +667,4 @@ def _change_request_view(row: dict, *, osp: bool = False, company: dict | None =
             "changes": row["changes"], "comment": row["comment"],
             "documents": [_document_info(document)
                           for document in store.list_documents(row["id"])],
+            "requestedBy": row["requested_by"], "createdAt": row["created_at"],
