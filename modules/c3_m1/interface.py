@@ -388,3 +388,4 @@ def reject_company(input: dict) -> dict:
 # ------------------------------------------------------------------------ change by people (7.2)
 CORE_TEXT_FIELDS = ("name", "street", "house_number", "address_addition", "postal_code", "city",
                     "region", "country_code")
+CAMEL = {snake: camel for camel, snake in validation.ALIASES.items()}
