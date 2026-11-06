@@ -160,3 +160,4 @@ def test_find_companies_company_role_matches_active_roles_only(make):
     company = make()
     other = make()
     store.add_role(company["id"], "ACTIVE_PARTICIPANT", status="ACTIVE")
+    store.add_role(other["id"], "APP_PROVIDER", status="REQUESTED")
