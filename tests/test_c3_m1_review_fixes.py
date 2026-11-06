@@ -340,3 +340,4 @@ def test_the_activation_DONE_lists_active_roles_only(active):
     interface.add_company_role(U1, {"companyRole": "APP_PROVIDER",
                                     "consents": [{"agreementKey": "terms-app-provider",
                                                   "version": "1.0"}]}, P1_SUB)
+    store.add_role(U1, "SERVICE_PROVIDER", status="REQUESTED", source_kind="APPLICATION")
