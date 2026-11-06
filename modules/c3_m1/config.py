@@ -153,3 +153,4 @@ def stub_applications_file() -> Path | None:
     """Stand-in for C1-M2: applications in the format of C1-M2 `ApplicationInternal` (11.1).
 
     A bare name counts from the module folder (README 4 example), an absolute path as given.
+    """
