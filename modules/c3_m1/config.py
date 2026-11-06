@@ -183,3 +183,4 @@ def dataspace_name() -> str | None:
     """`dataspace.name` for the responses to people (OP-14); not company data."""
     return (settings.get("dataspace") or {}).get("name")
 
+
