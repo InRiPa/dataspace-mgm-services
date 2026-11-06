@@ -104,3 +104,4 @@ def test_an_unknown_or_malformed_id_is_not_found(postgres):
 
 
 def test_reset_empties_the_tables(postgres):
+    postgres.create_company(dict(COMPANY))
