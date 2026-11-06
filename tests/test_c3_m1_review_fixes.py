@@ -109,3 +109,4 @@ def test_an_unchanged_name_does_not_need_an_attestation(active):
         "comment": "x", "name": "Beispiel Maschinenbau GmbH",
         "identifiers": [{"type": "VAT_ID", "value": "DE123456789"},
                         {"type": "LEI_CODE", "value": "529900T8BM49AURSDO55"}]}, [PDF], P1_SUB)
+    interface.approve_change_request(request["id"], {}, S1_SUB)
