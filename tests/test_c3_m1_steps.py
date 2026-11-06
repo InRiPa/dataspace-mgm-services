@@ -142,3 +142,4 @@ def test_create_company_needs_an_ebwoid_with_a_verification():
 
 def test_create_company_needs_a_submitted_application():
     seed(status="CREATED")
+    with pytest.raises(Problem) as error:
