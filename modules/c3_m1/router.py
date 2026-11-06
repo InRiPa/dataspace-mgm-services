@@ -78,3 +78,4 @@ def reactivate_company(body: dict = Body(...),
     return interface.reactivate_company(body)
 
 
+@router.post("/steps/reject-company")
