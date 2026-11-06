@@ -74,3 +74,4 @@ def active(client: TestClient) -> dict:
         step("create_company", companyId=company, applicationId=application)
         step("assign_identifier", companyId=company, bpn=bpn)
         step("activate_company", companyId=company, applicationId=application)
+    iam = test_iam.iam()
