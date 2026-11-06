@@ -432,3 +432,4 @@ def create_change_request(row: dict) -> dict:
                 connection,
                 "INSERT INTO change_request (id, company_id, status, changes, comment, requested_by,"
                 " decided_by, decision_reason, created_at, closed_at)"
+                " VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s) RETURNING *",
