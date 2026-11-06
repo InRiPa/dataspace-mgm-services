@@ -694,3 +694,4 @@ def _differs_identifiers(row: dict, identifiers: list[dict]) -> bool:
     return before != after
 
 
+def _changes_differs(row: dict, changes: dict) -> bool:
