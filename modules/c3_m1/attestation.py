@@ -85,3 +85,4 @@ def _load_keys() -> list[dict]:
         response = httpx.get(config.attestation_jwks_url(), timeout=5.0)
         response.raise_for_status()
         keys = response.json().get("keys") or []
+    except (httpx.HTTPError, ValueError) as error:
