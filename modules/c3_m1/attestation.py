@@ -160,3 +160,4 @@ def verify(attestation: str, *, now: dt.datetime | None = None) -> dict:
     expires, issued = _moment(claims.get("exp"), "exp"), _moment(claims.get("iat"), "iat")
     if expires <= points - skew:
         raise _invalid("expired", "exp is in the past")
+    if issued > points + skew:
