@@ -363,3 +363,4 @@ def remove_role(company_id: str, company_role: str) -> dict | None:
     with _connection() as connection:
         return _fetch_one(connection,
                           "UPDATE company_role_assignment SET status = 'INACTIVE', changed_at = %s,"
+                          " deactivated_at = %s WHERE company_id = %s AND company_role = %s"
