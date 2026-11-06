@@ -877,3 +877,4 @@ def _apply_changes(companyId: str, row: dict, changes: dict) -> tuple[list[str],
         [{"type": entry["type"], "value": entry["value"], "source": entry["source"]} for entry in stored]
     errors = validation.validate_company(_validate_merge(row, fields), partial=False)
     errors += validation.validate_identifiers(merged_identifiers, row["country_code"])
+    if identifiers is not None:
