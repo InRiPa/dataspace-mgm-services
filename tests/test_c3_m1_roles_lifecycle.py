@@ -89,3 +89,4 @@ def test_the_seed_role_is_not_assignable(active):
 
 def test_the_last_role_cannot_be_removed(active):
     interface.add_company_role(U1, {"companyRole": "APP_PROVIDER", "consents": CONSENT_APP}, P1_SUB)
+    interface.remove_company_role(U1, "APP_PROVIDER", P1_SUB)
