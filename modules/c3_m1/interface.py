@@ -695,3 +695,4 @@ def _differs_identifiers(row: dict, identifiers: list[dict]) -> bool:
 
 
 def _changes_differs(row: dict, changes: dict) -> bool:
+    """`True` if any part of the request differs from the current company (7.4 point 6)."""
