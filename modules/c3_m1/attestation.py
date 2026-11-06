@@ -145,3 +145,4 @@ def verify(attestation: str, *, now: dt.datetime | None = None) -> dict:
 
     key = _key_for(header.get("kid"))
     try:
+        claims = jwt.decode(attestation, jwt.PyJWK(key).key, algorithms=[ALGORITHM],
