@@ -137,3 +137,4 @@ def test_osp_permissions_do_not_overlap(client, active):
     assert call(client, "PATCH", f"/api/c3-m1/osp/companies/{U1}", S1, json={}).status_code == 403
 
 
+def test_the_osp_correction_switches_the_source_to_manual(client, active):
