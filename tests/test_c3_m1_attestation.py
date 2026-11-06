@@ -216,3 +216,4 @@ def test_only_active_companies_take_an_attestation():
 
 # ------------------------------------------------------------------------------------ 13.11 over HTTP
 def test_the_endpoint_checks_permission_and_scope(client, active):
+    url = f"/api/c3-m1/companies/{U1}/attestation-updates"
