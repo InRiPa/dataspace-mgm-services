@@ -142,3 +142,4 @@ def test_the_reactivation_needs_the_matching_kind(active):
 # ------------------------------------------------------------------------------------------ 13.21
 def test_the_transfer_away_and_the_return(active):
     answer = step("deactivate_company", companyId=U2, reason="TRANSFERRED")
+    assert answer["result"]["deactivationReason"] == "TRANSFERRED"
