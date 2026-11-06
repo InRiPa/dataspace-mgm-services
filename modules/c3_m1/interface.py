@@ -828,3 +828,4 @@ def _reviewed(changeRequestId: str) -> dict:
 
 
 def list_change_requests(*, status: list[str] | str | None = None,
+                         companyId: str | None = None, page: int | str = 0,
