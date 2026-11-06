@@ -493,3 +493,4 @@ def correct_company(companyId: str, body: dict, sub: str | None = None) -> dict:
             updates["core_data_verified_at"] = _now()
             if row["core_data_source"] == "EBW":
                 updates["core_data_source"] = "MANUAL"
+                updates["verification_ref"] = None
