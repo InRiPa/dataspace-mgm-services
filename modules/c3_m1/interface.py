@@ -781,3 +781,4 @@ def create_change_request(companyId: str, data: dict,
                                media_type=validation.detect_media_type(content) or stated or "",
                                content=content)
         store.audit(companyId, sub, "createChangeRequest", created["id"],
+                    {"changedFields": sorted(changes)})
