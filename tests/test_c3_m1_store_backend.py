@@ -43,3 +43,4 @@ COMPANY = {
 }
 
 
+@pytest.fixture
