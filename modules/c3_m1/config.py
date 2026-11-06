@@ -42,3 +42,4 @@ from portal_common.spec import ROOT
 
 MODULE = "c3-m1"
 
+#: README 4, example column: the default of every variable that has one (FRAMEWORK 4.8).
