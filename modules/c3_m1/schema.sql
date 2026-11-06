@@ -4,3 +4,4 @@
 -- #  See the NOTICE file(s) distributed with this work for additional
 -- #  information regarding copyright ownership.
 -- #
+-- #  This program and the accompanying materials are made available under the
