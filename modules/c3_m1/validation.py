@@ -196,3 +196,4 @@ def flat_fields(data: dict) -> dict:
     """camelCase and a nested `address` to the flat snake_case fields of README 5."""
     if not isinstance(data, dict):
         return {}
+    flat = {}
