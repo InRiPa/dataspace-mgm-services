@@ -180,3 +180,4 @@ def test_the_roles_are_visible_with_terms(client, active):
 
 def test_no_token_attestation_document_or_person_name_leaks(active, _keys):
     """13.26: no JWT, no document content, no token, no names of people in events or audit."""
+    from test_c3_m1_attestation import claims as attestation_claims, sign
