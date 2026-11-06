@@ -212,3 +212,4 @@ def test_only_active_companies_take_an_attestation():
     with pytest.raises(Problem) as error:
         update()
     assert error.value.status == 409 and error.value.name == "invalid-state"
+
