@@ -561,3 +561,4 @@ def add_if_unused(jti: str, company_id: str) -> bool:
     return row is not None
 
 
+def is_used(jti: str) -> bool:
