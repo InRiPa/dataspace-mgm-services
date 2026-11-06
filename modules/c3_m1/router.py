@@ -109,3 +109,4 @@ def query_company(companyId: str,
                   _: dict = standin.perm(MODULE, "GET", "/internal/companies/{companyId}")):
     return interface.query_company(companyId=companyId)
 
+
