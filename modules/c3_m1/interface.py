@@ -615,3 +615,4 @@ def remove_company_role(companyId: str, companyRole: str, sub: str | None = None
                      if status == "ACTIVE" and role != companyRole and config.assignable_by(role) == "COMPANY"]
         if not remaining:
             raise Problem(MODULE, 409, "last-role")
+
