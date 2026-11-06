@@ -320,3 +320,4 @@ def validate_change_request(data: dict, country_code: str | None) -> list[dict]:
         for required in ("street", "city"):
             if flat.get(required) in (None, ""):
                 errors.append(_error(required, "required"))
+    has_identifiers = flat.get("identifiers") is not None
