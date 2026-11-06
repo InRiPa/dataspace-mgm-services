@@ -158,3 +158,4 @@ CREATE TABLE change_request_document (
     file_name          text         NOT NULL,
     media_type         text         NOT NULL,
     size_bytes         integer      NOT NULL,
+    sha256             text         NOT NULL,
