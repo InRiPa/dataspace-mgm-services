@@ -571,3 +571,4 @@ def add_company_role(companyId: str, body: dict, sub: str | None = None,
             raise Problem(MODULE, 409, "invalid-state", detail=row["status"])
         errors = validation.validate_company_role(role, config.role_catalogue())
         if errors:
+            raise Problem(MODULE, 400, "validation", errors=errors)
