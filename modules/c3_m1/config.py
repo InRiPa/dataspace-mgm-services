@@ -242,3 +242,4 @@ def assignable_by(company_role: str) -> str | None:
     """`COMPANY`, `SEED`, or `None` for a role the catalogue does not know."""
     entry = role_catalogue().get(company_role)
     return entry.get("assignableBy") if entry else None
+
