@@ -851,3 +851,4 @@ def get_change_request(changeRequestId: str) -> dict:
                        "address": _address(company), "identifiers": _identifiers(company),
                        "coreDataSource": company.get("core_data_source"),
                        "status": company.get("status")}
+    return view
