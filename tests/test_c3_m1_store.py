@@ -481,3 +481,4 @@ def test_euid_and_ebwoid_are_loose():
 
 def test_lei_and_eori_formats():
     assert v.validate_identifiers([{"type": "LEI_CODE", "value": "529900T8BM49AURSDO55"}], "DE") == []
+    assert {"field": "identifiers[0].value", "reason": "format"} in v.validate_identifiers(
