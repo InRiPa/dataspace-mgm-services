@@ -499,3 +499,4 @@ def withdraw_change_request(change_request_id: str, *, closed_at: str | None = N
     if not _uuid_ok(change_request_id):
         return None
     with _connection() as connection:
+        row = _fetch_one(connection, "SELECT status FROM change_request WHERE id = %s",
