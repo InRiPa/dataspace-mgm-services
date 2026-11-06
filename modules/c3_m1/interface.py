@@ -837,3 +837,4 @@ def list_change_requests(*, status: list[str] | str | None = None,
     except ValueError as error:
         raise Problem(MODULE, 400, "validation", errors=[{"field": "filter", "reason": str(error)}])
     return {"items": [_change_request_view(item, osp=True,
+                                           company=store.get_company(item["company_id"]))
