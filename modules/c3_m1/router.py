@@ -230,3 +230,4 @@ def decline_change_request(changeRequestId: str, body: dict | None = Body(None),
     return interface.decline_change_request(changeRequestId, body, claims.get("sub"))
 
 
+# --------------------------------------------------------------------------- OSP staff (7.10, 7.11, 7.12)
