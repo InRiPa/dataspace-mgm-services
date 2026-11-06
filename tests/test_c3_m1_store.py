@@ -31,3 +31,4 @@ import pytest
 
 from modules.c3_m1 import store
 from modules.c3_m1 import validation as v
+from portal_common import settings
