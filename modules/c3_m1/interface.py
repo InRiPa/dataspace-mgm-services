@@ -62,3 +62,4 @@ def _now() -> str:
 
 
 def _audit(company_id: str | None, operation: str, input: dict, details: dict | None = None) -> None:
+    """Steps carry `processId` and `stepRunId` instead of a `sub` (README 5, 4.3)."""
