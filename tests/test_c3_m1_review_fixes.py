@@ -248,3 +248,4 @@ def test_the_start_survives_a_database_without_a_driver(monkeypatch):
 def test_the_readme_data_files_resolve_without_configuration(monkeypatch):
     from pathlib import Path
     assert config.stub_applications_file() is not None
+    monkeypatch.delenv("ATTESTATION_JWKS_FILE")
