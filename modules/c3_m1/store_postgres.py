@@ -486,3 +486,4 @@ def decide_change_request(change_request_id: str, status: str, *, decided_by: st
                          (change_request_id,))
         if row is None:
             return None
+        if row["status"] != "OPEN":
