@@ -186,3 +186,4 @@ def test_the_reasons_of_a_refused_attestation(over, reason):
 def test_the_wrong_typ_is_an_algorithm_error():
     active_company()
     with pytest.raises(Problem) as error:
+        interface.update_company_from_attestation(U1, {"attestation": sign(claims(), typ="JWT")})
