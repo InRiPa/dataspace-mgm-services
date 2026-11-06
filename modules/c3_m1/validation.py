@@ -166,3 +166,4 @@ def pattern_for(identifier_type: str, country_code: str | None) -> str | None:
 def _error(field: str, reason: str) -> dict:
     return {"field": field, "reason": reason}
 
+
