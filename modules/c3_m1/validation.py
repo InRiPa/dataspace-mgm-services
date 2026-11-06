@@ -171,3 +171,4 @@ def _text(errors: list[dict], field: str, value, *, required: bool = False,
           min_length: int = 0, max_length: int | None = None, strip: bool = False) -> None:
     if value is None:
         if required:
+            errors.append(_error(field, "required"))
