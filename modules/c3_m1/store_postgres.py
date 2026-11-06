@@ -351,3 +351,4 @@ def add_role(company_id: str, company_role: str, *, status: str = "ACTIVE",
             " deactivated_at = EXCLUDED.deactivated_at, changed_at = EXCLUDED.changed_at"
             " RETURNING *",
             {"company_id": company_id, "role": company_role, "status": status,
+             "source_kind": source_kind, "source_ref": source_ref,
