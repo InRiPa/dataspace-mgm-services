@@ -320,3 +320,4 @@ def role_status(company_id: str, company_role: str) -> str:
     return row["status"] if row else "NONE"
 
 
+def list_roles(company_id: str) -> dict[str, str]:
