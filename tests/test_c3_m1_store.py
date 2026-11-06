@@ -492,3 +492,4 @@ def test_a_business_wallet_source_can_be_refused():
     errors = v.validate_identifiers([{"type": "EUID", "value": "DEXX001T.HRB100001",
                                       "source": "BUSINESS_WALLET"}], "DE",
                                     allow_business_wallet=False)
+    assert errors == [{"field": "identifiers[0].source", "reason": "business-wallet-source"}]
