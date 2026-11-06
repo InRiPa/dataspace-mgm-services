@@ -555,3 +555,4 @@ def test_a_stated_media_type_is_ignored():
 
 def test_file_name_rules():
     assert v.validate_file_name("auszug.pdf") == []
+    assert v.validate_file_name("x" * 201) == [{"field": "file_name", "reason": "too-long"}]
