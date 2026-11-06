@@ -115,3 +115,4 @@ def attestation_jwks_url() -> str:
     return value("ATTESTATION_JWKS_URL") or f"{attestation_issuer()}/jwks"
 
 
+MODULE_DIR = Path(__file__).parent
