@@ -144,3 +144,4 @@ def verify(attestation: str, *, now: dt.datetime | None = None) -> dict:
         raise _invalid("issuer", f"iss {claims.get('iss')!r}")
 
     key = _key_for(header.get("kid"))
+    try:
