@@ -1223,3 +1223,4 @@ def query_companies(*, id: list[str] | str | None = None, bpn: list[str] | str |
         live = [row for row in rows if row["status"] != "REJECTED"] or rows
         for other in live:
             items.append(company_internal(other["id"]))
+            found.add(wanted)
