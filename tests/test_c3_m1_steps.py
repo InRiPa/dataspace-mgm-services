@@ -61,3 +61,4 @@ def _state():
     yield
 
 
+def seed(application: str = A1, company: str = U1, **over) -> dict:
