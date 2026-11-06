@@ -173,3 +173,4 @@ def test_an_older_attestation_does_not_reset_newer_data():
     ({"purpose": "login"}, "claims"),
     ({"client_id": "fremd"}, "claims"),
     ({"exp": dt.datetime.now(dt.UTC) - dt.timedelta(minutes=5)}, "expired"),
+    ({"iat": dt.datetime.now(dt.UTC) + dt.timedelta(hours=1)}, "not-yet-valid"),
