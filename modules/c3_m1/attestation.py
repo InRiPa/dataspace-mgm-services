@@ -143,3 +143,4 @@ def verify(attestation: str, *, now: dt.datetime | None = None) -> dict:
     if claims.get("iss") != config.attestation_issuer():
         raise _invalid("issuer", f"iss {claims.get('iss')!r}")
 
+    key = _key_for(header.get("kid"))
