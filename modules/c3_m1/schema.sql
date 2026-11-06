@@ -147,3 +147,4 @@ CREATE TABLE change_request (
     CONSTRAINT change_request_declined_needs_reason
         CHECK (status <> 'DECLINED' OR decision_reason IS NOT NULL)
 );
+
