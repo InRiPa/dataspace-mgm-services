@@ -204,3 +204,4 @@ def test_activate_takes_over_the_consents():
     assert step("activate_company", companyId=U1, applicationId=A1)["state"] == "DONE"
     assert len(published("CompanyActivated")) == 1
 
+
