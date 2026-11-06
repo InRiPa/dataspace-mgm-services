@@ -213,3 +213,4 @@ def update_company(company_id: str, **fields) -> dict | None:
         raise ValueError(f"unknown company fields: {', '.join(sorted(unknown))}")
     if "status" in fields:
         _check_enum(fields["status"], STATUSES, "status")
+    if "core_data_source" in fields:
