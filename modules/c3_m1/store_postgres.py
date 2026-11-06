@@ -110,3 +110,4 @@ def _check_enum(value, allowed: tuple[str, ...], field: str) -> None:
     if value is not None and value not in allowed:
         raise ValueError(f"{field}: {value!r} is not one of {', '.join(allowed)}")
 
+
