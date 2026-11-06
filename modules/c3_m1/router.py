@@ -71,3 +71,4 @@ def deactivate_company(body: dict = Body(...),
                        _: dict = standin.perm(MODULE, "POST", "/steps/deactivate-company")):
     return interface.deactivate_company(body)
 
+
