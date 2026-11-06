@@ -86,3 +86,4 @@ def _load_keys() -> list[dict]:
         response.raise_for_status()
         keys = response.json().get("keys") or []
     except (httpx.HTTPError, ValueError) as error:
+        raise Problem(MODULE, 502, "upstream-error",
