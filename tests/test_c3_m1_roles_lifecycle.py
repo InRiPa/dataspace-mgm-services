@@ -93,3 +93,4 @@ def test_the_last_role_cannot_be_removed(active):
     assert store.get_consent(U1, "terms-app-provider")["status"] == "INACTIVE"
     with pytest.raises(Problem) as error:
         interface.remove_company_role(U1, "ACTIVE_PARTICIPANT", P1_SUB)
+    assert error.value.status == 409 and error.value.name == "last-role"
