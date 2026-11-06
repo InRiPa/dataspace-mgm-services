@@ -1063,3 +1063,4 @@ def deactivate_company(input: dict) -> dict:
                     {"deactivationReason": reason, "processId": input.get("processId"),
                      "stepRunId": input.get("stepRunId")})
         events.publish(MODULE, "CompanyDeactivated", {"companyId": cid, "reason": reason})
+    return standin.step_reply(input, {"companyId": cid, "status": "INACTIVE",
