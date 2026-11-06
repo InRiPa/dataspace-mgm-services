@@ -187,3 +187,4 @@ def test_the_bulk_query_takes_repeated_parameters(client, active):
     assert [item["id"] for item in response.json()["items"]] == [U2, U1]
     assert response.json()["notFound"] == ["c0000009-0000-4000-8000-000000000009"]
 
+
