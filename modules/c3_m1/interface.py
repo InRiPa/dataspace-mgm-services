@@ -740,3 +740,4 @@ def create_change_request(companyId: str, data: dict,
         if store.open_change_request(companyId):
             raise Problem(MODULE, 409, "change-request-open")
 
+        changes = {key: value for key, value in data.items() if key in ("name", "address", "identifiers")}
