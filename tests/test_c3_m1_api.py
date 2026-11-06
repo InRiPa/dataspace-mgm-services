@@ -97,3 +97,4 @@ def call(client: TestClient, method: str, path: str, person: str | None = None, 
 def test_the_scope_hides_other_companies(client, active):
     response = call(client, "GET", f"/api/c3-m1/companies/{U1}", P1)
     assert response.status_code == 200 and response.json()["dataspaceName"] == "Catena-X"
+    assert call(client, "GET", f"/api/c3-m1/companies/{U2}", P1).status_code == 404
