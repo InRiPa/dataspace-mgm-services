@@ -103,3 +103,4 @@ def test_an_empty_identifier_list_keeps_the_wallet_identifiers(active):
     assert {entry["type"] for entry in store.list_identifiers(U1)} == {"EBWOID", "EUID"}
 
 
+# ------------------------------------------------ attestation-required needs a real difference (high)
