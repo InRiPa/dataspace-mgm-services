@@ -98,3 +98,4 @@ def reset() -> None:
     _consents.clear()
     _change_requests.clear()
     _documents.clear()
+    _used_attestations.clear()
