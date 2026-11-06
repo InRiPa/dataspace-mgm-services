@@ -66,3 +66,4 @@ def seed(application: str = A1, company: str = U1, **over) -> dict:
     entry = {
         "id": application, "companyId": company, "kind": "ONBOARDING", "existingCompany": False,
         "status": "SUBMITTED", "verification": "EBW", "_attestation": ATTESTATION,
+        "applicant": {"sub": P1},
