@@ -76,3 +76,4 @@ def _now() -> str:
 
 def _row(row: dict | None) -> dict | None:
     """Normalise a database row to the shapes the memory transport returns."""
+    if row is None:
