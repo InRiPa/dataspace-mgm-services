@@ -704,3 +704,4 @@ def _changes_differs(row: dict, changes: dict) -> bool:
             return True
     return False
 
+
