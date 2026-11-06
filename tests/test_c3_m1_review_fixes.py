@@ -309,3 +309,4 @@ def test_an_undecodable_payload_is_a_format_error(active):
         interface.update_company_from_attestation(U1, {"attestation": f"{header}.%%%.sig"})
     assert error.value.status == 400 and error.value.ext["reason"] == "format"
 
+
