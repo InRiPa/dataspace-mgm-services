@@ -69,3 +69,4 @@ CREATE TABLE company (
     -- C3-M1 5: the reason is filled only with status INACTIVE
     CONSTRAINT company_deactivation_reason_state
         CHECK (deactivation_reason IS NULL OR status = 'INACTIVE')
+);
