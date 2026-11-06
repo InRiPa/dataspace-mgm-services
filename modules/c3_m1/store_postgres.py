@@ -68,3 +68,4 @@ def _dsn() -> str:
     if not dsn:
         raise RuntimeError("DATABASE_URL is empty; the PostgreSQL transport needs the database `c3_m1`")
     return dsn
+
