@@ -353,3 +353,4 @@ def test_reset_clears_every_table(make):
     request = store.create_change_request({"company_id": company["id"]})
     store.add_document(request["id"], file_name="a.pdf", media_type="application/pdf",
                        content=b"%PDF-1")
+    store.add_if_unused("jti", company["id"])
