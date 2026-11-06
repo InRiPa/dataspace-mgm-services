@@ -387,3 +387,4 @@ def validate_document(file_name, content, *, stated_media_type: str | None = Non
     if detect_media_type(content) is None:
         errors.append(_error("document", "media-type"))
     return errors
+
