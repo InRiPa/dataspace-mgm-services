@@ -55,3 +55,4 @@
     },
     {
       "id": "a0000005-0000-4000-8000-000000000005", "companyId": "c0000001-0000-4000-8000-000000000001",
+      "kind": "REACTIVATION", "existingCompany": true, "status": "APPROVED", "verification": "EBW",
