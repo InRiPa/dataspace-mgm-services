@@ -583,3 +583,4 @@ def add_company_role(companyId: str, body: dict, sub: str | None = None,
         if missing:
             raise Problem(MODULE, 400, "consent-missing", missing=missing)
         foreign = sorted(set(given) - set(terms))
+        if foreign:
