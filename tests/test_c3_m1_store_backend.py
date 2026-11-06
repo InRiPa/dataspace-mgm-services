@@ -53,3 +53,4 @@ def postgres_url() -> str:
 
 @pytest.fixture
 def postgres(monkeypatch, postgres_url):
+    monkeypatch.setenv("DATABASE_URL", postgres_url)
