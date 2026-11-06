@@ -389,3 +389,4 @@ def validate_document(file_name, content, *, stated_media_type: str | None = Non
     return errors
 
 
+# --------------------------------------------------------------------------------- misc (6.5)
