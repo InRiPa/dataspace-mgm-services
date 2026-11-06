@@ -53,3 +53,4 @@ _roles: dict[str, dict[str, dict]] = {}
 _consents: dict[tuple[str, str], dict] = {}
 _change_requests: dict[str, dict] = {}
 _documents: dict[str, dict] = {}
+_used_attestations: dict[str, dict] = {}
