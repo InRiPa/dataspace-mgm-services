@@ -170,3 +170,4 @@ def verify(attestation: str, *, now: dt.datetime | None = None) -> dict:
     else:
         missing += [f"company.{name}" for name in ("legal_name", "ebwoid", "country")
                     if company.get(name) in (None, "")]
+    if claims.get("purpose") != "onboarding":
