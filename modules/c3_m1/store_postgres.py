@@ -104,3 +104,4 @@ def _fetch_one(connection, sql: str, params: tuple | dict = ()) -> dict | None:
 
 def _fetch_all(connection, sql: str, params: tuple | dict = ()) -> list[dict]:
     return [_row(row) for row in connection.execute(sql, params).fetchall()]  # type: ignore[misc]
+
