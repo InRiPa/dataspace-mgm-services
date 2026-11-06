@@ -206,3 +206,4 @@ def set_identifiers(company_id: str, identifiers: list[dict]) -> list[dict]:
     rows: dict[str, dict] = {}
     now = _now()
     for entry in identifiers:
+        kind = entry.get("type")
