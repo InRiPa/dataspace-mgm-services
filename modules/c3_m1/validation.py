@@ -51,3 +51,4 @@ CORE_DATA_SOURCES = ("EBW", "MANUAL")
 MEDIA_TYPES = ("application/pdf", "image/png", "image/jpeg")
 
 NAME_MAX = 160
+SHORT_NAME_MAX = 100
