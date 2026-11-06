@@ -356,3 +356,4 @@ def validate_file_name(file_name) -> list[dict]:
     if isinstance(file_name, str) and ("/" in file_name or "\\" in file_name):
         errors.append(_error("file_name", "path-parts"))
     return errors
+
