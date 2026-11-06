@@ -193,3 +193,4 @@ def seed_company() -> dict | None:
     if path is None or not path.exists():
         return None
     seed = json.loads(path.read_text(encoding="utf-8"))
+    if seed.get("companyId") != osp_company_id():
