@@ -189,3 +189,4 @@ def test_assign_identifier_and_its_errors():
         step("assign_identifier", companyId=U3, bpn="nope")
     assert error.value.status == 400 and error.value.name == "validation"
 
+
