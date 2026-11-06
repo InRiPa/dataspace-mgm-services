@@ -145,3 +145,4 @@ def attestation_clock_skew_seconds() -> int:
     return number("ATTESTATION_CLOCK_SKEW_SECONDS")
 
 
+def attestation_jwks_cache_seconds() -> int:
