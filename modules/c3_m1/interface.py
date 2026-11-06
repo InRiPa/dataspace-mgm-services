@@ -664,3 +664,4 @@ def _document_info(row: dict) -> dict:
 def _change_request_view(row: dict, *, osp: bool = False, company: dict | None = None) -> dict:
     """`ChangeRequest` (7.5: without `decidedBy`, without document content)."""
     view = {"id": row["id"], "companyId": row["company_id"], "status": row["status"],
+            "changes": row["changes"], "comment": row["comment"],
