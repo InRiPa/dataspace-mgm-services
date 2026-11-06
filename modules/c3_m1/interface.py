@@ -429,3 +429,4 @@ def update_company(companyId: str, body: dict, sub: str | None = None) -> dict:
         row = get_company(companyId)
         if row["status"] != "ACTIVE":
             raise Problem(MODULE, 409, "invalid-state", detail=row["status"])
+        locked = [key for key in body if validation.field_name(key) not in ("short_name",)]
