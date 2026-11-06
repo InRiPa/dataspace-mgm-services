@@ -343,3 +343,4 @@ def test_lock_yields_the_company_id():
     with store.lock("company-1") as locked:
         assert locked == "company-1"
 
+
