@@ -981,3 +981,4 @@ def _attested_values(row: dict, claims: dict) -> tuple[dict, dict[str, dict]]:
                      and validation.same_value(row["city"], address.get("locality")))
         if not (same_street and same_city):
             fields |= {"street": address.get("street_address"), "house_number": None,
+                       "address_addition": None, "region": None,
