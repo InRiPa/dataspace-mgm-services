@@ -208,3 +208,4 @@ def create_company(input: dict) -> dict:
     if existing is not None:
         if existing["application_id"] == application_id:
             return standin.step_reply(input, {"companyId": cid, "status": existing["status"],
+                                              "bpn": existing["bpn"],
