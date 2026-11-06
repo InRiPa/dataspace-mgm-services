@@ -283,3 +283,4 @@ def test_the_built_in_stand_in_reads_the_stub_file(tmp_path, monkeypatch):
     step("assign_identifier", companyId=U1, bpn="BPNLIUK2REMLK3F4")
     reply = step("activate_company", companyId=U1, applicationId=A1)
     assert reply["result"]["status"] == "ACTIVE"
+    assert store.role_status(U1, "ACTIVE_PARTICIPANT") == "ACTIVE"
