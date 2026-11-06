@@ -69,3 +69,4 @@ def seed(application: str = A1, company: str = U1, **over) -> dict:
         "applicant": {"sub": P1},
         "companyData": {"legalName": "Beispiel Maschinenbau GmbH", "address": ADDRESS,
                         "identifiers": [{"type": "EBWOID", "value": "EBWOID-DE-0000000001",
+                                         "source": "ATTESTATION"},
