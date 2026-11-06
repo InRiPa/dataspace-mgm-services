@@ -127,3 +127,4 @@ def test_an_unchanged_address_keeps_its_spelling():
 def test_another_ebwoid_is_a_company_mismatch():
     active_company()
     with pytest.raises(Problem) as error:
+        update(**{"company": {"legal_name": "X", "ebwoid": "EBWOID-DE-0000000009", "country": "DE"}})
