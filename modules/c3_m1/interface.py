@@ -1074,3 +1074,4 @@ def _check_deactivation_reason(reason) -> None:
                       retryable=False)
 
 
+def deactivate_company_by_staff(companyId: str, body: dict, sub: str | None = None) -> dict:
