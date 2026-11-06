@@ -160,3 +160,4 @@ def stub_applications_file() -> Path | None:
     path = _fallback(path, ROOT / path.name)
     return path if path.exists() else None
 
+
