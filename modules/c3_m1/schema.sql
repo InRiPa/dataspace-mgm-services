@@ -41,3 +41,4 @@ CREATE TABLE company (
     status                 text                     NOT NULL,
     bpn                    text,
     bpn_assigned_at        timestamptz,
+    core_data_source       text                     NOT NULL,
