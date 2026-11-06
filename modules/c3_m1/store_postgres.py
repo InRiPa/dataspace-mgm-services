@@ -126,3 +126,4 @@ def _check_known(connection, company_id: str) -> None:
         raise ValueError(f"unknown company: {company_id}")
 
 
+def _integrity(error: errors.IntegrityError) -> ValueError:
