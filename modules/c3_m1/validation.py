@@ -70,3 +70,4 @@ NORMALISE_STRIP = re.compile(r"[\s.\-/]")
 FALLBACK_PATTERNS: dict[str, dict[str, str]] = {
     "EUID": {"Worldwide": r"^[A-Za-z0-9.\-]{4,100}$"},
     "EBWOID": {"Worldwide": r"^\S{1,255}$"},
+    "VAT_ID": {"Worldwide": r"^(?!.*\s$)([A-Za-z0-9](\.|\s|-|\/)?){5,18}$", "DE": r"^DE\d{9}$"},
