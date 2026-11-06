@@ -110,3 +110,4 @@ def lock(company_id: str | None = None):
     database transport takes the lock. It yields the `companyId` and never looks the company up.
     """
     yield company_id
+
