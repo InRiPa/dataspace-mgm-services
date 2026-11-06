@@ -1029,3 +1029,4 @@ def update_company_from_attestation(companyId: str, body: dict, sub: str | None 
         store.audit(companyId, sub, "updateCompanyFromAttestation", None,
                     {"changedFields": changed, "verificationRef": claims["jti"],
                      "old": {field: row.get(field) for field in
+                             ("name", "street", "house_number", "postal_code", "city", "region")},
