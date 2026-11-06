@@ -79,3 +79,4 @@ def _row(row: dict | None) -> dict | None:
     if row is None:
         return None
     for key, value in row.items():
+        if isinstance(value, uuid.UUID):
