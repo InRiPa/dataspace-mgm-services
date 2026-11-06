@@ -327,3 +327,4 @@ def test_an_attestation_is_used_exactly_once(make):
 # ---------------------------------------------------------------------------------- audit (5)
 def test_audit_entry_is_written_and_readable(make):
     company = make()
+    store.audit(company["id"], "5a1c0001-0000-4000-8000-000000000001", "patchCompany",
