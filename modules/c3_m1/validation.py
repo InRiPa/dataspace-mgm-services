@@ -44,3 +44,4 @@ from pathlib import Path
 from portal_common import settings
 
 IDENTIFIER_TYPES = ("EUID", "EBWOID", "VAT_ID", "COMMERCIAL_REG_NUMBER", "LEI_CODE", "EORI")
+IDENTIFIER_SOURCES = ("BUSINESS_WALLET", "DECLARED")
