@@ -56,3 +56,4 @@ def _timestamp(value: str | None) -> dt.datetime | None:
     except ValueError:
         return None
 
+
