@@ -293,3 +293,4 @@ def assign_identifier(input: dict) -> dict:
         _audit(cid, "stepAssignIdentifier", input, {"bpn": bpn})
         events.publish(MODULE, "CompanyIdentifierAssigned", {"companyId": cid, "bpn": bpn})
     return standin.step_reply(input, {"companyId": cid, "status": row["status"], "bpn": bpn})
+
