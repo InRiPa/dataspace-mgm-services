@@ -48,3 +48,4 @@ from psycopg import errors
 from psycopg.rows import dict_row
 
 from .store import (CHANGE_REQUEST_STATUSES, COMPANY_FIELDS, CONSENT_STATUSES, CORE_DATA_SOURCES,
+                    DEACTIVATION_REASONS, IDENTIFIER_SOURCES, IDENTIFIER_TYPES, MEDIA_TYPES,
