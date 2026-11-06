@@ -252,3 +252,4 @@ def validate_country_code(country_code, *, required: bool = True) -> list[dict]:
     return []
 
 
+# ------------------------------------------------------------------------------- identifiers (6.4)
