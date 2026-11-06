@@ -139,3 +139,4 @@ def _integrity(error: errors.IntegrityError) -> ValueError:
 
 
 def reset() -> None:
+    """Drop the module's tables and apply `schema.sql` again."""
