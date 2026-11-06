@@ -77,3 +77,4 @@ def active(client: TestClient) -> dict:
     iam = test_iam.iam()
     for person, role, company, bpn in ((P1, "Company Admin", U1, "BPNLIUK2REMLK3F4"),
                                        (P2, "Member", U1, "BPNLIUK2REMLK3F4"),
+                                       (P3, "Company Admin", U2, "BPNL00000000U2LG")):
