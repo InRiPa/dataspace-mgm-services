@@ -174,3 +174,4 @@ def get_company(company_id: str | None) -> dict | None:
     with _connection() as connection:
         return _fetch_one(connection, "SELECT * FROM company WHERE id = %s", (company_id,))
 
+
