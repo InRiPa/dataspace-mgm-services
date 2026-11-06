@@ -115,3 +115,4 @@ def test_create_company_is_idempotent():
     assert len(published("CompanyCreated")) == 1
     assert len(store.find_companies(size=100)[0]) == 2   # seed company + U1
 
+
