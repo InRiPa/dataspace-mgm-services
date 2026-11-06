@@ -764,3 +764,4 @@ def create_change_request(companyId: str, data: dict,
                           errors=[{"field": "changes", "reason": "no change"}])
 
         errors = []
+        if not 1 <= len(documents) <= config.change_request_max_documents():
