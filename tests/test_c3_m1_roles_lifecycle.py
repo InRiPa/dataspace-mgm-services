@@ -32,3 +32,4 @@ from portal_common.problems import Problem
 from test_c3_m1_api import S2, U1, U2, active, call, client  # noqa: F401
 from test_c3_m1_attestation import _keys  # noqa: F401  (fixture: attestation environment)
 from test_c3_m1_steps import A1, A3, ADDRESS, CONSENTS, P1, U3, seed, step
+
