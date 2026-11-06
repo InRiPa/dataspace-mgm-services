@@ -97,3 +97,4 @@ def _key_for(kid: str | None) -> dict:
     global _last_reload
     keys = _load_keys()
     key = next((entry for entry in keys if entry.get("kid") == kid), None)
+    if key is not None or config.attestation_jwks_file() is not None:
