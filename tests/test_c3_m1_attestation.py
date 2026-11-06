@@ -91,3 +91,4 @@ def active_company(application: str = A1, company: str = U1) -> None:
 
 def update(company_id: str = U1, **over) -> dict:
     return interface.update_company_from_attestation(company_id, {"attestation": sign(claims(**over))}, P1)
+
