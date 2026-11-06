@@ -854,3 +854,4 @@ def get_change_request(changeRequestId: str) -> dict:
     return view
 
 
+def get_change_request_document(changeRequestId: str, documentId: str,
