@@ -246,3 +246,4 @@ def create_company(input: dict) -> dict:
     if errors:
         raise Problem(MODULE, 400, "validation", errors=errors, retryable=False)
 
+    attestation = application.get("attestation") or {}
