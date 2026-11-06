@@ -345,3 +345,4 @@ def add_role(company_id: str, company_role: str, *, status: str = "ACTIVE",
             " source_ref, activated_at, deactivated_at, changed_at)"
             " VALUES (%(company_id)s, %(role)s, %(status)s, %(source_kind)s, %(source_ref)s,"
             " %(activated)s, %(deactivated)s, %(now)s)"
+            " ON CONFLICT (company_id, company_role) DO UPDATE SET status = EXCLUDED.status,"
