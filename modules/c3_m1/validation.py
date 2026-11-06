@@ -341,3 +341,4 @@ def validate_comment(comment) -> list[dict]:
 def validate_reason(reason, *, max_length: int = REASON_MAX) -> list[dict]:
     """Justification 1..500, for decisions 1..1000 (7.13, 7.18)."""
     errors: list[dict] = []
+    _text(errors, "reason", reason, required=True, min_length=1, max_length=max_length)
