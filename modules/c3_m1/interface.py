@@ -535,3 +535,4 @@ def _role_state(company: str, lang: str) -> list[dict]:
         states.append({
             "companyRole": role, "assignableBy": entry.get("assignableBy"),
             "status": "NONE" if assigned == "NONE" else assigned,
+            "description": config.description(role, lang) or "",
