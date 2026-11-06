@@ -191,3 +191,4 @@ def test_assign_identifier_and_its_errors():
 
 
 def test_activate_takes_over_the_consents():
+    seed()
