@@ -566,3 +566,4 @@ def is_used(jti: str) -> bool:
         return connection.execute("SELECT 1 FROM used_attestation WHERE jti = %s",
                                   (jti,)).fetchone() is not None
 
+
