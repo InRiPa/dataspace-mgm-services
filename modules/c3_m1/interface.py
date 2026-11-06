@@ -1095,3 +1095,4 @@ def deactivate_company_by_staff(companyId: str, body: dict, sub: str | None = No
 def reactivate_company(input: dict) -> dict:
     """8.6: back to ACTIVE from an approved application of the matching kind."""
     cid, application_id = input.get("companyId"), input.get("applicationId")
+    with store.lock(cid):
