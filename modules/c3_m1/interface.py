@@ -472,3 +472,4 @@ def correct_company(companyId: str, body: dict, sub: str | None = None) -> dict:
             raise Problem(MODULE, 409, "field-locked", fields=locked)
 
         if identifiers is not None:
+            wallet = [{"type": entry["type"], "value": entry["value"], "source": entry["source"]}
