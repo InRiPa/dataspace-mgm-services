@@ -832,3 +832,4 @@ def list_change_requests(*, status: list[str] | str | None = None,
                          size: int | str = 20) -> dict:
     """7.14: all change requests, oldest first."""
     try:
+        items, total = store.list_change_requests(status=status, company_id=companyId,
