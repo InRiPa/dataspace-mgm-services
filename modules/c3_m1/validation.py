@@ -275,3 +275,4 @@ def validate_identifier(entry: dict, country_code: str | None, field: str) -> li
         if pattern and not _matches(pattern, value):
             errors.append(_error(f"{field}.value", "format"))
     return errors
+
