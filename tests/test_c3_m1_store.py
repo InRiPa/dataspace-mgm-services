@@ -389,3 +389,4 @@ def test_name_rules():
     assert {"field": "name", "reason": "required"} in v.validate_company(base)
     assert {"field": "name", "reason": "required"} in v.validate_company({"name": " ", **base})
     assert {"field": "name", "reason": "whitespace"} in v.validate_company({"name": " A", **base})
+    assert {"field": "name", "reason": "too-long"} in v.validate_company({"name": "x" * 161, **base})
