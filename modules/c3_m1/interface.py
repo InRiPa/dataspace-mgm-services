@@ -749,3 +749,4 @@ def create_change_request(companyId: str, data: dict,
             if not identifiers and wallet:
                 # "afterwards at least one identifier" counts the wallet identifiers that stay
                 errors = [error for error in errors
+                          if not (error["field"] == "identifiers" and error["reason"] == "missing")]
