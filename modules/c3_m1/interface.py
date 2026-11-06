@@ -1147,3 +1147,4 @@ def reactivate_company(input: dict) -> dict:
                 continue
             if verification == "EBW":
                 if entry.get("type") not in CORE_IDENTIFIERS:
+                    continue
