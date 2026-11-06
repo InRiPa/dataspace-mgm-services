@@ -59,3 +59,4 @@
       "attestation": { "attestationId": "3f6c1e2a-7b4d-4e8f-9a51-2c0d6b8e4f99", "verifiedAt": "2026-11-06T09:00:00+00:00" },
       "applicant": { "sub": "5a1c0001-0000-4000-8000-000000000001" },
       "companyData": {
+        "legalName": "Beispiel Maschinenbau GmbH",
