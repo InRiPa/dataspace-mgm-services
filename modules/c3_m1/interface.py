@@ -723,3 +723,4 @@ def _identifier_core_changed(row: dict, identifiers: list[dict]) -> bool:
     now = {entry["type"]: entry["value"] for entry in identifiers
            if entry.get("type") in CORE_IDENTIFIERS}
     if set(stored) != set(now):
+        return True
