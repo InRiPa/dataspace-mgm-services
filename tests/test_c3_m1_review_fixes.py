@@ -280,3 +280,4 @@ def test_the_document_goes_out_over_http_with_its_content_type(client, active):
     assert "attachment" in answer.headers["content-disposition"]
     assert answer.content.startswith(b"%PDF")
 
+
