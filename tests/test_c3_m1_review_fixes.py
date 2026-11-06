@@ -342,3 +342,4 @@ def test_the_activation_DONE_lists_active_roles_only(active):
                                                   "version": "1.0"}]}, P1_SUB)
     store.add_role(U1, "SERVICE_PROVIDER", status="REQUESTED", source_kind="APPLICATION")
     answer = step("activate_company", companyId=U1, applicationId="a0000001-0000-4000-8000-000000000001")
+    assert answer["result"]["companyRoles"] == ["ACTIVE_PARTICIPANT", "APP_PROVIDER"]
