@@ -264,3 +264,4 @@ def add_role(company_id: str, company_role: str, *, status: str = "ACTIVE",
 
 
 def remove_role(company_id: str, company_role: str) -> dict | None:
+    """Removal keeps the row: status `INACTIVE` (README 5)."""
