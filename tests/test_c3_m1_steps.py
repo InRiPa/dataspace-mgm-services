@@ -37,3 +37,4 @@ from portal_common import events
 from portal_common.problems import Problem
 
 U1 = "c0000001-0000-4000-8000-000000000001"
+U2 = "c0000002-0000-4000-8000-000000000002"
