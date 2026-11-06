@@ -259,3 +259,4 @@ def add_role(company_id: str, company_role: str, *, status: str = "ACTIVE",
         row["deactivated_at"] = None
     if status == "INACTIVE":
         row["deactivated_at"] = now
+    _roles[company_id][company_role] = row
