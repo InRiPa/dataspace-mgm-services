@@ -444,3 +444,4 @@ def update_company(companyId: str, body: dict, sub: str | None = None) -> dict:
                     {"changedFields": changed, "old": before,
                      "new": {key: body.get(key) for key in body}})
         events.publish(MODULE, "CompanyDataChanged",
+                       {"companyId": companyId, "changedFields": changed, "coreDataChanged": False,
