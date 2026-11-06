@@ -226,3 +226,4 @@ def validate_company(data: dict, *, partial: bool = False) -> list[dict]:
         errors.append(_error("region", "format"))
     errors += validate_country_code(flat.get("country_code"), required=not partial)
     if flat.get("bpn") not in (None, ""):
+        bpn = flat["bpn"]
