@@ -1216,3 +1216,4 @@ def query_companies(*, id: list[str] | str | None = None, bpn: list[str] | str |
     items, found = [], set()
     for wanted in ids:
         if store.get_company(wanted) is not None:
+            items.append(company_internal(wanted))
