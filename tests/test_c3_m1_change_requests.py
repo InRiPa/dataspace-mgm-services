@@ -59,3 +59,4 @@ def test_the_event_fields_are_the_ones_c11_reads(active):
     closed = events.RELAY.log[-1]
     assert closed["type"] == "CompanyChangeRequestClosed"
     assert set(closed["data"]) == {"companyId", "changeRequestId", "outcome"}
+    assert closed["data"]["outcome"] == "WITHDRAWN"
