@@ -105,3 +105,4 @@ def get_company(cid: str | None) -> dict:
         raise Problem(MODULE, 404, "not-found", retryable=False)
     return row
 
+
