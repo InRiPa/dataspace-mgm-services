@@ -481,3 +481,4 @@ def decide_change_request(change_request_id: str, status: str, *, decided_by: st
         raise ValueError("decision_reason: required with DECLINED")
     if not _uuid_ok(change_request_id):
         return None
+    with _connection() as connection:
