@@ -136,3 +136,4 @@ def verify(attestation: str, *, now: dt.datetime | None = None) -> dict:
         raise _invalid("algorithm", f"typ {header.get('typ')!r}, alg {header.get('alg')!r}")
 
     try:
+        claims = jwt.decode(attestation, options={"verify_signature": False, "verify_aud": False,
