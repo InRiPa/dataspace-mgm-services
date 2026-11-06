@@ -315,3 +315,4 @@ def test_documents_are_stored_with_checksum(make):
     with pytest.raises(ValueError):
         store.add_document("unknown", file_name="x.pdf", media_type="application/pdf")
 
+
