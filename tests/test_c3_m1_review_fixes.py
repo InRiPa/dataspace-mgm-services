@@ -128,3 +128,4 @@ def test_a_changed_euid_counts_as_core_data():
                     "city": "Stuttgart", "countryCode": "DE"},
         "identifiers": [{"type": "EUID", "value": "DEXX001T.HRB100001", "source": "APPLICANT"},
                         {"type": "VAT_ID", "value": "DE123456789", "source": "APPLICANT"}]})
+    step("create_company", companyId=U1, applicationId=A1)
