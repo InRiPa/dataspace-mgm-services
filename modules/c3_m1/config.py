@@ -165,3 +165,4 @@ def stub_applications_file() -> Path | None:
 def apply_registration_url() -> None:
     """Bridge README 4's `REGISTRATION_URL` to the neighbour lookup of AGENTS.md 6.
 
+    `portal_common.neighbours` reads `C1_M2_URL`, `MODULE_URLS` and `MODULE_URLS_DEFAULT`. Where the
