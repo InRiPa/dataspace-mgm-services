@@ -111,3 +111,4 @@ def test_reactivating_a_rejected_company_takes_a_free_bpn(make):
     with pytest.raises(ValueError):
         store.update_company(other["id"], bpn="BPNL00000000AAAA")
 
+
