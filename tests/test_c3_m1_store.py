@@ -148,3 +148,4 @@ def test_find_companies_filters(make):
     make(status="REJECTED")
     assert [c["id"] for c in store.find_companies(status="REQUESTED")[0]] != []
     assert all(c["status"] == "REQUESTED" for c in store.find_companies(status=["REQUESTED"])[0])
+    found, total = store.find_companies(name="logistik")
