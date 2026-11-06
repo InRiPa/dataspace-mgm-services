@@ -68,6 +68,8 @@ class Registration:
     registered_at: str | None = None
     updated_at: str = field(default_factory=now)
     last_update_step_run: str | None = None     # repetition of update-company (OPEN-QUESTIONS 5)
+    returning: bool = False                     # a transfer-company back from TRANSFERRED_AWAY is running
+
 
     def touch(self) -> None:
         self.updated_at = now()
@@ -105,10 +107,25 @@ class AuditEntry:
     error_type: str | None
 
 
+@dataclass(slots=True, frozen=True)
+class EarlyCompletion:
+    """An `OperationCompleted` that arrived before the 202 answer of its operation was stored
+    (OPEN-QUESTIONS 15). Applied as soon as the step stores that operation id."""
+    notification_id: str
+    operation_id: str
+    outcome: Literal["SUCCEEDED", "FAILED"]
+    bpn: str | None
+    reason: str | None
+    received_at: str
+
+
+EARLY_COMPLETIONS_MAX = 100   # bound, so unknown operation ids from the CSP cannot grow memory without limit
+
 registrations: dict[str, Registration] = {}    # company_id -> row
 connectors: dict[str, Connector] = {}          # connector_id -> row
 notifications: dict[str, Notification] = {}    # notification_id -> row
 audit: list[AuditEntry] = []
+early_completions: dict[str, EarlyCompletion] = {}   # operation_id -> notification, oldest first
 
 
 def reset() -> None:
@@ -116,6 +133,7 @@ def reset() -> None:
     connectors.clear()
     notifications.clear()
     audit.clear()
+    early_completions.clear()
     seed()
 
 
@@ -153,6 +171,14 @@ def find_by_bpn(bpn: str, *, exclude: str | None = None,
     """First registration with this BPN, optionally of another company or in one status."""
     return next((r for r in registrations.values()
                  if r.bpn == bpn and r.company_id != exclude and (status is None or r.status == status)), None)
+
+
+def keep_early_completion(early: EarlyCompletion) -> None:
+    """Remember a completion for an operation id that is not known yet; drops the oldest beyond the bound."""
+    early_completions.pop(early.operation_id, None)
+    early_completions[early.operation_id] = early
+    while len(early_completions) > EARLY_COMPLETIONS_MAX:
+        early_completions.pop(next(iter(early_completions)))
 
 
 def record_audit(operation: str, company_id: str | None, bpn: str | None, http_status: int | None,

@@ -37,6 +37,8 @@ import os
 from pathlib import Path
 from typing import Any
 
+import jwt
+
 from portal_common import csp, settings
 from tools.csp_standin.core import CoreServices
 
@@ -123,9 +125,13 @@ def call(operation: str, method: str, path: str, body: JsonObject | None = None,
         except csp.CspUnavailable as e:
             store.record_audit(operation, company_id, bpn, None, "unavailable")
             raise errors.upstream_error(f"CSP not reachable: {e}") from e
-        except (OSError, ValueError) as e:   # OSP_SIGNING_KEY_FILE missing or not a JWK: no token for the CSP
+        except (OSError, ValueError, jwt.PyJWTError) as e:   # OSP_SIGNING_KEY_FILE missing, no JSON or no usable key
             store.record_audit(operation, company_id, bpn, None, "signing-key")
             raise errors.upstream_error("the signing key of the OSP (OSP_SIGNING_KEY_FILE) is not readable") from e
+        if status == 401:
+            # The CSP refused the access token. portal_common.csp would reuse it until it expires, so
+            # every retry of C12 would fail the same way: drop it, the retry fetches a new one.
+            csp.reset()
     else:
         status, answer = _builtin_core().dispatch(osp_id(), method, path, body, params)
     store.record_audit(operation, company_id, bpn, int(status), csp_type(answer))

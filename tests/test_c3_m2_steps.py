@@ -361,3 +361,119 @@ def test_find_companies_rejects_an_incomplete_csp_match(monkeypatch, broken):
     p = problem(interface.find_companies, ebwoid=OTHER_EBWOID)
     assert (p.status, p.name, p.ext["retryable"]) == (502, "upstream-error", True)
     assert next(iter(broken)) in (p.detail or "")
+
+
+# ---------------------------------------------------------------- independent review (review-module, 2026-11-06)
+def answers_first(monkeypatch, *answers):
+    """CSP answers for the next calls, in order; afterwards the built-in stand-in answers again."""
+    from modules.c3_m2 import csp_client
+    original, queue = csp_client.call, list(answers)
+
+    def call(operation, method, path, body=None, params=None, **kw):
+        if queue:
+            answer = queue.pop(0)
+            result = answer() if callable(answer) else answer
+            store.record_audit(operation, kw.get("company_id"), kw.get("bpn"), result[0])
+            return result
+        return original(operation, method, path, body, params, **kw)
+    monkeypatch.setattr(csp_client, "call", call)
+
+
+@pytest.mark.parametrize("outcome", ["SUCCEEDED", "FAILED"])
+def test_callback_before_the_202_is_applied_when_the_202_is_stored(monkeypatch, outcome):
+    """OPEN-QUESTIONS 15: a fast CSP calls back before the step stored the operation id."""
+    note = {"notificationId": "n-early", "type": "OperationCompleted", "operationId": "operation-early",
+            "outcome": outcome} | ({"bpn": MASCHINENBAU_BPN} if outcome == "SUCCEEDED" else {"reason": "NO_MATCH"})
+
+    def csp_calls_back_then_answers_202():
+        p = problem(interface.receive_csp_notification, note)
+        assert (p.status, p.name) == (404, "unknown-company")
+        return 202, {"operationId": "operation-early"}
+
+    answers_first(monkeypatch, csp_calls_back_then_answers_202)
+    if outcome == "SUCCEEDED":
+        r = interface.register_company(maschinenbau())
+        assert r["state"] == "DONE" and r["result"] == {"bpn": MASCHINENBAU_BPN}
+        assert published("CompanyRegisteredAtCsp") == [{"companyId": COMPANY, "bpn": MASCHINENBAU_BPN}]
+    else:
+        p = problem(interface.register_company, maschinenbau())
+        assert (p.status, p.name, p.ext["retryable"]) == (502, "csp-rejected", False)
+        assert interface.get_csp_registration(companyId=COMPANY)["failureReason"] == "NO_MATCH"
+        assert published("CompanyRegistrationAtCspFailed") == [{"companyId": COMPANY, "reason": "NO_MATCH"}]
+    # the CSP sends the same notification again: acknowledged, nothing processed twice
+    assert interface.receive_csp_notification(note)["accepted"] is True
+    assert store.early_completions == {}
+
+
+def test_rejected_return_keeps_the_company_transferred_away():
+    """OPEN-QUESTIONS 16: the company still lives at the other OSP; README 8.5 keeps working."""
+    bpn = register()
+    move_away(bpn)
+    p = problem(interface.transfer_company, step(bpn=bpn, ebwoid="EBWOID-DE-WRONG"))   # CSP: identifier mismatch
+    assert (p.status, p.name, p.ext["retryable"]) == (502, "csp-rejected", False)
+    view = interface.get_csp_registration(companyId=COMPANY)
+    assert (view["status"], view["failureReason"]) == ("TRANSFERRED_AWAY", "REJECTED_BY_CSP")
+    assert published("CompanyRegistrationAtCspFailed") == [{"companyId": COMPANY, "reason": "REJECTED_BY_CSP"}]
+    assert interface.deregister_membership(step())["state"] == "DONE"
+
+
+def test_rejected_return_by_callback_keeps_the_company_transferred_away(monkeypatch):
+    bpn = register()
+    move_away(bpn)
+    answers_first(monkeypatch, (202, {"operationId": "operation-return"}))
+    assert interface.transfer_company(step(bpn=bpn, ebwoid=EBWOID))["state"] == "RUNNING"
+    interface.receive_csp_notification({"notificationId": "n-r", "type": "OperationCompleted",
+                                        "operationId": "operation-return", "outcome": "FAILED"})
+    assert interface.get_csp_registration(companyId=COMPANY)["status"] == "TRANSFERRED_AWAY"
+
+
+def test_connector_registered_for_another_company_is_409():
+    """OPEN-QUESTIONS 17: no second discovery entry under another BPN."""
+    register()
+    interface.register_company(step(companyId=LOGISTIK, legalName="Beispiel Logistik GmbH", country="DE",
+                                    identifiers=[{"type": "COMMERCIAL_REG_NUMBER", "value": "HRB 200002"}]))
+    interface.register_connector(step(connectorId=CONNECTOR, endpointUrl=ENDPOINT))
+    p = problem(interface.register_connector, step(companyId=LOGISTIK, connectorId=CONNECTOR, endpointUrl=ENDPOINT))
+    assert (p.status, p.name, p.ext["retryable"]) == (409, "invalid-state", False)
+    assert csp_calls("register-connector") == 1 and store.connectors[CONNECTOR].company_id == COMPANY
+
+
+def test_every_notification_gets_an_audit_entry():
+    """README 5: one audit entry per notification, also for a duplicate and a rejected one."""
+    bpn = register()
+    note = {"notificationId": "n-a", "type": "CompanyTransferredAway", "bpn": bpn}
+    interface.receive_csp_notification(note)
+    interface.receive_csp_notification(note)                                          # duplicate
+    problem(interface.receive_csp_notification, {"notificationId": "n-b", "type": "Unknown"})         # 400
+    problem(interface.receive_csp_notification, {"notificationId": "n-c", "type": "CompanyTransferredAway",
+                                                 "bpn": "BPNL0000000UNKNW"})                         # 404
+    entries = [(a.operation, a.http_status, a.error_type)
+               for a in store.audit if a.operation.startswith("notification")]
+    assert entries == [("notification:CompanyTransferredAway", 200, None),
+                       ("notification:CompanyTransferredAway", 200, "duplicate"),
+                       ("notification:Unknown", 400, "validation"),
+                       ("notification:CompanyTransferredAway", 404, "unknown-company")]
+
+
+def test_failed_registration_calls_the_csp_again(monkeypatch):
+    """README 6.1: FAILED -> register-company again starts a new registration at the CSP."""
+    answers_first(monkeypatch, (422, {"type": "urn:csp:problem:rejected"}))
+    p = problem(interface.register_company, maschinenbau())
+    assert (p.name, p.ext["cspType"]) == ("csp-rejected", "urn:csp:problem:rejected")
+    assert interface.get_csp_registration(companyId=COMPANY)["status"] == "FAILED"
+    r = interface.register_company(maschinenbau())
+    assert r["result"] == {"bpn": MASCHINENBAU_BPN} and csp_calls("register-company") == 2
+    assert interface.get_csp_registration(companyId=COMPANY)["status"] == "REGISTERED"
+
+
+@pytest.mark.parametrize(("csp_status", "name", "retryable", "row_status"), [
+    (401, "upstream-error", True, None), (408, "upstream-error", True, None), (429, "upstream-error", True, None),
+    (503, "upstream-error", True, None), (403, "csp-rejected", False, "FAILED"), (404, "csp-rejected", False, "FAILED"),
+    (422, "csp-rejected", False, "FAILED")])
+def test_csp_answers_map_to_the_errors_of_readme_12(monkeypatch, csp_status, name, retryable, row_status):
+    """README 12 and OPEN-QUESTIONS 2 to 4: temporary answers retry and leave the status, rejections are final."""
+    answers_first(monkeypatch, (csp_status, None))
+    p = problem(interface.register_company, maschinenbau())
+    assert (p.status, p.name, p.ext["retryable"]) == (502, name, retryable)
+    row = store.registrations.get(COMPANY)
+    assert (row.status if row else None) == row_status

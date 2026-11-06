@@ -40,6 +40,7 @@ from typing import Any, Literal, TypedDict
 from pydantic import ValidationError
 
 from portal_common import events
+from portal_common.problems import Problem
 
 from . import csp_client, errors, store
 from .errors import MODULE
@@ -153,6 +154,7 @@ def _mark_registered(row: Registration, bpn: str) -> None:
     repeated step or a repeated callback never starts the next flow step twice."""
     changed = row.status != "REGISTERED" or row.bpn != bpn
     row.status, row.bpn, row.failure_reason, row.pending_operation_id = "REGISTERED", bpn, None, None
+    row.returning = False
     if changed:
         row.registered_at = store.now()
         row.touch()
@@ -166,6 +168,32 @@ def _mark_failed(row: Registration, reason: str) -> None:
     if changed:
         row.touch()
         events.publish(MODULE, "CompanyRegistrationAtCspFailed", {"companyId": row.company_id, "reason": reason})
+
+
+def _mark_rejected(row: Registration, reason: str) -> None:
+    """The CSP rejected a registration or a transfer. A company that tried to come back from
+    `TRANSFERRED_AWAY` stays `TRANSFERRED_AWAY`, because it still lives at the other OSP and
+    deregister-membership must keep its exception of README 8.5 (README 6.1; OPEN-QUESTIONS 16).
+    Any other company turns `FAILED`. The failure event goes out in both cases, only on a change."""
+    if row.status == "TRANSFERRED_AWAY" or row.returning:
+        changed = row.status != "TRANSFERRED_AWAY" or row.failure_reason != reason
+        row.status, row.failure_reason, row.pending_operation_id = "TRANSFERRED_AWAY", reason, None
+        row.returning = False
+        if changed:
+            row.touch()
+            events.publish(MODULE, "CompanyRegistrationAtCspFailed", {"companyId": row.company_id, "reason": reason})
+        return
+    _mark_failed(row, reason)
+
+
+def _complete_operation(row: Registration, outcome: str, bpn: str | None, reason: str | None) -> bool:
+    """End of a long-running operation at the CSP (README 7.2 step 3), from a callback or an early
+    one. True if the company is registered now."""
+    if outcome == "SUCCEEDED" and bpn:
+        _mark_registered(row, bpn)
+        return True
+    _mark_rejected(row, reason or REASON_REJECTED)
+    return False
 
 
 def _mark_transferred_away(row: Registration) -> None:
@@ -203,16 +231,27 @@ def _registration_answer(input: StepInputJson, company_id: str, status: int, ans
         row = store.registration_row(company_id)
         row.status, row.pending_operation_id, row.failure_reason = "PENDING", operation_id, None
         row.touch()
+        # The CSP may have called back before this answer was stored; that notification got 404 and
+        # was kept aside (OPEN-QUESTIONS 15). Apply it now, or the company would wait for ever.
+        early = store.early_completions.pop(operation_id, None)
+        if early is not None:
+            registered = _complete_operation(row, early.outcome, early.bpn, early.reason)
+            store.notifications[early.notification_id] = store.Notification(
+                early.notification_id, "OperationCompleted", row.bpn, store.now())
+            store.record_audit("notification:OperationCompleted", company_id, row.bpn, 200, "applied-late")
+            if registered and early.bpn:
+                return _reply(input, {"bpn": early.bpn})
+            raise errors.csp_rejected(f"the CSP rejected the operation ({row.failure_reason})", None)
         return _reply(input, state="RUNNING")
     # Final answers turn the row FAILED and publish the failure event: 409 = another OSP is the
     # home OSP, any other 4xx = business rejection (OPEN-QUESTIONS 2, 3). A 5xx or no answer
     # leaves the row as it was; raise_for answers retryable and C12 tries the step again.
     if status == 409:
-        _mark_failed(store.registration_row(company_id), REASON_OTHER_OSP)
+        _mark_rejected(store.registration_row(company_id), REASON_OTHER_OSP)
         home = body.get("homeOspId")
         raise errors.registered_at_other_osp(home if isinstance(home, str) else None)
     if csp_client.is_business_rejection(status):
-        _mark_failed(store.registration_row(company_id), REASON_REJECTED)
+        _mark_rejected(store.registration_row(company_id), REASON_REJECTED)
     csp_client.raise_for(status, answer, ok=())
     raise AssertionError("unreachable")  # raise_for always raises with ok=()
 
@@ -264,6 +303,8 @@ def transfer_company(input: StepInputJson) -> StepReply:
     if row is not None and row.status == "PENDING":
         return _reply(input, state="RUNNING")
 
+    if row is not None and row.status == "TRANSFERRED_AWAY":
+        row.returning = True   # a rejection keeps TRANSFERRED_AWAY (_mark_rejected)
     payload: dict[str, Any] = {k: v for k, v in (("ebwoid", ebwoid), ("euid", euid)) if v}
     if identifiers:
         payload["identifiers"] = identifiers
@@ -359,6 +400,11 @@ def register_connector(input: StepInputJson) -> StepReply:
     # Call the CSP only for a new connector or a new address (README 6.4); the same call again
     # answers DONE without a call and without an event.
     con = store.connectors.get(connector_id)
+    if con is not None and con.status == "REGISTERED" and con.company_id != company_id:
+        # Entering it under the new BPN would leave it listed under the old one as well (README 6.6;
+        # OPEN-QUESTIONS 17): C6-M1 deregisters it first.
+        raise errors.invalid_state(f"connector {connector_id} is registered for company {con.company_id}; "
+                                   "deregister it there first")
     unchanged = (con is not None and con.status == "REGISTERED" and con.endpoint_url == endpoint
                  and con.company_id == company_id and con.bpn == bpn)
     if not unchanged:
@@ -441,7 +487,18 @@ def find_companies(*, ebwoid: str | None = None, euid: str | None = None, identi
 
 # ---------------------------------------------------------------- callback of the CSP (README 7.2)
 def receive_csp_notification(body: dict[str, Any]) -> dict[str, str | bool]:
-    """Notification from the CSP; a known `notificationId` is acknowledged and not processed again."""
+    """Notification from the CSP; a known `notificationId` is acknowledged and not processed again.
+    Every notification gets an audit entry, also a duplicate and a rejected one (README 5)."""
+    try:
+        return _receive_notification(body)
+    except Problem as p:
+        kind, bpn = body.get("type"), body.get("bpn")
+        store.record_audit(f"notification:{kind if isinstance(kind, str) else 'invalid'}", None,
+                           bpn if isinstance(bpn, str) else None, p.status, p.name)
+        raise
+
+
+def _receive_notification(body: dict[str, Any]) -> dict[str, str | bool]:
     notification_id = _required(body, "notificationId")
     kind = _required(body, "type")
     if kind == "OperationCompleted":
@@ -450,15 +507,21 @@ def receive_csp_notification(body: dict[str, Any]) -> dict[str, str | bool]:
         kind_type = "CompanyTransferredAway"
     else:
         raise errors.validation("type must be OperationCompleted or CompanyTransferredAway")
-    if notification_id in store.notifications:
-        return {"notificationId": notification_id, "accepted": True}
     bpn = _optional(body, "bpn")
+    if notification_id in store.notifications:
+        store.record_audit(f"notification:{kind_type}", None, bpn, 200, "duplicate")
+        return {"notificationId": notification_id, "accepted": True}
 
     if kind_type == "OperationCompleted":
         operation_id = _required(body, "operationId")
         outcome = _required(body, "outcome")
-        if outcome not in ("SUCCEEDED", "FAILED"):
+        if outcome == "SUCCEEDED":
+            result: Literal["SUCCEEDED", "FAILED"] = "SUCCEEDED"
+        elif outcome == "FAILED":
+            result = "FAILED"
+        else:
             raise errors.validation("outcome must be SUCCEEDED or FAILED")
+        reason = _optional(body, "reason")
         if outcome == "SUCCEEDED" and not bpn:
             raise errors.validation("bpn is required with outcome SUCCEEDED")
         # The operation id identifies the registration; the BPN is the fallback (README 7.2 step 2),
@@ -468,11 +531,12 @@ def receive_csp_notification(body: dict[str, Any]) -> dict[str, str | bool]:
         row = store.find_by_operation(operation_id) or (
             store.find_by_bpn(bpn, status="PENDING") if bpn else None)
         if row is None:
+            # Possibly earlier than the 202 answer of the step: keep it aside, the step applies it
+            # when it stores the operation id (OPEN-QUESTIONS 15). The answer stays 404 (README 7.2).
+            store.keep_early_completion(store.EarlyCompletion(notification_id, operation_id, result, bpn, reason,
+                                                              store.now()))
             raise errors.unknown_company(f"no registration for operation {operation_id}")
-        if outcome == "SUCCEEDED" and bpn:
-            _mark_registered(row, bpn)
-        else:
-            _mark_failed(row, _optional(body, "reason") or REASON_REJECTED)
+        _complete_operation(row, result, bpn, reason)
     else:
         if not bpn:
             raise errors.validation("bpn is required with CompanyTransferredAway")

@@ -39,6 +39,7 @@ from modules.c3_m2 import interface, router, store
 from portal_common import csp as csp_client
 from portal_common import events
 from portal_common import http as phttp
+from portal_common.problems import Problem
 from portal_common.standin import derive_bpn
 from tools import test_iam
 from tools.csp_standin.app import create_app as create_csp
@@ -275,3 +276,27 @@ def test_malformed_company_id_is_400_validation(api):
     assert r.status_code == 400
     assert r.json()["type"] == "urn:c3-m2:problem:validation"
     assert [e["field"] for e in r.json()["errors"]] == ["path.companyId"]
+
+
+# ---------------------------------------------------------------- independent review (review-module, 2026-11-06)
+def test_a_rejected_csp_token_is_replaced_for_the_retry(shared_csp):
+    """README 4 and 12: a 401 is retryable, so the retry must not send the same rejected token again."""
+    interface.register_company(maschinenbau())                       # fetches and caches a valid token
+    token_url = f"{CSP}/oauth/token"
+    csp_client._token[token_url] = ("rejected-token", 4102444800.0)   # the CSP no longer accepts it
+    with pytest.raises(Problem) as e:
+        interface.register_membership(step())
+    assert (e.value.status, e.value.name, e.value.ext["retryable"]) == (502, "upstream-error", True)
+    assert interface.register_membership(step())["state"] == "DONE"   # the retry of C12 works
+    assert csp_client._token[token_url][0] != "rejected-token"
+
+
+def test_unusable_signing_key_is_502_upstream_error(api, shared_csp, tmp_path, monkeypatch):
+    """OPEN-QUESTIONS 11: a key file that is JSON but no usable key is no token for the CSP."""
+    (tmp_path / "half-key.json").write_text(json.dumps({"kty": "EC", "crv": "P-256"}))
+    monkeypatch.setenv("OSP_SIGNING_KEY_FILE", str(tmp_path / "half-key.json"))
+    csp_client.reset()
+    r = api.post("/api/c3-m2/steps/register-company", json=maschinenbau(), headers=service("svc-c12-m1"))
+    assert r.status_code == 502
+    assert r.json()["type"] == "urn:c3-m2:problem:upstream-error" and r.json()["retryable"] is True
+    assert "half-key" not in r.text
