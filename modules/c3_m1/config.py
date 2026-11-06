@@ -128,3 +128,4 @@ def attestation_jwks_file() -> Path | None:
     return path if path else None
 
 
+def attestation_client_ids() -> list[str]:
