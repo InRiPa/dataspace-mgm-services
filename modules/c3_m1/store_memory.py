@@ -272,3 +272,4 @@ def remove_role(company_id: str, company_role: str) -> dict | None:
     return _copy(row)
 
 
+# ------------------------------------------------------------------ consent (README 5, 6.5)
