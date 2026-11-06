@@ -118,3 +118,4 @@ def _identifiers(row: dict) -> list[dict]:
             for entry in store.list_identifiers(row["id"])]
 
 
+def _active_roles(company: str | None) -> list[str]:
