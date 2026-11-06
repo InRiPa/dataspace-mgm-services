@@ -93,3 +93,4 @@ def query_companies(id: list[str] | None = Query(None), bpn: list[str] | None = 
 
 @router.post("/internal/companies/identifier-matches")
 def find_identifier_matches(body: dict = Body(...),
+                            _: dict = standin.perm(MODULE, "POST",
