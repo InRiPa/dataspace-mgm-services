@@ -83,3 +83,4 @@ def test_a_request_needs_a_document_of_a_known_type(active):
             [("auszug.pdf", b"nur text", "application/pdf")])
     assert error.value.name == "document-invalid"
 
+
