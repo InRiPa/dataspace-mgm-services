@@ -241,3 +241,4 @@ def find_companies(*, status=None, name=None, bpn=None, has_bpn=None, company_ro
     _check_enum(core_data_source, CORE_DATA_SOURCES, "core_data_source")
     where, params = ["TRUE"], []
     if statuses:
+        where.append("c.status = ANY(%s)")
