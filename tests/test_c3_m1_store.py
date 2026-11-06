@@ -228,3 +228,4 @@ def test_roles_report_status_and_none(make):
 def test_add_role_enforces_the_enums(make):
     company = make()
     with pytest.raises(ValueError):
+        store.add_role(company["id"], "ACTIVE_PARTICIPANT", status="ADDED")
