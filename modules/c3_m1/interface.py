@@ -1132,3 +1132,4 @@ def reactivate_company(input: dict) -> dict:
         if fields["country_code"] != row["country_code"]:
             mismatched.append("countryCode")
         stored = {entry["type"]: entry for entry in store.list_identifiers(cid)}
+        if verification == "EBW":
