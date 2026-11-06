@@ -1144,3 +1144,4 @@ def reactivate_company(input: dict) -> dict:
         identifiers = list(stored.values())
         for entry in data.get("identifiers") or []:
             if entry.get("type") == "EBWOID":
+                continue
