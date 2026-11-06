@@ -118,3 +118,4 @@ CREATE TABLE consent (
     source_kind       text         NOT NULL,
     source_ref        text,
     consented_by      text,
+    consented_at      timestamptz,
