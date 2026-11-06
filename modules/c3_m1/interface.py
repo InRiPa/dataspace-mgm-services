@@ -802,3 +802,4 @@ def _own_change_request(companyId: str, changeRequestId: str) -> dict:
         raise Problem(MODULE, 404, "not-found")
     return row
 
+
