@@ -823,3 +823,4 @@ def withdraw_change_request(companyId: str, changeRequestId: str, sub: str | Non
 def _reviewed(changeRequestId: str) -> dict:
     row = store.get_change_request(changeRequestId)
     if row is None:
+        raise Problem(MODULE, 404, "not-found")
