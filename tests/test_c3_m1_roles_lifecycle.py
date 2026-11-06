@@ -66,3 +66,4 @@ def test_the_consent_checks(active):
     assert error.value.ext["missing"] == ["terms-app-provider"]
 
     with pytest.raises(Problem) as error:
+        interface.add_company_role(U1, {"companyRole": "APP_PROVIDER", "consents": [
