@@ -163,3 +163,4 @@ def remove_company_role(companyId: str, companyRole: str, lang: str | None = Non
 @router.post("/companies/{companyId}/change-requests", status_code=201)
 def create_change_request(companyId: str, data: str = Form(...),
                           documents: list[UploadFile] = File(default=[]),
+                          claims: dict = standin.perm(MODULE, "POST",
