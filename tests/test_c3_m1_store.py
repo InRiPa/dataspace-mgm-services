@@ -398,3 +398,4 @@ def test_required_address_fields_and_lengths():
                                                            ("city", "required"),
                                                            ("country_code", "required")}
     errors = v.validate_company({"short_name": "x" * 101, "house_number": "x" * 51,
+                                 "address_addition": "x" * 256, "postal_code": "x" * 13})
