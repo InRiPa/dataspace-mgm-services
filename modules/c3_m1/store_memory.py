@@ -127,3 +127,4 @@ def create_company(row: dict) -> dict:
         raise ValueError(f"id: company {row['id']} exists")
     status = row.get("status") or "REQUESTED"
     core_data_source = row.get("core_data_source") or "MANUAL"
+    _check_enum(status, STATUSES, "status")
