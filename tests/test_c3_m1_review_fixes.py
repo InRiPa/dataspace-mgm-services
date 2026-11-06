@@ -126,3 +126,4 @@ def test_a_changed_euid_counts_as_core_data():
         "legalName": "Beispiel Maschinenbau GmbH",
         "address": {"streetName": "Musterstraße", "streetNumber": "1", "postalCode": "70569",
                     "city": "Stuttgart", "countryCode": "DE"},
+        "identifiers": [{"type": "EUID", "value": "DEXX001T.HRB100001", "source": "APPLICANT"},
