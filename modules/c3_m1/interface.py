@@ -640,3 +640,4 @@ def _summary(row: dict) -> dict:
 
 
 def list_companies(*, status: list[str] | str | None = None, name: str | None = None,
+                   bpn: str | None = None, hasBpn: bool | str | None = None,
