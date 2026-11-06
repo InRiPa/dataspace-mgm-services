@@ -106,3 +106,4 @@ def test_create_company_maps_the_application():
     assert len(published("CompanyCreated")) == 1
     assert published("CompanyCreated")[0]["data"]["coreDataSource"] == "EBW"
 
+
