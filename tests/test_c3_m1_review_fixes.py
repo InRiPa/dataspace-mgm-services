@@ -319,3 +319,4 @@ def test_client_id_is_optional_without_a_configured_list(active, monkeypatch):
 
 
 def test_an_outdated_attestation_is_recognised_across_timestamp_formats(active):
+    interface.update_company_from_attestation(U1, {"attestation": sign(claims(jti="j-new"))}, P1_SUB)
