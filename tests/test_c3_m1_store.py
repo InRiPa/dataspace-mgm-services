@@ -106,3 +106,4 @@ def test_bpn_of_a_rejected_company_frees_it(make):
 
 def test_reactivating_a_rejected_company_takes_a_free_bpn(make):
     rejected = make(bpn="BPNL00000000AAAA", status="REJECTED")
+    other = make()
