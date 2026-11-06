@@ -83,3 +83,4 @@ def active(client: TestClient) -> dict:
         iam.bind(uid, company, bpn)
     return {"U1": U1, "U2": U2}
 
+
