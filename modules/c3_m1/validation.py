@@ -131,3 +131,4 @@ def _reference_data() -> dict | None:
         if _reference_cache and _reference_cache[:2] == (str(path), stat.st_mtime_ns):
             return _reference_cache[2]
         data = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
