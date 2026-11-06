@@ -178,3 +178,4 @@ def _stub_applications() -> dict[str, dict]:
     path = config.stub_applications_file()
     if path is None:
         return {}
+    document = json.loads(path.read_text(encoding="utf-8"))
