@@ -4,3 +4,4 @@
     {
       "id": "a0000001-0000-4000-8000-000000000001", "companyId": "c0000001-0000-4000-8000-000000000001",
       "kind": "ONBOARDING", "existingCompany": false, "status": "SUBMITTED", "verification": "EBW",
+      "attestation": { "attestationId": "3f6c1e2a-7b4d-4e8f-9a51-2c0d6b8e4f17", "verifiedAt": "2026-11-06T08:00:00+00:00" },
