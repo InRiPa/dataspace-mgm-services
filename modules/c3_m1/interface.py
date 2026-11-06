@@ -862,3 +862,4 @@ def get_change_request_document(changeRequestId: str, documentId: str,
     if document is None or document["change_request_id"] != changeRequestId:
         raise Problem(MODULE, 404, "not-found")
     store.audit(request["company_id"], sub, "getChangeRequestDocument", documentId)
+    return {"content": document["content"], "media_type": document["media_type"],
