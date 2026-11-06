@@ -202,3 +202,4 @@ def create_company(row: dict) -> dict:
             raise _integrity(error) from None
     return created  # type: ignore[return-value]
 
+
