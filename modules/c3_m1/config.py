@@ -250,3 +250,4 @@ def roles_assignable_by_company() -> list[str]:
 
 def description(company_role: str, lang: str) -> str | None:
     """Description in `lang`, falling back to `en` (README 7.7, 9.4)."""
+    descriptions = (role_catalogue().get(company_role) or {}).get("descriptions") or {}
