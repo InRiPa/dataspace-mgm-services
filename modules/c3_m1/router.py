@@ -187,3 +187,4 @@ def list_own_change_requests(companyId: str, page: int = 0, size: int = 20,
 def withdraw_change_request(companyId: str, changeRequestId: str,
                             claims: dict = standin.perm(
                                 MODULE, "POST",
+                                "/companies/{companyId}/change-requests/{changeRequestId}/withdraw")):
