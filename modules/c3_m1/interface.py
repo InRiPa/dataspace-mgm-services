@@ -112,3 +112,4 @@ def _address(row: dict) -> dict:
              ("addressAddition", "address_addition"), ("postalCode", "postal_code"),
              ("city", "city"), ("region", "region"), ("countryCode", "country_code"))}
 
+
