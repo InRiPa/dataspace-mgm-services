@@ -248,3 +248,4 @@ def test_consents_are_keyed_by_company_and_key(make):
 
 # ------------------------------------------------------------------------- change requests (5, 7)
 def test_at_most_one_open_change_request_per_company(make):
+    company = make()
