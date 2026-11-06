@@ -267,3 +267,4 @@ def create_company(input: dict) -> dict:
                                       "bpn": created["bpn"],
                                       "coreDataSource": created["core_data_source"]})
 
+
