@@ -108,3 +108,4 @@ def test_the_osp_deactivation_and_the_lock_while_inactive(active):
         interface.update_company(U1, {"shortName": "x"}, P1_SUB)
     assert error.value.status == 409 and error.value.name == "invalid-state"
 
+
