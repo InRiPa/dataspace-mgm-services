@@ -58,3 +58,4 @@ def postgres(monkeypatch, postgres_url):
     assert store.backend_name() == "postgres"
     store.reset()
     yield store
+    store.reset()
