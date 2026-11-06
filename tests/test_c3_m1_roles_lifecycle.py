@@ -121,3 +121,4 @@ def test_the_reactivation_with_a_new_attestation(active):
     answer = step("reactivate_company", companyId=U1, applicationId=A5)
     assert answer["result"]["status"] == "ACTIVE"
     row = store.get_company(U1)
+    assert row["street"] == "Musterstraße" and row["house_number"] == "7"
