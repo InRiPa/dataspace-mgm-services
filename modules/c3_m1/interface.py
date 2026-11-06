@@ -95,3 +95,4 @@ def reset() -> None:
     target.set_identifiers(seed["companyId"], seed.get("identifiers") or [])
     for role in seed.get("companyRoles") or []:
         target.add_role(seed["companyId"], role, status="ACTIVE", source_kind="SEED",
+                        source_ref="ospCompanyFile")
