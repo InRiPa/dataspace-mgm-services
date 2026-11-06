@@ -76,3 +76,4 @@ def reset() -> None:
         target = store
     except Problem as error:
         if error.status != 501:
+            raise
