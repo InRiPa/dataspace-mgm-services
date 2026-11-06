@@ -180,3 +180,4 @@ def test_the_role_terms_carry_name_names_and_document_url(client, active):
 def test_a_bpn_of_a_rejected_company_is_free_again():
     U4 = "c0000004-0000-4000-8000-000000000004"
     interface.reset()
+    seed(A1, U1)
