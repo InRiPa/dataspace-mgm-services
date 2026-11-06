@@ -135,3 +135,4 @@ def test_a_changed_euid_counts_as_core_data():
         {"type": "EUID", "value": "DEXX001T.HRB200002"},
         {"type": "VAT_ID", "value": "DE123456789"}]}, [PDF], P1_SUB)
     events.RELAY.log.clear()
+    interface.approve_change_request(request["id"], {}, S1_SUB)
