@@ -833,3 +833,4 @@ def list_change_requests(*, status: list[str] | str | None = None,
     """7.14: all change requests, oldest first."""
     try:
         items, total = store.list_change_requests(status=status, company_id=companyId,
+                                                  page=int(page or 0), size=int(size or 20))
