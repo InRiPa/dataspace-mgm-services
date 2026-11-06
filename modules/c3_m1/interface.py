@@ -773,3 +773,4 @@ def create_change_request(companyId: str, data: dict,
         if errors:
             raise Problem(MODULE, 400, "document-invalid", errors=errors)
 
+        created = store.create_change_request({
