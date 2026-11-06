@@ -52,3 +52,4 @@ def test_a_name_change_of_an_ebw_company_needs_the_attestation(active):
 
 
 def test_the_event_fields_are_the_ones_c11_reads(active):
+    """FRAMEWORK 6 / README 10: `companyId` and `changeRequestId`, closed also `outcome` (C11-M1)."""
