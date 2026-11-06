@@ -10,3 +10,4 @@
       "use": "sig",
       "d": "9xVZoiXVWvz9vlB072VMzdplFqmNI3NSqJcKT5SkBXw",
       "key_ops": [
+        "sign"
