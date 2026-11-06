@@ -1227,3 +1227,4 @@ def query_companies(*, id: list[str] | str | None = None, bpn: list[str] | str |
     return {"items": items, "notFound": [value for value in ids + bpns if value not in found]}
 
 
+def find_identifier_matches(*, identifiers: list[dict], name: str | None = None,
