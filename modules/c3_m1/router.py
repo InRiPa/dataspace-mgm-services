@@ -189,3 +189,4 @@ def withdraw_change_request(companyId: str, changeRequestId: str,
                                 MODULE, "POST",
                                 "/companies/{companyId}/change-requests/{changeRequestId}/withdraw")):
     standin.company_scope(MODULE, claims, companyId)
+    return interface.withdraw_change_request(companyId, changeRequestId, claims.get("sub"))
