@@ -140,3 +140,4 @@ def verify(attestation: str, *, now: dt.datetime | None = None) -> dict:
                                                   "verify_exp": False, "verify_iat": False})
     except jwt.PyJWTError as error:
         raise _invalid("format", f"payload unreadable: {error}") from error
+    if claims.get("iss") != config.attestation_issuer():
