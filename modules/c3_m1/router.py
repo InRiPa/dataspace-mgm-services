@@ -26,3 +26,4 @@
 
 Every route takes its permission from `x-permission` of the spec through `standin.perm`. Paths in
 the scope `company` additionally check `company_id` against the path (FRAMEWORK 4.3: another
+company's object stays invisible, 404). No business logic here.
