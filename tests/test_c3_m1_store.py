@@ -460,3 +460,4 @@ def test_identifier_type_enum_and_one_per_type():
     assert {"field": "identifiers[2].type", "reason": "duplicate-type"} in errors
 
 
+def test_de_vat_id_accepts_and_rejects():
