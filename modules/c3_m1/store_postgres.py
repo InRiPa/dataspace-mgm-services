@@ -117,3 +117,4 @@ def _uuid_ok(value) -> bool:
         uuid.UUID(str(value))
     except (AttributeError, TypeError, ValueError):
         return False
+    return True
