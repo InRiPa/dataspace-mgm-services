@@ -22,3 +22,4 @@
 #  SPDX-License-Identifier: Apache-2.0 AND CC0-1.0
 #  Assisted-By: Hermes Agent (deepseek-v4.1-flash)
 #################################################################################
+"""The transport switch of `modules/c3_m1/store.py`: `DATABASE_URL` empty = in memory, set = the
