@@ -163,3 +163,4 @@ def verify(attestation: str, *, now: dt.datetime | None = None) -> dict:
     if issued > points + skew:
         raise _invalid("not-yet-valid", "iat is in the future")
 
+    company = claims.get("company")
