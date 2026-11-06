@@ -125,3 +125,4 @@ def _reference_data() -> dict | None:
     global _reference_cache
     path = _reference_path()
     if path is None or not path.is_file():
+        return None
