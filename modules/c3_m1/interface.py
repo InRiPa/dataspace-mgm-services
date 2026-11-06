@@ -1228,3 +1228,4 @@ def query_companies(*, id: list[str] | str | None = None, bpn: list[str] | str |
 
 
 def find_identifier_matches(*, identifiers: list[dict], name: str | None = None,
+                            excludeCompanyId: str | None = None,
