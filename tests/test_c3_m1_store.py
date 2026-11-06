@@ -499,3 +499,4 @@ def test_patterns_fall_back_to_readme_6_4_without_reference_data(tmp_path, monke
     settings_file = tmp_path / "installation.json"
     settings_file.write_text(json.dumps({"ospId": "22222222-2222-4222-8222-222222222222",
                                          "ospName": "OSP X",
+                                         "ospCompanyId": "11111111-1111-4111-8111-111111111111"}))
