@@ -319,3 +319,4 @@ def create_change_request(row: dict) -> dict:
         raise ValueError(f"company {company_id} already has an open change request")
     created = {
         "id": row.get("id") or str(uuid.uuid4()), "company_id": company_id, "status": status,
+        "changes": copy.deepcopy(row.get("changes") or {}), "comment": row.get("comment"),
