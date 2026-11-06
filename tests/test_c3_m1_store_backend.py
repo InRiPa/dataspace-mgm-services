@@ -112,3 +112,4 @@ def test_reset_empties_the_tables(postgres):
 
 
 def test_a_missing_driver_answers_not_implemented(monkeypatch, postgres_url):
+    """DATABASE_URL set but no driver: 501 `not-implemented`, not a 500."""
