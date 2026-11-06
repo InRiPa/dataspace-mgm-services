@@ -70,3 +70,4 @@ def test_a_request_with_identifiers_is_created(active):
     with pytest.raises(Problem) as error:
         submit()
     assert error.value.status == 409 and error.value.name == "change-request-open"
+
