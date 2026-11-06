@@ -210,3 +210,4 @@ def test_activate_without_consents_keeps_requested():
     step("create_company", companyId=U3, applicationId=A3)
     step("assign_identifier", companyId=U3, bpn="BPNL00000000U3OZ")
     with pytest.raises(Problem) as error:
+        step("activate_company", companyId=U3, applicationId=A3)
