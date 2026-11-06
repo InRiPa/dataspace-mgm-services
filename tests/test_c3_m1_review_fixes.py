@@ -274,3 +274,4 @@ def test_the_document_goes_out_over_http_with_its_content_type(client, active):
     request = interface.create_change_request(U1, {"comment": "x", "identifiers": [
         {"type": "VAT_ID", "value": "DE555444333"}]}, [PDF], P1_SUB)
     answer = call(client, "GET", f"/api/c3-m1/osp/change-requests/{request['id']}/documents/"
+                                f"{request['documents'][0]['id']}", S1)
