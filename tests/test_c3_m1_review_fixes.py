@@ -203,3 +203,4 @@ def test_an_attestation_without_a_change_still_stamps_the_verification(active):
     assert second["changedFields"] == []
     row = store.get_company(U1)
     assert row["verification_ref"] == "jti-spaet" and row["core_data_verified_at"] != before
+
