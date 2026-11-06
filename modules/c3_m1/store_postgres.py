@@ -577,3 +577,4 @@ def audit(company_id: str | None, sub: str | None, operation: str,
             "INSERT INTO audit_log (id, occurred_at, sub, company_id, operation, object_id, details)"
             " VALUES (%s, %s, %s, %s, %s, %s, %s) RETURNING *",
             (str(uuid.uuid4()), _now(), sub or "", company_id, operation, object_id,
+             json.dumps(details or {})))
