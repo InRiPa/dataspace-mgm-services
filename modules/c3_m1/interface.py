@@ -955,3 +955,4 @@ def decline_change_request(changeRequestId: str, body: dict | None = None,
 
 # ----------------------------------------------------- change with an attestation (7.3, 6.3, 6.7)
 def _attested_values(row: dict, claims: dict) -> tuple[dict, dict[str, dict]]:
+    """Name, address and identifiers from the claims (6.3); returns the fields and the identifiers."""
