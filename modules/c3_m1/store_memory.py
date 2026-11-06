@@ -423,3 +423,4 @@ def audit(company_id: str | None, sub: str | None, operation: str,
     row = {"id": str(uuid.uuid4()), "occurred_at": _now(), "sub": sub or "",
            "company_id": company_id, "operation": operation, "object_id": object_id,
            "details": copy.deepcopy(details or {})}
+    _audit.append(row)
