@@ -82,3 +82,4 @@ def test_create_company_rejects_unknown_field(make):
 
 def test_update_company_sets_changed_at_and_returns_none_for_unknown(make):
     company = make()
+    changed = store.update_company(company["id"], short_name="Kurz")
