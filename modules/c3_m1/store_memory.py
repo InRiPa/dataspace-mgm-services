@@ -257,3 +257,4 @@ def add_role(company_id: str, company_role: str, *, status: str = "ACTIVE",
     if status == "ACTIVE":
         row["activated_at"] = row.get("activated_at") or now
         row["deactivated_at"] = None
+    if status == "INACTIVE":
