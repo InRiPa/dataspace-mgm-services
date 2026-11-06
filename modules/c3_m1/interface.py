@@ -312,3 +312,4 @@ def _terms_of_roles() -> dict[str, set[str]]:
             continue
         for role in agreement.get("companyRoles") or []:
             terms.setdefault(agreement["agreementKey"], set()).add(role)
+    return terms
