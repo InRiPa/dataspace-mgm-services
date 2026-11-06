@@ -107,3 +107,4 @@ def _delegate(name: str):
     call.__doc__ = f"Delegates to the transport's `{name}`."
     return call
 
+
