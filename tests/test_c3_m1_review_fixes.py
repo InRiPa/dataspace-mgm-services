@@ -225,3 +225,4 @@ def test_the_reactivation_keeps_the_house_number_of_the_application(active):
     step("deactivate_company", companyId=U1, reason="MANUAL")
     step("reactivate_company", companyId=U1, applicationId="a0000005-0000-4000-8000-000000000009")
     row = store.get_company(U1)
+    assert (row["street"], row["house_number"]) == ("Musterstraße", "7")
