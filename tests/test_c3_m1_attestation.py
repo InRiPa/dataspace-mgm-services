@@ -78,3 +78,4 @@ def claims(**over) -> dict:
                                 "locality": "Stuttgart"}},
         "representation": {"confirmed": True, "result": "CONFIRMED"},
     }
+    base.update(over)
