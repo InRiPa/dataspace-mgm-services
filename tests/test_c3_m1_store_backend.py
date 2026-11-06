@@ -79,3 +79,4 @@ def test_the_transport_follows_database_url_at_call_time(monkeypatch, postgres_u
 
 
 def test_the_database_is_the_module_own_database(postgres):
+    """The transport answers the same functions as the memory one, on the own schema."""
