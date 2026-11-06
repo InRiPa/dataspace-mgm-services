@@ -73,3 +73,4 @@ def claims(**over) -> dict:
         "iat": now(), "exp": now() + dt.timedelta(hours=1),
         "verified_at": int((now() - dt.timedelta(hours=1)).timestamp()),
         "company": {"legal_name": "Beispiel Maschinenbau AG",
+                    "ebwoid": "EBWOID-DE-0000000001", "country": "DE",
