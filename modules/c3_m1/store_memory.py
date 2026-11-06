@@ -194,3 +194,4 @@ def find_companies(*, status=None, name=None, bpn=None, has_bpn=None, company_ro
     start = max(page, 0) * size
     return [_copy(row) for row in items[start:start + size]], total  # type: ignore[misc]
 
+
