@@ -463,3 +463,4 @@ def list_change_requests(*, company_id: str | None = None, status=None,
     if statuses:
         where.append("status = ANY(%s)")
         params.append(statuses)
+    order = "DESC" if newest_first else "ASC"
