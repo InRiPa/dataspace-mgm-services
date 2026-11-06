@@ -145,3 +145,4 @@ def test_nobody_approves_their_own_request(active):
     osp_company = "11111111-1111-4111-8111-111111111111"
     answer = submit(osp_company, S2_SUB, identifiers=[{"type": "VAT_ID", "value": "DE999999999"}])
     with pytest.raises(Problem) as error:
+        interface.approve_change_request(answer["id"], {}, S2_SUB)
