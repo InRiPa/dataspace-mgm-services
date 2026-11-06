@@ -204,3 +204,4 @@ def flat_fields(data: dict) -> dict:
             flat[field_name(key)] = value
     return flat
 
+
