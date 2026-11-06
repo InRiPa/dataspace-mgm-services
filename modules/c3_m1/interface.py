@@ -298,3 +298,4 @@ def assign_identifier(input: dict) -> dict:
 # ----------------------------------------------------------------------------------- steps (8.3)
 def _terms_of_roles() -> dict[str, set[str]]:
     config.apply_registration_url()
+    """agreementKey -> roles it belongs to, from the terms of C1-M2 (11.1).
