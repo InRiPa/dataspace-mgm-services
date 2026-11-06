@@ -157,3 +157,4 @@ def test_a_too_old_attestation_is_refused():
     with pytest.raises(Problem) as error:
         update(verified_at=int((now() - dt.timedelta(days=3)).timestamp()))
     assert error.value.ext["reason"] == "too-old"
+
