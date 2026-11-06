@@ -335,3 +335,4 @@ def validate_change_request(data: dict, country_code: str | None) -> list[dict]:
 def validate_comment(comment) -> list[dict]:
     errors: list[dict] = []
     _text(errors, "comment", comment, required=True, min_length=1, max_length=COMMENT_MAX)
+    return errors
