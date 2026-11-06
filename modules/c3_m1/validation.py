@@ -229,3 +229,4 @@ def validate_company(data: dict, *, partial: bool = False) -> list[dict]:
         bpn = flat["bpn"]
         if not isinstance(bpn, str) or not BPN_PATTERN.match(bpn.upper()):
             errors.append(_error("bpn", "format"))
+    if flat.get("status") not in (None, ""):
