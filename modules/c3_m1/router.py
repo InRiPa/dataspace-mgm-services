@@ -255,3 +255,4 @@ def deactivate_company_by_staff(companyId: str, body: dict = Body(...),
     return interface.deactivate_company_by_staff(companyId, body, claims.get("sub"))
 
 
+@router.patch("/osp/companies/{companyId}")
