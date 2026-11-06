@@ -182,3 +182,4 @@ CREATE TABLE audit_log (
     sub         text         NOT NULL DEFAULT '',
     company_id  uuid,
     operation   text         NOT NULL,
+    object_id   text,
