@@ -509,3 +509,4 @@ def correct_company(companyId: str, body: dict, sub: str | None = None) -> dict:
 
 
 # ------------------------------------------------------------------------------ company roles (7.7 - 7.9)
+def _terms() -> list[dict]:
