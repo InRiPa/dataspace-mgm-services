@@ -317,3 +317,4 @@ def test_client_id_is_optional_without_a_configured_list(active, monkeypatch):
     answer = interface.update_company_from_attestation(U1, {"attestation": sign(payload)}, P1_SUB)
     assert answer["changedFields"]
 
+
