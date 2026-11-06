@@ -226,3 +226,4 @@ def create_company(input: dict) -> dict:
 
     data = application.get("companyData") or {}
     source_address = data.get("address") or {}
+    verification = application.get("verification")
