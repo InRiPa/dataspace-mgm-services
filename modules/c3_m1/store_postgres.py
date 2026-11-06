@@ -309,3 +309,4 @@ def set_identifiers(company_id: str, identifiers: list[dict]) -> list[dict]:
 def get_role(company_id: str, company_role: str) -> dict | None:
     if not _uuid_ok(company_id):
         return None
+    with _connection() as connection:
