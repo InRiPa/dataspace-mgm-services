@@ -630,3 +630,4 @@ def remove_company_role(companyId: str, companyRole: str, sub: str | None = None
     return _role_state(companyId, lang or "en")
 
 
+# ---------------------------------------------------------------------- search for OSP (7.10)
