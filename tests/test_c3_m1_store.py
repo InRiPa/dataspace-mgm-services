@@ -52,3 +52,4 @@ def make():
                "street": "Musterstraße 1", "city": "Stuttgart", "country_code": "DE",
                "status": "ACTIVE"}
         row.update(fields)
+        return store.create_company(row)
