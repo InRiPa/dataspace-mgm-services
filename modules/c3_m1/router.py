@@ -172,3 +172,4 @@ def create_change_request(companyId: str, data: str = Form(...),
         raise Problem(MODULE, 400, "validation",
                       errors=[{"field": "data", "reason": f"not JSON: {error}"}]) from error
     files = [(upload.filename or "", upload.file.read(), upload.content_type) for upload in documents]
+    return interface.create_change_request(companyId, parsed, files, claims.get("sub"))
