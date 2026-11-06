@@ -314,3 +314,4 @@ def test_client_id_is_optional_without_a_configured_list(active, monkeypatch):
     monkeypatch.delenv("ATTESTATION_CLIENT_IDS")
     payload = claims()
     payload.pop("client_id")
+    answer = interface.update_company_from_attestation(U1, {"attestation": sign(payload)}, P1_SUB)
