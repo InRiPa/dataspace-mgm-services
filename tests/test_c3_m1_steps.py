@@ -170,3 +170,4 @@ def test_assign_identifier_and_its_errors():
          companyData={"legalName": "Ohne Zustimmung GmbH", "address": ADDRESS,
                       "identifiers": [{"type": "VAT_ID", "value": "DE111111111", "source": "APPLICANT"}]},
          consents=[])
+    step("create_company", companyId=U1, applicationId=A1)
