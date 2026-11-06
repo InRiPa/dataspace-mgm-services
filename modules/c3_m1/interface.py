@@ -353,3 +353,4 @@ def activate_company(input: dict) -> dict:
         for role in active:
             store.add_role(cid, role, status="ACTIVE", source_kind="APPLICATION",
                            source_ref=application_id)
+            for key in (key for key, roles in terms.items() if role in roles):
