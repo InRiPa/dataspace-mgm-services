@@ -51,3 +51,4 @@ def postgres_url() -> str:
     return url
 
 
+@pytest.fixture
