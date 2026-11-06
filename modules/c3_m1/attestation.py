@@ -89,3 +89,4 @@ def _load_keys() -> list[dict]:
         raise Problem(MODULE, 502, "upstream-error",
                       detail=f"JWKS not reachable: {error}", retryable=True) from error
     _cache.update({"keys": keys, "fetched_at": now})
+    return keys
