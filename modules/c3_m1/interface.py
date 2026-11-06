@@ -632,3 +632,4 @@ def remove_company_role(companyId: str, companyRole: str, sub: str | None = None
 
 # ---------------------------------------------------------------------- search for OSP (7.10)
 def _summary(row: dict) -> dict:
+    return {"id": row["id"], "name": row["name"], "status": row["status"], "bpn": row["bpn"],
