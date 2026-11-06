@@ -298,3 +298,4 @@ def test_list_change_requests_filters_and_order(make):
     assert store.list_change_requests(status="OPEN")[1] == 1
     assert items[1]["changes"] == {"name": "Neu"}
 
+
