@@ -507,3 +507,4 @@ def correct_company(companyId: str, body: dict, sub: str | None = None) -> dict:
                         "coreDataSource": updates.get("core_data_source", row["core_data_source"])})
     return company_view(companyId, detail=True)
 
+
