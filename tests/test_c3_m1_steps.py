@@ -233,3 +233,4 @@ def test_reject_company():
         step("reject_company", companyId=U1)
     assert error.value.name == "invalid-state"
 
+
