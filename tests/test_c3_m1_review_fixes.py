@@ -176,3 +176,4 @@ def test_the_role_terms_carry_name_names_and_document_url(client, active):
     term = answer.json()[0]["agreements"][0]
     assert set(term) >= {"name", "names", "documentUrl", "agreementKey", "version"}
 
+
