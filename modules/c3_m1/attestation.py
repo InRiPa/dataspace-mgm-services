@@ -177,3 +177,4 @@ def verify(attestation: str, *, now: dt.datetime | None = None) -> dict:
         missing.append("client_id")
     if missing:
         raise _invalid("claims", "missing or wrong: " + ", ".join(missing))
+
