@@ -160,3 +160,4 @@ CREATE TABLE change_request_document (
     size_bytes         integer      NOT NULL,
     sha256             text         NOT NULL,
     content            bytea        NOT NULL,
+    created_at         timestamptz  NOT NULL,
