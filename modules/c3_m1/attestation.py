@@ -30,3 +30,4 @@ writes afterwards.
 
 Keys come only from the configuration: `ATTESTATION_JWKS_FILE` (tests, no fetch) or
 `ATTESTATION_JWKS_URL` with a cache and one reload per minute for an unknown `kid` (6.7 point 4).
+Header parameters such as `jku`, `x5u` or `jwk` are ignored.
