@@ -71,3 +71,4 @@ _cache: tuple[str, ModuleType] | None = None
 
 
 def backend_name() -> str:
+    """Name of the transport that `DATABASE_URL` selects right now: `memory` or `postgres`."""
