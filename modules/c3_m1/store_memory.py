@@ -136,3 +136,4 @@ def create_company(row: dict) -> dict:
     created: dict = {field: None for field in COMPANY_FIELDS}
     created.update({key: value for key, value in row.items() if value is not None})
     created.update({
+        "id": row["id"], "status": status, "core_data_source": core_data_source,
