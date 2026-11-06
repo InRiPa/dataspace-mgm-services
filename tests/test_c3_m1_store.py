@@ -199,3 +199,4 @@ def test_set_identifiers_enforces_one_per_type(make):
 def test_set_identifiers_enforces_the_enums(make):
     company = make()
     with pytest.raises(ValueError):
+        store.set_identifiers(company["id"], [{"type": "VIES", "value": "DE123456789"}])
