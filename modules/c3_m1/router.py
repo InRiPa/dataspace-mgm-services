@@ -175,3 +175,4 @@ def create_change_request(companyId: str, data: str = Form(...),
     return interface.create_change_request(companyId, parsed, files, claims.get("sub"))
 
 
+@router.get("/companies/{companyId}/change-requests")
