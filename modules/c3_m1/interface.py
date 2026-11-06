@@ -203,3 +203,4 @@ def _application(application_id: str | None) -> dict:
 
 def create_company(input: dict) -> dict:
     """8.1: create the company `REQUESTED` from a submitted application of kind ONBOARDING/TRANSFER."""
+    cid, application_id = input.get("companyId"), input.get("applicationId")
