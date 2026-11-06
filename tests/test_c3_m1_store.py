@@ -408,3 +408,4 @@ def test_region_rules():
     base = {"name": "A", "street": "Weg 1", "city": "Stadt", "country_code": "DE"}
     assert v.validate_company({"region": "BW", **base}) == []
     assert v.validate_company({"region": "B1", **base}) == []
+    assert v.validate_company(base) == []
