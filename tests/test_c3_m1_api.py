@@ -157,3 +157,4 @@ def test_the_country_is_locked_after_the_bpn(client, active):
 def test_a_business_wallet_identifier_needs_the_attestation(client, active):
     response = call(client, "PATCH", f"/api/c3-m1/osp/companies/{U1}", S2,
                     json={"identifiers": [{"type": "EBWOID", "value": "EBWOID-DE-0000000009"},
+                                          {"type": "VAT_ID", "value": "DE123456789"}],
