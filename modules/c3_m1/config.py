@@ -169,3 +169,4 @@ def apply_registration_url() -> None:
     installation sets `REGISTRATION_URL` and the scaffold default is empty, that value is the
     neighbour address. An empty `MODULE_URLS_DEFAULT` keeps its meaning: built-in stand-in.
     """
+    url = os.environ.get("REGISTRATION_URL")
