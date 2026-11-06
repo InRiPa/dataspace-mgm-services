@@ -348,3 +348,4 @@ def list_change_requests(*, company_id: str | None = None, status=None,
     start = max(page, 0) * size
     return [_copy(row) for row in items[start:start + size]], total  # type: ignore[misc]
 
+
