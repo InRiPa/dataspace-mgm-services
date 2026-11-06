@@ -315,3 +315,4 @@ def create_change_request(row: dict) -> dict:
     _check_known(company_id)
     status = row.get("status") or "OPEN"
     _check_enum(status, CHANGE_REQUEST_STATUSES, "status")
+    if status == "OPEN" and open_change_request(company_id):
