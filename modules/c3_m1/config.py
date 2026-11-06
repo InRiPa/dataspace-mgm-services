@@ -220,3 +220,4 @@ INITIAL_ROLES = {
     },
     "ONBOARDING_SERVICE_PROVIDER": {
         "assignableBy": "SEED",
+        "descriptions": {"de": "Onboarding-Dienstleister", "en": "Onboarding service provider"},
