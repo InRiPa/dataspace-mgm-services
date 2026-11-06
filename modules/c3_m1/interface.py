@@ -1274,3 +1274,4 @@ def find_identifier_matches(*, identifiers: list[dict], name: str | None = None,
                             "bpn": row["bpn"], "matchedOn": matched})
     matches.sort(key=lambda match: len(match["matchedOn"]), reverse=True)
     return {"matches": matches}
+
