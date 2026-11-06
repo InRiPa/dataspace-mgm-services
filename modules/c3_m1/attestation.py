@@ -90,3 +90,4 @@ def _load_keys() -> list[dict]:
                       detail=f"JWKS not reachable: {error}", retryable=True) from error
     _cache.update({"keys": keys, "fetched_at": now})
     return keys
+
