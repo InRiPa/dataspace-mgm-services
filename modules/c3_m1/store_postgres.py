@@ -574,3 +574,4 @@ def audit(company_id: str | None, sub: str | None, operation: str,
     with _connection() as connection:
         return _fetch_one(  # type: ignore[return-value]
             connection,
+            "INSERT INTO audit_log (id, occurred_at, sub, company_id, operation, object_id, details)"
