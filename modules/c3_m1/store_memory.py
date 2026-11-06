@@ -293,3 +293,4 @@ def set_consent(company_id: str, agreement_key: str, *, version: str | None = No
     _check_enum(source_kind, CONSENT_SOURCE_KINDS, "source_kind")
     row = _consents.get((company_id, agreement_key)) or {
         "company_id": company_id, "agreement_key": agreement_key, "agreement_version": None,
+        "status": status, "source_kind": source_kind, "source_ref": source_ref,
