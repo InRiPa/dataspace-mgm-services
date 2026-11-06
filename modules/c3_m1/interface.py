@@ -965,3 +965,4 @@ def _attested_values(row: dict, claims: dict) -> tuple[dict, dict[str, dict]]:
         if entry["type"] == "EBWOID":
             if not validation.same_value(entry["value"], company.get("ebwoid")):
                 entry["value"] = company.get("ebwoid")
+            entry["source"] = "BUSINESS_WALLET"
