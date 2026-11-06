@@ -32,3 +32,4 @@
         "identifiers": [
           { "type": "COMMERCIAL_REG_NUMBER", "value": "HRB 200002", "source": "APPLICANT" },
           { "type": "VAT_ID", "value": "DE987654321", "source": "APPLICANT" }
+        ]
