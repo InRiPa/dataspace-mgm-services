@@ -222,3 +222,4 @@ def create_company(input: dict) -> dict:
                       retryable=False)
     if application.get("status") not in ("SUBMITTED", "APPROVED"):
         raise Problem(MODULE, 409, "invalid-state",
+                      detail=f"application {application.get('status')}", retryable=False)
