@@ -340,3 +340,4 @@ def add_role(company_id: str, company_role: str, *, status: str = "ACTIVE",
     with _connection() as connection:
         _check_known(connection, company_id)
         return _fetch_one(
+            connection,
