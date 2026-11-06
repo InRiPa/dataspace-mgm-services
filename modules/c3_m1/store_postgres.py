@@ -457,3 +457,4 @@ def list_change_requests(*, company_id: str | None = None, status=None,
     for value in statuses:
         _check_enum(value, CHANGE_REQUEST_STATUSES, "status")
     where, params = ["TRUE"], []
+    if company_id is not None:
