@@ -179,3 +179,4 @@ def osp_company_id() -> str:
     return settings.get("ospCompanyId") or ""
 
 
+def dataspace_name() -> str | None:
