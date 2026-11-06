@@ -308,3 +308,4 @@ def _terms_of_roles() -> dict[str, set[str]]:
         agreements = neighbours.query(MODULE, "c1-m2", "list_agreements_internal") or []
     terms: dict[str, set[str]] = {}
     for agreement in agreements:
+        if agreement.get("scope") != "COMPANY_ROLE":
