@@ -154,3 +154,4 @@ def test_nobody_approves_their_own_request(active):
 def test_submission_over_multipart(client, active):
     response = call(client, "POST", f"/api/c3-m1/companies/{U1}/change-requests", P1,
                     data={"data": '{"comment": "per HTTP", "identifiers": '
+                                  '[{"type": "VAT_ID", "value": "DE555444333"}]}'},
