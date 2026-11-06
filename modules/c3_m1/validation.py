@@ -325,3 +325,4 @@ def validate_change_request(data: dict, country_code: str | None) -> list[dict]:
         errors.append(_error("changes", "missing"))
     if has_name or has_address:
         errors += validate_company(flat, partial=True)
+    if has_identifiers:
