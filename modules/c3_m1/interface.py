@@ -717,3 +717,4 @@ def _identifier_core_changed(row: dict, identifiers: list[dict]) -> bool:
     """A changed, added or dropped declared EUID/EBWOID is a change of core data (6.3).
 
     A wallet identifier that stays outside the request list is not a change.
+    """
