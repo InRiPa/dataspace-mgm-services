@@ -394,3 +394,4 @@ def test_name_rules():
 
 def test_required_address_fields_and_lengths():
     errors = v.validate_company({"name": "A"})
+    assert {(e["field"], e["reason"]) for e in errors} >= {("street", "required"),
