@@ -360,3 +360,4 @@ def validate_file_name(file_name) -> list[dict]:
 
 def detect_media_type(content) -> str | None:
     """Media type from the first bytes, `None` for anything else (README 4, 5)."""
+    if not isinstance(content, (bytes, bytearray)):
