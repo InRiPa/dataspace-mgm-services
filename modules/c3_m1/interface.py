@@ -409,3 +409,4 @@ def _changed_fields(row: dict, body: dict, identifiers: list[dict] | None) -> li
     return changed
 
 
+def _validate_merge(row: dict, body: dict) -> dict:
