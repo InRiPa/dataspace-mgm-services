@@ -277,3 +277,4 @@ def test_decide_requires_open_and_a_reason_for_declined(make):
         store.decide_change_request(request["id"], "APPROVED")
 
 
+def test_decide_enforces_the_decision_status(make):
