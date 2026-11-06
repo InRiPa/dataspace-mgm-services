@@ -268,3 +268,4 @@ def remove_role(company_id: str, company_role: str) -> dict | None:
     row = _roles.get(company_id, {}).get(company_role)
     if row is None:
         return None
+    row.update({"status": "INACTIVE", "changed_at": _now(), "deactivated_at": _now()})
