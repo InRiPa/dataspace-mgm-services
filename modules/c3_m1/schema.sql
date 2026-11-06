@@ -134,3 +134,4 @@ CREATE TABLE change_request (
     status           text         NOT NULL,
     changes          jsonb        NOT NULL DEFAULT '{}'::jsonb,
     comment          text,
+    requested_by     text,
