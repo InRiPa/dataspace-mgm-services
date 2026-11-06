@@ -237,3 +237,4 @@ def test_the_start_survives_a_database_without_a_driver(monkeypatch):
         if name == ".store_postgres":
             raise ModuleNotFoundError("No module named 'psycopg'", name="psycopg")
         return real_import(name, package)
+
