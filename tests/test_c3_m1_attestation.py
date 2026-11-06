@@ -149,3 +149,4 @@ def test_a_foreign_key_is_a_signature_error():
                                            headers={"typ": "ebw-attestation+jwt",
                                                     "kid": PRIVATE["kid"]})})
     assert error.value.status == 400
+    assert error.value.name == "attestation-invalid" and error.value.ext["reason"] == "signature"
