@@ -214,3 +214,4 @@ def set_identifiers(company_id: str, identifiers: list[dict]) -> list[dict]:
             raise ValueError(f"type: {kind} given twice")
         _check_enum(entry.get("source") or "DECLARED", IDENTIFIER_SOURCES, "source")
         value = entry.get("value")
+        if not isinstance(value, str) or not value:
