@@ -312,3 +312,4 @@ def validate_identifiers(identifiers, country_code: str | None,
 # ------------------------------------------------------------------ change request, docs (7.4)
 def validate_change_request(data: dict, country_code: str | None) -> list[dict]:
     """7.4: at least one change, comment 1..1000, identifiers complete with source `DECLARED`."""
+    flat = flat_fields(data)
