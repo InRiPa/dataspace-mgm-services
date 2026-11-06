@@ -361,3 +361,4 @@ def test_reset_clears_every_table(make):
     assert store.get_company(company["id"]) is None
     assert store.list_identifiers(company["id"]) == []
     assert store.list_roles(company["id"]) == {}
+    assert store.list_consents(company["id"]) == []
