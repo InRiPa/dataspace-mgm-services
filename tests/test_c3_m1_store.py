@@ -116,3 +116,4 @@ def test_rejecting_a_company_keeps_its_bpn(make):
     company = make(bpn="BPNL00000000AAAA")
     assert store.update_company(company["id"], status="REJECTED")["bpn"] == "BPNL00000000AAAA"
 
+
