@@ -342,3 +342,4 @@ def test_audit_entry_is_written_and_readable(make):
 def test_lock_yields_the_company_id():
     with store.lock("company-1") as locked:
         assert locked == "company-1"
+
