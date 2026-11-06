@@ -80,3 +80,4 @@ def test_the_consent_checks(active):
     assert error.value.name == "validation"
 
 
+def test_the_seed_role_is_not_assignable(active):
