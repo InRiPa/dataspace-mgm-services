@@ -485,3 +485,4 @@ def test_lei_and_eori_formats():
         [{"type": "LEI_CODE", "value": "kurz"}], "DE")
     assert v.validate_identifiers([{"type": "EORI", "value": "DE1234567"}], "DE") == []
     assert {"field": "identifiers[0].value", "reason": "format"} in v.validate_identifiers(
+        [{"type": "EORI", "value": "1234567"}], "DE")
