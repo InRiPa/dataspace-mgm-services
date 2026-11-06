@@ -116,3 +116,4 @@ def test_create_company_is_idempotent():
     assert len(store.find_companies(size=100)[0]) == 2   # seed company + U1
 
 
+def test_create_company_conflicts():
