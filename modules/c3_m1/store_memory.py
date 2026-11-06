@@ -66,3 +66,4 @@ def _copy(row: dict | None) -> dict | None:
 
 
 def _check_enum(value, allowed: tuple[str, ...], field: str) -> None:
+    if value is not None and value not in allowed:
