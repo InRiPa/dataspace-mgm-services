@@ -233,3 +233,4 @@ def test_the_start_survives_a_database_without_a_driver(monkeypatch):
     monkeypatch.setattr(interface.store, "_cache", None)
     real_import = interface.store.importlib.import_module
 
+    def fake_import(name, package=None):
