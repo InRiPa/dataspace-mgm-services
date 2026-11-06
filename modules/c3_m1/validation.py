@@ -67,3 +67,4 @@ FILE_NAME_MAX = 200
 NORMALISE_STRIP = re.compile(r"[\s.\-/]")
 
 #: README 6.4 fallbacks, used when the reference data file or the type in it is missing.
+FALLBACK_PATTERNS: dict[str, dict[str, str]] = {
