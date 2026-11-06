@@ -417,3 +417,4 @@ def test_country_code_rules():
     assert v.validate_country_code("DE") == []
     assert {"field": "country_code", "reason": "format"} in v.validate_country_code("de")
     assert {"field": "country_code", "reason": "format"} in v.validate_country_code("D1")
+    assert {"field": "country_code", "reason": "unknown-country"} in v.validate_country_code("AT")
