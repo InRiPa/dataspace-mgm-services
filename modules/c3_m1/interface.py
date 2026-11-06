@@ -881,3 +881,4 @@ def _apply_changes(companyId: str, row: dict, changes: dict) -> tuple[list[str],
         errors += _wallet_identifier_conflict(row, identifiers)
     if errors:
         raise Problem(MODULE, 400, "validation", errors=errors)
+
