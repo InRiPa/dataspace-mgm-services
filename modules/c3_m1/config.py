@@ -49,3 +49,4 @@ DEFAULTS = {
     "REGISTRATION_URL": "in-process",
     "COMPANY_ROLES_FILE": "config/company-roles.json",
     "ATTESTATION_ISSUER": "https://ebw.osp-a.example.org",
+    "ATTESTATION_AUDIENCE": "portal-registration",
