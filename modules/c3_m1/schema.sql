@@ -149,3 +149,4 @@ CREATE TABLE change_request (
 );
 
 -- C3-M1 5: at most one change request with status OPEN per company (partial unique index)
+CREATE UNIQUE INDEX change_request_open_per_company ON change_request (company_id) WHERE status = 'OPEN';
