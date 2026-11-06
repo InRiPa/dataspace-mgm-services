@@ -1248,3 +1248,4 @@ def find_identifier_matches(*, identifiers: list[dict], name: str | None = None,
     if not 1 <= len(identifiers) <= 10:
         raise Problem(MODULE, 400, "validation",
                       errors=[{"field": "identifiers", "reason": "1 to 10 entries"}])
+    candidates, page, total = [], 0, None
