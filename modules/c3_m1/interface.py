@@ -281,3 +281,4 @@ def assign_identifier(input: dict) -> dict:
         if row["bpn"]:
             if row["bpn"] == bpn:
                 return standin.step_reply(input, {"companyId": cid, "status": row["status"], "bpn": bpn})
+            raise Problem(MODULE, 409, "bpn-mismatch", detail=f"company has {row['bpn']}",
