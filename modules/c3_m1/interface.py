@@ -392,3 +392,4 @@ CAMEL = {snake: camel for camel, snake in validation.ALIASES.items()}
 
 
 def _changed_fields(row: dict, body: dict, identifiers: list[dict] | None) -> list[str]:
+    """Names of the fields the body really changes, camelCase, for the event (README 7.2, 7.12)."""
