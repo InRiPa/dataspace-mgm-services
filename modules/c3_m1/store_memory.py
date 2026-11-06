@@ -37,3 +37,4 @@ never by mutating a returned dict. No FastAPI, no HTTP, no events.
 from __future__ import annotations
 
 import contextlib
+import copy
