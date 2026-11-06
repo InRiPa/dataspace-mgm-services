@@ -27,3 +27,4 @@
 One function per table, rows are dicts with the snake_case field names of README 5; the router and
 the interface map them to camelCase. The shape mirrors the tables one-to-one, so the PostgreSQL
 transport in `store_postgres.py` answers the same functions: `lock()` is the placeholder for
+`SELECT ... FOR UPDATE` (README 6.9), and every constraint that the database carries (enums, one
