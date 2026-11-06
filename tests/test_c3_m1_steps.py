@@ -167,3 +167,4 @@ def test_activate_before_the_bpn():
 def test_assign_identifier_and_its_errors():
     seed()
     seed(A3, U3, verification="DOCUMENTS", _attestation=None, companyRoles=["ACTIVE_PARTICIPANT"],
+         companyData={"legalName": "Ohne Zustimmung GmbH", "address": ADDRESS,
