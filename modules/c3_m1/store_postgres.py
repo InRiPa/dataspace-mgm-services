@@ -44,3 +44,4 @@ import uuid
 from pathlib import Path
 
 import psycopg
+from psycopg import errors
